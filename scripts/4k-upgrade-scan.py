@@ -9,10 +9,10 @@ Flow:
   1. Get all movies with files from Radarr (via arr-proxy)
   2. For each sub-4K movie, check TMDB for 4K release dates
   3. If a 4K release exists and we haven't notified about it yet → alert Jim
-  4. On approval: switch to Ultra-HD profile + trigger Radarr search
+  4. On approval: trigger Radarr search (quality upgrade handled by profile preferences)
 
 Without --apply: dry-run / detect only, no Radarr changes.
-With    --apply: switches approved movies to Ultra-HD + searches.
+With    --apply: triggers search for approved movies.
 With    --check: detection pass only, outputs JSON of new 4K candidates.
 
 Usage:
@@ -24,7 +24,6 @@ import os, sys, json, urllib.request, urllib.parse, datetime, time, argparse
 PROXY_URL  = os.environ.get("ARR_PROXY_URL", "http://192.168.4.94:7879")
 PROXY_KEY  = os.environ.get("ARR_PROXY_KEY", "orRkC573vbA4cepg4TV_kdtLoy-AaaM8uuyBloWQzT4")
 TMDB_KEY   = os.environ.get("TMDB_API_KEY", "")
-ULTRAHD_PROFILE_ID = 5   # "Ultra-HD" profile id in Radarr
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "../memory/4k-state.json")
 CHECK_COOLDOWN_DAYS = 30  # re-check TMDB at most once per month per movie
@@ -107,15 +106,14 @@ def main():
     parser.add_argument("--check",  action="store_true", help="Detection pass only, print JSON candidates")
     parser.add_argument("--limit",  type=int, default=100, help="Max TMDB lookups per run (default 100)")
     parser.add_argument("--upgrade", type=int, nargs="+", metavar="MOVIE_ID",
-                        help="Immediately upgrade specific Radarr movie IDs to Ultra-HD + search")
+                        help="Immediately trigger a search for specific Radarr movie IDs")
     args = parser.parse_args()
 
     # --- Direct upgrade mode ---
     if args.upgrade:
         for movie_id in args.upgrade:
-            print(f"Upgrading movie {movie_id} → Ultra-HD + search...")
-            proxy_req("PATCH", f"/movies/{movie_id}/quality-profile?qualityProfileId={ULTRAHD_PROFILE_ID}")
-            proxy_req("POST",  f"/movies/{movie_id}/search")
+            print(f"Triggering search for movie {movie_id}...")
+            proxy_req("POST", f"/movies/{movie_id}/search")
             print(f"  Done.")
         return
 
@@ -198,8 +196,9 @@ def main():
         rel = f" (released {m['releaseDate']})" if m['releaseDate'] else ""
         print(f"  [{m['movieId']}] {m['title']} ({m['year']}){rel}")
         print(f"         Currently: {m['currentQuality']} @ {m['currentSizeGB']}GB")
-    print(f"\nTo upgrade any of these, run:")
+    print(f"\nTo trigger a search for any of these, run:")
     print(f"  python3 4k-upgrade-scan.py --upgrade <MOVIE_ID> [MOVIE_ID ...]")
+    print(f"Radarr will grab the 4K automatically based on your quality preferences.")
 
 
 if __name__ == "__main__":
