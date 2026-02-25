@@ -1,0 +1,5 @@
+credentials.json filter=git-crypt diff=git-crypt
+gmail_credentials.json filter=git-crypt diff=git-crypt
+gmail_token.json filter=git-crypt diff=git-crypt
+MEMORY.md filter=git-crypt diff=git-crypt
+memory/** filter=git-crypt diff=git-crypt
