@@ -18,7 +18,11 @@ cp "$OPENCLAW/identity/device.json"                           "$WORKSPACE/config
 
 cd "$WORKSPACE"
 git add config/
-git diff --cached --quiet && echo "No config changes." && exit 0
-git commit -m "chore: sync openclaw config backup"
-git push github master
-echo "Config backed up to GitHub."
+git diff --cached --quiet && echo "No config changes." || {
+  git commit -m "chore: sync openclaw config backup"
+  git push github master
+  echo "Config backed up to GitHub."
+}
+
+# Sync individual automation scripts to their own repos
+bash "$WORKSPACE/scripts/sync-script-repos.sh"
