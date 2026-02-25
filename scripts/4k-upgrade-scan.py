@@ -23,10 +23,23 @@ import os, sys, json, urllib.request, urllib.parse, datetime, time, argparse, ra
 
 PROXY_URL  = os.environ.get("ARR_PROXY_URL", "http://192.168.4.94:7879")
 PROXY_KEY  = os.environ.get("ARR_PROXY_KEY", "orRkC573vbA4cepg4TV_kdtLoy-AaaM8uuyBloWQzT4")
-TMDB_TOKEN = os.environ.get("TMDB_TOKEN", "")  # Bearer token (read access token)
+
+def _load_tmdb_token():
+    token = os.environ.get("TMDB_TOKEN", "")
+    if token:
+        return token
+    creds = os.path.join(os.path.dirname(__file__), "../credentials.json")
+    try:
+        with open(creds) as f:
+            return json.load(f).get("tmdb", {}).get("token", "")
+    except Exception:
+        return ""
+
+TMDB_TOKEN = _load_tmdb_token()
 
 STATE_FILE = os.path.join(os.path.dirname(__file__), "../memory/4k-state.json")
-CHECK_COOLDOWN_DAYS = 30  # re-check TMDB at most once per month per movie
+CHECK_COOLDOWN_DAYS      = 30  # re-check modern films once a month
+CHECK_COOLDOWN_DAYS_OLD  = 14  # re-check pre-2000 films more often (active remaster era)
 
 
 def proxy_req(method, path, body=None):
@@ -106,7 +119,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply",  action="store_true", help="Switch profile + trigger search for approved movies")
     parser.add_argument("--check",  action="store_true", help="Detection pass only, print JSON candidates")
-    parser.add_argument("--limit",  type=int, default=200, help="Max TMDB lookups per run (default 200)")
+    parser.add_argument("--limit",  type=int, default=75,  help="Max TMDB lookups per run (default 75)")
     parser.add_argument("--upgrade", type=int, nargs="+", metavar="MOVIE_ID",
                         help="Immediately trigger a search for specific Radarr movie IDs")
     args = parser.parse_args()
@@ -156,13 +169,15 @@ def main():
     # Shuffle so each run samples across all years, not just newest/oldest
     random.shuffle(candidates)
 
-    # Filter by cooldown
+    # Filter by cooldown — older films rechecked more frequently
     to_check = []
     for movie_id, movie, file_info, tmdb_id in candidates:
+        year     = movie.get("year", 2000) or 2000
+        cooldown = CHECK_COOLDOWN_DAYS_OLD if year < 2000 else CHECK_COOLDOWN_DAYS
         prev = state["checked"].get(str(tmdb_id))
         if prev:
             days = (now - datetime.datetime.fromisoformat(prev["checkedAt"])).days
-            if days < CHECK_COOLDOWN_DAYS:
+            if days < cooldown:
                 continue
         to_check.append((movie_id, movie, file_info, tmdb_id))
 
