@@ -1,3 +1,6 @@
 .env
 *.token
 *.secret
+jim-wtf-preview.png
+jim-wtf/node_modules/
+jim-wtf/.next/

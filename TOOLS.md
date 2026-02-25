@@ -2,6 +2,14 @@
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
+## jim-wtf Dev Workflow
+- Repo: `workspace/jim-wtf/` (nervestaple/jim-wtf)
+- Start dev server: `bash scripts/start-jimwtf.sh` → http://localhost:3421
+- Screenshot: `node scripts/screenshot-site.js` → saves to `workspace/jim-wtf-preview.png`
+- Logs: `/tmp/jim-wtf-dev.log`, PID: `/tmp/jim-wtf-dev.pid`
+- Kill server: `kill $(cat /tmp/jim-wtf-dev.pid)`
+- Note: uses `LD_LIBRARY_PATH=/home/linuxbrew/.linuxbrew/lib` for Playwright headless Chromium
+
 ## What Goes Here
 
 Things like:
