@@ -45,9 +45,9 @@ _Started fresh after data loss on 2026-02-25. Rebuilt from Telegram history dump
 ### Gmail (read-only)
 - Account: nervestaple@gmail.com
 - Scope: gmail.readonly (enforced by Google)
-- Google Cloud Project: "Friday"
-- OAuth credentials stored in workspace
-- Token stored in OpenClaw config
+- Google Cloud Project: "Friday" (client_id: 488737506431-154olp0ig5m25ap6glg7hgarejpvv4b3)
+- Credentials: workspace/gmail_credentials.json
+- Token: workspace/gmail_token.json
 - Email summaries: check a few times/day; filter Nextdoor, financial statements (unless abnormal)
 
 ### GitHub
