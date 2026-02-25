@@ -2,5 +2,7 @@
 *.token
 *.secret
 jim-wtf-preview.png
-jim-wtf/node_modules/
-jim-wtf/.next/
+jim-wtf/
+node_modules/
+package.json
+package-lock.json
