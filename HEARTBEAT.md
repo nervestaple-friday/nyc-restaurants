@@ -6,6 +6,9 @@
 - **Alert immediately** if used space grew by >3GB since last check
 - Save current state to `memory/disk-state.json` after each check
 
+## Config Backup
+- Run `scripts/backup-config.sh` to sync OpenClaw config to GitHub
+
 ## Email Check
 - Check Gmail inbox (a few times/day)
 - Skip: Nextdoor, normal financial statements
