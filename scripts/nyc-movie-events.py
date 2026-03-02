@@ -334,7 +334,8 @@ def scrape_nitehawk():
         'adults-with-infants', 'adults-with-infants-2',
         'brunch', 'brunch-screenings', 'brunch-screenings-2',
         'family-friendly', 'family-friendly-screenings', 'family-friendly-screenings-2',
-        'spoons-toons', 'all-ages-2',
+        'spoons-toons', 'spoons-toons-booze-2', 'all-ages-2',
+        'shorts', 'shorts-2',  # short programs, not features
     }
     LOCATIONS = [
         ('Williamsburg',  'https://nitehawkcinema.com/williamsburg/film-series/'),
@@ -381,6 +382,16 @@ def scrape_nitehawk():
                 continue
             movie_slugs = list(dict.fromkeys(re.findall(r'/movies/([\w\-]+)', r2.text)))
             if not movie_slugs:
+                # Fallback: extract film title from h1 tags (venue, series, film)
+                from bs4 import BeautifulSoup as _BS
+                soup2 = _BS(r2.text, 'html.parser')
+                h1s = [h.get_text(strip=True) for h in soup2.find_all('h1')]
+                film_title = h1s[2] if len(h1s) >= 3 else (h1s[1] if len(h1s) == 2 else None)
+                if film_title:
+                    film_title = re.sub(r'\s*\(\d{4}\)\s*$', '', film_title).strip()
+                    e = make_event(f'Nitehawk ({location})', film_title, series_href, special=True)
+                    if e:
+                        events.append(e)
                 continue
 
             for movie_slug in movie_slugs:
@@ -407,7 +418,9 @@ def scrape_nitehawk():
                         e['special_note'] = special_note
                     events.append(e)
 
-    return events[:40]
+    seen_titles = set()
+    deduped = [e for e in events if e['title'] not in seen_titles and not seen_titles.add(e['title'])]
+    return deduped[:50]
 
 
 def scrape_flc():
