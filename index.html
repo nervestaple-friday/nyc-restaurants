@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>NYC Restaurant Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<style>
+  :root {
+    --bg: #121212;
+    --surface: #1e1e1e;
+    --surface2: #2a2a2a;
+    --text: #e0e0e0;
+    --text-dim: #999;
+    --accent: #f0a030;
+    --accent-hover: #ffb847;
+    --maps-green: #34a853;
+    --maps-green-hover: #2d9249;
+    --border: #333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+  }
+
+  header .subtitle {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 2px;
+  }
+
+  #map {
+    width: 100%;
+    height: 55vh;
+    min-height: 300px;
+  }
+
+  /* Dark map tiles */
+  .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(1.1); }
+  .leaflet-control-attribution { background: var(--surface) !important; color: var(--text-dim) !important; font-size: 10px !important; }
+  .leaflet-control-attribution a { color: var(--text-dim) !important; }
+  .leaflet-control-zoom a {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+  }
+  .leaflet-control-zoom a:hover { background: var(--surface2) !important; }
+
+  /* Custom popup */
+  .leaflet-popup-content-wrapper {
+    background: var(--surface) !important;
+    color: var(--text) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+    padding: 0 !important;
+  }
+  .leaflet-popup-tip { background: var(--surface) !important; }
+  .leaflet-popup-content { margin: 0 !important; width: 260px !important; }
+  .leaflet-popup-close-button { color: var(--text-dim) !important; font-size: 20px !important; top: 6px !important; right: 8px !important; }
+  .leaflet-popup-close-button:hover { color: var(--text) !important; }
+
+  .popup-inner {
+    padding: 14px 16px;
+  }
+  .popup-inner .popup-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+    padding-right: 16px;
+  }
+  .popup-inner .popup-cuisine {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .popup-inner .popup-address {
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .popup-inner .popup-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+  .popup-inner .popup-rating {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .popup-inner .popup-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .gmaps-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--maps-green);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .gmaps-btn:hover { background: var(--maps-green-hover); }
+  .gmaps-btn::before { content: '\1F4CD '; }
+
+  /* Filter bar */
+  .filter-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* List view */
+  .list-header {
+    padding: 16px 16px 8px;
+    font-size: 14px;
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .restaurant-list {
+    padding: 0 16px 80px;
+  }
+
+  .restaurant-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.15s;
+    cursor: pointer;
+  }
+  .restaurant-card:hover { border-color: var(--accent); }
+  .restaurant-card:active { background: var(--surface2); }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+  .card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+  .card-rating {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+  .card-details {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 4px;
+  }
+  .card-neighborhood {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text-dim);
+    margin-right: 6px;
+  }
+  .card-cuisine {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .card-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .card-source {
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .card-gmaps {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: var(--maps-green);
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: background 0.15s;
+  }
+  .card-gmaps:hover { background: var(--maps-green-hover); }
+
+  @media (min-width: 768px) {
+    #map { height: 60vh; }
+    .restaurant-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .restaurant-card { margin-bottom: 0; }
+  }
+  @media (min-width: 1200px) {
+    .restaurant-list {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .list-header, header {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>NYC Restaurants</h1>
+  <div class="subtitle" id="count"></div>
+</header>
+
+<div id="map"></div>
+
+<div class="filter-bar" id="filters"></div>
+
+<div class="list-header" id="list-header">All Restaurants</div>
+<div class="restaurant-list" id="list"></div>
+
+<script>
+const DATA = [
+  {"name":"Bánh Anh Em","address":"99 3rd Ave, New York, NY 10003","place_id":"ChIJDyMGAgBZwokRggrgBWarG0o","lat":40.7322635,"lng":-73.9876172,"neighborhood":"East Village","cuisine":"Vietnamese","rating":4.4,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Sixty Three Clinton","address":"63 Clinton St, New York, NY 10002","place_id":"ChIJ385rlW9ZwokRHTamoLqoosI","lat":40.719503,"lng":-73.985142,"neighborhood":"LES","cuisine":"American","rating":4.7,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Smithereens","address":"414 E 9th St, New York, NY 10009","place_id":"ChIJUb901VlZwokRmb0kduVLllM","lat":40.7277338,"lng":-73.9842655,"neighborhood":"East Village","cuisine":"Bar/Restaurant","rating":4.5,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Wild Cherry","address":"38 Commerce St, New York, NY 10014","place_id":"ChIJs6BQxzZZwokRjAgyOvQHack","lat":40.7312567,"lng":-74.0052925,"neighborhood":"West Village","cuisine":"Wine Bar","rating":4.3,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Estela","address":"47 E Houston St, New York, NY 10012","place_id":"ChIJf3f-f4VZwokRcBCEciTOGRQ","lat":40.7246413,"lng":-73.994739,"neighborhood":"Nolita","cuisine":"Mediterranean","rating":4.4,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Ha's Snack Bar","address":"297 Broome St, New York, NY 10002","place_id":"ChIJ--ORRABZwokRjpPKbOlCC1k","lat":40.7185522,"lng":-73.9921884,"neighborhood":"LES","cuisine":"Vietnamese","rating":4.3,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Bridges","address":"9 Chatham Square, New York, NY 10038","place_id":"ChIJ5Q8Bl1NbwokRjuIXKz8OfRQ","lat":40.7140307,"lng":-73.9980719,"neighborhood":"Chinatown","cuisine":"Chinese","rating":4.5,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Sunn's","address":"139 Division St, New York, NY 10002","place_id":"ChIJJbrdCQBbwokR0msB9eFOzEE","lat":40.714377,"lng":-73.9909737,"neighborhood":"Chinatown","cuisine":"American/Asian","rating":4.6,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Maxi's Noodle 3","address":"68 Mott St, New York, NY 10013","place_id":"ChIJfTn1GABbwokRlOPlaROgBSU","lat":40.7161595,"lng":-73.9979061,"neighborhood":"Chinatown","cuisine":"Chinese","rating":4.3,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Gazab","address":"179 Essex St, New York, NY 10002","place_id":"ChIJ01Bg4shZwokRdYhhALtulFc","lat":40.7219227,"lng":-73.9866681,"neighborhood":"LES","cuisine":"Indian","rating":4.5,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Golden Steer at One Fifth","address":"1 5th Ave, New York, NY 10003","place_id":"ChIJpZ6kWyxZwokR-_-04SLuGmM","lat":40.731962,"lng":-73.9958718,"neighborhood":"Greenwich Village","cuisine":"Steakhouse","rating":4.9,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Stars","address":"139 E 12th St, New York, NY 10003","place_id":"ChIJJaC6SQBZwokRigPQEggwjYg","lat":40.7321753,"lng":-73.9883101,"neighborhood":"East Village","cuisine":"American","rating":4.8,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Café Mulberry","address":"240 Mulberry St, New York, NY 10012","place_id":"ChIJO_ywKQBZwokRaUAiIxG1SrQ","lat":40.722816,"lng":-73.9958228,"neighborhood":"Nolita","cuisine":"Cafe","rating":4.8,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Odo East Village","address":"536 E 5th St, New York, NY 10009","place_id":"ChIJoyIUFwBZwokRH0uTY_J5rcM","lat":40.7240318,"lng":-73.9829146,"neighborhood":"East Village","cuisine":"Japanese","rating":5.0,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Cô Lạc","address":"234 E 4th St, New York, NY 10009","place_id":"ChIJe0sE52pZwokRVFNve0FRc_Q","lat":40.7233621,"lng":-73.9831177,"neighborhood":"East Village","cuisine":"Vietnamese","rating":4.8,"source":"grub_street_apr_2026","added":"2026-04-01","note":"Chef Helen Nguyen (Saigon Social). $55 set menu, bánh dumplings, dry-aged duck. Grub Street April pick."},
+  {"name":"TBD Gimbap","address":"31 Carmine St, New York, NY 10014","place_id":"ChIJi4SmYXBZwokRWAxPLhdSJkI","lat":40.7302612,"lng":-74.0031537,"neighborhood":"West Village","cuisine":"Korean","rating":5.0,"source":"grub_street_apr_2026","added":"2026-04-01","note":"Nami Nori team pop-up. Lines forming before open sign flips. Takeout gimbap ~$12. Runs through May+."},
+  {"name":"Beto's Carnitas & Guisados","address":"69 Clinton St Store front A, New York, NY 10002","place_id":"ChIJ__HrhXpZwokRncS-QOxBZTQ","lat":40.7193634,"lng":-73.985112,"neighborhood":"LES","cuisine":"Mexican","rating":5.0,"source":"grub_street_apr_2026","added":"2026-04-01","note":"Daily carnitas in steel cauldron. Guisados, gorditas with heirloom Masienda corn. Grub Street pick."},
+  {"name":"100 Feast & Lounge","address":"100 E Broadway fl 2, New York, NY 10002","place_id":"ChIJf83T8ghbwokRZ8mODC62yPI","lat":40.7139245,"lng":-73.9933101,"neighborhood":"Chinatown","cuisine":"Chinese/Dim Sum","rating":3.9,"source":"eater_mar_2026","added":"2026-04-01","note":"Second-story dim sum with roving carts. Opened mid-March on competitive E. Broadway corridor."},
+  {"name":"L'Industrie Pizzeria - Little Italy","address":"197 Grand St, New York, NY 10013","place_id":"ChIJLa2K2KhZwokRnhfilqh5HeI","lat":40.7190658,"lng":-73.9969894,"neighborhood":"Little Italy","cuisine":"Pizza","rating":4.8,"source":"eater_mar_2026","added":"2026-04-01","note":"Third location of beloved Williamsburg slice shop. Standing room only. Opened March 19."},
+  {"name":"What The Falafel","address":"124 MacDougal St, New York, NY 10012","place_id":"ChIJw5raOkBZwokRuo-4uqE5slw","lat":40.7299577,"lng":-74.0002448,"neighborhood":"Greenwich Village","cuisine":"Vegetarian/Falafel","rating":5.0,"source":"eater_mar_2026","added":"2026-04-01","note":"Ithaca's all-vegetarian fast-casual. Goop-endorsed tahini shakes, fresh pita. First Manhattan location."},
+  {"name":"Fat Ronnie's Burger Bar","address":"303 6th Ave, New York, NY 10014","place_id":"ChIJcQzjC4pZwokRI6hKjmtmUPs","lat":40.7307189,"lng":-74.0019756,"neighborhood":"West Village","cuisine":"Burgers","rating":4.9,"source":"eater_mar_2026","added":"2026-04-01","note":"Martha's Vineyard import. Thick patties, fish sandwiches, chopped cheese. Harlem family legacy."},
+  {"name":"Bar Chucho","address":"37 Market St, New York, NY 10002","place_id":"ChIJ_S8_MQBbwokRrxbPnZpnb1Y","lat":40.7124073,"lng":-73.9946416,"neighborhood":"Two Bridges","cuisine":"Mexican","rating":5.0,"source":"infatuation_spring_2026","added":"2026-04-01","note":"From Corima team. Cantina bar with cocktails, micheladas, queso chihuahua burger. Opening April 2."},
+  {"name":"After Eden","address":"162 Orchard St, New York, NY 10002","place_id":"ChIJ1UOyDwBZwokRCJEzJyWHio4","lat":40.7210626,"lng":-73.988529,"neighborhood":"LES","cuisine":"Cocktail Bar/Vietnamese Coffee","rating":5.0,"source":"infatuation_spring_2026","added":"2026-04-01","note":"Vietnamese coffee by day, SE Asian cocktails at night. Osamil/Hwaro vet. Opening April."},
+  {"name":"Oriana","address":"174 Mott St, New York, NY 10012","place_id":"ChIJJd8XwcpZwokRKVTqFenQbt4","lat":40.7202738,"lng":-73.9957967,"neighborhood":"Nolita","cuisine":"Wood-fired Grill","rating":null,"source":"eater_spring_preview_2026","added":"2026-04-01","note":"Noortwyck team's 80-seat Nolita spot. Wood-fired grill, 7000-bottle cellar. Opening May."},
+  {"name":"Good Time Country Buffet","address":"166 1st Ave, New York, NY 10009","place_id":"ChIJxzgWBgBZwokRTIRJa6OY0gs","lat":40.7288416,"lng":-73.9840888,"neighborhood":"East Village","cuisine":"Southern/Buffet","rating":null,"source":"eater_spring_preview_2026","added":"2026-04-01","note":"From Kisa + C as in Charlie team. Fried chicken, collards, Southern buffet concept. Opening spring."},
+  {"name":"Dean's","address":"213 6th Ave, New York, NY 10014","place_id":null,"lat":40.7275,"lng":-74.0027,"neighborhood":"SoHo","cuisine":"British Seafood Pub","rating":null,"source":"eater_spring_preview_2026","added":"2026-04-01","note":"From King team (Annie Shi + Jess Shadbolt). Stargazy pie, Guinness, sticky pudding. Opened March 31."},
+  {"name":"Strange Delight","address":"63 Lafayette Ave, Brooklyn, NY 11217","place_id":"ChIJSZ__agBbwokRFqNZkOBfbsk","lat":40.6873624,"lng":-73.9760048,"neighborhood":"Fort Greene","cuisine":"Seafood/Oyster Bar","rating":4.5,"source":"jim_request","added":"2026-04-01","note":"Modern oyster bar near BAM. Brooklyn-New Orleans vibe, great fried shrimp, cocktails. Jim's pick."}
+];
+
+// Deduplicate by name+address
+const seen = new Set();
+const restaurants = DATA.filter(r => {
+  const key = r.name + '|' + r.address;
+  if (seen.has(key)) return false;
+  seen.add(key);
+  return true;
+});
+
+// Sort by added date descending
+function addedScore(d) {
+  if (!d) return 0;
+  if (d.length === 10) return Date.parse(d);          // 2026-04-01
+  if (d.length === 7) return Date.parse(d + '-01');    // 2026-03
+  return 0;
+}
+restaurants.sort((a, b) => addedScore(b.added) - addedScore(a.added));
+
+function gmapsUrl(r) {
+  const base = `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`;
+  return r.place_id ? base + `&query_place_id=${r.place_id}` : base;
+}
+
+function formatSource(s) {
+  return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function starDisplay(rating) {
+  if (rating == null) return '';
+  return '\u2605 ' + rating.toFixed(1);
+}
+
+// --- MAP ---
+const map = L.map('map', { zoomControl: true }).setView([40.7235, -73.9925], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors',
+  maxZoom: 19
+}).addTo(map);
+
+const pinIcon = L.divIcon({
+  className: '',
+  html: '<div style="width:28px;height:28px;background:#f0a030;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:14px;">&#127860;</div>',
+  iconSize: [28, 28],
+  iconAnchor: [14, 14],
+  popupAnchor: [0, -16]
+});
+
+const markers = {};
+restaurants.forEach(r => {
+  const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '';
+  const noteHtml = r.note ? `<div class="popup-note">${r.note}</div>` : '';
+
+  const popup = `<div class="popup-inner">
+    <div class="popup-name">${r.name}</div>
+    <div class="popup-cuisine">${r.cuisine} &middot; ${r.neighborhood}</div>
+    <div class="popup-address">${r.address}</div>
+    <div class="popup-meta">${ratingHtml}<span>${formatSource(r.source)}</span></div>
+    ${noteHtml}
+    <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
+  </div>`;
+
+  const marker = L.marker([r.lat, r.lng], { icon: pinIcon })
+    .bindPopup(popup, { maxWidth: 280 })
+    .addTo(map);
+  markers[r.name + r.address] = marker;
+});
+
+// --- FILTERS ---
+const neighborhoods = [...new Set(restaurants.map(r => r.neighborhood))].sort();
+const filterBar = document.getElementById('filters');
+
+function createFilterBtn(label, value) {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn' + (value === 'all' ? ' active' : '');
+  btn.textContent = label;
+  btn.dataset.filter = value;
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderList(value);
+  });
+  filterBar.appendChild(btn);
+}
+
+createFilterBtn('All', 'all');
+neighborhoods.forEach(n => createFilterBtn(n, n));
+
+// --- LIST ---
+const listEl = document.getElementById('list');
+const listHeader = document.getElementById('list-header');
+const countEl = document.getElementById('count');
+
+function renderList(filter) {
+  const filtered = filter === 'all' ? restaurants : restaurants.filter(r => r.neighborhood === filter);
+
+  listHeader.textContent = filter === 'all'
+    ? `All Restaurants (${filtered.length})`
+    : `${filter} (${filtered.length})`;
+
+  countEl.textContent = `${restaurants.length} spots across NYC`;
+
+  listEl.innerHTML = filtered.map(r => `
+    <div class="restaurant-card" data-key="${r.name}${r.address}">
+      <div class="card-top">
+        <div class="card-name">${r.name}</div>
+        ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
+      </div>
+      <div class="card-details">
+        <span class="card-neighborhood">${r.neighborhood}</span>
+        <span class="card-cuisine">${r.cuisine}</span>
+      </div>
+      <div class="card-details">${r.address}</div>
+      ${r.note ? `<div class="card-note">${r.note}</div>` : ''}
+      <div class="card-bottom">
+        <span class="card-source">${formatSource(r.source)}</span>
+        <a class="card-gmaps" href="${gmapsUrl(r)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Maps</a>
+      </div>
+    </div>
+  `).join('');
+
+  // Card click -> fly to pin and open popup
+  listEl.querySelectorAll('.restaurant-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.dataset.key;
+      const marker = markers[key];
+      if (marker) {
+        map.flyTo(marker.getLatLng(), 16, { duration: 0.8 });
+        marker.openPopup();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+}
+
+renderList('all');
+</script>
+</body>
+</html>
