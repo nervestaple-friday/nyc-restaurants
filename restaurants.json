@@ -1,5 +1,5 @@
 {
-  "updated": "2026-04-01",
+  "updated": "2026-04-03",
   "restaurants": [
     {
       "name": "B\u00e1nh Anh Em",
@@ -693,6 +693,18 @@
       "neighborhood": "Williamsburg",
       "source": "Lo Times #2",
       "notes": "Fritas cubanas \u2014 chorizo patties with shoestring fries, lime milkshake",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Entre Nous",
+      "address": "39 Clifton Pl, Brooklyn, NY 11238, USA",
+      "place_id": "ChIJYY61-rJbwokRMydDW_1Vs4A",
+      "lat": 40.688019,
+      "lng": -73.962881,
+      "rating": 4.6,
+      "neighborhood": "Clinton Hill",
+      "source": "Pendulum Mag, Resy",
+      "notes": "Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French ap\u00e9ro tradition",
       "added": "2026-04-03"
     }
   ],
