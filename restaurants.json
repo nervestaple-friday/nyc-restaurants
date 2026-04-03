@@ -2,7 +2,7 @@
   "updated": "2026-04-01",
   "restaurants": [
     {
-      "name": "Bánh Anh Em",
+      "name": "B\u00e1nh Anh Em",
       "address": "99 3rd Ave, New York, NY 10003, USA",
       "place_id": "ChIJDyMGAgBZwokRggrgBWarG0o",
       "lat": 40.7322635,
@@ -146,7 +146,7 @@
       "added": "2026-03"
     },
     {
-      "name": "Café Mulberry",
+      "name": "Caf\u00e9 Mulberry",
       "address": "240 Mulberry St, New York, NY 10012, USA",
       "place_id": "ChIJO_ywKQBZwokRaUAiIxG1SrQ",
       "lat": 40.722816,
@@ -170,7 +170,7 @@
       "added": "2026-03"
     },
     {
-      "name": "Cô Lạc",
+      "name": "C\u00f4 L\u1ea1c",
       "address": "234 E 4th St, New York, NY 10009, USA",
       "place_id": "ChIJe0sE52pZwokRVFNve0FRc_Q",
       "lat": 40.7233621,
@@ -178,7 +178,7 @@
       "neighborhood": "East Village",
       "cuisine": "Vietnamese",
       "rating": 4.8,
-      "note": "Chef Helen Nguyen (Saigon Social). $55 set menu, bánh dumplings, dry-aged duck. Grub Street April pick.",
+      "note": "Chef Helen Nguyen (Saigon Social). $55 set menu, b\u00e1nh dumplings, dry-aged duck. Grub Street April pick.",
       "source": "grub_street_apr_2026",
       "added": "2026-04-01"
     },
@@ -346,6 +346,210 @@
       "rating": 4.5,
       "source": "manual_add",
       "added": "2026-04"
+    },
+    {
+      "name": "Mariscos El Submarino",
+      "address": "226 7th Ave, Brooklyn, NY 11215, USA",
+      "place_id": "ChIJNSt2OwBbwokRv1X2-D2YtyY",
+      "lat": 40.6702903,
+      "lng": -73.9790508,
+      "rating": 5,
+      "neighborhood": "Park Slope",
+      "source": "Patch, local buzz",
+      "notes": "Sinaloan seafood \u2014 aguachile, ceviche, seafood tacos. Opening 5th location at 226 7th Ave",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Vato",
+      "address": "226 7th Ave Floor 1, Brooklyn, NY 11215, USA",
+      "place_id": "ChIJkUbei5ZbwokR_vaJUwBknnY",
+      "lat": 40.670234699999995,
+      "lng": -73.9789938,
+      "rating": 4.2,
+      "neighborhood": "Park Slope",
+      "source": "Grub Street, Andrea Strong",
+      "notes": "From the Corima (Michelin-starred) team. Sourdough tortillas, burritos, pastries",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "FOLK",
+      "address": "689 6th Ave, Brooklyn, NY 11215, USA",
+      "place_id": "ChIJSTTBZoJbwokRAqhtyjmoq_s",
+      "lat": 40.6605649,
+      "lng": -73.9903719,
+      "rating": 4.9,
+      "neighborhood": "Park Slope",
+      "source": "NYC Hospitality Alliance",
+      "notes": "From Jay Kumar of Lore (Bib Gourmand). Crab risotto, biryani arancini, masala latkes",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Alma Negra",
+      "address": "494 4th Ave, Brooklyn, NY 11215, USA",
+      "place_id": "ChIJjzh0ftJbwokRIFioM_VxHNQ",
+      "lat": 40.668773099999996,
+      "lng": -73.990421,
+      "rating": 4.7,
+      "neighborhood": "Park Slope",
+      "source": "Multiple mentions",
+      "notes": "Polished Mexican \u2014 mezcal-focused bar program",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Le Fleur Rouge | Creative Chinese-French Dining in Park Slope",
+      "address": "392 5th Ave, Brooklyn, NY 11215, USA",
+      "place_id": "ChIJicP02PFbwokR4AqslSztaDs",
+      "lat": 40.67082250000001,
+      "lng": -73.98520309999999,
+      "rating": 4.4,
+      "neighborhood": "Park Slope",
+      "source": "Local coverage",
+      "notes": "Chinese-French from a Michelin-trained chef",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Sailor",
+      "address": "228 Dekalb Ave, Brooklyn, NY 11205, USA",
+      "place_id": "ChIJ2xcAfQFbwokRSBBCp0svARQ",
+      "lat": 40.6893831,
+      "lng": -73.9703111,
+      "rating": 4.4,
+      "neighborhood": "Fort Greene",
+      "source": "NYT 2025",
+      "notes": "American-Mediterranean. NYT Brooklyn best list 2025",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Third Falcon",
+      "address": "360 Myrtle Ave, Brooklyn, NY 11205, USA",
+      "place_id": "ChIJT0Pe_qJbwokR6Ql0YY5qF8I",
+      "lat": 40.6930295,
+      "lng": -73.97198759999999,
+      "rating": 4.5,
+      "neighborhood": "Fort Greene",
+      "source": "NYT 2025",
+      "notes": "French-American. NYT Brooklyn best list 2025",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Evelina",
+      "address": "211 Dekalb Ave, Brooklyn, NY 11205, USA",
+      "place_id": "ChIJzae3_LlbwokR6ts6PCZ3agM",
+      "lat": 40.6897385,
+      "lng": -73.970998,
+      "rating": 4.7,
+      "neighborhood": "Fort Greene",
+      "source": "Multiple",
+      "notes": "Italian. Consistently mentioned among Fort Greene best",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Miss Ada",
+      "address": "184 Dekalb Ave, Brooklyn, NY 11205, USA",
+      "place_id": "ChIJqzhkS7dbwokRtGCdHcorPvU",
+      "lat": 40.689425,
+      "lng": -73.9723664,
+      "rating": 4.6,
+      "neighborhood": "Fort Greene",
+      "source": "Multiple, NYT",
+      "notes": "Israeli/Middle Eastern",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "GERTIE",
+      "address": "602 Vanderbilt Ave, Brooklyn, NY 11238, USA",
+      "place_id": "ChIJ1aKpNABbwokRIFh0cLCWP4w",
+      "lat": 40.6783861,
+      "lng": -73.96888410000001,
+      "rating": 4.5,
+      "neighborhood": "Prospect Heights",
+      "source": "Grub Street",
+      "notes": "Reimagined Jewish deli from Gertrude's team. On-premise bagel baking, appetizing shop meets deli. 602 Vanderbilt",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Leland Eating and Drinking House",
+      "address": "755 Dean St, Brooklyn, NY 11238, USA",
+      "place_id": "ChIJjW_xjcJbwokRhrgB0I0l3Xg",
+      "lat": 40.679822,
+      "lng": -73.9651189,
+      "rating": 4.7,
+      "neighborhood": "Prospect Heights",
+      "source": "BK Mag, Resy Hit List Mar 2026",
+      "notes": "Mediterranean + Chinese/Filipino. Focaccia, smoked pollock fritters, chicken jook, whole fried black sea bass",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Sofreh",
+      "address": "75 St Marks Ave, Brooklyn, NY 11217, USA",
+      "place_id": "ChIJK9DnCNlbwokR499xR5NXZII",
+      "lat": 40.679915199999996,
+      "lng": -73.97397080000002,
+      "rating": 4.3,
+      "neighborhood": "Prospect Heights",
+      "source": "NYT",
+      "notes": "Persian. NYT Brooklyn best 2025",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Cafe Mado",
+      "address": "791 Washington Ave, Brooklyn, NY 11238, USA",
+      "place_id": "ChIJrwTqaQBbwokRaK-iQfAWdG4",
+      "lat": 40.672908299999996,
+      "lng": -73.9626279,
+      "rating": 4.7,
+      "neighborhood": "Prospect Heights",
+      "source": "NYT",
+      "notes": "New American-French. NYT Brooklyn best 2025",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Zimmi's",
+      "address": "72 Bedford St, New York, NY 10014, USA",
+      "place_id": "ChIJGwq75f5ZwokRP0EMH-FLL0g",
+      "lat": 40.7314875,
+      "lng": -74.0047416,
+      "rating": 4.5,
+      "neighborhood": "West Village",
+      "source": "Lo Times best dishes 2025",
+      "notes": "Proven\u00e7al. Fried pumpkin with fennel, honey, pepper",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Mommy Pai\u2019s",
+      "address": "203 Mott St, New York, NY 10012, USA",
+      "place_id": "ChIJ3X8MRQBZwokRSNv3rKb6Jjc",
+      "lat": 40.7214393,
+      "lng": -73.99569509999999,
+      "rating": 4.4,
+      "neighborhood": "Lower Manhattan",
+      "source": "Lo Times best dishes 2025",
+      "notes": "Vegan Filet-o-Fish riff \u2014 fried tofu, nam prik noom, dairy-free American cheese on Tom Cat bun",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Santo Taco",
+      "address": "114 Kenmare St, New York, NY 10012, USA",
+      "place_id": "ChIJg9XtpY1ZwokR8hMIfPF27m4",
+      "lat": 40.721412,
+      "lng": -73.9975948,
+      "rating": 4.6,
+      "neighborhood": "Lower Manhattan",
+      "source": "Lo Times 2025",
+      "notes": "Sirloin trompo tacos. Part of NYC's taco 'watershed year'",
+      "added": "2026-04-03"
+    },
+    {
+      "name": "Taqueria El Chato",
+      "address": "620 Manhattan Ave, Brooklyn, NY 11222, USA",
+      "place_id": "ChIJpx9oNwBZwokRadMPBkSKnvY",
+      "lat": 40.7235891,
+      "lng": -73.9505516,
+      "rating": 4.6,
+      "neighborhood": "Lower Manhattan",
+      "source": "Lo Times 2025",
+      "notes": "Expanding taco spot. Lo Times watershed taco year mention",
+      "added": "2026-04-03"
     }
   ],
   "preferences": {
