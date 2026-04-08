@@ -136,6 +136,39 @@
   .gmaps-btn:hover { background: var(--maps-green-hover); }
   .gmaps-btn::before { content: '\1F4CD '; }
 
+  /* Search bar */
+  .search-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 16px;
+  }
+  .search-input {
+    width: 100%;
+    padding: 9px 14px 9px 36px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input::placeholder { color: var(--text-dim); }
+  .search-input:focus { border-color: var(--accent); }
+  .search-wrap {
+    position: relative;
+  }
+  .search-icon {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 14px;
+    pointer-events: none;
+  }
+
   /* Filter bar */
   .filter-bar {
     background: var(--surface);
@@ -296,6 +329,12 @@
 
 <div id="map"></div>
 
+<div class="search-bar">
+  <div class="search-wrap">
+    <span class="search-icon">&#128269;</span>
+    <input class="search-input" id="search" type="text" placeholder="Search by name, cuisine, neighborhood, or note...">
+  </div>
+</div>
 <div class="filter-bar" id="filters"></div>
 
 <div class="list-header" id="list-header">All Restaurants</div>
@@ -330,7 +369,6 @@ const DATA = [
   {"name":"Good Time Country Buffet","address":"166 1st Ave, New York, NY 10009","place_id":"ChIJxzgWBgBZwokRTIRJa6OY0gs","lat":40.7288416,"lng":-73.9840888,"neighborhood":"East Village","cuisine":"Southern/Buffet","rating":null,"source":"eater_spring_preview_2026","added":"2026-04-01","note":"From Kisa + C as in Charlie team. Fried chicken, collards, Southern buffet concept. Opening spring."},
   {"name":"Dean's","address":"213 6th Ave, New York, NY 10014","place_id":null,"lat":40.7275,"lng":-74.0027,"neighborhood":"SoHo","cuisine":"British Seafood Pub","rating":null,"source":"eater_spring_preview_2026","added":"2026-04-01","note":"From King team (Annie Shi + Jess Shadbolt). Stargazy pie, Guinness, sticky pudding. Opened March 31."},
   {"name":"Strange Delight","address":"63 Lafayette Ave, Brooklyn, NY 11217","place_id":"ChIJSZ__agBbwokRFqNZkOBfbsk","lat":40.6873624,"lng":-73.9760048,"neighborhood":"Fort Greene","cuisine":"Seafood/Oyster Bar","rating":4.5,"source":"jim_request","added":"2026-04-01","note":"Modern oyster bar near BAM. Brooklyn-New Orleans vibe, great fried shrimp, cocktails. Jim's pick."},
-  {"name":"Strange Delight","address":"63 Lafayette Ave, Brooklyn, NY 11217","place_id":"ChIJSZ__agBbwokRFqNZkOBfbsk","lat":40.6873624,"lng":-73.9760048,"neighborhood":"Fort Greene","cuisine":"New Orleans seafood / oyster bar","rating":4.5,"source":"manual_add","added":"2026-04","note":null},
   {"name":"Mariscos El Submarino","address":"226 7th Ave, Brooklyn, NY 11215","place_id":"ChIJNSt2OwBbwokRv1X2-D2YtyY","lat":40.6702903,"lng":-73.9790508,"neighborhood":"Park Slope","cuisine":"Mexican Seafood","rating":5,"source":"Patch, local buzz","added":"2026-04-03","note":"Sinaloan seafood — aguachile, ceviche, seafood tacos. Opening 5th location at 226 7th Ave"},
   {"name":"Vato","address":"226 7th Ave Floor 1, Brooklyn, NY 11215","place_id":"ChIJkUbei5ZbwokR_vaJUwBknnY","lat":40.670234699999995,"lng":-73.9789938,"neighborhood":"Park Slope","cuisine":"Mexican","rating":4.2,"source":"Grub Street, Andrea Strong","added":"2026-04-03","note":"From the Corima (Michelin-starred) team. Sourdough tortillas, burritos, pastries"},
   {"name":"FOLK","address":"689 6th Ave, Brooklyn, NY 11215","place_id":"ChIJSTTBZoJbwokRAqhtyjmoq_s","lat":40.6605649,"lng":-73.9903719,"neighborhood":"Park Slope","cuisine":"Indian-American Fusion","rating":4.9,"source":"NYC Hospitality Alliance","added":"2026-04-03","note":"From Jay Kumar of Lore (Bib Gourmand). Crab risotto, biryani arancini, masala latkes"},
@@ -345,20 +383,20 @@ const DATA = [
   {"name":"Sofreh","address":"75 St Marks Ave, Brooklyn, NY 11217","place_id":"ChIJK9DnCNlbwokR499xR5NXZII","lat":40.679915199999996,"lng":-73.97397080000002,"neighborhood":"Prospect Heights","cuisine":"Persian","rating":4.3,"source":"NYT","added":"2026-04-03","note":"Persian. NYT Brooklyn best 2025"},
   {"name":"Cafe Mado","address":"791 Washington Ave, Brooklyn, NY 11238","place_id":"ChIJrwTqaQBbwokRaK-iQfAWdG4","lat":40.672908299999996,"lng":-73.9626279,"neighborhood":"Prospect Heights","cuisine":"New American-French","rating":4.7,"source":"NYT","added":"2026-04-03","note":"New American-French. NYT Brooklyn best 2025"},
   {"name":"Zimmi's","address":"72 Bedford St, New York, NY 10014","place_id":"ChIJGwq75f5ZwokRP0EMH-FLL0g","lat":40.7314875,"lng":-74.0047416,"neighborhood":"West Village","cuisine":"French","rating":4.5,"source":"Lo Times best dishes 2025","added":"2026-04-03","note":"Provençal. Fried pumpkin with fennel, honey, pepper"},
-  {"name":"Mommy Pai's","address":"203 Mott St, New York, NY 10012","place_id":"ChIJ3X8MRQBZwokRSNv3rKb6Jjc","lat":40.7214393,"lng":-73.99569509999999,"neighborhood":"Lower Manhattan","cuisine":"Vegan","rating":4.4,"source":"Lo Times best dishes 2025","added":"2026-04-03","note":"Vegan Filet-o-Fish riff — fried tofu, nam prik noom, dairy-free American cheese on Tom Cat bun"},
-  {"name":"Santo Taco","address":"114 Kenmare St, New York, NY 10012","place_id":"ChIJg9XtpY1ZwokR8hMIfPF27m4","lat":40.721412,"lng":-73.9975948,"neighborhood":"Lower Manhattan","cuisine":"Mexican","rating":4.6,"source":"Lo Times 2025","added":"2026-04-03","note":"Sirloin trompo tacos. Part of NYC's taco 'watershed year'"},
-  {"name":"Taqueria El Chato","address":"620 Manhattan Ave, Brooklyn, NY 11222","place_id":"ChIJpx9oNwBZwokRadMPBkSKnvY","lat":40.7235891,"lng":-73.9505516,"neighborhood":"Lower Manhattan","cuisine":"Mexican","rating":4.6,"source":"Lo Times 2025","added":"2026-04-03","note":"Expanding taco spot. Lo Times watershed taco year mention"},
+  {"name":"Mommy Pai's","address":"203 Mott St, New York, NY 10012","place_id":"ChIJ3X8MRQBZwokRSNv3rKb6Jjc","lat":40.7214393,"lng":-73.99569509999999,"neighborhood":"Nolita","cuisine":"Vegan","rating":4.4,"source":"Lo Times best dishes 2025","added":"2026-04-03","note":"Vegan Filet-o-Fish riff — fried tofu, nam prik noom, dairy-free American cheese on Tom Cat bun"},
+  {"name":"Santo Taco","address":"114 Kenmare St, New York, NY 10012","place_id":"ChIJg9XtpY1ZwokR8hMIfPF27m4","lat":40.721412,"lng":-73.9975948,"neighborhood":"Nolita","cuisine":"Mexican","rating":4.6,"source":"Lo Times 2025","added":"2026-04-03","note":"Sirloin trompo tacos. Part of NYC's taco 'watershed year'"},
+  {"name":"Taqueria El Chato","address":"620 Manhattan Ave, Brooklyn, NY 11222","place_id":"ChIJpx9oNwBZwokRadMPBkSKnvY","lat":40.7235891,"lng":-73.9505516,"neighborhood":"Greenpoint","cuisine":"Mexican","rating":4.6,"source":"Lo Times 2025","added":"2026-04-03","note":"Expanding taco spot. Lo Times watershed taco year mention"},
   {"name":"Papa San","address":"501 W 34th St., New York, NY 10001","place_id":"ChIJ05xWLABZwokRKCsPbbMahzo","lat":40.7549205,"lng":-73.9993893,"neighborhood":"Midtown West","cuisine":"Nikkei","rating":4.4,"source":"Lo Times #3","added":"2026-04-03","note":"Nikkei. Japanese curry with briny mussels, wagyu tri-tip"},
   {"name":"Lei","address":"15-17 Doyers St, New York, NY 10013","place_id":"ChIJX97UMwBbwokRIFRlD1YzSRc","lat":40.714594999999996,"lng":-73.998267,"neighborhood":"Chinatown","cuisine":"Chinese/Wine Bar","rating":4.7,"source":"Lo Times #4","added":"2026-04-03","note":"Annie Shi's wine bar. Shanxi-style mao er duo — lamb/tomato ragu cat's ear pasta with dill"},
   {"name":"Kabawa","address":"8 Extra Pl, New York, NY 10003","place_id":"ChIJ685zLlZZwokRiEoiYj-Iyvg","lat":40.7248683,"lng":-73.9914685,"neighborhood":"East Village","cuisine":"Caribbean","rating":4.6,"source":"Lo Times #5","added":"2026-04-03","note":"$145 prix-fixe Caribbean. Jerk sausage with chicken liver, rice, braised duck leg"},
   {"name":"Sip&Guzzle","address":"29 Cornelia St, New York, NY 10014","place_id":"ChIJ49KsB19ZwokR8VwrMbECQr8","lat":40.731477500000004,"lng":-74.0024921,"neighborhood":"West Village","cuisine":"American","rating":4.2,"source":"Lo Times #6","added":"2026-04-03","note":"Mike Bagale. Crispy nori rolls with gochujang bluefin + coconut rice"},
   {"name":"DOLORES","address":"397 Tompkins Ave, Brooklyn, NY 11216","place_id":"ChIJwYDDibRbwokR7p0WTQvV1Y8","lat":40.6838554,"lng":-73.94386220000001,"neighborhood":"Bed-Stuy","cuisine":"Mexican","rating":4.5,"source":"Lo Times #7","added":"2026-04-03","note":"Comida chilanga. $4 papadillas — masa stuffed with potato, fried, two salsas"},
-  {"name":"Los Burritos Juarez","address":"354 Myrtle Ave, Brooklyn, NY 11205","place_id":"ChIJac57TDpbwokRBMnOuNySUk8","lat":40.6930161,"lng":-73.9721144,"neighborhood":"Manhattan","cuisine":"Mexican","rating":4.5,"source":"Lo Times #8","added":"2026-04-03","note":"Chihuahua-style thin burritos, single guisado, flour tortillas"},
+  {"name":"Los Burritos Juarez","address":"354 Myrtle Ave, Brooklyn, NY 11205","place_id":"ChIJac57TDpbwokRBMnOuNySUk8","lat":40.6930161,"lng":-73.9721144,"neighborhood":"Fort Greene","cuisine":"Mexican","rating":4.5,"source":"Lo Times #8","added":"2026-04-03","note":"Chihuahua-style thin burritos, single guisado, flour tortillas"},
   {"name":"Thai Diner","address":"186 Mott St, New York, NY 10012","place_id":"ChIJQyFr6-FZwokRr23JK7BC7_g","lat":40.7207143,"lng":-73.99565,"neighborhood":"Nolita","cuisine":"Thai","rating":4.4,"source":"Lo Times #10","added":"2026-04-03","note":"Caviar service: osetra, roti, coconut crème fraîche, lime. $60"},
   {"name":"Bar Kabawa","address":"12 Extra Pl, New York, NY 10003","place_id":"ChIJZy5-auNZwokRiindmTlEhpU","lat":40.7249161,"lng":-73.9913126,"neighborhood":"East Village","cuisine":"Caribbean","rating":4.7,"source":"Lo Times #12","added":"2026-04-03","note":"Foie gras pepperpot duck patty in coco bread"},
   {"name":"Birdee","address":"316 Kent Ave, Brooklyn, NY 11249","place_id":"ChIJJbmnn01ZwokRRBmMCKIY8K8","lat":40.714087899999996,"lng":-73.9672392,"neighborhood":"Williamsburg","cuisine":"Cafe/Bakery","rating":4.1,"source":"Lo Times #13","added":"2026-04-03","note":"Renata Ameni. Parker House BEC with jowl bacon, harissa. $11"},
   {"name":"Casa Carmen Flatiron","address":"5 W 21st St, New York, NY 10010","place_id":"ChIJ035_p9FZwokRJxefU3hsVzo","lat":40.74070510000001,"lng":-73.99106050000002,"neighborhood":"Chelsea","cuisine":"Mexican","rating":4.5,"source":"Lo Times #14","added":"2026-04-03","note":"Pollo con mole Xico — Veracruz specialty, coffee/pepper/dried fruit sauce"},
-  {"name":"Crevette","address":"10 Downing St, New York, NY 10014","place_id":"ChIJ94LFiGZZwokRWfbAft9eBNo","lat":40.729632099999996,"lng":-74.0026661,"neighborhood":"Manhattan","cuisine":"Seafood","rating":4.3,"source":"Lo Times #19","added":"2026-04-03","note":"Patricia Howard + Ed Szymanski. Chicken at a seafood restaurant"},
+  {"name":"Crevette","address":"10 Downing St, New York, NY 10014","place_id":"ChIJ94LFiGZZwokRWfbAft9eBNo","lat":40.729632099999996,"lng":-74.0026661,"neighborhood":"West Village","cuisine":"Seafood","rating":4.3,"source":"Lo Times #19","added":"2026-04-03","note":"Patricia Howard + Ed Szymanski. Chicken at a seafood restaurant"},
   {"name":"Frita Batidos Brooklyn","address":"334 Kent Ave, Brooklyn, NY 11249","place_id":"ChIJjzBW0rJZwokRKhq0ELlC_fM","lat":40.713289499999995,"lng":-73.9675711,"neighborhood":"Williamsburg","cuisine":"Cuban","rating":4.7,"source":"Lo Times #2","added":"2026-04-03","note":"Fritas cubanas — chorizo patties with shoestring fries, lime milkshake"},
   {"name":"Entre Nous","address":"39 Clifton Pl, Brooklyn, NY 11238","place_id":"ChIJYY61-rJbwokRMydDW_1Vs4A","lat":40.688019,"lng":-73.962881,"neighborhood":"Clinton Hill","cuisine":"French/Wine Bar","rating":4.6,"source":"Pendulum Mag, Resy","added":"2026-04-03","note":"Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French apéro tradition"}
 ];
@@ -435,6 +473,7 @@ restaurants.forEach(r => {
 // --- FILTERS ---
 const neighborhoods = [...new Set(restaurants.map(r => r.neighborhood))].sort();
 const filterBar = document.getElementById('filters');
+let activeFilter = 'all';
 
 function createFilterBtn(label, value) {
   const btn = document.createElement('button');
@@ -444,7 +483,8 @@ function createFilterBtn(label, value) {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    renderList(value);
+    activeFilter = value;
+    applyFilters();
   });
   filterBar.appendChild(btn);
 }
@@ -452,19 +492,42 @@ function createFilterBtn(label, value) {
 createFilterBtn('All', 'all');
 neighborhoods.forEach(n => createFilterBtn(n, n));
 
+// --- SEARCH ---
+const searchInput = document.getElementById('search');
+searchInput.addEventListener('input', () => applyFilters());
+
+function applyFilters() {
+  const query = searchInput.value.trim().toLowerCase();
+  let filtered = activeFilter === 'all' ? restaurants : restaurants.filter(r => r.neighborhood === activeFilter);
+  if (query) {
+    filtered = filtered.filter(r =>
+      r.name.toLowerCase().includes(query) ||
+      (r.cuisine && r.cuisine.toLowerCase().includes(query)) ||
+      r.neighborhood.toLowerCase().includes(query) ||
+      (r.note && r.note.toLowerCase().includes(query))
+    );
+  }
+  renderList(filtered, activeFilter, query);
+}
+
 // --- LIST ---
 const listEl = document.getElementById('list');
 const listHeader = document.getElementById('list-header');
 const countEl = document.getElementById('count');
 
-function renderList(filter) {
-  const filtered = filter === 'all' ? restaurants : restaurants.filter(r => r.neighborhood === filter);
+function renderList(filtered, filter, query) {
 
-  listHeader.textContent = filter === 'all'
-    ? `All Restaurants (${filtered.length})`
-    : `${filter} (${filtered.length})`;
+  const label = filter === 'all' ? 'All Restaurants' : filter;
+  listHeader.textContent = `${label} (${filtered.length})`;
 
   countEl.textContent = `${restaurants.length} spots across NYC`;
+
+  // Show/hide markers
+  const visibleKeys = new Set(filtered.map(r => r.name + r.address));
+  Object.entries(markers).forEach(([key, marker]) => {
+    if (visibleKeys.has(key)) { marker.addTo(map); }
+    else { marker.remove(); }
+  });
 
   listEl.innerHTML = filtered.map(r => `
     <div class="restaurant-card" data-key="${r.name}${r.address}">
@@ -499,7 +562,7 @@ function renderList(filter) {
   });
 }
 
-renderList('all');
+applyFilters();
 </script>
 </body>
 </html>
