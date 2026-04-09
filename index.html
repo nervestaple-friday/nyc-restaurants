@@ -209,6 +209,25 @@
     align-self: center;
     padding-right: 4px;
   }
+  .clear-filters-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 6px 16px;
+    display: none;
+  }
+  .clear-filters-bar.visible { display: block; }
+  .clear-filters-btn {
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+  }
+  .clear-filters-btn:hover { border-color: var(--accent); color: var(--text); }
 
   /* List view */
   .list-header {
@@ -359,6 +378,7 @@
 </div>
 <div class="filter-bar" id="filters"><span class="filter-label">Area</span></div>
 <div class="filter-bar" id="cuisine-filters"><span class="filter-label">Cuisine</span></div>
+<div class="clear-filters-bar" id="clear-bar"><button class="clear-filters-btn" id="clear-btn">Clear filters</button></div>
 
 <div class="list-header" id="list-header">All Restaurants</div>
 <div class="restaurant-list" id="list"></div>
@@ -653,6 +673,28 @@ cuisineCategories.forEach(cat => createCuisineBtn(cat, cat));
 const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', () => applyFilters());
 
+// --- CLEAR FILTERS ---
+const clearBar = document.getElementById('clear-bar');
+const clearBtn = document.getElementById('clear-btn');
+
+function updateClearButton() {
+  const hasFilters = activeFilter !== 'all' || activeCuisineFilter !== 'all' || searchInput.value.trim() !== '';
+  clearBar.classList.toggle('visible', hasFilters);
+}
+
+clearBtn.addEventListener('click', () => {
+  activeFilter = 'all';
+  activeCuisineFilter = 'all';
+  searchInput.value = '';
+  filterBar.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === 'all');
+  });
+  cuisineFilterBar.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === 'all');
+  });
+  applyFilters();
+});
+
 function applyFilters() {
   const query = searchInput.value.trim().toLowerCase();
   let filtered = activeFilter === 'all' ? restaurants : restaurants.filter(r => r.neighborhood === activeFilter);
@@ -668,6 +710,7 @@ function applyFilters() {
     );
   }
   renderList(filtered, activeFilter, query);
+  updateClearButton();
 }
 
 // --- LIST ---
