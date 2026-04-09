@@ -419,6 +419,16 @@ function addedScore(d) {
 }
 restaurants.sort((a, b) => addedScore(b.added) - addedScore(a.added));
 
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function gmapsUrl(r) {
   const base = `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`;
   return r.place_id ? base + `&query_place_id=${r.place_id}` : base;
@@ -453,13 +463,13 @@ const pinIcon = L.divIcon({
 const markers = {};
 restaurants.forEach(r => {
   const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '';
-  const noteHtml = r.note ? `<div class="popup-note">${r.note}</div>` : '';
+  const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
 
   const popup = `<div class="popup-inner">
-    <div class="popup-name">${r.name}</div>
-    <div class="popup-cuisine">${r.cuisine} &middot; ${r.neighborhood}</div>
-    <div class="popup-address">${r.address}</div>
-    <div class="popup-meta">${ratingHtml}<span>${formatSource(r.source)}</span></div>
+    <div class="popup-name">${escapeHtml(r.name)}</div>
+    <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
+    <div class="popup-address">${escapeHtml(r.address)}</div>
+    <div class="popup-meta">${ratingHtml}<span>${escapeHtml(formatSource(r.source))}</span></div>
     ${noteHtml}
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
@@ -530,19 +540,19 @@ function renderList(filtered, filter, query) {
   });
 
   listEl.innerHTML = filtered.map(r => `
-    <div class="restaurant-card" data-key="${r.name}${r.address}">
+    <div class="restaurant-card" data-key="${escapeHtml(r.name)}${escapeHtml(r.address)}">
       <div class="card-top">
-        <div class="card-name">${r.name}</div>
+        <div class="card-name">${escapeHtml(r.name)}</div>
         ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
       </div>
       <div class="card-details">
-        <span class="card-neighborhood">${r.neighborhood}</span>
-        <span class="card-cuisine">${r.cuisine}</span>
+        <span class="card-neighborhood">${escapeHtml(r.neighborhood)}</span>
+        <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
       </div>
-      <div class="card-details">${r.address}</div>
-      ${r.note ? `<div class="card-note">${r.note}</div>` : ''}
+      <div class="card-details">${escapeHtml(r.address)}</div>
+      ${r.note ? `<div class="card-note">${escapeHtml(r.note)}</div>` : ''}
       <div class="card-bottom">
-        <span class="card-source">${formatSource(r.source)}</span>
+        <span class="card-source">${escapeHtml(formatSource(r.source))}</span>
         <a class="card-gmaps" href="${gmapsUrl(r)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Maps</a>
       </div>
     </div>
