@@ -255,6 +255,20 @@
   .restaurant-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(240, 160, 48, 0.15); }
   .restaurant-card:active { background: var(--surface2); }
 
+  .empty-state {
+    text-align: center;
+    padding: 48px 16px;
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .empty-state-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
   .card-top {
     display: flex;
     justify-content: space-between;
@@ -738,6 +752,14 @@ function renderList(filtered, filter, query) {
     if (visibleKeys.has(key)) { marker.addTo(map); }
     else { marker.remove(); }
   });
+
+  if (filtered.length === 0) {
+    listEl.innerHTML = `<div class="empty-state">
+      <div class="empty-state-title">No restaurants found</div>
+      <div>Try adjusting your search or filters</div>
+    </div>`;
+    return;
+  }
 
   listEl.innerHTML = filtered.map(r => {
     const st = getStatus(r);
