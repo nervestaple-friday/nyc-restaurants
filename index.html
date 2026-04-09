@@ -199,6 +199,16 @@
     border-color: var(--accent);
     font-weight: 600;
   }
+  .filter-label {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    align-self: center;
+    padding-right: 4px;
+  }
 
   /* List view */
   .list-header {
@@ -347,7 +357,8 @@
     <input class="search-input" id="search" type="text" placeholder="Search by name, cuisine, neighborhood, or note...">
   </div>
 </div>
-<div class="filter-bar" id="filters"></div>
+<div class="filter-bar" id="filters"><span class="filter-label">Area</span></div>
+<div class="filter-bar" id="cuisine-filters"><span class="filter-label">Cuisine</span></div>
 
 <div class="list-header" id="list-header">All Restaurants</div>
 <div class="restaurant-list" id="list"></div>
@@ -528,6 +539,27 @@ function formatSource(s) {
   return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
+function cuisineCategory(cuisine) {
+  const c = (cuisine || '').toLowerCase();
+  if (c.includes('mexican')) return 'Mexican';
+  if (c.includes('chinese')) return 'Chinese';
+  if (c.includes('french')) return 'French';
+  if (c.includes('vietnamese')) return 'Vietnamese';
+  if (c.includes('indian')) return 'Indian';
+  if (c.includes('american') || c === 'steakhouse' || c === 'burgers' || c.includes('southern')) return 'American';
+  if (c.includes('mediterranean') || c.includes('israeli') || c.includes('persian')) return 'Mediterranean';
+  if (c.includes('seafood') || c.includes('oyster')) return 'Seafood';
+  if (c.includes('japanese') || c === 'nikkei') return 'Japanese';
+  if (c.includes('caribbean')) return 'Caribbean';
+  if (c.includes('italian')) return 'Italian';
+  if (c.includes('korean')) return 'Korean';
+  if (c.includes('thai')) return 'Thai';
+  if (c.includes('cafe') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
+  if (c.includes('pizza')) return 'Pizza';
+  return 'Other';
+}
+restaurants.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
+
 function starDisplay(rating) {
   if (rating == null) return '';
   return '\u2605 ' + rating.toFixed(1);
@@ -582,7 +614,7 @@ function createFilterBtn(label, value) {
   btn.textContent = label;
   btn.dataset.filter = value;
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     activeFilter = value;
     applyFilters();
@@ -593,6 +625,30 @@ function createFilterBtn(label, value) {
 createFilterBtn('All', 'all');
 neighborhoods.forEach(n => createFilterBtn(n, n));
 
+// --- CUISINE FILTERS ---
+const cuisineFilterBar = document.getElementById('cuisine-filters');
+let activeCuisineFilter = 'all';
+const catCounts = {};
+restaurants.forEach(r => { catCounts[r.cuisineCat] = (catCounts[r.cuisineCat] || 0) + 1; });
+const cuisineCategories = Object.keys(catCounts).sort((a, b) => catCounts[b] - catCounts[a]);
+
+function createCuisineBtn(label, value) {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn' + (value === 'all' ? ' active' : '');
+  btn.textContent = label;
+  btn.dataset.filter = value;
+  btn.addEventListener('click', () => {
+    cuisineFilterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCuisineFilter = value;
+    applyFilters();
+  });
+  cuisineFilterBar.appendChild(btn);
+}
+
+createCuisineBtn('All', 'all');
+cuisineCategories.forEach(cat => createCuisineBtn(cat, cat));
+
 // --- SEARCH ---
 const searchInput = document.getElementById('search');
 searchInput.addEventListener('input', () => applyFilters());
@@ -600,6 +656,9 @@ searchInput.addEventListener('input', () => applyFilters());
 function applyFilters() {
   const query = searchInput.value.trim().toLowerCase();
   let filtered = activeFilter === 'all' ? restaurants : restaurants.filter(r => r.neighborhood === activeFilter);
+  if (activeCuisineFilter !== 'all') {
+    filtered = filtered.filter(r => r.cuisineCat === activeCuisineFilter);
+  }
   if (query) {
     filtered = filtered.filter(r =>
       r.name.toLowerCase().includes(query) ||
@@ -618,7 +677,14 @@ const countEl = document.getElementById('count');
 
 function renderList(filtered, filter, query) {
 
-  const label = filter === 'all' ? 'All Restaurants' : filter;
+  let label = 'All Restaurants';
+  if (filter !== 'all' && activeCuisineFilter !== 'all') {
+    label = activeCuisineFilter + ' in ' + filter;
+  } else if (filter !== 'all') {
+    label = filter;
+  } else if (activeCuisineFilter !== 'all') {
+    label = activeCuisineFilter;
+  }
   listHeader.textContent = `${label} (${filtered.length})`;
 
   countEl.textContent = `${restaurants.length} spots across NYC`;
