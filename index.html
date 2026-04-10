@@ -743,7 +743,7 @@ function renderList(filtered, filter, query) {
   listEl.innerHTML = filtered.map(r => {
     const st = getStatus(r);
     return `
-    <div class="restaurant-card" data-key="${escapeHtml(r.name)}${escapeHtml(r.address)}">
+    <div class="restaurant-card" data-key="${r.name}${r.address}">
       <div class="card-top">
         <div class="card-name">${escapeHtml(r.name)}</div>
         ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
