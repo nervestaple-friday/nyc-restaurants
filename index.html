@@ -348,8 +348,6 @@
     border-radius: 10px;
     vertical-align: middle;
   }
-  .status-open { background: rgba(52, 168, 83, 0.15); color: #34a853; }
-  .status-closed { background: rgba(234, 67, 53, 0.15); color: #ea4335; }
   .status-upcoming { background: rgba(240, 160, 48, 0.15); color: #f0a030; }
 
   @media (min-width: 768px) {
@@ -467,11 +465,10 @@ const HOURS = {
 };
 restaurants.forEach(r => { r.hours = HOURS[r.name] ?? null; });
 
-// Status detection based on general operating status (not current time)
+// Status: only 'Coming Soon' for restaurants not yet open
 function getStatus(r) {
-  if (r.closed) return {label: 'Closed', cls: 'closed'};
-  if (r.hours) return {label: 'Open', cls: 'open'};
-  return {label: 'Coming Soon', cls: 'upcoming'};
+  if (!r.hours) return {label: 'Coming Soon', cls: 'upcoming'};
+  return null;
 }
 
 function escapeHtml(str) {
@@ -541,12 +538,13 @@ restaurants.forEach(r => {
   const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '';
   const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
   const pst = getStatus(r);
+  const statusHtml = pst ? `<span class="status-badge status-${pst.cls}">${pst.label}</span>` : '';
 
   const popup = `<div class="popup-inner">
     <div class="popup-name">${escapeHtml(r.name)}</div>
     <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
     <div class="popup-address">${escapeHtml(r.address)}</div>
-    <div class="popup-meta">${ratingHtml}<span class="status-badge status-${pst.cls}">${pst.label}</span><span>${escapeHtml(formatSource(r.source))}</span></div>
+    <div class="popup-meta">${ratingHtml}${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span></div>
     ${noteHtml}
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
@@ -683,6 +681,7 @@ function renderList(filtered, filter, query) {
 
   listEl.innerHTML = filtered.map(r => {
     const st = getStatus(r);
+    const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
     return `
     <div class="restaurant-card" data-key="${r.name}${r.address}">
       <div class="card-top">
@@ -690,7 +689,7 @@ function renderList(filtered, filter, query) {
         ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
       </div>
       <div class="card-details">
-        <span class="status-badge status-${st.cls}">${st.label}</span>
+        ${stHtml}
         <span class="card-neighborhood">${escapeHtml(r.neighborhood)}</span>
         <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
       </div>
@@ -741,12 +740,13 @@ function initializeApp() {
     const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '';
     const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
     const pst = getStatus(r);
+    const statusHtml = pst ? `<span class="status-badge status-${pst.cls}">${pst.label}</span>` : '';
 
     const popup = `<div class="popup-inner">
       <div class="popup-name">${escapeHtml(r.name)}</div>
       <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
       <div class="popup-address">${escapeHtml(r.address)}</div>
-      <div class="popup-meta">${ratingHtml}<span class="status-badge status-${pst.cls}">${pst.label}</span><span>${escapeHtml(formatSource(r.source))}</span></div>
+      <div class="popup-meta">${ratingHtml}${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span></div>
       ${noteHtml}
       <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
     </div>`;
@@ -886,6 +886,7 @@ function renderList(filtered, map, markers) {
 
   listEl.innerHTML = filtered.map(r => {
     const st = getStatus(r);
+    const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
     return `
     <div class="restaurant-card" data-key="${r.name}${r.address}">
       <div class="card-top">
@@ -893,7 +894,7 @@ function renderList(filtered, map, markers) {
         ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
       </div>
       <div class="card-details">
-        <span class="status-badge status-${st.cls}">${st.label}</span>
+        ${stHtml}
         <span class="card-neighborhood">${escapeHtml(r.neighborhood)}</span>
         <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
       </div>
