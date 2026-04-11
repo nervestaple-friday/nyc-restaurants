@@ -10,7 +10,6 @@ mkdir -p "$WORKSPACE/config"
 
 cp "$OPENCLAW/openclaw.json"                                  "$WORKSPACE/config/"
 cp "$OPENCLAW/agents/main/agent/auth-profiles.json"           "$WORKSPACE/config/"
-cp "$OPENCLAW/agents/main/agent/auth.json"                    "$WORKSPACE/config/"
 cp "$OPENCLAW/credentials/telegram-default-allowFrom.json"    "$WORKSPACE/config/"
 cp "$OPENCLAW/credentials/telegram-pairing.json"              "$WORKSPACE/config/"
 cp "$OPENCLAW/cron/jobs.json"                                 "$WORKSPACE/config/"

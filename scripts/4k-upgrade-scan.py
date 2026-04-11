@@ -21,7 +21,7 @@ Usage:
 
 import os, sys, json, urllib.request, urllib.parse, datetime, time, argparse, random
 
-PROXY_URL  = os.environ.get("ARR_PROXY_URL", "http://192.168.4.94:7879")
+PROXY_URL  = os.environ.get("ARR_PROXY_URL", "http://100.104.61.75:7879")
 PROXY_KEY  = os.environ.get("ARR_PROXY_KEY", "orRkC573vbA4cepg4TV_kdtLoy-AaaM8uuyBloWQzT4")
 
 def _load_tmdb_token():

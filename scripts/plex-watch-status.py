@@ -16,7 +16,7 @@ WORKSPACE  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE_FILE = os.path.join(WORKSPACE, 'memory', 'show-recs-state.json')
 PLEX       = 'http://192.168.4.121:32400'
 PLEX_TOKEN = 'XRRDNdQVeCjRumgE9mUy'
-ARR_URL    = 'http://192.168.4.94:7879'
+ARR_URL    = 'http://100.104.61.75:7879'
 ARR_KEY    = 'orRkC573vbA4cepg4TV_kdtLoy-AaaM8uuyBloWQzT4'
 
 STALE_DAYS    = 14   # shows not touched in this many days get flagged

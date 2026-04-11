@@ -18,7 +18,7 @@ Filters out mainstream Hollywood wide releases.
 Run weekly for a digest, or with --test to preview without updating state.
 """
 
-import os, sys, json, hashlib, re, requests
+import os, sys, json, hashlib, re, time, requests, html as _html
 from datetime import datetime, timedelta
 from bs4 import BeautifulSoup
 from xml.etree import ElementTree as ET
@@ -36,7 +36,7 @@ HEADERS = {
     'Accept-Language': 'en-US,en;q=0.9',
 }
 
-FLARESOLVERR = 'http://192.168.4.227:8191/v1'
+FLARESOLVERR = 'http://downloader:8191/v1'
 
 MIN_DAYS, MAX_DAYS = 0, 21
 
@@ -83,7 +83,30 @@ def clean_title(title):
     title = re.sub(r'\s*(Q&A?|More Info|Series Schedule|Watch Trailer|Tickets|Buy Tickets)\s*$',
                    '', title, flags=re.IGNORECASE).strip()
     title = re.sub(r'Q&\s*$', '', title).strip()
+    # Strip "by Director Name" suffix (with or without space)
+    title = re.sub(r'\s*[Bb]y\s+[A-Z][a-zé\-]+(?:[\s\-]+[A-Z][a-zé\-]+)*(?:\s*In\s+.*)?$', '', title).strip()
+    # Handle no-space case: "TITLEby Director"
+    title = re.sub(r'(?<=[a-z\)])by\s+[A-Z].*$', '', title).strip()
+    # Strip language suffixes
+    title = re.sub(r'\s*In\s+(?:English|French|Spanish|German|Italian|Japanese|Korean)\s+(?:and|with)\s+.*$', '', title, flags=re.IGNORECASE).strip()
     return ' '.join(title.split())
+
+
+def clean_title_for_display(title):
+    """Clean display titles: strip director prefixes, 'X in TITLE' prefixes, format suffixes."""
+    t = title.strip()
+    # Normalize smart quotes
+    t = t.replace('\u2019', "'").replace('\u2018', "'")
+    # Strip "Director's TITLE" prefix: "Satyajit Ray's DAYS AND NIGHTS..."
+    t = re.sub(r"^[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*'s?\s+", '', t)
+    # Handle "Giuseppe De Santis' BITTER RICE" with particles
+    t = re.sub(r"^[A-Z][a-z]+(?:\s+(?:De|di|del|von|van|Le|La)\s+)?[A-Z][a-z]+'s?\s+", '', t)
+    # Handle "Martin and Lewis in TITLE" → "TITLE"
+    t = re.sub(r'^.+?\s+in\s+(?=[A-Z])', '', t)
+    # Strip trailing " in 3-D!" or " in 3D"
+    t = re.sub(r'\s+in\s+3-?D!?\s*$', '', t, flags=re.IGNORECASE)
+    t = ' '.join(t.split()).strip()
+    return t if len(t) >= 3 else title
 
 def is_special(title, description=''):
     text = (title + ' ' + description).lower()
@@ -127,7 +150,11 @@ def fetch_cf(url, timeout=35):
 def parse_date_loose(text):
     try:
         from dateutil import parser as dp
-        return dp.parse(text, fuzzy=True)
+        dt = dp.parse(text, fuzzy=True)
+        # Strip timezone info to keep all dates naive for consistent comparison
+        if dt.tzinfo is not None:
+            dt = dt.replace(tzinfo=None)
+        return dt
     except Exception:
         return None
 
@@ -157,7 +184,15 @@ def scrape_metrograph():
         for item in root.findall('.//item'):
             title = item.findtext('title', '').strip()
             link  = item.findtext('link', '').strip()
-            e = make_event('Metrograph', title, link, special=True)
+            # NOTE: pubDate is when the listing was posted, NOT the screening date.
+            # Leave date=None so filter_by_date passes these through as undated.
+            date_str = ''
+            pub = item.findtext('pubDate', '').strip()
+            if pub:
+                pd = parse_date_loose(pub)
+                if pd:
+                    date_str = pd.strftime('%b %d')
+            e = make_event('Metrograph', title, link, date=None, date_str=date_str, special=True)
             if e:
                 events.append(e)
     except Exception as ex:
@@ -176,7 +211,15 @@ def scrape_spectacle():
         for item in root.findall('.//item'):
             title = item.findtext('title', '').strip()
             link  = item.findtext('link', '').strip()
-            e = make_event('Spectacle Theater', title, link, special=True)
+            # NOTE: pubDate is when the listing was posted, NOT the screening date.
+            # Leave date=None so filter_by_date passes these through as undated.
+            date_str = ''
+            pub = item.findtext('pubDate', '').strip()
+            if pub:
+                pd = parse_date_loose(pub)
+                if pd:
+                    date_str = pd.strftime('%b %d')
+            e = make_event('Spectacle Theater', title, link, date=None, date_str=date_str, special=True)
             if e:
                 events.append(e)
     except Exception as ex:
@@ -249,13 +292,28 @@ def scrape_ifc():
         link  = f"https://www.ifccenter.com{path}"
         # Strip markdown formatting and trailing context
         title = re.sub(r'[#\*\[\]]', '', title).strip()
+        # Strip markdown link syntax from title
+        title = re.sub(r'\]\(https?://[^\)]+\)\s*$', '', title).strip()
+        title = re.sub(r'\(https?://[^\)]+\)\s*$', '', title).strip()
         title = re.split(r'Q&A|Filmmaker|Director|Screening on|Opens|Academy Award', title)[0].strip()
         if not title or len(title) < 3 or link in seen:
             continue
         seen.add(link)
-        note = re.search(r'\n([^\n#]{10,120})', md[m.end():m.end()+300])
+        note_block = md[m.end():m.end()+400]
+        note = re.search(r'\n([^\n#]{10,120})', note_block)
         special = is_special(title) or bool(note and is_special(note.group(1)))
-        e = make_event('IFC Center', title, link, special=special)
+        # Extract date from nearby text: "Mon, Mar 3 at 7:00" or "Opens Fri, Mar 20"
+        date = None
+        date_str = ''
+        dm = re.search(
+            r'(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,?\s+'
+            r'((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\.?\s+\d{1,2})',
+            note_block,
+        )
+        if dm:
+            date_str = dm.group(1)
+            date = parse_date_loose(date_str + f" {datetime.now().year}")
+        e = make_event('IFC Center', title, link, date=date, date_str=date_str, special=special)
         if e:
             events.append(e)
 
@@ -268,15 +326,43 @@ def scrape_film_forum():
     if not r:
         return events
     soup = BeautifulSoup(r.text, 'html.parser')
+    now = datetime.now()
+    # First pass: build href→date map from img alt text
+    # Film Forum puts dates in img alt: "February 27 - March 12  TWO WEEKS\nSATYAJIT RAY'S..."
+    href_dates = {}
+    for img in soup.find_all('img', alt=True):
+        parent_a = img.parent
+        if parent_a and parent_a.name == 'a' and '/film/' in parent_a.get('href', ''):
+            alt = img.get('alt', '')
+            dm = re.match(
+                r'((?:January|February|March|April|May|June|July|August|September|October|November|December)'
+                r'\s+\d{1,2})',
+                alt,
+            )
+            if dm:
+                href_dates[parent_a['href']] = dm.group(1)
+            elif alt.strip().startswith('Now Playing'):
+                href_dates[parent_a['href']] = 'Now Playing'
+
     seen_titles = set()
     for a in soup.find_all('a', href=True):
         href = a.get('href', '')
         if '/film/' in href or '/films/' in href:
-            title = a.get_text(strip=True)
+            title = a.get_text(separator=' ', strip=True)
+            title = clean_title_for_display(title)
             if title and 3 < len(title) < 100 and title not in seen_titles:
                 seen_titles.add(title)
                 link = f"https://filmforum.org{href}" if href.startswith('/') else href
-                e = make_event('Film Forum', title, link)
+                date = None
+                date_str = ''
+                # Try img alt date first
+                raw_date = href_dates.get(href, '') or href_dates.get(link, '')
+                if raw_date and raw_date != 'Now Playing':
+                    date_str = raw_date
+                    date = parse_date_loose(date_str + f" {now.year}")
+                elif raw_date == 'Now Playing':
+                    date_str = 'Now Playing'
+                e = make_event('Film Forum', title, link, date=date, date_str=date_str)
                 if e:
                     events.append(e)
     return events[:20]
@@ -311,6 +397,7 @@ def scrape_anthology():
                 clean = re.sub(r'^[,\s]*\d{1,2}:\d{2}\s*(AM|PM)\s*', '', text).strip()
                 title = re.split(r'\s+by\s+|\s+Share\s+|In \w+ with|\d{4},\s*\d+\s*min|Share \+', clean)[0].strip()
                 title = re.sub(r'^EC:\s*', '', title).strip()  # keep but clean EC: prefix
+                title = clean_title_for_display(title)
                 if title and 5 < len(title) < 100 and current_date:
                     delta = (current_date - now).days
                     if MIN_DAYS <= delta <= MAX_DAYS:
@@ -329,6 +416,7 @@ def scrape_nitehawk():
     No BeautifulSoup, no h1 guessing. Two lightweight HTML fetches per location
     (index page + series page), one API call per film for structured data."""
     import urllib.request as _ur, urllib.error as _ue
+    now = datetime.now()
 
     SKIP_SLUGS = {
         'adults-with-infants', 'adults-with-infants-2',
@@ -347,8 +435,8 @@ def scrape_nitehawk():
         """Fetch structured show data from Nitehawk's WP REST API by movie slug."""
         try:
             req = _ur.Request(
-                f'{NJ_API}?slug={slug}&_fields=id,title,link,excerpt,director',
-                headers={'Accept': 'application/json'},
+                f'{NJ_API}?slug={slug}&_fields=id,title,link,excerpt,director,_start_date,_start_date_display,showtimes',
+                headers={'Accept': 'application/json', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'},
             )
             with _ur.urlopen(req, timeout=8) as resp:
                 data = json.load(resp)
@@ -380,18 +468,51 @@ def scrape_nitehawk():
             r2 = fetch(series_href)
             if not r2:
                 continue
+            # Parse date-to-movie mapping from showtime blocks on series page
+            from bs4 import BeautifulSoup as _BS
+            soup2 = _BS(r2.text, 'html.parser')
+            slug_dates = {}  # movie_slug -> earliest date string
+            for block in soup2.find_all(class_=re.compile('showtime|schedule|screening')):
+                block_html = str(block)
+                block_text = block.get_text(' ', strip=True)
+                movie_m = re.search(r'/movies/([\w-]+)', block_html)
+                date_m = re.search(
+                    r'(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,?\s+'
+                    r'((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2})',
+                    block_text,
+                )
+                if movie_m and date_m:
+                    ms = movie_m.group(1)
+                    if ms not in slug_dates:
+                        slug_dates[ms] = date_m.group(1)
+
             movie_slugs = list(dict.fromkeys(re.findall(r'/movies/([\w\-]+)', r2.text)))
             if not movie_slugs:
                 # Fallback: extract film title from h1 tags (venue, series, film)
+                # Only include if we can find a date on the series page
                 from bs4 import BeautifulSoup as _BS
                 soup2 = _BS(r2.text, 'html.parser')
                 h1s = [h.get_text(strip=True) for h in soup2.find_all('h1')]
                 film_title = h1s[2] if len(h1s) >= 3 else (h1s[1] if len(h1s) == 2 else None)
                 if film_title:
                     film_title = re.sub(r'\s*\(\d{4}\)\s*$', '', film_title).strip()
-                    e = make_event(f'Nitehawk ({location})', film_title, series_href, special=True)
-                    if e:
-                        events.append(e)
+                    # Try to find a date on the page
+                    page_text = soup2.get_text(' ', strip=True)
+                    date_m = re.search(
+                        r'(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,?\s+'
+                        r'((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2})',
+                        page_text,
+                    )
+                    fb_date = None
+                    fb_date_str = ''
+                    if date_m:
+                        fb_date_str = date_m.group(1)
+                        fb_date = parse_date_loose(fb_date_str + f" {now.year}")
+                    if fb_date or fb_date_str:
+                        e = make_event(f'Nitehawk ({location})', film_title, series_href,
+                                       date=fb_date, date_str=fb_date_str, special=True)
+                        if e:
+                            events.append(e)
                 continue
 
             for movie_slug in movie_slugs:
@@ -401,22 +522,56 @@ def scrape_nitehawk():
 
                 # Get structured data from API
                 show = nj_fetch(movie_slug)
+                date = None
+                date_str = ''
                 if show:
                     title   = show['title']['rendered']
                     link    = show.get('link', series_href)
                     excerpt = re.sub(r'<[^>]+>', '', show.get('excerpt', {}).get('rendered', '')).strip()
                     dirs    = [d['name'] for d in show.get('director', [])]
                     special_note = excerpt or (f"Dir. {', '.join(dirs)}" if dirs else None)
+                    # Extract date from API fields
+                    start = show.get('_start_date', '') or ''
+                    start_display = show.get('_start_date_display', '') or ''
+                    if start:
+                        date = parse_date_loose(start)
+                        date_str = start_display or (date.strftime('%b %d') if date else '')
+                    elif show.get('showtimes'):
+                        first_st = show['showtimes'][0] if isinstance(show['showtimes'], list) else None
+                        if first_st and isinstance(first_st, dict):
+                            st_date = first_st.get('date', '') or first_st.get('start', '')
+                            if st_date:
+                                date = parse_date_loose(st_date)
+                                if date:
+                                    date_str = date.strftime('%b %d')
+                    # Fallback: use date from series page HTML parsing
+                    if not date and movie_slug in slug_dates:
+                        date_str = slug_dates[movie_slug]
+                        date = parse_date_loose(date_str + f" {now.year}")
+                    # Skip "Not Currently Showing" — no date from API or series page
+                    if not start and not date:
+                        continue
                 else:
                     title = movie_slug.replace('-', ' ').title()
                     link  = f'https://nitehawkcinema.com/movies/{movie_slug}/'
                     special_note = None
+                    # Use date from series page HTML parsing
+                    if movie_slug in slug_dates:
+                        date_str = slug_dates[movie_slug]
+                        date = parse_date_loose(date_str + f" {now.year}")
+                    else:
+                        # No API data and no date from series page — skip
+                        continue
 
-                e = make_event(f'Nitehawk ({location})', title, link, special=True)
+                e = make_event(f'Nitehawk ({location})', title, link,
+                               date=date, date_str=date_str, special=True)
                 if e:
                     if special_note:
                         e['special_note'] = special_note
                     events.append(e)
+
+    # Filter out ghost films with no actual screening date
+    events = [e for e in events if e.get('date') or e.get('date_str')]
 
     seen_titles = set()
     deduped = [e for e in events if e['title'] not in seen_titles and not seen_titles.add(e['title'])]
@@ -500,6 +655,42 @@ def scrape_momi():
         print(f"  [MoMI/apitap] {ex}", file=sys.stderr)
         return events
 
+    if not md or len(md.strip()) < 100:
+        print(f"  [MoMI] apitap empty, trying FlareSolverr", file=sys.stderr)
+        r = fetch_cf('https://movingimage.org/whats-on/screenings-and-series/')
+        if r:
+            from bs4 import BeautifulSoup as _BS
+            soup = _BS(r.text, 'html.parser')
+            main = soup.find('main') or soup
+            SKIP_CF = {'screenings and series', 'screenings', 'events', 'calendar',
+                       'see all', 'rentals', 'museum of the moving image', 'whats on',
+                       'screenings this week', 'ongoing series', 'keep exploring',
+                       'plan yourvisit', 'plan your visit', 'tours & workshops',
+                       'watch/read/listen', 'special screenings'}
+            seen = set()
+            # Extract film titles from h2/h3 headings in main content
+            for el in main.find_all(['h2', 'h3']):
+                raw_title = el.get_text(strip=True)
+                if not raw_title or len(raw_title) < 4 or len(raw_title) > 100:
+                    continue
+                if raw_title.lower() in SKIP_CF:
+                    continue
+                # Strip date suffixes: "Mulholland DriveFri, Mar 6, 6:30 pm" → "Mulholland Drive"
+                title = re.sub(r'(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec).*$', '', raw_title).strip()
+                # Strip "—Presented by ..." suffix
+                title = re.sub(r'\s*[—–-]\s*Presented\s+by\s+.*$', '', title).strip()
+                if not title or len(title) < 4 or title.lower() in SKIP_CF or title in seen:
+                    continue
+                seen.add(title)
+                # Try to find a link nearby
+                link_el = el.find('a', href=True) or (el.parent and el.parent.find('a', href=True))
+                href = link_el['href'] if link_el else ''
+                link = href if href.startswith('http') else (f"https://movingimage.org{href}" if href.startswith('/') else 'https://movingimage.org/whats-on/screenings-and-series/')
+                e = make_event('Museum of the Moving Image', title, link, special=True)
+                if e:
+                    events.append(e)
+            return events[:20]
+
     SKIP = {'screenings and series', 'screenings', 'events', 'calendar',
             'see all', 'rentals', 'museum of the moving image', 'whats on'}
     seen = set()
@@ -536,6 +727,50 @@ def scrape_moma():
         print(f"  [MoMA/apitap] {ex}", file=sys.stderr)
         return events
 
+    if not md or len(md.strip()) < 100:
+        print(f"  [MoMA] apitap empty, trying FlareSolverr", file=sys.stderr)
+        r = fetch_cf('https://www.moma.org/calendar/film')
+        if r:
+            from bs4 import BeautifulSoup as _BS
+            soup = _BS(r.text, 'html.parser')
+            main = soup.find('main') or soup
+            SKIP_CF = {'upcoming showtimes', 'upcoming exhibitions', 'view all showtimes',
+                       'film series', 'moma film', 'moma', 'modern mondays'}
+            seen = set()
+            # Extract film/series titles from h2/h3 headings in main content
+            for el in main.find_all(['h2', 'h3']):
+                raw_title = el.get_text(strip=True)
+                if not raw_title or len(raw_title) < 4 or len(raw_title) > 100:
+                    continue
+                # Skip day headers like "Tue, Mar 3"
+                if re.match(r'^(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)', raw_title):
+                    continue
+                # Skip generic section headers
+                if raw_title.lower() in SKIP_CF:
+                    continue
+                # Clean doubled titles: "Modern MondaysModern Mondays" → "Modern Mondays"
+                title = re.sub(r'^(.{4,40})\1$', r'\1', raw_title).strip()
+                # Strip "Doc Fortnight 2026: MoMA's Festival of..." → keep full title
+                # Strip trailing date info
+                title = re.sub(r'\s*(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d.*$', '', title).strip()
+                # Strip "MoMA Presents:" prefix
+                title = re.sub(r'^MoMA Presents:\s*', '', title).strip()
+                # Strip possessive director: "Ken Jacobs'sStar Spangled" → "Star Spangled to Death"
+                # Handle with or without space after 's, smart quotes, single/multi word names
+                title = re.sub(r"^[A-Z][a-zé]+(?:\s+[A-Z][a-zé]+)*['\u2019]s?\s*(?=[A-Z])", '', title).strip()
+                # Strip "An Evening Celebrating" prefix
+                title = re.sub(r'^An Evening (?:Celebrating|with)\s+', '', title).strip()
+                if not title or len(title) < 4 or title.lower() in SKIP_CF or title in seen:
+                    continue
+                seen.add(title)
+                link_el = el.find('a', href=True) or (el.parent and el.parent.find('a', href=True))
+                href = link_el['href'] if link_el else ''
+                link = href if href.startswith('http') else (f"https://www.moma.org{href}" if href.startswith('/') else 'https://www.moma.org/calendar/film')
+                e = make_event('MoMA', title, link, special=True)
+                if e:
+                    events.append(e)
+            return events[:20]
+
     SKIP = {'upcoming showtimes', 'upcoming exhibitions', 'view all showtimes',
             'film series', 'moma film', 'moma'}
     seen = set()
@@ -560,9 +795,12 @@ def scrape_moma():
 
 
 def scrape_paris():
-    """Paris Theater NYC — extract all current films from the double-escaped JSON
-    embedded in the Next.js page bundle. No API auth needed, no FlareSolverr.
-    Paris typically shows 2-4 films at a time, all listed in the page source."""
+    """Paris Theater NYC — extract current films from the Next.js page bundle.
+    Uses three extraction strategies:
+      1. DisplayTitle fields in double-escaped JSON (featured film + dates)
+      2. SlideTitle/SlideLink pairs in the homepage slider (promotional entries)
+      3. /film/ URL slugs linked anywhere on the page
+    No API auth needed, no FlareSolverr."""
     import urllib.request as _ur
     events = []
 
@@ -577,27 +815,117 @@ def scrape_paris():
         print(f"  [Paris/html] {ex}", file=sys.stderr)
         return events
 
-    # Extract DisplayTitle from escaped JSON in Next.js bundle.
-    # Raw bytes: DisplayTitle\\":\\"Title - \\u003cParis\\u003e\\"
-    seen = set()
-    SKIP_TITLES = {'fall preview', 'coming soon', 'paris theater', 'special event'}
-    for m in re.finditer(
-        r'DisplayTitle[^:]*?:.*?"([^"\\]{3,80})',
-        html,
-    ):
-        title = m.group(1).strip().rstrip(' -').strip()
-        if not title or len(title) < 3:
-            continue
-        if title.lower() in SKIP_TITLES or title in seen:
-            continue
-        seen.add(title)
-        slug  = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
-        link  = f"https://www.paristheaternyc.com/films/{slug}"
-        e = make_event('Paris Theater', title, link)
+    seen = set()  # normalized lowercase titles
+    SKIP_TITLES = {'fall preview', 'coming soon', 'paris theater', 'special event',
+                   'special engagements', 'series and events', 'sign up', 'about',
+                   'read more', 'tickets', 'buy tickets', 'learn more'}
+
+    def _norm_key(t):
+        """Normalize for dedup: lowercase, strip punctuation, collapse spaces."""
+        return re.sub(r'[^a-z0-9 ]+', '', t.lower()).strip()
+
+    def _title_case(t):
+        """Title-case but preserve short words and all-caps acronyms."""
+        if t == t.upper() and len(t) > 4:
+            t = t.title()
+        return t
+
+    def _add(title, link, date=None, date_str=''):
+        """Helper: dedupe and add an event."""
+        title = _title_case(title)
+        norm = _norm_key(title)
+        if not title or len(title) < 3 or norm in SKIP_TITLES or norm in seen:
+            return
+        # Also check if this is a substring match of something already seen
+        for s in list(seen):
+            if norm in s or s in norm:
+                return
+        seen.add(norm)
+        e = make_event('Paris Theater', title, link, date=date, date_str=date_str)
         if e:
             events.append(e)
 
+    # --- Strategy 1: DisplayTitle + OpeningDate from double-escaped JSON ---
+    title_dates = {}
+    for script_m in re.finditer(r'<script[^>]*>([^<]*DisplayTitle[^<]*)</script>', html):
+        blob = script_m.group(1)
+        unesc = blob.replace('\\"', '"').replace('\\\\', '\\')
+        for fm in re.finditer(
+            r'DisplayTitle":"([^"]+)".*?OpeningDate":"(\d{4}-\d{2}-\d{2})"',
+            unesc,
+        ):
+            raw_title = fm.group(1).replace('\\u003c', '<').replace('\\u003e', '>')
+            raw_title = re.sub(r'\s*-\s*<Paris>\s*$', '', raw_title).strip()
+            if raw_title and len(raw_title) >= 3:
+                title_dates[raw_title] = fm.group(2)
+
+    for m in re.finditer(r'DisplayTitle[^:]*?:.*?"([^"\\]{3,80})', html):
+        title = m.group(1).strip().rstrip(' -').strip()
+        # Clean Paris suffix
+        title = re.sub(r'\s*-\s*\\?u003c?Paris\\?u003e?\s*$', '', title).strip()
+        date = None
+        date_str = ''
+        opening = title_dates.get(title, '')
+        if not opening:
+            for t, d in title_dates.items():
+                if title.lower() in t.lower() or t.lower() in title.lower():
+                    opening = d
+                    break
+        if opening:
+            date = parse_date_loose(opening)
+            if date:
+                date_str = date.strftime('%b %d')
+        slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+        _add(title, f"https://www.paristheaternyc.com/film/{slug}", date=date, date_str=date_str)
+
+    # --- Strategy 2: SlideTitle + SlideLink from homepage slider data ---
+    # Unescape the Next.js double-encoded content for slider parsing
+    unesc_html = html.replace('\\"', '"').replace('\\u003c', '<').replace('\\u003e', '>')
+    for sm in re.finditer(
+        r'"SlideTitle"\s*:\s*"([^"]{3,100})"\s*,\s*"SlideSubtext"\s*:\s*"[^"]*"\s*,\s*"SlideLink"\s*:\s*"([^"]+)"',
+        unesc_html,
+    ):
+        slide_title = sm.group(1).strip()
+        slide_link = sm.group(2).strip()
+        # Skip non-film slides (promotional/generic)
+        if any(skip in slide_title.lower() for skip in ('nominated', 'preview', 'coming soon', 'sign up', 'academy award')):
+            continue
+        _add(slide_title, slide_link)
+
+    # --- Strategy 3: /film/ URL slugs ---
+    for fm in re.finditer(r'paristheaternyc\.com/film/([a-z0-9][a-z0-9-]+[a-z0-9])', unesc_html):
+        slug = fm.group(1)
+        # Convert slug to title: "peaky-blinders-the-immortal-man-paris" → "Peaky Blinders The Immortal Man"
+        raw = slug.replace('-', ' ')
+        # Strip "paris" suffix (venue tag in slugs)
+        raw = re.sub(r'\s+paris\s*$', '', raw).strip()
+        if not raw or len(raw) < 3:
+            continue
+        title = raw.title()
+        link = f"https://www.paristheaternyc.com/film/{slug}"
+        _add(title, link)
+
     return events[:10]
+
+
+def clean_bam_title(title):
+    """Strip presenter/series prefixes from BAM titles for cleaner display and TMDB matching.
+    e.g. 'Cinema Tropical at 25: Silvia Prieto' → 'Silvia Prieto'
+         'MUBI Notebook Presents: I Am Love' → 'I Am Love'
+         'ArteEast Presents Prince of Nothingwood' → 'Prince of Nothingwood'"""
+    # "{Presenter} Presents: {Film}" or "{Presenter} presents: {Film}"
+    m = re.match(r'^.+?\s+[Pp]resents?:\s+(.+)$', title)
+    if m:
+        return m.group(1).strip()
+    # "{Presenter} Presents {Film}" (no colon)
+    m = re.match(r'^.+?\s+[Pp]resents?\s+(.+)$', title)
+    if m and len(m.group(1)) > 3:
+        return m.group(1).strip()
+    # "{Series} at {N}: {Film}"
+    m = re.match(r'^.+?\s+at\s+\d+:\s+(.+)$', title)
+    if m:
+        return m.group(1).strip()
+    return title
 
 
 def scrape_bam():
@@ -620,24 +948,248 @@ def scrape_bam():
             return events
         md = r.text
 
+    BAM_SKIP = {'BAM Film 2026', 'BAM Film', 'Film', 'More', 'See All', 'See all',
+                 'View All', 'Buy Tickets', 'Learn More'}
     seen = set()
+    # Unescape HTML entities BEFORE regex extraction (e.g. &#226; → â)
+    md = _html.unescape(md)
     # apitap read renders BAM titles cleanly as ### Title
     for m in re.finditer(r'###\s+([^\n#]{3,80})', md):
-        title = m.group(1).strip().strip('"').strip()
-        # Skip header noise
-        if title in ('BAM Film 2026', 'BAM Film', 'Film') or len(title) < 4:
+        raw_title = m.group(1).strip().strip('"').strip()
+        # Skip header noise, short titles, bare years
+        if raw_title in BAM_SKIP or len(raw_title) < 4:
             continue
-        if title in seen:
+        if re.match(r'^\d{4}$', raw_title):  # bare year like "2026"
             continue
-        seen.add(title)
-        # Derive link slug from title
-        slug = re.sub(r'[^a-z0-9]+', '-', title.lower()).strip('-')
+        if raw_title in seen:
+            continue
+        seen.add(raw_title)
+        # Derive link slug from ORIGINAL title (before cleanup)
+        slug = re.sub(r'[^a-z0-9]+', '-', raw_title.lower()).strip('-')
         link = f"https://www.bam.org/film/{slug}"
-        e = make_event('BAM', title, link)
+        # Extract date from text after the title heading
+        date = None
+        date_str = ''
+        after_text = md[m.end():m.end()+300]
+        dm = re.search(
+            r'((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\.?\s+\d{1,2})',
+            after_text,
+        )
+        if dm:
+            date_str = dm.group(1)
+            date = parse_date_loose(date_str + f" {datetime.now().year}")
+        elif 'Now Playing' in after_text:
+            date_str = 'Now Playing'
+        # Clean the title for display and TMDB matching
+        title = clean_bam_title(raw_title)
+        e = make_event('BAM', title, link, date=date, date_str=date_str)
         if e:
             events.append(e)
 
     return events[:15]
+
+
+# ── TMDB enrichment ────────────────────────────────────────────────────────
+
+TMDB_CACHE_FILE = os.path.join(WORKSPACE, 'memory', 'tmdb-cache.json')
+
+def _clean_title_for_tmdb(title):
+    """Strip director prefixes, 'by' suffixes, years, and formatting for better TMDB matching."""
+    t = title.strip()
+    # Normalize smart quotes to ASCII
+    t = t.replace('\u2019', "'").replace('\u2018', "'").replace('\u201c', '"').replace('\u201d', '"')
+    # Strip "by Director Name" suffix (with or without space): "THE ERRAND BOYby Jerry Lewis"
+    # Also strip trailing language notes: "In English and French with..."
+    t = re.sub(r'\s*[Bb]y\s+[A-Z][a-zé\-]+(?:[\s\-]+[A-Z][a-zé\-]+)*(?:\s*In\s+.*)?$', '', t)
+    # Strip "Director's TITLE" prefix: "Satyajit Ray's DAYS AND NIGHTS..."
+    t = re.sub(r"^[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*'s?\s+", '', t)
+    # Also handle "Giuseppe De Santis' BITTER RICE", "Ida Lupino's THE BIGAMIST"
+    t = re.sub(r"^[A-Z][a-z]+(?:\s+(?:De|di|del|von|van|Le|La)\s+)?[A-Z][a-z]+'s?\s+", '', t)
+    # Handle "Martin and Lewis in TITLE in 3-D!" → "MONEY FROM HOME"
+    t = re.sub(r'^.+?\s+in\s+(?=[A-Z])', '', t)
+    # Strip trailing " in 3-D!" or " in 3D"
+    t = re.sub(r'\s+in\s+3-?D!?\s*$', '', t, flags=re.IGNORECASE)
+    # Strip "PRESENTER PRESENTS" prefix (case-insensitive)
+    t = re.sub(r'^.+?\s+[Pp][Rr][Ee][Ss][Ee][Nn][Tt][Ss]?\s+', '', t)
+    # Strip "(35mm!)" and similar tags
+    t = re.sub(r'\s*\((?:35mm|16mm|DCP|FREE)[^)]*\)\s*$', '', t, flags=re.IGNORECASE)
+    # Strip quoted titles: '"HUSBANDS"' → 'HUSBANDS'
+    t = re.sub(r'^"(.+)"$', r'\1', t)
+    # Strip "Presented by Name" suffix
+    t = re.sub(r'\s+[Pp]resented\s+by\s+.*$', '', t)
+    # Strip trailing year: "Jaws 1975" → "Jaws"
+    t = re.sub(r'\s+\d{4}\s*$', '', t)
+    # Strip trailing URL fragments: "title(https://...)"
+    t = re.sub(r'\(https?://[^\)]+\)\s*$', '', t)
+    # Strip "In English and French with..." suffixes
+    t = re.sub(r'\s*In\s+\w+\s+and\s+\w+\s+with.*$', '', t)
+    # Collapse whitespace
+    t = ' '.join(t.split()).strip()
+    return t if len(t) >= 3 else title
+
+def _extract_year_from_title(title):
+    """Extract a 4-digit year from title if present, for TMDB year filtering."""
+    m = re.search(r'\b(19\d{2}|20\d{2})\b', title)
+    return int(m.group(1)) if m else None
+
+# Titles that are compilations/events and won't match on TMDB
+_TMDB_SKIP_PATTERNS = [
+    r'oscar.nominated.*shorts', r'academy awards', r'oscar.*shorts',
+    r'late night favorites', r'spoons toons', r'sunday on fire',
+    r'ultra.mega oscars', r'video store gems', r'super mario',
+    r'\bpgm\s+\d', r'\bprogram\s+[a-z]:', r'doc\s+program',
+    r'making visible.*free screening', r'four films by',
+    r'defiant and playful', r'doc nyc selects',
+    r'crossroads of dreams.*four', r'wrong number.*films by',
+    r'sock sock', r'rockuary', r'travel companions',
+    r'let the dead bury', r'listen up!', r'an evening with',
+    r'in conversation', r'selections from',
+    r'caribbean film series', r'o.neill.*richter.*sharits',
+    r'sidney peterson$', r'mabou mines',
+    r'roots of rhythm remain', r'faust lsc$',
+    r'may your eyes be blessed', r'bakri family',
+]
+
+def _should_skip_tmdb(title):
+    t = title.lower()
+    return any(re.search(p, t) for p in _TMDB_SKIP_PATTERNS)
+
+
+def enrich_with_tmdb(events_by_venue):
+    """Look up each unique title on TMDB and attach poster, overview, year, rating."""
+    creds_path = os.path.join(WORKSPACE, 'credentials.json')
+    try:
+        with open(creds_path) as f:
+            tmdb_token = json.load(f)['tmdb']['token']
+    except Exception as e:
+        print(f"  [tmdb] could not load token: {e}", file=sys.stderr)
+        return
+
+    # Load cache
+    cache = {}
+    if os.path.exists(TMDB_CACHE_FILE):
+        try:
+            with open(TMDB_CACHE_FILE) as f:
+                cache = json.load(f)
+        except Exception:
+            cache = {}
+
+    # Clear stale entries with empty overview so they get re-searched with improved cleaning
+    stale_keys = [k for k, v in cache.items() if not v.get('overview') and not v.get('poster')]
+    for k in stale_keys:
+        del cache[k]
+    if stale_keys:
+        print(f"  [tmdb] cleared {len(stale_keys)} stale cache entries for re-search", file=sys.stderr)
+
+    # Collect unique titles with venue info for venue-aware TMDB matching
+    from collections import defaultdict as _dds
+    title_venues = _dds(set)
+    for venue, events in events_by_venue.items():
+        for e in events:
+            title_venues[e['title']].add(venue)
+    titles = set(title_venues.keys())
+
+    # New-film venues primarily show recent/new films
+    NEW_FILM_VENUES = {'Film at Lincoln Center', 'BAM', 'IFC Center', 'MoMA', 'Museum of the Moving Image'}
+
+    # Clear cache for titles at new-film venues to re-search with venue context
+    cleared_new = [t for t in title_venues if t in cache and (title_venues[t] & NEW_FILM_VENUES)]
+    for t in cleared_new:
+        del cache[t]
+    if cleared_new:
+        print(f"  [tmdb] cleared {len(cleared_new)} cache entries for new-film venue titles", file=sys.stderr)
+
+    def _search_tmdb(query, year=None, search_type='movie'):
+        """Search TMDB movie or TV, return all results."""
+        endpoint = f'https://api.themoviedb.org/3/search/{search_type}'
+        params = {'query': query}
+        if year:
+            params['year' if search_type == 'movie' else 'first_air_date_year'] = year
+        r = requests.get(endpoint, params=params,
+                         headers={'Authorization': f'Bearer {tmdb_token}'}, timeout=10)
+        r.raise_for_status()
+        return r.json().get('results', [])
+
+    def _pick_best(results, prefer_recent):
+        """Pick best TMDB result, preferring recent films (2023-2026) for new-film venues."""
+        if not results:
+            return None
+        if prefer_recent and len(results) > 1:
+            recent = [r for r in results if (r.get('release_date', '') or r.get('first_air_date', ''))[:4] in ('2023', '2024', '2025', '2026')]
+            if recent:
+                return recent[0]
+        return results[0]
+
+    # Search TMDB for uncached titles
+    api_calls = 0
+    for title in sorted(titles):
+        if title in cache:
+            continue
+        if _should_skip_tmdb(title):
+            cache[title] = {'poster': '', 'overview': '', 'year': '', 'rating': 0, 'skipped': True}
+            continue
+        if api_calls > 0:
+            time.sleep(0.25)
+        try:
+            cleaned = _clean_title_for_tmdb(title)
+            year = _extract_year_from_title(title)
+            hit = None
+
+            # Determine if we should prefer recent films for this title
+            venues_for_title = title_venues.get(title, set())
+            prefer_recent = bool(venues_for_title & NEW_FILM_VENUES)
+
+            # Try movie search with cleaned title
+            results = _search_tmdb(cleaned, year=year, search_type='movie')
+            api_calls += 1
+
+            # If no result, try without year filter
+            if not results and year:
+                time.sleep(0.25)
+                results = _search_tmdb(cleaned, search_type='movie')
+                api_calls += 1
+
+            # If still no result, try TV search
+            if not results:
+                time.sleep(0.25)
+                results = _search_tmdb(cleaned, year=year, search_type='tv')
+                api_calls += 1
+
+            hit = _pick_best(results, prefer_recent)
+            if hit:
+                poster_path = hit.get('poster_path') or ''
+                # TV uses first_air_date, movies use release_date
+                release_date = hit.get('release_date', '') or hit.get('first_air_date', '')
+                cache[title] = {
+                    'poster': f'https://image.tmdb.org/t/p/w300{poster_path}' if poster_path else '',
+                    'overview': hit.get('overview', ''),
+                    'year': release_date[:4] if len(release_date) >= 4 else '',
+                    'rating': hit.get('vote_average', 0),
+                }
+            else:
+                cache[title] = {'poster': '', 'overview': '', 'year': '', 'rating': 0}
+        except Exception as ex:
+            print(f"  [tmdb] search failed for '{title}': {ex}", file=sys.stderr)
+            cache[title] = {'poster': '', 'overview': '', 'year': '', 'rating': 0}
+
+    # Save cache
+    try:
+        os.makedirs(os.path.dirname(TMDB_CACHE_FILE), exist_ok=True)
+        with open(TMDB_CACHE_FILE, 'w') as f:
+            json.dump(cache, f, indent=2, ensure_ascii=False)
+    except Exception as ex:
+        print(f"  [tmdb] cache write failed: {ex}", file=sys.stderr)
+
+    # Attach fields to events
+    for events in events_by_venue.values():
+        for e in events:
+            info = cache.get(e['title'], {})
+            e['poster'] = info.get('poster', '')
+            e['overview'] = info.get('overview', '')
+            e['year'] = info.get('year', '')
+            e['rating'] = info.get('rating', 0)
+
+    print(f"  [tmdb] enriched {len(titles)} titles ({api_calls} API calls)", file=sys.stderr)
 
 
 # ── filtering + formatting ─────────────────────────────────────────────────
@@ -694,7 +1246,16 @@ def push_to_github(events_by_venue):
             venue: {
                 'url': VENUE_URLS.get(venue, ''),
                 'events': [
-                    {'title': e['title'], 'link': e.get('link',''), 'date_str': e.get('date_str','')}
+                    {k: v for k, v in [
+                        ('title', e['title']),
+                        ('link', e.get('link', '')),
+                        ('date_str', e.get('date_str', '')),
+                        ('also_at', e.get('also_at')),
+                        ('poster', e.get('poster', '')),
+                        ('overview', e.get('overview', '')),
+                        ('year', e.get('year', '')),
+                        ('rating', e.get('rating', 0)),
+                    ] if v}
                     for e in events
                 ]
             }
@@ -799,6 +1360,17 @@ def main():
         else:
             events_by_venue[e['venue']] = events_by_venue.get(e['venue'], []) + [e]
 
+    # Per-venue title deduplication
+    for venue in events_by_venue:
+        seen = set()
+        deduped = []
+        for e in events_by_venue[venue]:
+            norm_title = re.sub(r'[^a-z0-9 ]', '', e['title'].lower()).strip()
+            if norm_title not in seen:
+                seen.add(norm_title)
+                deduped.append(e)
+        events_by_venue[venue] = deduped
+
     digest = format_digest(events_by_venue)
     print(digest if digest else "No new events found.")
 
@@ -807,6 +1379,21 @@ def main():
         state['lastRun'] = datetime.now().isoformat()
         save_state(state)
         print(f"\n[State updated: {len(new_ids)} new events]", file=sys.stderr)
+
+    # Cross-venue deduplication: add also_at field
+    from collections import defaultdict
+    title_venues = defaultdict(list)
+    norm = lambda t: re.sub(r'[^a-z0-9 ]', '', t.lower()).strip()
+    for venue, evts in events_by_venue.items():
+        for e in evts:
+            title_venues[norm(e['title'])].append(venue)
+    for venue, evts in events_by_venue.items():
+        for e in evts:
+            others = [v for v in title_venues[norm(e['title'])] if v != venue]
+            if others:
+                e['also_at'] = others
+
+    enrich_with_tmdb(events_by_venue)
 
     if PUSH:
         push_to_github(events_by_venue)

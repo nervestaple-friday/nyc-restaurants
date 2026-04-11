@@ -1,44 +1,25 @@
 #!/usr/bin/env python3
 """
-Daily film recommendation for Jim.
+Film recommendation data tool.
 
-- Pulls recent watch history from Plex for taste context
-- Uses GPT to suggest 2 films matched to Jim's taste profile
-- Checks each against Plex library and Radarr (already owned / already queued)
-- Tracks past recommendations to avoid repeats (memory/film-recs-state.json)
+Pure data gatherer for the check-in cron — no LLM calls.
+Claude generates recommendations using the structured context this outputs.
 
-Run: python3 scripts/film-of-the-day.py [--dry-run]
+Modes:
+  python3 scripts/film-of-the-day.py                          # gather context JSON
+  python3 scripts/film-of-the-day.py --check '[{"title":..}]' # verify films against library
+  python3 scripts/film-of-the-day.py --record 'Title (Year)'  # record titles to state
+  python3 scripts/film-of-the-day.py --record ... --dry-run   # preview without saving
 """
 
-import os, sys, json, urllib.request, urllib.parse, datetime, argparse, time
+import os, sys, json, urllib.request, argparse, datetime
 
 WORKSPACE  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE_FILE = os.path.join(WORKSPACE, 'memory', 'film-recs-state.json')
 PLEX       = 'http://192.168.4.121:32400'
 PLEX_TOKEN = 'XRRDNdQVeCjRumgE9mUy'
-ARR_URL    = 'http://192.168.4.94:7879'
+ARR_URL    = 'http://100.104.61.75:7879'
 ARR_KEY    = 'orRkC573vbA4cepg4TV_kdtLoy-AaaM8uuyBloWQzT4'
-
-TASTE_PROFILE = """
-Jim's film taste:
-- Directors he loves: Frederick Wiseman, Claire Denis, Ralph Bakshi, Lars von Trier,
-  Josh Safdie, Benny Safdie, Alfred Hitchcock
-- Genres/styles: international cinema, documentary, genre films with real craft,
-  slow cinema, crime, neo-noir, midnight movies, arthouse
-- Recent watches (context): Fallen Leaves (Kaurismäki), Barry Lyndon (Kubrick),
-  Party Girl (1995), Judgment at Nuremberg, AUM: The Cult at the End of the World
-- Hard skip: franchise films, superhero, generic blockbusters
-- Preferred eras: all eras welcome, strong appreciation for 60s-90s cinema
-- Location: Brooklyn, NY — appreciates NYC-set films
-"""
-
-
-def load_openai_key():
-    try:
-        with open('/home/claw/.openclaw/openclaw.json') as f:
-            return json.load(f)['skills']['entries']['openai-whisper-api']['apiKey']
-    except Exception:
-        return os.environ.get('OPENAI_API_KEY', '')
 
 
 def plex_req(path):
@@ -66,22 +47,22 @@ def get_plex_library_titles():
 
 
 def get_recently_watched(n=20):
-    """Get Jim's most recently watched movies."""
+    """Get recently watched movies as structured dicts."""
     data = plex_req(f'/library/sections/1/all?type=1&sort=lastViewedAt:desc&limit={n}')
     watched = []
     for m in data['MediaContainer'].get('Metadata', []):
         if m.get('lastViewedAt'):
-            watched.append(f"{m.get('title')} ({m.get('year')})")
+            watched.append({'title': m.get('title'), 'year': m.get('year')})
     return watched
 
 
 def get_radarr_titles():
-    """Return set of title_lower for all monitored Radarr movies. Skips gracefully if unreachable."""
+    """Return list of monitored Radarr movie titles. Skips gracefully if unreachable."""
     try:
         movies = arr_req('/movies')
-        return {m.get('title', '').lower() for m in movies}
+        return [m.get('title', '') for m in movies if m.get('monitored', True)]
     except Exception:
-        return set()
+        return []
 
 
 def load_state():
@@ -98,112 +79,94 @@ def save_state(state):
         json.dump(state, f, indent=2)
 
 
-def gpt(prompt, openai_key):
-    data = json.dumps({
-        'model': 'gpt-4o-mini',
-        'messages': [{'role': 'user', 'content': prompt}],
-        'temperature': 0.8,
-        'response_format': {'type': 'json_object'},
-    }).encode()
-    req = urllib.request.Request(
-        'https://api.openai.com/v1/chat/completions', data=data,
-        headers={'Authorization': f'Bearer {openai_key}', 'Content-Type': 'application/json'})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(json.loads(r.read())['choices'][0]['message']['content'])
-
-
-def check_in_library(title, year, plex_titles, radarr_titles):
+def check_in_library(title, year, plex_titles, radarr_titles_lower):
     """Check if a film is in Plex or Radarr."""
     t = title.lower()
     in_plex   = any(pt == t or (pt == t and py == year) for pt, py in plex_titles)
-    in_radarr = t in radarr_titles
+    in_radarr = t in radarr_titles_lower
     return in_plex, in_radarr
 
 
+def cmd_gather():
+    """Default mode: output structured context JSON for Claude."""
+    state         = load_state()
+    recently_watched = get_recently_watched(25)
+    plex_titles   = get_plex_library_titles()
+    radarr_titles = get_radarr_titles()
+    past_recs     = state.get('recommended', [])[-30:]
+
+    output = {
+        'recently_watched': recently_watched,
+        'past_recommendations': past_recs,
+        'plex_library_count': len(plex_titles),
+        'radarr_monitored': radarr_titles,
+        'last_run': state.get('last_run'),
+        'today': datetime.date.today().isoformat(),
+    }
+    print(json.dumps(output, indent=2))
+
+
+def cmd_check(check_json):
+    """Verify a list of recommendations against Plex/Radarr."""
+    try:
+        films = json.loads(check_json)
+    except json.JSONDecodeError as e:
+        print(json.dumps({'error': f'Invalid JSON: {e}'}))
+        sys.exit(1)
+
+    plex_titles = get_plex_library_titles()
+    radarr_titles_lower = {t.lower() for t in get_radarr_titles()}
+
+    results = []
+    for film in films:
+        title = film.get('title', '')
+        year  = film.get('year')
+        in_plex, in_radarr = check_in_library(title, year, plex_titles, radarr_titles_lower)
+        results.append({
+            'title': title,
+            'year': year,
+            'in_plex': in_plex,
+            'in_radarr': in_radarr,
+        })
+
+    print(json.dumps(results, indent=2))
+
+
+def cmd_record(titles, dry_run=False):
+    """Record recommendation titles to state to avoid future repeats."""
+    state = load_state()
+    past  = state.get('recommended', [])
+
+    for t in titles:
+        if t not in past:
+            past.append(t)
+
+    state['recommended'] = past
+    state['last_run']    = datetime.date.today().isoformat()
+
+    if dry_run:
+        print(json.dumps({'dry_run': True, 'would_record': titles, 'total_past': len(past)}))
+    else:
+        save_state(state)
+        print(json.dumps({'recorded': titles, 'total_past': len(past)}))
+
+
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--dry-run', action='store_true')
+    parser = argparse.ArgumentParser(description='Film recommendation data tool')
+    parser.add_argument('--check', metavar='JSON',
+                        help='JSON array of {title, year} to verify against library')
+    parser.add_argument('--record', nargs='+', metavar='TITLE',
+                        help='Record recommendation titles to state (e.g. "Title (Year)")')
+    parser.add_argument('--dry-run', action='store_true',
+                        help='Preview --record without saving')
     args = parser.parse_args()
 
-    openai_key = load_openai_key()
-    if not openai_key:
-        print("No OpenAI key", file=sys.stderr); sys.exit(1)
-
-    state          = load_state()
-    recently_seen  = get_recently_watched(25)
-    plex_titles    = get_plex_library_titles()
-    radarr_titles  = get_radarr_titles()
-    past_recs      = state.get('recommended', [])[-60:]  # avoid repeats for ~2 months
-
-    prompt = f"""You are recommending films for Jim, a cinephile in Brooklyn.
-
-{TASTE_PROFILE}
-
-Recently watched (do NOT recommend these):
-{chr(10).join(f'- {f}' for f in recently_seen)}
-
-Already recommended recently (do NOT repeat):
-{chr(10).join(f'- {r}' for r in past_recs[-30:])}
-
-Today's date: {datetime.date.today().isoformat()}
-
-Suggest exactly 2 films. Rules:
-- Must be real films that exist
-- No franchise films, no superhero films
-- Avoid films from {datetime.date.today().year} (too new for physical releases)
-- Mix it up — don't always pick the same era or style
-- Write a genuine, specific pitch (2-3 sentences) — not generic. Tell him WHY this specific film.
-
-Respond with JSON only:
-{{
-  "recommendations": [
-    {{
-      "title": "exact film title",
-      "year": 1984,
-      "director": "Director Name",
-      "pitch": "2-3 sentence pitch specific to Jim's taste"
-    }},
-    ...
-  ]
-}}"""
-
-    result = gpt(prompt, openai_key)
-    recs   = result.get('recommendations', [])
-
-    if not recs:
-        print("No recommendations generated.")
-        return
-
-    lines = ["🎬 Film recommendations for today:\n"]
-    new_recs = []
-
-    for r in recs:
-        title    = r.get('title', '')
-        year     = r.get('year')
-        director = r.get('director', '')
-        pitch    = r.get('pitch', '')
-
-        in_plex, in_radarr = check_in_library(title, year, plex_titles, radarr_titles)
-
-        if in_plex:
-            status = "✅ In your library"
-        elif in_radarr:
-            status = "📥 Already in Radarr"
-        else:
-            status = "➕ Not in library"
-
-        lines.append(f"• {title} ({year}) — {director}")
-        lines.append(f"  {pitch}")
-        lines.append(f"  {status}")
-        lines.append("")
-        new_recs.append(f"{title} ({year})")
-
-    report = '\n'.join(lines).strip()
-    print(report)
-
-    state['recommended'] = past_recs + new_recs
-    state['last_run']    = datetime.date.today().isoformat()
-    save_state(state)
+    if args.check:
+        cmd_check(args.check)
+    elif args.record:
+        cmd_record(args.record, dry_run=args.dry_run)
+    else:
+        cmd_gather()
 
 
 if __name__ == '__main__':

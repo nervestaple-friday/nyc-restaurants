@@ -22,14 +22,15 @@ Always skip:
   - No specific role or context
 
 Run: python3 scripts/recruiter-scan.py [--days 7] [--dry-run]
+
+Requires: gog CLI with GOG_ACCOUNT and GOG_KEYRING_PASSWORD env vars set.
 """
 
-import os, sys, json, urllib.request, urllib.parse, datetime, time, argparse
+import os, sys, json, urllib.request, subprocess, datetime, time, argparse
 
 WORKSPACE  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TOKEN_FILE = os.path.join(WORKSPACE, 'gmail_token.json')
-CREDS_FILE = os.path.join(WORKSPACE, 'gmail_credentials.json')
 STATE_FILE = os.path.join(WORKSPACE, 'memory', 'recruiter-state.json')
+GOG_ACCOUNT = os.environ.get('GOG_ACCOUNT', 'nervestaple@gmail.com')
 
 RECRUITER_KEYWORDS = [
     'opportunity', 'role', 'position', 'hiring', 'join our team',
@@ -47,73 +48,50 @@ SKIP_SENDERS = [
 # ── Auth ──────────────────────────────────────────────────────────────────────
 
 def load_openai_key():
+    # Prefer env var (set by OpenClaw gateway from .env SecretRefs)
+    key = os.environ.get('OPENAI_API_KEY', '')
+    if key:
+        return key
+    # Fallback: read from config (may be a SecretRef like ${OPENAI_API_KEY})
     try:
         with open('/home/claw/.openclaw/openclaw.json') as f:
             cfg = json.load(f)
-        return cfg['skills']['entries']['openai-whisper-api']['apiKey']
+        val = cfg['skills']['entries']['openai-whisper-api']['apiKey']
+        if val and not val.startswith('$'):
+            return val
     except Exception:
-        return os.environ.get('OPENAI_API_KEY', '')
-
-
-def load_token():
-    with open(TOKEN_FILE) as f:
-        return json.load(f)
-
-
-def save_token(t):
-    with open(TOKEN_FILE, 'w') as f:
-        json.dump(t, f, indent=2)
-
-
-def refresh_token(token):
-    with open(CREDS_FILE) as f:
-        creds = json.load(f)['installed']
-    data = urllib.parse.urlencode({
-        'client_id':     creds['client_id'],
-        'client_secret': creds['client_secret'],
-        'refresh_token': token['refresh_token'],
-        'grant_type':    'refresh_token',
-    }).encode()
-    req = urllib.request.Request(
-        creds['token_uri'], data=data,
-        headers={'Content-Type': 'application/x-www-form-urlencoded'})
-    with urllib.request.urlopen(req, timeout=15) as r:
-        new = json.loads(r.read())
-    token['access_token'] = new['access_token']
-    save_token(token)
-    return token
-
-
-# ── Gmail helpers ─────────────────────────────────────────────────────────────
-
-def gmail(path, token, params=None):
-    for attempt in range(2):
-        try:
-            url = f'https://gmail.googleapis.com/gmail/v1/users/me{path}'
-            if params:
-                url += ('&' if '?' in url else '?') + urllib.parse.urlencode(params)
-            req = urllib.request.Request(
-                url, headers={'Authorization': f"Bearer {token['access_token']}"})
-            with urllib.request.urlopen(req, timeout=15) as r:
-                return json.loads(r.read()), token
-        except urllib.error.HTTPError as e:
-            if e.code == 401 and attempt == 0:
-                token = refresh_token(token)
-            else:
-                raise
-
-
-def get_body(payload):
-    if payload.get('mimeType') == 'text/plain':
-        data = payload.get('body', {}).get('data', '')
-        if data:
-            import base64
-            return base64.urlsafe_b64decode(data + '==').decode('utf-8', errors='ignore')
-    for part in payload.get('parts', []):
-        text = get_body(part)
-        if text:
-            return text
+        pass
     return ''
+
+
+# ── gog CLI helpers ──────────────────────────────────────────────────────────
+
+def gog_search(query, max_results=50):
+    """Search Gmail via gog CLI. Returns list of message dicts."""
+    cmd = [
+        'gog', 'gmail', 'messages', 'search', query,
+        '--max', str(max_results),
+        '--json', '--account', GOG_ACCOUNT,
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    if result.returncode != 0:
+        raise RuntimeError(f"gog search failed (exit {result.returncode}): {result.stderr.strip()}")
+    if not result.stdout.strip():
+        return []
+    data = json.loads(result.stdout)
+    return data.get('messages', []) if isinstance(data, dict) else data
+
+
+def gog_get(message_id):
+    """Get full message via gog CLI. Returns message dict."""
+    cmd = [
+        'gog', 'gmail', 'get', message_id,
+        '--json', '--account', GOG_ACCOUNT,
+    ]
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+    if result.returncode != 0:
+        raise RuntimeError(f"gog get failed (exit {result.returncode}): {result.stderr.strip()}")
+    return json.loads(result.stdout)
 
 
 # ── GPT evaluation ────────────────────────────────────────────────────────────
@@ -212,14 +190,12 @@ def main():
         print("No OpenAI key found.", file=sys.stderr)
         sys.exit(1)
 
-    token = load_token()
     state = load_state()
     after = int((datetime.datetime.now() - datetime.timedelta(days=args.days)).timestamp())
 
     query = (f'in:inbox after:{after} '
              f'(opportunity OR "reaching out" OR "open to" OR hiring OR role OR position)')
-    results, token = gmail('/messages', token, {'q': query, 'maxResults': 50})
-    msgs = results.get('messages', [])
+    msgs = gog_search(query, max_results=50)
     print(f"Found {len(msgs)} candidate emails in last {args.days} days", flush=True)
 
     all_evaluated = []  # all recruiter emails with GPT scores
@@ -229,28 +205,25 @@ def main():
         if msg_id in state['seen']:
             continue
 
-        # Fast pass: metadata + snippet
-        meta, token = gmail(
-            f"/messages/{msg_id}?format=metadata"
-            f"&metadataHeaders=From&metadataHeaders=Subject", token)
-        hmap    = {h['name']: h['value']
-                   for h in meta.get('payload', {}).get('headers', [])}
-        sender  = hmap.get('From', '')
-        subject = hmap.get('Subject', '')
-        snippet = meta.get('snippet', '')
+        sender  = m.get('from', '')
+        subject = m.get('subject', '')
 
         if any(s in sender.lower() for s in SKIP_SENDERS):
             state['seen'].append(msg_id)
             continue
 
-        combined = (subject + ' ' + snippet).lower()
+        combined = subject.lower()
         if not any(kw in combined for kw in RECRUITER_KEYWORDS):
             state['seen'].append(msg_id)
             continue
 
         # Fetch full body for promising candidates
-        detail, token = gmail(f"/messages/{msg_id}?format=full", token)
-        body = get_body(detail.get('payload', {})) or snippet
+        try:
+            detail = gog_get(msg_id)
+            body = detail.get('body', '') or subject
+        except Exception as e:
+            print(f"  gog get error for {msg_id}: {e}", flush=True)
+            body = subject
 
         try:
             result = evaluate_opportunity(subject, sender, body, openai_key)

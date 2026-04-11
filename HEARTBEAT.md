@@ -1,23 +1,32 @@
 # HEARTBEAT.md
 
-## Disk Space Monitor
-- Check `df /` on every heartbeat
-- **Alert immediately** if available < 20GB
-- **Alert immediately** if used space grew by >3GB since last check
-- Save current state to `memory/disk-state.json` after each check
+## Background pulse. Default: silent (HEARTBEAT_OK).
+## Schedule is defined in openclaw.json (single source of truth).
+## Daily check-ins are handled by cron.
 
-## Config Backup
-- Run `scripts/backup-config.sh` to sync OpenClaw config to GitHub
+---
 
-## 4K Upgrade Scan
-- Run `python3 scripts/4k-upgrade-scan.py` (auto-loads token from credentials.json)
-- Checks up to 75 movies/run (~20s), random sample across library
-- Pre-2000 films rechecked every 14 days (active remaster era); others every 30 days
-- If new 4K releases found → message Jim: title, Radarr movie ID, current quality
-- Jim approves → run `--upgrade <ID> [ID...]` to trigger Radarr search
+## Break silence ONLY for genuinely URGENT items:
+- Time-sensitive email (flight change, security alert, package issue)
+- Calendar event starting within 2 hours not yet mentioned
+- System error needing attention (disk full, service down)
 
-## Email Check
-- Run `python3 scripts/gmail-check.py 6` (last 6 hours)
-- Skip: Nextdoor, newsletters, normal financial statements
-- Call BlueChew "medication"
-- If anything actionable found → message Jim with distilled summary
+## NOT urgent (save for scheduled check-ins):
+- Normal emails, newsletters, Venmo, package updates
+- Film/show recommendations
+- 4K upgrade results
+- Recruiter emails (Monday cron handles these)
+- Disk space (unless critical)
+
+---
+
+## If urgent: send message to Jim (main thread, not check-in topic)
+## If nothing urgent: HEARTBEAT_OK
+
+---
+
+## Silent background tasks (do these WITHOUT breaking silence):
+### Memory maintenance (once per day, track in heartbeat-state.json → lastMemoryMaintenance)
+- Scan today's `memory/YYYY-MM-DD.md` for unstored preferences, decisions, lessons
+- `memory_recall` broad query → check for stale/outdated entries
+- Store new, update stale, forget obsolete — silently
