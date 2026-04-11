@@ -467,23 +467,11 @@ const HOURS = {
 };
 restaurants.forEach(r => { r.hours = HOURS[r.name] ?? null; });
 
-// Status detection based on hours field
-const DAY_IDX = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+// Status detection based on general operating status (not current time)
 function getStatus(r) {
-  if (!r.hours) return {label: 'Coming Soon', cls: 'upcoming'};
-  const now = new Date();
-  const day = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
-  for (const part of r.hours.split(',')) {
-    const m = part.trim().match(/^(\w{3})(?:-(\w{3}))?\s+(\d{1,2}):(\d{2})-(\d{1,2}):(\d{2})$/);
-    if (!m) continue;
-    const ds = DAY_IDX[m[1]], de = m[2] ? DAY_IDX[m[2]] : ds;
-    const inDay = ds <= de ? (day >= ds && day <= de) : (day >= ds || day <= de);
-    if (!inDay) continue;
-    const open = +m[3]*60 + +m[4], close = +m[5]*60 + +m[6];
-    if (close <= open ? (mins >= open || mins < close) : (mins >= open && mins < close))
-      return {label: 'Open', cls: 'open'};
-  }
-  return {label: 'Closed', cls: 'closed'};
+  if (r.closed) return {label: 'Closed', cls: 'closed'};
+  if (r.hours) return {label: 'Open', cls: 'open'};
+  return {label: 'Coming Soon', cls: 'upcoming'};
 }
 
 function escapeHtml(str) {
