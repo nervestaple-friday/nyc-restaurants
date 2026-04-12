@@ -641,7 +641,7 @@ function applyFilters() {
       (r.note && r.note.toLowerCase().includes(query))
     );
   }
-  renderList(filtered, activeFilter, query);
+  renderList(filtered);
   updateClearButton();
 }
 
@@ -650,13 +650,13 @@ const listEl = document.getElementById('list');
 const listHeader = document.getElementById('list-header');
 const countEl = document.getElementById('count');
 
-function renderList(filtered, filter, query) {
+function renderList(filtered) {
 
   let label = 'All Restaurants';
-  if (filter !== 'all' && activeCuisineFilter !== 'all') {
-    label = activeCuisineFilter + ' in ' + filter;
-  } else if (filter !== 'all') {
-    label = filter;
+  if (activeFilter !== 'all' && activeCuisineFilter !== 'all') {
+    label = activeCuisineFilter + ' in ' + activeFilter;
+  } else if (activeFilter !== 'all') {
+    label = activeFilter;
   } else if (activeCuisineFilter !== 'all') {
     label = activeCuisineFilter;
   }
@@ -847,73 +847,8 @@ function applyFilters(map, markers) {
       (r.note && r.note.toLowerCase().includes(query))
     );
   }
-  renderList(filtered, map, markers);
+  renderList(filtered);
   updateClearButton();
-}
-
-function renderList(filtered, map, markers) {
-  let label = 'All Restaurants';
-  if (activeFilter !== 'all' && activeCuisineFilter !== 'all') {
-    label = activeCuisineFilter + ' in ' + activeFilter;
-  } else if (activeFilter !== 'all') {
-    label = activeFilter;
-  } else if (activeCuisineFilter !== 'all') {
-    label = activeCuisineFilter;
-  }
-  listHeader.textContent = `${label} (${filtered.length})`;
-
-  countEl.textContent = `${restaurants.length} spots across NYC`;
-
-  // Show/hide markers
-  const visibleKeys = new Set(filtered.map(r => r.name + r.address));
-  Object.entries(markers).forEach(([key, marker]) => {
-    if (visibleKeys.has(key)) { marker.addTo(map); }
-    else { marker.remove(); }
-  });
-
-  if (filtered.length === 0) {
-    listEl.innerHTML = `<div class="empty-state">
-      <div class="empty-state-title">No restaurants found</div>
-      <div>Try adjusting your search or filters</div>
-    </div>`;
-    return;
-  }
-
-  listEl.innerHTML = filtered.map(r => {
-    const st = getStatus(r);
-    const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
-    return `
-    <div class="restaurant-card" data-key="${r.name}${r.address}">
-      <div class="card-top">
-        <div class="card-name">${escapeHtml(r.name)}</div>
-        ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
-      </div>
-      <div class="card-details">
-        ${stHtml}
-        <span class="card-neighborhood">${escapeHtml(r.neighborhood)}</span>
-        <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
-      </div>
-      <div class="card-details">${escapeHtml(r.address)}</div>
-      ${r.note ? `<div class="card-note">${escapeHtml(r.note)}</div>` : ''}
-      <div class="card-bottom">
-        <span class="card-source">${escapeHtml(formatSource(r.source))}</span>
-        <a class="card-gmaps" href="${gmapsUrl(r)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Maps</a>
-      </div>
-    </div>`;
-  }).join('');
-
-  // Card click -> fly to pin and open popup
-  listEl.querySelectorAll('.restaurant-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const key = card.dataset.key;
-      const marker = markers[key];
-      if (marker) {
-        map.flyTo(marker.getLatLng(), 16, { duration: 0.8 });
-        marker.openPopup();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    });
-  });
 }
 </script>
 </body>
