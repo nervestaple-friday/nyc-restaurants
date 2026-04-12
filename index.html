@@ -851,11 +851,6 @@ function applyFilters(map, markers) {
   updateClearButton();
 }
 
-// --- LIST ---
-const listEl = document.getElementById('list');
-const listHeader = document.getElementById('list-header');
-const countEl = document.getElementById('count');
-
 function renderList(filtered, map, markers) {
   let label = 'All Restaurants';
   if (activeFilter !== 'all' && activeCuisineFilter !== 'all') {
