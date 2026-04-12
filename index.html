@@ -675,7 +675,7 @@ function initializeApp() {
       const st = getStatus(r);
       const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
       return `
-      <div class="restaurant-card" data-key="${r.name}${r.address}">
+      <div class="restaurant-card" data-key="${escapeHtml(r.name)}${escapeHtml(r.address)}">
         <div class="card-top">
           <div class="card-name">${escapeHtml(r.name)}</div>
           ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
