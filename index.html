@@ -409,7 +409,13 @@ function addedScore(d) {
   return 0;
 }
 
-// Hours data — null means upcoming / not yet open
+// Restaurants explicitly flagged as not yet open (Coming Soon).
+// Only restaurants in this set show the Coming Soon badge.
+// Missing hours data alone does NOT imply a restaurant is upcoming.
+const UPCOMING = new Set([
+]);
+
+// Hours data for restaurants where we have operating hours
 const HOURS = {
   "Bánh Anh Em": "Mon-Sun 11:30-22:00",
   "Sixty Three Clinton": "Tue-Sat 17:00-23:00",
@@ -493,9 +499,9 @@ fetch('restaurants.json')
     document.getElementById('list').innerHTML = '<div class="empty-state"><div class="empty-state-title">Error loading data</div><div>Could not load restaurant data. Please refresh the page.</div></div>';
   });
 
-// Status: only 'Coming Soon' for restaurants not yet open
+// Status: only 'Coming Soon' for restaurants explicitly flagged as upcoming
 function getStatus(r) {
-  if (!r.hours) return {label: 'Coming Soon', cls: 'upcoming'};
+  if (UPCOMING.has(r.name)) return {label: 'Coming Soon', cls: 'upcoming'};
   return null;
 }
 
