@@ -401,34 +401,13 @@
 // Load restaurant data dynamically from restaurants.json
 let restaurants = [];
 
-fetch('restaurants.json')
-  .then(response => response.json())
-  .then(data => {
-    restaurants = data;
-    initializeApp();
-  })
-  .catch(error => {
-    console.error('Failed to load restaurant data:', error);
-    document.getElementById('list').innerHTML = '<div class="empty-state"><div class="empty-state-title">Error loading data</div><div>Could not load restaurant data. Please refresh the page.</div></div>';
-  });
-
-// Deduplicate by name+address
-const seen = new Set();
-restaurants = restaurants.filter(r => {
-  const key = r.name + '|' + r.address;
-  if (seen.has(key)) return false;
-  seen.add(key);
-  return true;
-});
-
-// Sort by added date descending
+// Sort helper
 function addedScore(d) {
   if (!d) return 0;
   if (d.length === 10) return Date.parse(d);          // 2026-04-01
   if (d.length === 7) return Date.parse(d + '-01');    // 2026-03
   return 0;
 }
-restaurants.sort((a, b) => addedScore(b.added) - addedScore(a.added));
 
 // Hours data — null means upcoming / not yet open
 const HOURS = {
@@ -463,7 +442,56 @@ const HOURS = {
   "DOLORES": "Tue-Sun 11:00-22:00",
   "Entre Nous": "Tue-Sun 16:00-23:00"
 };
-restaurants.forEach(r => { r.hours = HOURS[r.name] ?? null; });
+
+function cuisineCategory(cuisine) {
+  const c = (cuisine || '').toLowerCase();
+  if (c.includes('mexican')) return 'Mexican';
+  if (c.includes('chinese')) return 'Chinese';
+  if (c.includes('french')) return 'French';
+  if (c.includes('vietnamese')) return 'Vietnamese';
+  if (c.includes('indian')) return 'Indian';
+  if (c.includes('american') || c === 'steakhouse' || c === 'burgers' || c.includes('southern')) return 'American';
+  if (c.includes('mediterranean') || c.includes('israeli') || c.includes('persian')) return 'Mediterranean';
+  if (c.includes('seafood') || c.includes('oyster')) return 'Seafood';
+  if (c.includes('japanese') || c === 'nikkei') return 'Japanese';
+  if (c.includes('caribbean')) return 'Caribbean';
+  if (c.includes('italian')) return 'Italian';
+  if (c.includes('korean')) return 'Korean';
+  if (c.includes('thai')) return 'Thai';
+  if (c.includes('cafe') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
+  if (c.includes('pizza')) return 'Pizza';
+  return 'Other';
+}
+
+fetch('restaurants.json')
+  .then(response => response.json())
+  .then(data => {
+    restaurants = data;
+
+    // Deduplicate by name+address
+    const seen = new Set();
+    restaurants = restaurants.filter(r => {
+      const key = r.name + '|' + r.address;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
+    // Sort by added date descending
+    restaurants.sort((a, b) => addedScore(b.added) - addedScore(a.added));
+
+    // Add hours
+    restaurants.forEach(r => { r.hours = HOURS[r.name] ?? null; });
+
+    // Add cuisine categories
+    restaurants.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
+
+    initializeApp();
+  })
+  .catch(error => {
+    console.error('Failed to load restaurant data:', error);
+    document.getElementById('list').innerHTML = '<div class="empty-state"><div class="empty-state-title">Error loading data</div><div>Could not load restaurant data. Please refresh the page.</div></div>';
+  });
 
 // Status: only 'Coming Soon' for restaurants not yet open
 function getStatus(r) {
@@ -489,27 +517,6 @@ function gmapsUrl(r) {
 function formatSource(s) {
   return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
-
-function cuisineCategory(cuisine) {
-  const c = (cuisine || '').toLowerCase();
-  if (c.includes('mexican')) return 'Mexican';
-  if (c.includes('chinese')) return 'Chinese';
-  if (c.includes('french')) return 'French';
-  if (c.includes('vietnamese')) return 'Vietnamese';
-  if (c.includes('indian')) return 'Indian';
-  if (c.includes('american') || c === 'steakhouse' || c === 'burgers' || c.includes('southern')) return 'American';
-  if (c.includes('mediterranean') || c.includes('israeli') || c.includes('persian')) return 'Mediterranean';
-  if (c.includes('seafood') || c.includes('oyster')) return 'Seafood';
-  if (c.includes('japanese') || c === 'nikkei') return 'Japanese';
-  if (c.includes('caribbean')) return 'Caribbean';
-  if (c.includes('italian')) return 'Italian';
-  if (c.includes('korean')) return 'Korean';
-  if (c.includes('thai')) return 'Thai';
-  if (c.includes('cafe') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
-  if (c.includes('pizza')) return 'Pizza';
-  return 'Other';
-}
-restaurants.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
 
 function starDisplay(rating) {
   if (rating == null) return '';
