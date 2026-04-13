@@ -606,6 +606,8 @@ function initializeApp() {
 
   // --- FILTERS ---
   const neighborhoods = [...new Set(restaurants.map(r => r.neighborhood))].sort();
+  const neighborhoodCounts = {};
+  restaurants.forEach(r => { neighborhoodCounts[r.neighborhood] = (neighborhoodCounts[r.neighborhood] || 0) + 1; });
 
   function createFilterBtn(label, value) {
     const btn = document.createElement('button');
@@ -621,8 +623,8 @@ function initializeApp() {
     filterBar.appendChild(btn);
   }
 
-  createFilterBtn('All', 'all');
-  neighborhoods.forEach(n => createFilterBtn(n, n));
+  createFilterBtn('All (' + restaurants.length + ')', 'all');
+  neighborhoods.forEach(n => createFilterBtn(n + ' (' + neighborhoodCounts[n] + ')', n));
 
   // --- CUISINE FILTERS ---
   const catCounts = {};
