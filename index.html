@@ -355,6 +355,7 @@
     vertical-align: middle;
   }
   .status-upcoming { background: rgba(240, 160, 48, 0.15); color: #f0a030; }
+  .status-closed { background: rgba(180, 60, 60, 0.15); color: #b43c3c; }
 
   @media (min-width: 768px) {
     #map { height: 60vh; }
@@ -420,6 +421,10 @@ function addedScore(d) {
 // Missing hours data alone does NOT imply a restaurant is upcoming.
 const UPCOMING = new Set([
   "TBD Gimbap",
+]);
+
+// Restaurants that have permanently closed.
+const CLOSED = new Set([
 ]);
 
 // Hours data for restaurants where we have operating hours
@@ -506,8 +511,9 @@ fetch('restaurants.json')
     document.getElementById('list').innerHTML = '<div class="empty-state"><div class="empty-state-title">Error loading data</div><div>Could not load restaurant data. Please refresh the page.</div></div>';
   });
 
-// Status: only 'Coming Soon' for restaurants explicitly flagged as upcoming
+// Status badges for restaurants with a special state
 function getStatus(r) {
+  if (CLOSED.has(r.name)) return {label: 'Closed', cls: 'closed'};
   if (UPCOMING.has(r.name)) return {label: 'Coming Soon', cls: 'upcoming'};
   return null;
 }
