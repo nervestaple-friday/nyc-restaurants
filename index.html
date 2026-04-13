@@ -544,6 +544,15 @@ function formatSource(s) {
   return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
+function formatAdded(d) {
+  if (!d) return '';
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // "2026-03" or "2026-04-01"
+  const parts = d.split('-');
+  const month = months[parseInt(parts[1], 10) - 1];
+  return 'Added ' + month + ' ' + parts[0];
+}
+
 function starDisplay(rating) {
   if (rating == null) return '';
   return '\u2605 ' + rating.toFixed(1);
@@ -593,7 +602,7 @@ function initializeApp() {
       <div class="popup-name">${escapeHtml(r.name)}</div>
       <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
       <div class="popup-address">${escapeHtml(r.address)}</div>
-      <div class="popup-meta">${ratingHtml}${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span></div>
+      <div class="popup-meta">${ratingHtml}${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span>${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
       ${noteHtml}
       <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
     </div>`;
@@ -710,7 +719,7 @@ function initializeApp() {
         <div class="card-details">${escapeHtml(r.address)}</div>
         ${r.note ? `<div class="card-note">${escapeHtml(r.note)}</div>` : ''}
         <div class="card-bottom">
-          <span class="card-source">${escapeHtml(formatSource(r.source))}</span>
+          <span class="card-source">${escapeHtml(formatSource(r.source))}${r.added ? ' · ' + formatAdded(r.added) : ''}</span>
           <a class="card-gmaps" href="${gmapsUrl(r)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Maps</a>
         </div>
       </div>`;
