@@ -115,6 +115,12 @@
     color: var(--accent);
     font-weight: 600;
   }
+  .rating-na {
+    color: var(--text-dim) !important;
+    font-weight: 400 !important;
+    font-style: italic;
+    font-size: 11px;
+  }
   .popup-inner .popup-note {
     font-size: 12px;
     color: var(--text-dim);
@@ -565,7 +571,7 @@ function initializeApp() {
 
   const markers = {};
   restaurants.forEach(r => {
-    const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '';
+    const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '<span class="popup-rating rating-na">Rating not available</span>';
     const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
     const pst = getStatus(r);
     const statusHtml = pst ? `<span class="status-badge status-${pst.cls}">${pst.label}</span>` : '';
@@ -679,7 +685,7 @@ function initializeApp() {
       <div class="restaurant-card" data-key="${escapeHtml(r.name)}${escapeHtml(r.address)}">
         <div class="card-top">
           <div class="card-name">${escapeHtml(r.name)}</div>
-          ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : ''}
+          ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : '<div class="card-rating rating-na">Rating not available</div>'}
         </div>
         <div class="card-details">
           ${stHtml}
