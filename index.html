@@ -355,6 +355,7 @@
     vertical-align: middle;
   }
   .status-upcoming { background: rgba(240, 160, 48, 0.15); color: #f0a030; }
+  .status-temporary { background: rgba(230, 140, 20, 0.15); color: #e68c14; }
   .status-closed { background: rgba(180, 60, 60, 0.15); color: #b43c3c; }
 
   @media (min-width: 768px) {
@@ -420,6 +421,11 @@ function addedScore(d) {
 // Only restaurants in this set show the Coming Soon badge.
 // Missing hours data alone does NOT imply a restaurant is upcoming.
 const UPCOMING = new Set([
+]);
+
+// Restaurants that are temporary pop-ups or limited-time spots.
+// These are open now but may not be around forever.
+const TEMPORARY = new Set([
   "TBD Gimbap",
 ]);
 
@@ -515,6 +521,7 @@ fetch('restaurants.json')
 function getStatus(r) {
   if (CLOSED.has(r.name)) return {label: 'Closed', cls: 'closed'};
   if (UPCOMING.has(r.name)) return {label: 'Coming Soon', cls: 'upcoming'};
+  if (TEMPORARY.has(r.name)) return {label: 'Pop-Up', cls: 'temporary'};
   return null;
 }
 
