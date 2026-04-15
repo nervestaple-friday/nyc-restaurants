@@ -119,6 +119,12 @@
     font-style: italic;
     font-size: 11px;
   }
+  .popup-inner .popup-hours {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
   .popup-inner .popup-note {
     font-size: 12px;
     color: var(--text-dim);
@@ -309,6 +315,12 @@
   .card-cuisine {
     font-size: 12px;
     color: var(--text-dim);
+  }
+  .card-hours {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 6px;
+    line-height: 1.4;
   }
   .card-note {
     font-size: 12px;
@@ -616,6 +628,7 @@ const markers = {};
 mappable.forEach(r => {
   const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '<span class="popup-rating rating-na">Rating not available</span>';
   const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
+  const hoursHtml = r.hours ? `<div class="popup-hours">${escapeHtml(r.hours)}</div>` : '';
   const pst = getStatus(r);
   const statusHtml = pst ? `<span class="status-badge status-${pst.cls}">${pst.label}</span>` : '';
 
@@ -623,6 +636,7 @@ mappable.forEach(r => {
     <div class="popup-name">${escapeHtml(r.name)}</div>
     <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
     <div class="popup-address">${escapeHtml(r.address)}</div>
+    ${hoursHtml}
     <div class="popup-meta">${ratingHtml}${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span>${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
     ${noteHtml}
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
@@ -733,6 +747,7 @@ function renderList(filtered) {
         <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
       </div>
       <div class="card-details">${escapeHtml(r.address || 'Address TBD')}</div>
+      ${r.hours ? `<div class="card-hours">${escapeHtml(r.hours)}</div>` : ''}
       ${r.note ? `<div class="card-note">${escapeHtml(r.note)}</div>` : ''}
       <div class="card-bottom">
         <span class="card-source">${escapeHtml(formatSource(r.source))}${r.added ? ' \u00b7 ' + formatAdded(r.added) : ''}</span>
