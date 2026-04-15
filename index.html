@@ -415,7 +415,7 @@
 <div class="search-bar">
   <div class="search-wrap">
     <span class="search-icon">&#128269;</span>
-    <input class="search-input" id="search" type="text" placeholder="Search by name, cuisine, neighborhood, or note...">
+    <input class="search-input" id="search" type="text" placeholder="Search by name, cuisine, neighborhood, address, or note...">
   </div>
 </div>
 <div class="filter-bar" id="filters"><span class="filter-label">Area</span></div>
@@ -803,7 +803,8 @@ function applyFilters() {
       r.name.toLowerCase().includes(query) ||
       (r.cuisine && r.cuisine.toLowerCase().includes(query)) ||
       r.neighborhood.toLowerCase().includes(query) ||
-      (r.note && r.note.toLowerCase().includes(query))
+      (r.note && r.note.toLowerCase().includes(query)) ||
+      (r.address && r.address.toLowerCase().includes(query))
     );
   }
   renderList(filtered);
