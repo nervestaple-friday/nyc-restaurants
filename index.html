@@ -406,8 +406,66 @@
 <div class="restaurant-list" id="list"></div>
 
 <script>
-// Load restaurant data dynamically from restaurants.json
-let restaurants = [];
+let restaurants = [
+  {"name":"B\u00e1nh Anh Em","address":"99 3rd Ave, New York, NY 10003","place_id":"ChIJDyMGAgBZwokRggrgBWarG0o","lat":40.7322635,"lng":-73.9876172,"neighborhood":"East Village","cuisine":"Vietnamese","rating":4.4,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Sixty Three Clinton","address":"63 Clinton St, New York, NY 10002","place_id":"ChIJ385rlW9ZwokRHTamoLqoosI","lat":40.719503,"lng":-73.985142,"neighborhood":"Lower East Side","cuisine":"American","rating":4.7,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Estela","address":"47 E Houston St 1st floor, New York, NY 10012","place_id":"ChIJf3f-f4VZwokRcBCEciTOGRQ","lat":40.7246413,"lng":-73.994739,"neighborhood":"Nolita","cuisine":"Mediterranean","rating":4.4,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Bridges","address":"9 Chatham Square, New York, NY 10038","place_id":"ChIJ5Q8Bl1NbwokRjuIXKz8OfRQ","lat":40.7140307,"lng":-73.9980719,"neighborhood":"Chinatown","cuisine":"Chinese","rating":4.5,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Sunn\u2019s","address":"139 Division St, New York, NY 10002","place_id":"ChIJJbrdCQBbwokR0msB9eFOzEE","lat":40.714377,"lng":-73.9909737,"neighborhood":"Chinatown","cuisine":"American/Asian","rating":4.6,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Gazab","address":"179 Essex St, New York, NY 10002","place_id":"ChIJ01Bg4shZwokRdYhhALtulFc","lat":40.7219227,"lng":-73.9866681,"neighborhood":"Lower East Side","cuisine":"Indian","rating":4.5,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Golden Steer at One Fifth","address":"1 5th Ave, New York, NY 10003","place_id":"ChIJpZ6kWyxZwokR-_-04SLuGmM","lat":40.731962,"lng":-73.9958718,"neighborhood":"Greenwich Village","cuisine":"Steakhouse","rating":4.9,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Stars","address":"139 E 12th St, New York, NY 10003","place_id":"ChIJJaC6SQBZwokRigPQEggwjYg","lat":40.7321753,"lng":-73.9883101,"neighborhood":"East Village","cuisine":"American","rating":4.8,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"Odo East Village","address":"536 E 5th St, New York, NY 10009","place_id":"ChIJoyIUFwBZwokRH0uTY_J5rcM","lat":40.7240318,"lng":-73.9829146,"neighborhood":"East Village","cuisine":"Japanese","rating":5,"source":"initial_research","added":"2026-03","note":null},
+  {"name":"C\u00f4 L\u1ea1c","address":"234 E 4th St, New York, NY 10009","place_id":"ChIJe0sE52pZwokRVFNve0FRc_Q","lat":40.7233621,"lng":-73.9831177,"neighborhood":"East Village","cuisine":"Vietnamese","rating":4.8,"source":"grub_street_apr_2026","added":"2026-04-01","note":"Chef Helen Nguyen (Saigon Social). $55 set menu, b\u00e1nh dumplings, dry-aged duck. Grub Street April pick."},
+  {"name":"TBD Gimbap","address":"31 Carmine St, New York, NY 10014","place_id":"ChIJi4SmYXBZwokRWAxPLhdSJkI","lat":40.7302612,"lng":-74.0031537,"neighborhood":"West Village","cuisine":"Korean","rating":5,"source":"grub_street_apr_2026","added":"2026-04-01","note":"Nami Nori team pop-up. Lines forming before open sign flips. Takeout gimbap ~$12. Runs through May+."},
+  {"name":"Beto\u2019s Carnitas & Guisados","address":"69 Clinton St Store front A, New York, NY 10002","place_id":"ChIJ__HrhXpZwokRncS-QOxBZTQ","lat":40.7193634,"lng":-73.985112,"neighborhood":"Lower East Side","cuisine":"Mexican","rating":5,"source":"grub_street_apr_2026","added":"2026-04-01","note":"Daily carnitas in steel cauldron. Guisados, gorditas with heirloom Masienda corn. Grub Street pick."},
+  {"name":"Bar Chucho","address":"37 Market St, New York, NY 10002","place_id":"ChIJ_S8_MQBbwokRrxbPnZpnb1Y","lat":40.7124073,"lng":-73.9946416,"neighborhood":"Two Bridges","cuisine":"Mexican","rating":5,"source":"infatuation_spring_2026","added":"2026-04-01","note":"From Corima team. Cantina bar with cocktails, micheladas, queso chihuahua burger. Opening April 2."},
+  {"name":"Strange Delight","address":"63 Lafayette Ave, Brooklyn, NY 11217","place_id":"ChIJSZ__agBbwokRFqNZkOBfbsk","lat":40.6873624,"lng":-73.9760048,"neighborhood":"Fort Greene","cuisine":"Seafood/Oyster Bar","rating":4.5,"source":"jim_request","added":"2026-04-01","note":"Modern oyster bar near BAM. Brooklyn-New Orleans vibe, great fried shrimp, cocktails. Jim\u2019s pick."},
+  {"name":"FOLK","address":"689 6th Ave, Brooklyn, NY 11215","place_id":"ChIJSTTBZoJbwokRAqhtyjmoq_s","lat":40.6605649,"lng":-73.9903719,"neighborhood":"Park Slope","cuisine":"Indian-American Fusion","rating":4.9,"source":"NYC Hospitality Alliance","added":"2026-04-03","note":"From Jay Kumar of Lore (Bib Gourmand). Crab risotto, biryani arancini, masala latkes"},
+  {"name":"Alma Negra","address":"494 4th Ave, Brooklyn, NY 11215","place_id":"ChIJjzh0ftJbwokRIFioM_VxHNQ","lat":40.668773099999996,"lng":-73.990421,"neighborhood":"Park Slope","cuisine":"Mexican","rating":4.7,"source":"Multiple mentions","added":"2026-04-03","note":"Polished Mexican \u2014 mezcal-focused bar program"},
+  {"name":"La Fleur Rouge","address":"392 5th Ave, Brooklyn, NY 11215","place_id":"ChIJicP02PFbwokR4AqslSztaDs","lat":40.67082250000001,"lng":-73.98520309999999,"neighborhood":"Park Slope","cuisine":"Chinese-French","rating":4.4,"source":"Local coverage","added":"2026-04-03","note":"Chinese-French from a Michelin-trained chef"},
+  {"name":"Sailor","address":"228 Dekalb Ave, Brooklyn, NY 11205","place_id":"ChIJ2xcAfQFbwokRSBBCp0svARQ","lat":40.6893831,"lng":-73.9703111,"neighborhood":"Fort Greene","cuisine":"American-Mediterranean","rating":4.4,"source":"NYT 2025","added":"2026-04-03","note":"American-Mediterranean. NYT Brooklyn best list 2025"},
+  {"name":"Third Falcon","address":"360 Myrtle Ave, Brooklyn, NY 11205","place_id":"ChIJT0Pe_qJbwokR6Ql0YY5qF8I","lat":40.6930295,"lng":-73.97198759999999,"neighborhood":"Fort Greene","cuisine":"French-American","rating":4.5,"source":"NYT 2025","added":"2026-04-03","note":"French-American. NYT Brooklyn best list 2025"},
+  {"name":"Evelina","address":"211 Dekalb Ave, Brooklyn, NY 11205","place_id":"ChIJzae3_LlbwokR6ts6PCZ3agM","lat":40.6897385,"lng":-73.970998,"neighborhood":"Fort Greene","cuisine":"Italian","rating":4.7,"source":"Multiple","added":"2026-04-03","note":"Italian. Consistently mentioned among Fort Greene best"},
+  {"name":"Miss Ada","address":"184 Dekalb Ave, Brooklyn, NY 11205","place_id":"ChIJqzhkS7dbwokRtGCdHcorPvU","lat":40.689425,"lng":-73.9723664,"neighborhood":"Fort Greene","cuisine":"Israeli/Middle Eastern","rating":4.6,"source":"Multiple, NYT","added":"2026-04-03","note":"Israeli/Middle Eastern"},
+  {"name":"GERTIE","address":"602 Vanderbilt Ave, Brooklyn, NY 11238","place_id":"ChIJ1aKpNABbwokRIFh0cLCWP4w","lat":40.6783861,"lng":-73.96888410000001,"neighborhood":"Prospect Heights","cuisine":"Jewish Deli","rating":4.5,"source":"Grub Street","added":"2026-04-03","note":"Reimagined Jewish deli from Gertrude\u2019s team. On-premise bagel baking, appetizing shop meets deli. 602 Vanderbilt"},
+  {"name":"Leland Eating and Drinking House","address":"755 Dean St, Brooklyn, NY 11238","place_id":"ChIJjW_xjcJbwokRhrgB0I0l3Xg","lat":40.679822,"lng":-73.9651189,"neighborhood":"Prospect Heights","cuisine":"Mediterranean/Asian","rating":4.7,"source":"BK Mag, Resy Hit List Mar 2026","added":"2026-04-03","note":"Mediterranean + Chinese/Filipino. Focaccia, smoked pollock fritters, chicken jook, whole fried black sea bass"},
+  {"name":"Sofreh","address":"75 St Marks Ave, Brooklyn, NY 11217","place_id":"ChIJK9DnCNlbwokR499xR5NXZII","lat":40.679915199999996,"lng":-73.97397080000002,"neighborhood":"Prospect Heights","cuisine":"Persian","rating":4.3,"source":"NYT","added":"2026-04-03","note":"Persian. NYT Brooklyn best 2025"},
+  {"name":"Cafe Mado","address":"791 Washington Ave, Brooklyn, NY 11238","place_id":"ChIJrwTqaQBbwokRaK-iQfAWdG4","lat":40.672908299999996,"lng":-73.9626279,"neighborhood":"Prospect Heights","cuisine":"New American-French","rating":4.7,"source":"NYT","added":"2026-04-03","note":"New American-French. NYT Brooklyn best 2025"},
+  {"name":"Zimmi\u2019s","address":"72 Bedford St, New York, NY 10014","place_id":"ChIJGwq75f5ZwokRP0EMH-FLL0g","lat":40.7314875,"lng":-74.0047416,"neighborhood":"West Village","cuisine":"French","rating":4.5,"source":"Lo Times best dishes 2025","added":"2026-04-03","note":"Proven\u00e7al. Fried pumpkin with fennel, honey, pepper"},
+  {"name":"Lei","address":"15-17 Doyers St, New York, NY 10013","place_id":"ChIJX97UMwBbwokRIFRlD1YzSRc","lat":40.714594999999996,"lng":-73.998267,"neighborhood":"Chinatown","cuisine":"Chinese/Wine Bar","rating":4.7,"source":"Lo Times #4","added":"2026-04-03","note":"Annie Shi\u2019s wine bar. Shanxi-style mao er duo \u2014 lamb/tomato ragu cat\u2019s ear pasta with dill"},
+  {"name":"Kabawa","address":"8 Extra Pl, New York, NY 10003","place_id":"ChIJ685zLlZZwokRiEoiYj-Iyvg","lat":40.7248683,"lng":-73.9914685,"neighborhood":"East Village","cuisine":"Caribbean","rating":4.6,"source":"Lo Times #5","added":"2026-04-03","note":"$145 prix-fixe Caribbean. Jerk sausage with chicken liver, rice, braised duck leg"},
+  {"name":"DOLORES","address":"397 Tompkins Ave, Brooklyn, NY 11216","place_id":"ChIJwYDDibRbwokR7p0WTQvV1Y8","lat":40.6838554,"lng":-73.94386220000001,"neighborhood":"Bed-Stuy","cuisine":"Mexican","rating":4.5,"source":"Lo Times #7","added":"2026-04-03","note":"Comida chilanga. $4 papadillas \u2014 masa stuffed with potato, fried, two salsas"},
+  {"name":"Entre Nous","address":"39 Clifton Pl, Brooklyn, NY 11238","place_id":"ChIJYY61-rJbwokRMydDW_1Vs4A","lat":40.688019,"lng":-73.962881,"neighborhood":"Clinton Hill","cuisine":"French/Wine Bar","rating":4.6,"source":"Pendulum Mag, Resy","added":"2026-04-03","note":"Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French ap\u00e9ro tradition"},
+  {"name":"Malvan","address":"550 Court St, Brooklyn, NY 11231","place_id":"ChIJUf0ZkfZawokRd3x6F0nWdPA","lat":40.6750723,"lng":-73.9996534,"neighborhood":"Carroll Gardens","cuisine":"Coastal Indian Seafood","rating":null,"source":"research_apr_2026","added":"2026-04","note":"Michelin-starred Chintan Pandya (Dhamaka, Semma). Coastal Indian seafood focus."},
+  {"name":"Bar Ferdinando","address":"151 Union St, Brooklyn, NY 11231","place_id":"ChIJnQZLPVxawokRTCvH-ol-FAY","lat":40.6842451,"lng":-74.001841,"neighborhood":"Carroll Gardens","cuisine":"Sicilian Caf\u00e9","rating":null,"source":"research_apr_2026","added":"2026-04","note":"Reviving 121-year-old Ferdinando\u2019s Focacceria space. Sicilian caf\u00e9 and bar."},
+  {"name":"Trudie\u2019s Tavern","address":"524 Court St, Brooklyn, NY 11231","place_id":"ChIJk4CJYPZawokRYsMBdfHS_GU","lat":40.676012,"lng":-73.9992164,"neighborhood":"Carroll Gardens","cuisine":"American Bar & Grill","rating":null,"source":"research_apr_2026","added":"2026-04","note":"From the Gertrude\u2019s team. American bar and grill."},
+  {"name":"Pies \u2019n\u2019 Thighs","address":"244 Flatbush Ave, Brooklyn, NY 11217","place_id":"ChIJHyydLKlbwokR8MUd-v0TBSc","lat":40.6796383,"lng":-73.9745645,"neighborhood":"Prospect Heights","cuisine":"Southern","rating":null,"source":"research_apr_2026","added":"2026-04","note":"Second Brooklyn location of beloved Williamsburg Southern spot. Fried chicken, biscuits, pies."},
+  {"name":"Honey Badger","address":"67 Fenimore St, Brooklyn, NY 11225","place_id":"ChIJE006URNbwokR7RxPOpno_DA","lat":40.6582454,"lng":-73.9599613,"neighborhood":"Prospect Lefferts Gardens","cuisine":"Wild-to-Table","rating":null,"source":"research_apr_2026","added":"2026-04","note":"Wild-to-table from a Noma fermentation lab alum. Foraged and fermented ingredients."},
+  {"name":"Pizza Studio Tamaki","address":"123 St Marks Pl, New York, NY 10009","place_id":"ChIJT8oVYZ1ZwokRJ9QdSvhWeLo","lat":40.7269085,"lng":-73.9833473,"neighborhood":"East Village","cuisine":"Tokyo-Neapolitan Pizza","rating":null,"source":"research_apr_2026","added":"2026-04","note":"Tokyo-Neapolitan pizza from Japan. First US outpost."},
+  {"name":"Gigi\u2019s","address":"138 Franklin St, Brooklyn, NY 11222","place_id":"ChIJt3hhTwBZwokReJsvUecjZa4","lat":40.729626,"lng":-73.957359,"neighborhood":"Greenpoint","cuisine":"French/Rotisserie","rating":5.0,"source":"Eater NY April 2026","added":"2026-04-11","note":"From Fulgurances Laundromat team. Pink neon-lit rotisserie chicken spot with European wine program. Chefs Thomas Knodell and \u00c9mile Desme (Le Chateaubriand, Paris). Will revive culinary incubator program."},
+  {"name":"Ms. Alice","address":"79 Rivington St, New York, NY 10002","place_id":"ChIJi0n_G39ZwokRNBBYQQzlbxI","lat":40.720315,"lng":-73.98946,"neighborhood":"Lower East Side","cuisine":"Cocktail Bar","rating":4.9,"source":"Eater NY April 2026","added":"2026-04-11","note":"From Hole In The Wall team. European aperitivo-inspired cocktail bar. Daily \u2018apero hour\u2019 4-6pm with $12 negronis, spritzes, martinis. Italian bar snacks like gnocco fritto."},
+  {"name":"Peek Inn","address":"38 Driggs Ave, Brooklyn, NY 11222","place_id":"ChIJO6OPZHBZwokRfsDSpYpkRRI","lat":40.723604,"lng":-73.940506,"neighborhood":"Williamsburg","cuisine":"Bar","rating":5.0,"source":"Eater NY April 2026","added":"2026-04-11","note":"From Cozy Royale and The Meat Hook team. Guinness pours and loaded hot dogs. No-frills hangout with $10 happy hour deals (4-7pm) and $5 beer-and-shot combos."},
+  {"name":"Echo Lake","address":"357 Grand St, Brooklyn, NY 11211","place_id":"ChIJkYwX83FZwokRnjOYWTxWFlk","lat":40.712587,"lng":-73.955534,"neighborhood":"Williamsburg","cuisine":"Cocktail Bar","rating":5.0,"source":"Eater NY April 2026","added":"2026-04-11","note":"From Chloe Frechette (Punch) and Paul McGee (Lost Lake). $12 daily daiquiris, \u2018Tiny and a Tot\u2019 lager/rum shot combo. Seafood plates: oysters with tepache mignonette, green coconut curry chowder."},
+  {"name":"Oyatte","address":"125 E 39th St, New York, NY 10016","place_id":"ChIJSQUxDgBZwokRi4caaWfJ_u8","lat":40.749865,"lng":-73.97772,"neighborhood":"Murray Hill","cuisine":"Tasting Menu","rating":5.0,"source":"HelpNewYork.com April 2026","added":"2026-04-11","note":"30-seat tasting menu restaurant from chef Hasung Lee (Atomix, The French Laundry, Geranium). One of spring\u2019s most anticipated openings. Reservation-only."},
+  {"name":"Yesterday\u2019s","address":"157 Bleecker St, New York, NY 10012","place_id":"ChIJyatdZHRZwokRQz4A2G8rr1E","lat":40.728706,"lng":-73.999716,"neighborhood":"Greenwich Village","cuisine":"Bar","rating":5.0,"source":"HelpNewYork.com April 2026","added":"2026-04-11","note":"Old-school New York vibe on Bleecker Street. Classic neighborhood bar feel like it\u2019s been there for decades. Hours: Mon-Wed 4pm-midnight, Thu 4pm-2am, Fri noon-4am."},
+  {"name":"Arthur","address":"132 Franklin St, Brooklyn, NY 11222","place_id":"ChIJgz5aFX9ZwokRcfO7pOPFaBU","lat":40.7294295,"lng":-73.9573171,"neighborhood":"Greenpoint","cuisine":"Bistro","rating":5.0,"source":"Eater NY April 2026","added":"2026-04-14","note":"Neighborhood bistro in Greenpoint. Refined bistro classics with chef\u2019s counter. Opened April 2026."},
+  {"name":"Double Knot NYC","address":"1251 6th Ave, New York, NY 10020","place_id":"ChIJrcP9l6hZwokRzqFjNPPWXzw","lat":40.7599437,"lng":-73.9821247,"neighborhood":"Midtown","cuisine":"Japanese Izakaya/Sushi","rating":4.3,"source":"Eater NY 2026 Preview","added":"2026-04-14","note":"From Philadelphia chef Michael Schulson. Sushi restaurant and robatayaki spot. Opened February 2026."},
+  {"name":"GUSI","address":"432 6th Ave, New York, NY 10011","place_id":"ChIJO5NHAcxZwokRYv6wEjupYns","lat":40.7344676,"lng":-73.9987295,"neighborhood":"Greenwich Village","cuisine":"Eastern European","rating":null,"source":"Eater NY 2026 Preview","added":"2026-04-14","note":"Husband-and-wife team Boris Artemyev and Elena Melnikova. Eastern European restaurant named after Slavic word for \u2018geese\u2019. Opened February 2026."},
+  {"name":"Or\u2019esh","address":"450 W Broadway, New York, NY 10012","place_id":"ChIJD_SNAtFZwokR13xf4F0l6PQ","lat":40.7260011,"lng":-74.0008797,"neighborhood":"Soho","cuisine":"Mediterranean","rating":4.8,"source":"Eater NY 2026 Preview","added":"2026-04-14","note":"From Catch Hospitality Group with chef Nadav Greenberg. Mediterranean with wood- and coal-fired grill. Opened February 2026."},
+  {"name":"Dean\u2019s","address":"213 6th Ave, New York, NY 10014","place_id":"ChIJVZIoXgBZwokRA7OLupOn0ds","lat":40.727487,"lng":-74.0034768,"neighborhood":"Soho","cuisine":"British Seafood","rating":4.6,"source":"Eater NY 2026 Preview","added":"2026-04-14","note":"From King restaurant team. Pub focused on British seafood named after Suffolk fisherman Dean Fryer. Opened March 2026."},
+  {"name":"Oriana","address":"174 Mott St, New York, NY 10012","place_id":"ChIJJd8XwcpZwokRKVTqFenQbt4","lat":40.7202738,"lng":-73.9957967,"neighborhood":"Nolita","cuisine":"Modern","rating":null,"source":"Eater NY 2026 Preview","added":"2026-04-14","note":"From Noortwyck team Andy Quinn and Cedric Nicaise. Dramatic, dressed-up restaurant with wood-fired grill. Opens March/April 2026."},
+  {"name":"Saverne","address":"531 W 34th St., New York, NY 10001","place_id":"ChIJq39Nb9ZZwokR79EUeI3uoXQ","lat":40.755219,"lng":-74.000155,"neighborhood":"Hudson Yards","cuisine":"Alsatian Brasserie","rating":null,"source":"Eater NY 2026 Preview","added":"2026-04-14","note":"From Gabriel Kreuther (two-Michelin-starred chef). Alsatian brasserie with wood-fired oven at The Spiral. Opened February 2026."},
+  {"name":"Rye by Martin Auer","address":"285 Lafayette St, New York, NY 10012","place_id":"ChIJfRH1LQBZwokR3oHu_Cxmw48","lat":40.724202,"lng":-73.995826,"neighborhood":"Nolita","cuisine":"Rye Sourdough Bakery","rating":null,"source":"Eater NY 2026 Preview","added":"2026-04-14","note":"From Austrian baker Martin Auer. Bakery dedicated solely to rye sourdough bread. Opens Spring 2026."},
+  {"name":"After Eden","address":"162 Orchard St, New York, NY 10002","place_id":null,"lat":40.721,"lng":-73.9885,"neighborhood":"Lower East Side","cuisine":"Vietnamese Caf\u00e9/Cocktail Bar","rating":null,"source":"TimeOut April 13 2026, Infatuation","added":"2026-04-15","note":"Vietnamese caf\u00e9 by day (b\u00e1nh m\u00ec, Vietnamese coffee by chef Nancy Nguyen ex-EMP), Southeast Asian cocktail bar by night. Opened ~April 10. In former Wassail space. Open daily 10am-2am."},
+  {"name":"Golden Mall","address":"47 Broadway, New York, NY 10006","place_id":null,"lat":40.7063,"lng":-74.0127,"neighborhood":"Financial District","cuisine":"Chinese Food Court","rating":null,"source":"Infatuation, Downtown Alliance","added":"2026-04-15","note":"Seven-story expansion of legendary Flushing food court. 18 vendors including Golden Bull Handmade Noodles, Zhengxin Chicken Steak, Xing Fu Tang. 6 stalls open, more coming. In former China Chalet space. Soft-opened April 2026."},
+  {"name":"Ph\u00ea","address":"72 Forsyth St, New York, NY 10002","place_id":null,"lat":40.7173,"lng":-73.9946,"neighborhood":"Chinatown","cuisine":"Vietnamese Caf\u00e9","rating":null,"source":"Infatuation Spring 2026","added":"2026-04-15","note":"From the M\u1eafm team. B\u00e1nh m\u00ec caf\u00e9 with Vietnamese coffee, natural wine, ice cream. Limited Friday afternoon service currently, full opening Spring 2026. Brick-clad caf\u00e9 on Forsyth."},
+  {"name":"MoCo 575","address":"531 Nostrand Ave, Brooklyn, NY 11216","place_id":null,"lat":40.6808,"lng":-73.9505,"neighborhood":"Bed-Stuy","cuisine":"Yemeni-Peruvian Coffee/Caf\u00e9","rating":null,"source":"Infatuation April 2026","added":"2026-04-15","note":"Specialty Yemeni and Peruvian coffee. Adani chai, handcrafted crepes, brunch. Named after the legendary discovery of coffee in Yemen in 575 AD. Open 7am-10pm daily."},
+  {"name":"Fireboat","address":"Pier 6, Brooklyn Bridge Park, Brooklyn, NY 11201","place_id":null,"lat":40.6926,"lng":-73.999,"neighborhood":"Brooklyn Heights","cuisine":"Caribbean","rating":null,"source":"Infatuation Spring 2026, TimeOut","added":"2026-04-15","note":"From Grand Banks team. Decommissioned FDNY fireboat serving Caribbean-inspired bites and frozen cocktails from ship\u2019s original fire cannons. Seasonal, opening Spring 2026 at Pier 6 (former Pilot location)."},
+  {"name":"My Pleasure","address":null,"place_id":null,"lat":null,"lng":null,"neighborhood":"Bed-Stuy","cuisine":"Caribbean Bar","rating":null,"source":"Infatuation March 2026","added":"2026-04-15","note":"Brooklyn native with 17 years luxury hospitality opening Caribbean bar. Kitchen by Locanda Verde/Crown Shy alum. Jerk chicken, curried goat dumplings, wagyu beef patties. Exact address TBD, Spring 2026."},
+  {"name":"Dial Up Days","address":"83 7th Ave, Brooklyn, NY 11215","place_id":null,"lat":40.6751,"lng":-73.9758,"neighborhood":"Park Slope","cuisine":"90s-Themed Caf\u00e9","rating":null,"source":"Park Slope Pulse, Brooklyn Bridge Parents March 2026","added":"2026-04-15","note":"Nostalgic 90s/Y2K caf\u00e9 from the Shabain family (Park Slope News Stand, 60+ years). Arcade games, throwback music videos, milk tea, old-school candy. In former Patti Ann\u2019s space on 7th Ave. Opened March 2026."},
+  {"name":"Prince Street Pizza","address":"271 Smith St, Brooklyn, NY 11231","place_id":null,"lat":40.6829,"lng":-73.9933,"neighborhood":"Carroll Gardens","cuisine":"Pizza","rating":null,"source":"Court Street Journal, Brooklyn Bridge Parents April 2026","added":"2026-04-15","note":"Famous Manhattan pizzeria (spicy honey pepperoni squares) expanding to Brooklyn. Grand opening April 23, 2026 12PM-12AM. First Brooklyn location on Smith Street."}
+];
 
 // Sort helper
 function addedScore(d) {
@@ -417,36 +475,29 @@ function addedScore(d) {
   return 0;
 }
 
-// Restaurants explicitly flagged as not yet open (Coming Soon).
-// Only restaurants in this set show the Coming Soon badge.
-// Missing hours data alone does NOT imply a restaurant is upcoming.
 const UPCOMING = new Set([
 ]);
 
-// Restaurants that are temporary pop-ups or limited-time spots.
-// These are open now but may not be around forever.
 const TEMPORARY = new Set([
   "TBD Gimbap",
 ]);
 
-// Restaurants that have permanently closed.
 const CLOSED = new Set([
 ]);
 
-// Hours data for restaurants where we have operating hours
 const HOURS = {
-  "Bánh Anh Em": "Mon-Sun 11:30-22:00",
+  "B\u00e1nh Anh Em": "Mon-Sun 11:30-22:00",
   "Sixty Three Clinton": "Tue-Sat 17:00-23:00",
   "Estela": "Mon-Sun 17:30-23:00",
   "Bridges": "Mon-Sun 11:00-22:00",
-  "Sunn's": "Wed-Mon 12:00-22:00",
+  "Sunn\u2019s": "Wed-Mon 12:00-22:00",
   "Gazab": "Tue-Sun 17:00-22:30",
   "Golden Steer at One Fifth": "Tue-Sat 17:00-23:00",
   "Stars": "Tue-Sun 17:00-23:00",
   "Odo East Village": "Wed-Sun 17:00-22:00",
-  "Cô Lạc": "Tue-Sat 17:00-22:00",
+  "C\u00f4 L\u1ea1c": "Tue-Sat 17:00-22:00",
   "TBD Gimbap": "Wed-Sun 11:00-15:00",
-  "Beto's Carnitas & Guisados": "Tue-Sun 11:00-20:00",
+  "Beto\u2019s Carnitas & Guisados": "Tue-Sun 11:00-20:00",
   "Bar Chucho": "Tue-Sun 16:00-0:00",
   "Strange Delight": "Tue-Sun 16:00-23:00",
   "FOLK": "Tue-Sun 17:00-22:30",
@@ -460,7 +511,7 @@ const HOURS = {
   "Leland Eating and Drinking House": "Tue-Sun 17:00-23:00",
   "Sofreh": "Tue-Sun 17:00-22:00",
   "Cafe Mado": "Wed-Sun 10:00-22:00",
-  "Zimmi's": "Tue-Sat 17:30-23:00",
+  "Zimmi\u2019s": "Tue-Sat 17:30-23:00",
   "Lei": "Tue-Sun 17:00-0:00",
   "Kabawa": "Wed-Sun 17:00-22:00",
   "DOLORES": "Tue-Sun 11:00-22:00",
@@ -482,40 +533,28 @@ function cuisineCategory(cuisine) {
   if (c.includes('italian')) return 'Italian';
   if (c.includes('korean')) return 'Korean';
   if (c.includes('thai')) return 'Thai';
-  if (c.includes('cafe') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
+  if (c.includes('cafe') || c.includes('caf\u00e9') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
   if (c.includes('pizza')) return 'Pizza';
   return 'Other';
 }
 
-fetch('restaurants.json')
-  .then(response => response.json())
-  .then(data => {
-    restaurants = data;
+// Deduplicate by name+address
+const seen = new Set();
+restaurants = restaurants.filter(r => {
+  const key = r.name + '|' + r.address;
+  if (seen.has(key)) return false;
+  seen.add(key);
+  return true;
+});
 
-    // Deduplicate by name+address
-    const seen = new Set();
-    restaurants = restaurants.filter(r => {
-      const key = r.name + '|' + r.address;
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    });
+// Sort by added date descending
+restaurants.sort((a, b) => addedScore(b.added) - addedScore(a.added));
 
-    // Sort by added date descending
-    restaurants.sort((a, b) => addedScore(b.added) - addedScore(a.added));
+// Add hours
+restaurants.forEach(r => { r.hours = HOURS[r.name] ?? null; });
 
-    // Add hours
-    restaurants.forEach(r => { r.hours = HOURS[r.name] ?? null; });
-
-    // Add cuisine categories
-    restaurants.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
-
-    initializeApp();
-  })
-  .catch(error => {
-    console.error('Failed to load restaurant data:', error);
-    document.getElementById('list').innerHTML = '<div class="empty-state"><div class="empty-state-title">Error loading data</div><div>Could not load restaurant data. Please refresh the page.</div></div>';
-  });
+// Add cuisine categories
+restaurants.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
 
 // Status badges for restaurants with a special state
 function getStatus(r) {
@@ -558,7 +597,7 @@ function starDisplay(rating) {
   return '\u2605 ' + rating.toFixed(1);
 }
 
-// Initialize the application after data is loaded
+// Initialize the application
 function initializeApp() {
   // DOM elements
   const listEl = document.getElementById('list');
@@ -575,7 +614,8 @@ function initializeApp() {
   let activeCuisineFilter = 'all';
 
   // --- MAP ---
-  const bounds = L.latLngBounds(restaurants.map(r => [r.lat, r.lng]));
+  const mappable = restaurants.filter(r => r.lat != null && r.lng != null);
+  const bounds = L.latLngBounds(mappable.map(r => [r.lat, r.lng]));
   const map = L.map('map', { zoomControl: true }).fitBounds(bounds, { padding: [30, 30] });
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -593,6 +633,8 @@ function initializeApp() {
 
   const markers = {};
   restaurants.forEach(r => {
+    if (r.lat == null || r.lng == null) return;
+
     const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '<span class="popup-rating rating-na">Rating not available</span>';
     const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
     const pst = getStatus(r);
@@ -765,6 +807,8 @@ function initializeApp() {
   // Initial render
   applyFilters();
 }
+
+initializeApp();
 </script>
 </body>
 </html>
