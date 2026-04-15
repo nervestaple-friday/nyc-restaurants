@@ -263,6 +263,18 @@
   }
   .restaurant-card:hover { border-color: var(--accent); box-shadow: 0 2px 12px rgba(240, 160, 48, 0.15); }
   .restaurant-card:active { background: var(--surface2); }
+  .restaurant-card.card-unmappable { cursor: default; }
+  .restaurant-card.card-unmappable:hover { border-color: var(--border); box-shadow: none; }
+  .restaurant-card.card-unmappable:active { background: var(--surface); }
+  .card-address-tbd {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: var(--surface2);
+    color: var(--text-dim);
+    border: 1px dashed var(--border);
+  }
 
   .empty-state {
     text-align: center;
@@ -736,7 +748,7 @@ function renderList(filtered) {
     const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
     const hasCoords = r.lat != null && r.lng != null;
     return `
-    <div class="restaurant-card" data-key="${escapeHtml(r.name)}${escapeHtml(r.address || '')}">
+    <div class="restaurant-card${hasCoords ? '' : ' card-unmappable'}" data-key="${escapeHtml(r.name)}${escapeHtml(r.address || '')}">
       <div class="card-top">
         <div class="card-name">${escapeHtml(r.name)}</div>
         ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : '<div class="card-rating rating-na">Rating not available</div>'}
@@ -746,7 +758,7 @@ function renderList(filtered) {
         <span class="card-neighborhood">${escapeHtml(r.neighborhood)}</span>
         <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
       </div>
-      <div class="card-details">${escapeHtml(r.address || 'Address TBD')}</div>
+      <div class="card-details">${r.address ? escapeHtml(r.address) : '<span class="card-address-tbd">Address TBD</span>'}</div>
       ${r.hours ? `<div class="card-hours">${escapeHtml(r.hours)}</div>` : ''}
       ${r.note ? `<div class="card-note">${escapeHtml(r.note)}</div>` : ''}
       <div class="card-bottom">
