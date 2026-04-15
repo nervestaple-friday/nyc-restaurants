@@ -239,6 +239,35 @@
   }
   .clear-filters-btn:hover { border-color: var(--accent); color: var(--text); }
 
+  .sort-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+  }
+  .sort-btn {
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+  .sort-btn:hover { border-color: var(--accent); color: var(--text); }
+  .sort-btn.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
   .list-header {
     padding: 16px 16px 8px;
     font-size: 14px;
@@ -395,7 +424,7 @@
       padding-left: 24px;
       padding-right: 24px;
     }
-    .list-header, header, .search-bar, .filter-bar, .clear-filters-bar {
+    .list-header, header, .search-bar, .filter-bar, .clear-filters-bar, .sort-bar {
       max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
@@ -421,6 +450,14 @@
 <div class="filter-bar" id="filters"><span class="filter-label">Area</span></div>
 <div class="filter-bar" id="cuisine-filters"><span class="filter-label">Cuisine</span></div>
 <div class="clear-filters-bar" id="clear-bar"><button class="clear-filters-btn" id="clear-btn">Clear filters</button></div>
+
+<div class="sort-bar" id="sort-bar">
+  <span class="filter-label">Sort</span>
+  <button class="sort-btn active" data-sort="date">Newest</button>
+  <button class="sort-btn" data-sort="rating">Rating</button>
+  <button class="sort-btn" data-sort="alpha">A&ndash;Z</button>
+  <button class="sort-btn" data-sort="neighborhood">Neighborhood</button>
+</div>
 
 <div class="list-header" id="list-header">All Restaurants</div>
 <div class="restaurant-list" id="list"></div>
@@ -624,6 +661,7 @@ const clearBtn = document.getElementById('clear-btn');
 
 let activeFilter = 'all';
 let activeCuisineFilter = 'all';
+let activeSort = 'date';
 
 const mappable = deduped.filter(r => r.lat != null && r.lng != null);
 const bounds = L.latLngBounds(mappable.map(r => [r.lat, r.lng]));
@@ -723,6 +761,33 @@ clearBtn.addEventListener('click', () => {
   applyFilters();
 });
 
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeSort = btn.dataset.sort;
+    applyFilters();
+  });
+});
+
+function sortList(list) {
+  const sorted = list.slice();
+  switch (activeSort) {
+    case 'rating':
+      sorted.sort((a, b) => (b.rating ?? -1) - (a.rating ?? -1));
+      break;
+    case 'alpha':
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+    case 'neighborhood':
+      sorted.sort((a, b) => a.neighborhood.localeCompare(b.neighborhood) || a.name.localeCompare(b.name));
+      break;
+    default:
+      sorted.sort((a, b) => addedScore(b.added) - addedScore(a.added));
+  }
+  return sorted;
+}
+
 function renderList(filtered) {
   let label = 'All Restaurants';
   if (activeFilter !== 'all' && activeCuisineFilter !== 'all') {
@@ -807,7 +872,7 @@ function applyFilters() {
       (r.address && r.address.toLowerCase().includes(query))
     );
   }
-  renderList(filtered);
+  renderList(sortList(filtered));
   updateClearButton();
 }
 
