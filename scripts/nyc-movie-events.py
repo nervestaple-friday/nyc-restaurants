@@ -992,6 +992,7 @@ def scrape_bam():
 # ── TMDB enrichment ────────────────────────────────────────────────────────
 
 TMDB_CACHE_FILE = os.path.join(WORKSPACE, 'memory', 'tmdb-cache.json')
+MIN_TMDB_VOTES = 10  # Ignore ratings from films with fewer votes (unreliable extremes)
 
 def _clean_title_for_tmdb(title):
     """Strip director prefixes, 'by' suffixes, years, and formatting for better TMDB matching."""
@@ -1164,7 +1165,7 @@ def enrich_with_tmdb(events_by_venue):
                     'poster': f'https://image.tmdb.org/t/p/w300{poster_path}' if poster_path else '',
                     'overview': hit.get('overview', ''),
                     'year': release_date[:4] if len(release_date) >= 4 else '',
-                    'rating': hit.get('vote_average', 0),
+                    'rating': round(hit.get('vote_average', 0), 1) if hit.get('vote_count', 0) >= MIN_TMDB_VOTES else 0,
                 }
             else:
                 cache[title] = {'poster': '', 'overview': '', 'year': '', 'rating': 0}
