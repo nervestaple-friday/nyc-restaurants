@@ -662,6 +662,8 @@ const clearBtn = document.getElementById('clear-btn');
 let activeFilter = 'all';
 let activeCuisineFilter = 'all';
 let activeSort = 'date';
+let prevVisibleKey = '';
+let isInitialRender = true;
 
 const mappable = deduped.filter(r => r.lat != null && r.lng != null);
 const bounds = L.latLngBounds(mappable.map(r => [r.lat, r.lng]));
@@ -746,7 +748,11 @@ function createCuisineBtn(label, value) {
 createCuisineBtn('All', 'all');
 cuisineCategories.forEach(cat => createCuisineBtn(cat, cat));
 
-searchInput.addEventListener('input', () => applyFilters());
+let searchDebounce;
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(() => applyFilters(), 200);
+});
 
 clearBtn.addEventListener('click', () => {
   activeFilter = 'all';
@@ -805,6 +811,18 @@ function renderList(filtered) {
     if (visibleKeys.has(key)) { marker.addTo(map); }
     else { marker.remove(); }
   });
+
+  const visibleCoords = filtered.filter(r => r.lat != null && r.lng != null);
+  const visibleKey = visibleCoords.map(r => r.name).join('|');
+  if (visibleKey !== prevVisibleKey && !isInitialRender) {
+    if (visibleCoords.length === 1) {
+      map.flyTo([visibleCoords[0].lat, visibleCoords[0].lng], 16, { duration: 0.6 });
+    } else if (visibleCoords.length > 1) {
+      map.flyToBounds(L.latLngBounds(visibleCoords.map(r => [r.lat, r.lng])), { padding: [30, 30], maxZoom: 16, duration: 0.6 });
+    }
+  }
+  prevVisibleKey = visibleKey;
+  isInitialRender = false;
 
   if (filtered.length === 0) {
     listEl.innerHTML = `<div class="empty-state">
