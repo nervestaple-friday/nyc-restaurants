@@ -646,7 +646,7 @@ function formatAdded(d) {
 }
 
 function starDisplay(rating) {
-  if (rating == null) return '';
+  if (rating == null || rating === 0) return '';
   return '\u2605 ' + rating.toFixed(1);
 }
 
