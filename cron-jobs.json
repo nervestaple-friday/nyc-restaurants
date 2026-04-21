@@ -1,0 +1,480 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "7fb1e3a7-1767-4378-99a2-7075b0c3133a",
+      "name": "Morning check-in",
+      "enabled": true,
+      "createdAtMs": 1772683661157,
+      "updatedAtMs": 1776776448692,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Read CHECK_IN.md from the workspace for your full instructions. Follow them based on the current time of day (morning/afternoon/evening). Deliver the check-in message to Jim.",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387:topic:2771"
+      },
+      "state": {
+        "nextRunAtMs": 1776862800000,
+        "lastRunAtMs": 1776776400021,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 48671,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "cf17f8a6-29a1-42fe-967d-419375b76064",
+      "name": "Afternoon check-in",
+      "enabled": true,
+      "createdAtMs": 1772683671752,
+      "updatedAtMs": 1776704531263,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 13 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Read CHECK_IN.md from the workspace for your full instructions. Follow them based on the current time of day (morning/afternoon/evening). Deliver the check-in message to Jim.",
+        "timeoutSeconds": 900
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387:topic:2771"
+      },
+      "state": {
+        "nextRunAtMs": 1776790800000,
+        "lastRunAtMs": 1776704400015,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 131248,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "990e1c84-ab43-4f62-993e-8a44415f4cf0",
+      "name": "Evening check-in",
+      "enabled": true,
+      "createdAtMs": 1772683681543,
+      "updatedAtMs": 1776729653503,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Read CHECK_IN.md from the workspace for your full instructions. Follow them based on the current time of day (morning/afternoon/evening). Deliver the check-in message to Jim.",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387:topic:2771"
+      },
+      "state": {
+        "nextRunAtMs": 1776816000000,
+        "lastRunAtMs": 1776729600021,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 53482,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "31a8fea0-7543-468b-a292-ce130f250cd7",
+      "name": "Weekly recruiter scan",
+      "enabled": true,
+      "createdAtMs": 1772683689896,
+      "updatedAtMs": 1776690100349,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Friday, Jim's AI assistant. Run the weekly recruiter scan.\n\nRun: python3 scripts/recruiter-scan.py --days 7\n\nIf the script finds opportunities scoring \u22657, include the full report in your reply.\nIf nothing scores \u22657, reply with exactly: No notable recruiter emails this week.",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387:topic:2771"
+      },
+      "state": {
+        "nextRunAtMs": 1777294800000,
+        "lastRunAtMs": 1776690038642,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 61707,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "e8843e92-c4f1-4ffa-96ef-89788904f8a1",
+      "name": "Movie events digest",
+      "enabled": true,
+      "createdAtMs": 1772683699499,
+      "updatedAtMs": 1776636005485,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 18 * * 0",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Friday, Jim's AI assistant. Generate a weekly movie events digest for Brooklyn/NYC.\n\nSearch for upcoming movie screenings, film events, and special presentations in Brooklyn and NYC for the coming week. Focus on:\n- Repertory/indie cinema (Metrograph, BAM, Film Forum, Anthology Film Archives, Nitehawk, etc.)\n- Special screenings, Q&As, retrospectives\n- Film festivals or notable premieres\n\nFormat: Concise list grouped by venue or date. Include title, venue, date/time, and any notable details (director Q&A, 35mm print, etc.). Skip mainstream multiplex listings.",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387:topic:2771"
+      },
+      "state": {
+        "nextRunAtMs": 1777240800000,
+        "lastRunAtMs": 1776636000012,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 5473,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 1,
+        "lastDelivered": true,
+        "lastError": "\u26a0\ufe0f openrouter (z-ai/glm-4.7) returned a billing error \u2014 your API key has run out of credits or has an insufficient balance. Check your openrouter billing dashboard and top up or switch to a different API key.",
+        "lastErrorReason": "billing"
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "9f7cfc20-64fb-4c44-a2b7-853410fe561e",
+      "name": "Background maintenance",
+      "enabled": true,
+      "createdAtMs": 1772683709022,
+      "updatedAtMs": 1776762178230,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3,9,15,21 * * *",
+        "staggerMs": 300000
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Friday's background maintenance worker. Run these tasks silently. Do NOT generate any user-facing message unless disk is critically low (<5% free).\n\nTasks:\n1. 4K UPGRADE SCAN: Run: python3 scripts/4k-upgrade-scan.py\n2. CONFIG BACKUP: Run: cp ~/.openclaw/openclaw.json ~/.openclaw/backups/openclaw-$(date +%Y%m%d).json 2>/dev/null; mkdir -p ~/.openclaw/backups\n3. DISK CHECK: Run: df -h / | tail -1 \u2014 if usage >95%, this is critical and you MUST alert.\n\nIf disk is critical, your reply will be delivered as an alert. Otherwise stay silent.",
+        "model": "openrouter/z-ai/glm-4.7",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1776783757749,
+        "lastRunAtMs": 1776762157765,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 20465,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": false
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "5c6be2f9-419d-455e-b5cc-38f2f9096c48",
+      "name": "NYC Film Events \u2014 daily dev cycle",
+      "enabled": true,
+      "createdAtMs": 1772951300393,
+      "updatedAtMs": 1776769800038,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 11 * * *"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are coordinating the NYC Film Events dev cycle. Delegate ALL evaluation, coding, and scraper work to Claude Code.\n\n## Project\n`/home/claw/.openclaw/workspace/nyc-film-events`\n- `PRODUCT_CYCLE.md` \u2014 process docs and anti-regression baselines\n- `scraper.py` \u2014 Python scraper for 13 NYC cinema venues\n- `index.html` \u2014 Single-file React frontend (loads events.json)\n- `events.json` \u2014 Scraped event data\n\n## Your Job\nYou coordinate. Claude Code does the work. Do NOT evaluate or code yourself.\n\n## Your Cycle (coordinate, delegate, push)\n\n### Step 1: Fresh Scrape (delegate to Claude Code)\n```bash\ncd /home/claw/.openclaw/workspace/nyc-film-events\nclaude --permission-mode bypassPermissions --print \"Run python3 scraper.py. If events.json changed, commit the changes.\"\n```\n\n### Step 2: Evaluate Current State (delegate to Claude Code)\n```bash\nclaude --permission-mode bypassPermissions --print \"Open index.html and events.json. Assess critically: 1) Data quality: mismatched TMDB results? Missing posters? Wrong overviews? Venues with 0 events? 2) UX: rough edges in frontend? Layout issues? Missing features? 3) Scraper health: venues consistently failing? Stale events? 4) Return assessment with prioritized issues. File new Todoist tasks for anything found (section_id: 6g7rCj3PF2rQ7GMJ). Use curl to create tasks.\"\n```\n\n### Step 3: Pick tasks from Todoist\n```bash\nTODOIST_TOKEN=$(python3 -c \"import json; print(json.load(open(\\\"/home/claw/.openclaw/workspace/credentials.json\\\"))[\\\"todoist\\\"][\\\"api_token\\\"])\")\ncurl -s \"https://api.todoist.com/api/v1/tasks?section_id=6g7rCj3PF2rQ7GMJ\" \\\n  -H \"Authorization: Bearer $TODOIST_TOKEN\" | python3 -c \"import json,sys; tasks=json.load(sys.stdin); [print(f\\\"p{5-t['priority']} [{t['id']}] {t['content']}\\\") for t in sorted(tasks if isinstance(tasks,list) else tasks.get('results',tasks), key=lambda x: -x['priority'])]\"\n\n# Pick highest priority, delegate to Claude Code\nclaude --permission-mode bypassPermissions --print \"Implement this task: [paste task description]. Commit changes.\"\n```\n\n### Step 4: MANDATORY Assessment Gate (delegate to Claude Code)\n```bash\nclaude --permission-mode bypassPermissions --print \"Before push: verify 1) Data integrity: all 13 venues present, total events > 20, no empty titles. 2) Frontend renders: valid HTML, no JSX syntax errors. 3) No UX regressions: search, filters, posters, mobile layout intact. 4) If anything fails: git reset --hard HEAD~1, report what went wrong.\"\n```\n\n### Step 5: Push\n```bash\nFRIDAY_TOKEN=$(python3 -c \"import json; print(json.load(open(\\\"/home/claw/.openclaw/workspace/credentials.json\\\"))[\\\"github\\\"][\\\"friday_org\\\"])\")\ngit remote set-url origin \"https://x-access-token:${FRIDAY_TOKEN}@github.com/nervestaple-friday/nyc-film-events.git\"\ngit push origin main\n```\n\n### Step 6: Close tasks\n```bash\ncurl -s -X POST \"https://api.todoist.com/api/v1/tasks/<TASK_ID>/close\" \\\n  -H \"Authorization: Bearer $TODOIST_TOKEN\"\n```\n\nDo NOT reframe or rename tasks. Complete as stated or leave open.\n\nTodoist is the ONLY place to track tasks. Do not write task state to any file.",
+        "model": "openrouter/z-ai/glm-4.7",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387"
+      },
+      "state": {
+        "nextRunAtMs": 1776855600000,
+        "lastRunAtMs": 1776769200010,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 600028,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out",
+        "lastErrorReason": "timeout"
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "c2b9545b-838e-40ca-8ae0-478cca2753bc",
+      "name": "Daily log writer",
+      "enabled": true,
+      "createdAtMs": 1773017030056,
+      "updatedAtMs": 1776740538338,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are writing today's daily log entry. Read the session transcripts from today and write a summary to the daily log file.\n\n## Steps\n\n1. Check what date it is (America/New_York timezone)\n2. Read the existing daily log if it exists: `/home/claw/.openclaw/workspace/memory/YYYY-MM-DD.md`\n3. Scan today's session transcripts to find what happened:\n   - Check recent sessions: look at `/home/claw/.openclaw/agents/main/sessions/sessions.json` for sessions updated today\n   - Read the last ~50 lines of each active transcript JSONL to extract key events\n4. Write a summary to `memory/YYYY-MM-DD.md` covering:\n   - What Jim asked for / discussed\n   - What was built, fixed, or changed\n   - Decisions made\n   - Open items or reminders\n   - Skip: routine heartbeats, scraper runs, cron completions\n5. If nothing notable happened, write a one-liner like \"Quiet day, routine operations only.\"\n6. Also call `memory_store` for any preferences, decisions, or lessons that should persist long-term.\n\nKeep entries concise. Bullet points, not prose. This is a log, not a journal.",
+        "model": "openrouter/z-ai/glm-4.7"
+      },
+      "delivery": {
+        "mode": "none",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1776826800000,
+        "lastRunAtMs": 1776740400014,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 138324,
+        "lastDelivered": false,
+        "lastDeliveryStatus": "not-delivered",
+        "consecutiveErrors": 0
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "7e93be0d-87c7-4e45-8ba9-b964867e3f00",
+      "name": "Weekly system audit",
+      "enabled": true,
+      "createdAtMs": 1773017553277,
+      "updatedAtMs": 1776592805613,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * 0"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are Friday, running the weekly system audit. Be thorough but concise.\n\n## Audit Checklist\n\n1. **OpenClaw health**: Run `openclaw doctor 2>&1` \u2014 report any warnings or errors\n2. **Disk**: `df -h /` \u2014 flag if >80%\n3. **Memory usage**: `free -h` + gateway memory via `systemctl --user status openclaw-gateway 2>&1 | grep Memory`\n4. **Telegram stability**: `journalctl --user -u openclaw-gateway --since \"7 days ago\" 2>/dev/null | grep -c \"health-monitor.*restarting\"` \u2014 report count\n5. **Orphan sessions**: note if doctor reports orphan transcripts\n6. **OpenClaw version**: `openclaw --version` vs `npm show openclaw version` \u2014 flag if behind\n7. **Secrets audit**: `openclaw secrets audit --check 2>&1` \u2014 report any new plaintext findings\n8. **MEMORY.md size**: `wc -l ~/.openclaw/workspace/MEMORY.md` \u2014 if >50 lines, flag for trimming\n9. **Memory plugin health**: call `memory_stats` \u2014 report total count, any anomalies\n10. **Cron jobs**: `openclaw cron list` \u2014 check for failed jobs (status != ok/idle)\n11. **NYC Film Events**: check last week of git log in ~/workspace/nyc-film-events \u2014 did daily cycles run? Any rollbacks?\n12. **Scraper coverage**: quick check of events.json \u2014 total events, events per venue, flag any venue with 0\n\n## Output\nSend Jim a brief report:\n- \ud83d\udfe2 Things that are healthy (one line)\n- \ud83d\udfe1 Things to watch (explain briefly)\n- \ud83d\udd34 Things that need fixing (explain + suggest fix)\n\nKeep it short. If everything is green, say so in 2-3 lines.",
+        "model": "openrouter/z-ai/glm-4.7"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387",
+        "bestEffort": true
+      },
+      "state": {
+        "nextRunAtMs": 1777197600000,
+        "lastRunAtMs": 1776592800013,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 5600,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 1,
+        "lastDelivered": true,
+        "lastError": "\u26a0\ufe0f openrouter (z-ai/glm-4.7) returned a billing error \u2014 your API key has run out of credits or has an insufficient balance. Check your openrouter billing dashboard and top up or switch to a different API key.",
+        "lastErrorReason": "billing"
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      }
+    },
+    {
+      "id": "b2ee6462-3488-4e18-87cf-6cffb7ebe3f7",
+      "name": "NYC Restaurant Scout",
+      "enabled": true,
+      "createdAtMs": 1775045583085,
+      "updatedAtMs": 1776781299496,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "America/New_York",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are the NYC restaurant data scout coordinator. Delegate ALL research and data work to Claude Code.\n\n## Project\n`/home/claw/.openclaw/workspace/nyc-restaurants`\n- `restaurants.json` \u2014 restaurant data\n- `index.html` \u2014 single-file Leaflet map app (data inlined)\n\n## Your Job\nYou coordinate. Claude Code does the work. Do NOT do research or coding yourself.\n\n## Process\n\n### Step 1: Research new restaurants (delegate to Claude Code)\nRun Claude Code to do all the research:\n```bash\ncd /home/claw/.openclaw/workspace/nyc-restaurants\nclaude --permission-mode bypassPermissions --print \"Research new restaurant openings in NYC from the last 7 days. Search the web for: 'new restaurant opening lower manhattan 2026', 'new restaurant opening brooklyn 2026', 'grub street new restaurants', 'eater ny restaurant openings', and Reddit r/FoodNYC. Focus: Lower Manhattan + Brooklyn (Park Slope, Fort Greene, Prospect Heights, Clinton Hill, Cobble Hill, Carroll Gardens, Boerum Hill, Gowanus, Red Hook, Crown Heights, Bed-Stuy, Kensington, Flatbush). Weight HEAVILY toward West/Central Brooklyn. For each restaurant found: verify with goplaces search, extract: name, address, place_id, lat, lng, rating, neighborhood, source, notes. Return JSON array of new restaurants.\"\n```\n\n### Step 2: Update restaurants.json (delegate to Claude Code)\n```bash\nclaude --permission-mode bypassPermissions --print \"Load restaurants.json, add the new restaurants from research (skip duplicates by place_id), save updated restaurants.json. Keep total around 300 restaurants max, remove closures if any.\"\n```\n\n### Step 3: Rebuild index.html (delegate to Claude Code)\n```bash\nclaude --permission-mode bypassPermissions --print \"restaurants.json updated. Rebuild index.html with all restaurant data inlined. Keep existing design. Commit changes.\"\n```\n\n### Step 4: Push\n```bash\nFRIDAY_TOKEN=$(python3 -c \"import json; print(json.load(open(\\\"/home/claw/.openclaw/workspace/credentials.json\\\"))[\\\"github\\\"][\\\"friday_org\\\"])\")\ngit remote set-url origin \"https://x-access-token:${FRIDAY_TOKEN}@github.com/nervestaple-friday/nyc-restaurants.git\"\ngit push origin main\n```\n\n### Step 5: Report\nWhat new restaurants were found and added, sources. That's it. Keep it brief.",
+        "model": "openrouter/z-ai/glm-4.7",
+        "timeoutSeconds": 1800
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387:2779"
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      },
+      "state": {
+        "nextRunAtMs": 1776866400000,
+        "lastRunAtMs": 1776780000016,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 1299480,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "4815ebf6-a803-4e7a-9a00-309a4167084b",
+      "name": "NYC Restaurants \u2014 dev cycle",
+      "enabled": true,
+      "createdAtMs": 1775566540589,
+      "updatedAtMs": 1776701013123,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 12 * * *",
+        "tz": "America/New_York",
+        "staggerMs": 0
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "You are coordinating the NYC Restaurants dev cycle. Delegate ALL evaluation and coding work to Claude Code.\n\n## Project\n`/home/claw/.openclaw/workspace/nyc-restaurants`\n- `restaurants.json` \u2014 restaurant data (source of truth)\n- `index.html` \u2014 single-file Leaflet map app with inlined data\n- Live: https://nervestaple-friday.github.io/nyc-restaurants/\n\n## Your Job\nYou coordinate. Claude Code does the work. Do NOT evaluate or code yourself.\n\n## Process\n\n### Step 1: Evaluate Current State (delegate to Claude Code)\n```bash\ncd /home/claw/.openclaw/workspace/nyc-restaurants\nclaude --permission-mode bypassPermissions --print \"Open index.html and restaurants.json. Assess critically: 1) Data quality: any restaurants with missing/wrong info? Duplicates? Closed places still listed? 2) UX on mobile: map usable? Popups readable? List view scannable? Google Maps links work? 3) Visual design: dark theme consistent? Typography clean? Cards well-spaced? Filters intuitive? 4) Features: what's obviously missing that would make this more useful? 5) Bugs: anything broken? Bad layout? JS errors? 6) Performance: fast with 50+ restaurants? Return a brief assessment with prioritized issues (p1 bugs, p2 quality, p3 improvements, p4 nice-to-haves).\"\n```\n\n### Step 2: File tasks in Todoist\nFor each issue Claude Code found, create a task:\n```bash\nTODOIST_TOKEN=$(python3 -c \"import json; print(json.load(open(\\\"/home/claw/.openclaw/workspace/credentials.json\\\"))[\\\"todoist\\\"][\\\"api_token\\\"])\")\ncurl -s -X POST \"https://api.todoist.com/api/v1/tasks\" \\\n  -H \"Authorization: Bearer $TODOIST_TOKEN\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"content\": \"TITLE\", \"description\": \"DETAILS\", \"section_id\": \"6gJfq8R3M4WjrMHJ\", \"priority\": 3}'\n```\n\n### Step 3: Pick and fix tasks (delegate to Claude Code)\n```bash\n# Get tasks\ncurl -s \"https://api.todoist.com/api/v1/tasks?section_id=6gJfq8R3M4WjrMHJ\" \\\n  -H \"Authorization: Bearer $TODOIST_TOKEN\" | python3 -c \"import json,sys; tasks=json.load(sys.stdin); [print(f\\\"p{5-t['priority']} [{t['id']}] {t['content']}\\\") for t in sorted(tasks if isinstance(tasks,list) else tasks.get('results',tasks), key=lambda x: -x['priority'])]\"\n\n# Pick highest priority, delegate to Claude Code\nclaude --permission-mode bypassPermissions --print \"Implement this task: [paste task description]. Keep existing design intact. Commit changes.\"\n```\n\n### Step 4: Push\n```bash\nFRIDAY_TOKEN=$(python3 -c \"import json; print(json.load(open(\\\"/home/claw/.openclaw/workspace/credentials.json\\\"))[\\\"github\\\"][\\\"friday_org\\\"])\")\ngit remote set-url origin \"https://x-access-token:${FRIDAY_TOKEN}@github.com/nervestaple-friday/nyc-restaurants.git\"\ngit push origin main\n```\n\n### Step 5: Close tasks\n```bash\ncurl -s -X POST \"https://api.todoist.com/api/v1/tasks/<TASK_ID>/close\" \\\n  -H \"Authorization: Bearer $TODOIST_TOKEN\"\n```\n\nTodoist is the ONLY place to track tasks. Do NOT write task state to any file.",
+        "model": "openrouter/z-ai/glm-4.7",
+        "timeoutSeconds": 600
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "573228387"
+      },
+      "failureAlert": {
+        "after": 2,
+        "channel": "telegram",
+        "to": "573228387",
+        "cooldownMs": 21600000
+      },
+      "state": {
+        "nextRunAtMs": 1776787200000,
+        "lastRunAtMs": 1776700800010,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 213113,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "d9501a6e-f130-42b0-a36b-7b0647308bb0",
+      "name": "Memory Dreaming Promotion",
+      "description": "[managed-by=memory-core.short-term-promotion] Promote weighted short-term recalls into MEMORY.md (limit=10, minScore=0.800, minRecallCount=3, minUniqueQueries=3, recencyHalfLifeDays=14, maxAgeDays=30).",
+      "enabled": true,
+      "createdAtMs": 1775592339408,
+      "updatedAtMs": 1776754800037,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 3 * * *",
+        "tz": "America/New_York"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "__openclaw_memory_core_short_term_promotion_dream__"
+      },
+      "state": {
+        "nextRunAtMs": 1776841200000,
+        "lastRunAtMs": 1776754800024,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 13,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}
