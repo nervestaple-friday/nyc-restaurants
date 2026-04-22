@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Bar Ferdinando",
+    "address": "151 Union St, Brooklyn, NY 11231",
+    "place_id": "ChIJH5K_GVxawokRSbTRZ6HvvWs",
+    "lat": 40.6842674,
+    "lng": -74.001826,
+    "neighborhood": "Carroll Gardens",
+    "cuisine": "Italian",
+    "rating": 4.6,
+    "source": "Eater NY",
+    "added": "2026-04-22",
+    "note": "Italian bar and cafe reviving 121-year-old Ferdinando's Focacceria. From Sal Lamboglia (Cafe Spaghetti, Swoony's). Opened April 15, 2026."
+  },
+  {
+    "name": "Lithos Mediterranean Cuisine",
+    "address": "151 Maiden Ln, New York, NY 10038",
+    "place_id": "ChIJ4abcLXNbwokRVjkolmXB4TM",
+    "lat": 40.7057375,
+    "lng": -74.0051538,
+    "neighborhood": "Financial District",
+    "cuisine": "Greek",
+    "rating": 5.0,
+    "source": "Eater NY",
+    "added": "2026-04-22",
+    "note": "Modern Greek restaurant with Mykonos energy in FiDi. Seafood orzo, grilled lamb chops, Mediterranean sea bass. Opened April 1, 2026."
+  },
+  {
+    "name": "Pies 'n' Thighs",
+    "address": "244 Flatbush Ave, Brooklyn, NY 11217",
+    "place_id": "ChIJR_D7BABbwokRWwdiPbnmxq8",
+    "lat": 40.6796383,
+    "lng": -73.9745645,
+    "neighborhood": "Prospect Heights",
+    "cuisine": "Southern",
+    "rating": 4.5,
+    "source": "SecretNYC",
+    "added": "2026-04-22",
+    "note": "New Prospect Heights location for 20th anniversary. Fried chicken, homemade pies, Southern sides."
+  },
+  {
+    "name": "After Eden | Cocktail & Coffee Bar",
+    "address": "162 Orchard St, New York, NY 10002",
+    "place_id": "ChIJ1UOyDwBZwokRCJEzJyWHio4",
+    "lat": 40.7210626,
+    "lng": -73.988529,
+    "neighborhood": "Lower East Side",
+    "cuisine": "Vietnamese Coffee/Cocktails",
+    "rating": 5.0,
+    "source": "Eater NY",
+    "added": "2026-04-22",
+    "note": "Vietnamese coffee shop by day, bar by night. Jackfruit lattes, cà phê muối, pho-tini cocktails. Opened April 10, 2026."
+  },
+  {
+    "name": "Whits",
+    "address": "34 St Marks Pl, New York, NY 10003",
+    "place_id": "ChIJV9UrSwBZwokR_9JyPcwfIPE",
+    "lat": 40.7287148,
+    "lng": -73.9882464,
+    "neighborhood": "East Village",
+    "cuisine": "Burgers/Sliders",
+    "rating": 4.9,
+    "source": "Eater NY",
+    "added": "2026-04-22",
+    "note": "Late-night slider joint with onion rings, fries, ripper hot dogs, Pat Lafrieda patties. Opened April 9, 2026."
+  },
+  {
+    "name": "One40 Rooftop Restaurant & Bar",
+    "address": "140 Washington St, New York, NY 10006",
+    "place_id": "ChIJOU3lJqhbwokRd2agn9Mw4gY",
+    "lat": 40.7098097,
+    "lng": -74.0139247,
+    "neighborhood": "Financial District",
+    "cuisine": "American",
+    "rating": 4.3,
+    "source": "Eater NY",
+    "added": "2026-04-22",
+    "note": "22nd-floor rooftop bar at One40 Rooftop with downtown skyline views. Golden Hour outdoor extension opened April 15, 2026."
+  }
+]
