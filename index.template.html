@@ -109,16 +109,6 @@
     color: var(--text-dim);
     margin-bottom: 12px;
   }
-  .popup-inner .popup-rating {
-    color: var(--accent);
-    font-weight: 600;
-  }
-  .rating-na {
-    color: var(--text-dim) !important;
-    font-weight: 400 !important;
-    font-style: italic;
-    font-size: 11px;
-  }
   .popup-inner .popup-hours {
     font-size: 12px;
     color: var(--text-dim);
@@ -332,13 +322,6 @@
     color: var(--text);
     flex: 1;
   }
-  .card-rating {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    margin-left: 8px;
-    white-space: nowrap;
-  }
   .card-details {
     font-size: 12px;
     color: var(--text-dim);
@@ -454,7 +437,6 @@
 <div class="sort-bar" id="sort-bar">
   <span class="filter-label">Sort</span>
   <button class="sort-btn active" data-sort="date">Newest</button>
-  <button class="sort-btn" data-sort="rating">Rating</button>
   <button class="sort-btn" data-sort="alpha">A&ndash;Z</button>
   <button class="sort-btn" data-sort="neighborhood">Neighborhood</button>
 </div>
@@ -576,11 +558,6 @@ function formatAdded(d) {
   return 'Added ' + month + ' ' + parts[0];
 }
 
-function starDisplay(rating) {
-  if (rating == null || rating === 0) return '';
-  return '\u2605 ' + rating.toFixed(1);
-}
-
 const listEl = document.getElementById('list');
 const listHeader = document.getElementById('list-header');
 const countEl = document.getElementById('count');
@@ -615,7 +592,6 @@ const pinIcon = L.divIcon({
 
 const markers = {};
 mappable.forEach(r => {
-  const ratingHtml = r.rating != null ? `<span class="popup-rating">${starDisplay(r.rating)}</span>` : '<span class="popup-rating rating-na">Rating not available</span>';
   const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
   const hoursHtml = r.hours ? `<div class="popup-hours">${escapeHtml(r.hours)}</div>` : '';
   const pst = getStatus(r);
@@ -626,7 +602,7 @@ mappable.forEach(r => {
     <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
     <div class="popup-address">${escapeHtml(r.address)}</div>
     ${hoursHtml}
-    <div class="popup-meta">${ratingHtml}${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span>${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
+    <div class="popup-meta">${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span>${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
     ${noteHtml}
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
@@ -710,9 +686,6 @@ document.querySelectorAll('.sort-btn').forEach(btn => {
 function sortList(list) {
   const sorted = list.slice();
   switch (activeSort) {
-    case 'rating':
-      sorted.sort((a, b) => (b.rating ?? -1) - (a.rating ?? -1));
-      break;
     case 'alpha':
       sorted.sort((a, b) => a.name.localeCompare(b.name));
       break;
@@ -771,7 +744,6 @@ function renderList(filtered) {
     <div class="restaurant-card${hasCoords ? '' : ' card-unmappable'}" data-key="${escapeHtml(r.name)}${escapeHtml(r.address || '')}">
       <div class="card-top">
         <div class="card-name">${escapeHtml(r.name)}</div>
-        ${r.rating != null ? `<div class="card-rating">${starDisplay(r.rating)}</div>` : '<div class="card-rating rating-na">Rating not available</div>'}
       </div>
       <div class="card-details">
         ${stHtml}

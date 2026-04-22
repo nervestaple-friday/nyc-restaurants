@@ -7,7 +7,6 @@
     "lng": -73.999,
     "neighborhood": "Brooklyn Heights",
     "cuisine": "Caribbean",
-    "rating": null,
     "source": "Infatuation Spring 2026, TimeOut",
     "added": "2026-04-15",
     "note": "From Grand Banks team. Decommissioned FDNY fireboat serving Caribbean-inspired bites and frozen cocktails from ship's original fire cannons. Seasonal, opening Spring 2026 at Pier 6 (former Pilot location)."
@@ -20,7 +19,6 @@
     "lng": -73.9573171,
     "neighborhood": "Greenpoint",
     "cuisine": "Bistro",
-    "rating": 5.0,
     "source": "Eater NY April 2026",
     "added": "2026-04-14",
     "note": "Neighborhood bistro in Greenpoint. Refined bistro classics with chef's counter. Opened April 2026."
@@ -33,7 +31,6 @@
     "lng": -74.0034768,
     "neighborhood": "Soho",
     "cuisine": "British Seafood",
-    "rating": 4.6,
     "source": "Eater NY 2026 Preview",
     "added": "2026-04-14",
     "note": "From King restaurant team. Pub focused on British seafood named after Suffolk fisherman Dean Fryer. Opened March 2026."
@@ -46,7 +43,6 @@
     "lng": -73.9821247,
     "neighborhood": "Midtown",
     "cuisine": "Japanese Izakaya/Sushi",
-    "rating": 4.3,
     "source": "Eater NY 2026 Preview",
     "added": "2026-04-14",
     "note": "From Philadelphia chef Michael Schulson. Sushi restaurant and robatayaki spot. Opened February 2026."
@@ -59,7 +55,6 @@
     "lng": -74.0008797,
     "neighborhood": "Soho",
     "cuisine": "Mediterranean",
-    "rating": 4.8,
     "source": "Eater NY 2026 Preview",
     "added": "2026-04-14",
     "note": "From Catch Hospitality Group with chef Nadav Greenberg. Mediterranean with wood- and coal-fired grill. Opened February 2026."
@@ -72,7 +67,6 @@
     "lng": -73.955534,
     "neighborhood": "Williamsburg",
     "cuisine": "Cocktail Bar",
-    "rating": 5.0,
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
     "note": "From Chloe Frechette (Punch) and Paul McGee (Lost Lake). $12 daily daiquiris, 'Tiny and a Tot' lager/rum shot combo. Seafood plates: oysters with tepache mignonette, green coconut curry chowder."
@@ -85,7 +79,6 @@
     "lng": -73.957359,
     "neighborhood": "Greenpoint",
     "cuisine": "French/Rotisserie",
-    "rating": 5.0,
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
     "note": "From Fulgurances Laundromat team. Pink neon-lit rotisserie chicken spot with European wine program. Chefs Thomas Knodell and Émile Desme (Le Chateaubriand, Paris). Will revive culinary incubator program."
@@ -98,7 +91,6 @@
     "lng": -73.98946,
     "neighborhood": "Lower East Side",
     "cuisine": "Cocktail Bar",
-    "rating": 4.9,
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
     "note": "From Hole In The Wall team. European aperitivo-inspired cocktail bar. Daily 'apero hour' 4-6pm with $12 negronis, spritzes, martinis. Italian bar snacks like gnocco fritto."
@@ -111,7 +103,6 @@
     "lng": -73.97772,
     "neighborhood": "Murray Hill",
     "cuisine": "Tasting Menu",
-    "rating": 5.0,
     "source": "HelpNewYork.com April 2026",
     "added": "2026-04-11",
     "note": "30-seat tasting menu restaurant from chef Hasung Lee (Atomix, The French Laundry, Geranium). One of spring's most anticipated openings. Reservation-only."
@@ -124,7 +115,6 @@
     "lng": -73.940506,
     "neighborhood": "Williamsburg",
     "cuisine": "Bar",
-    "rating": 5.0,
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
     "note": "From Cozy Royale and The Meat Hook team. Guinness pours and loaded hot dogs. No-frills hangout with $10 happy hour deals (4-7pm) and $5 beer-and-shot combos."
@@ -137,7 +127,6 @@
     "lng": -73.999716,
     "neighborhood": "Greenwich Village",
     "cuisine": "Bar",
-    "rating": 5.0,
     "source": "HelpNewYork.com April 2026",
     "added": "2026-04-11",
     "note": "Old-school New York vibe on Bleecker Street. Classic neighborhood bar feel like it's been there for decades. Hours: Mon-Wed 4pm-midnight, Thu 4pm-2am, Fri noon-4am."
@@ -150,7 +139,6 @@
     "lng": -73.91705689999999,
     "neighborhood": "Bushwick",
     "cuisine": "Thai",
-    "rating": 4.9,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-06",
     "note": "Quick-service Thai noodle shop. Added to Eater Brooklyn heatmap March 2026. Bushwick only — included for exceptional quality."
@@ -163,7 +151,6 @@
     "lng": -73.97742439999999,
     "neighborhood": "Park Slope",
     "cuisine": "Pizza/Neapolitan",
-    "rating": 4.6,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-06",
     "note": "Cult Peaks Island pizzamaker Ben Wexler-Waite's NYC return. Naturally leavened, Neapolitan-style. Maine/Italian ingredients, lobster 'Isola' pie. Eater Brooklyn heatmap."
@@ -176,7 +163,6 @@
     "lng": -73.9790508,
     "neighborhood": "Park Slope",
     "cuisine": "Mexican/Seafood",
-    "rating": 4.9,
     "source": "infatuation_brooklyn_2026",
     "added": "2026-04-06",
     "note": "5th location. Walk-in only. Aguachiles, el gobernador tacos, tostadas with buttery tuna. Infatuation 8.2 rating. Brooklyn hit list."
@@ -189,7 +175,6 @@
     "lng": -73.9501378,
     "neighborhood": "Crown Heights",
     "cuisine": "Mexican/Tamales",
-    "rating": 4.8,
     "source": "infatuation_brooklyn_2026",
     "added": "2026-04-06",
     "note": "From Taqueria Milear team. Tight menu: antojitos, taquitos, tamales. Oaxaqueño w/ pork in banana leaf is standout. Infatuation Brooklyn hit list."
@@ -202,7 +187,6 @@
     "lng": -73.9789938,
     "neighborhood": "Park Slope",
     "cuisine": "Mexican/Tortilleria/Bakery",
-    "rating": 4.1,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-06",
     "note": "All-day from Corima chef Fidel Caballero. Tortillas, breakfast burritos, conchas. El Paso/Ciudad Juárez heritage. Eater Brooklyn heatmap."
@@ -215,7 +199,6 @@
     "lng": -73.9455971,
     "neighborhood": "Greenpoint",
     "cuisine": "Mexican",
-    "rating": 4.4,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-05",
     "note": "Cult pop-up gone brick-and-mortar. Tortilla master Jorge Aguilar's Northern Mexican. Flour tortillas, tacos de guisados. Eater Brooklyn heatmap."
@@ -228,7 +211,6 @@
     "lng": -73.997887,
     "neighborhood": "Brooklyn Heights",
     "cuisine": "Afghan Bakery",
-    "rating": 4.9,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-05",
     "note": "Afghan naan, halwa sticky buns, sheer pira pastries. From Little Flower Cafe team + baker Bryan Ford. Eater Brooklyn heatmap."
@@ -241,7 +223,6 @@
     "lng": -73.9522616,
     "neighborhood": "Greenpoint",
     "cuisine": "Malaysian",
-    "rating": 4.3,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-05",
     "note": "From Hainan Chicken House (Sunset Park). Oxtail rendang w/ Haitian-Malaysian rice. Caribbean-Southeast Asian fusion. Eater Brooklyn heatmap."
@@ -254,7 +235,6 @@
     "lng": -73.9854919,
     "neighborhood": "Boerum Hill",
     "cuisine": "Sandwiches/Bakery",
-    "rating": 5.0,
     "source": "infatuation_apr_2026",
     "added": "2026-04-05",
     "note": "Worker-owned coop. Relocated from Cobble Hill. Smoked trout sandwiches, Sunday pizza. Sliding scale pricing. Infatuation just-added."
@@ -267,7 +247,6 @@
     "lng": -73.9916931,
     "neighborhood": "Lower East Side",
     "cuisine": "French-Vietnamese",
-    "rating": 4.5,
     "source": "cntraveler_mar_2026",
     "added": "2026-04-04",
     "note": "Follow-up to Ha's Snack Bar. Weekly rotating menu. Crab soup w/ calf's brain, oyster martini, vol-au-vents. CN Traveler pick March 2026."
@@ -280,7 +259,6 @@
     "lng": -73.9990364,
     "neighborhood": "Carroll Gardens",
     "cuisine": "American/Chicken",
-    "rating": 5.0,
     "source": "grub_street_apr_2026",
     "added": "2026-04-04",
     "note": "From Ample Hills founders. Fried chicken, burgers. Court St. Grub Street mention April 2026."
@@ -293,7 +271,6 @@
     "lng": -73.990421,
     "neighborhood": "Park Slope",
     "cuisine": "Mexican",
-    "rating": 4.7,
     "source": "Multiple mentions",
     "added": "2026-04-03",
     "note": "Polished Mexican — mezcal-focused bar program"
@@ -306,7 +283,6 @@
     "lng": -73.9502306,
     "neighborhood": "Bed-Stuy",
     "cuisine": "American/Sandwiches",
-    "rating": 4.8,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-03",
     "note": "Daytime spot. Focaccia sandwiches, roast beef w/ horseradish, chicken noodle soup, apple fritters. The 'Dad Plate.' Eater Brooklyn heatmap."
@@ -319,7 +295,6 @@
     "lng": -73.9626279,
     "neighborhood": "Prospect Heights",
     "cuisine": "New American-French",
-    "rating": 4.7,
     "source": "NYT",
     "added": "2026-04-03",
     "note": "New American-French. NYT Brooklyn best 2025"
@@ -332,7 +307,6 @@
     "lng": -73.9958083,
     "neighborhood": "Brooklyn Heights",
     "cuisine": "New American",
-    "rating": 4.6,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-03",
     "note": "Relocated to Brooklyn Heights. New American. Added to Eater Brooklyn heatmap March 2026."
@@ -345,7 +319,6 @@
     "lng": -73.94386220000001,
     "neighborhood": "Bed-Stuy",
     "cuisine": "Mexican",
-    "rating": 4.5,
     "source": "Lo Times #7",
     "added": "2026-04-03",
     "note": "Comida chilanga. $4 papadillas — masa stuffed with potato, fried, two salsas"
@@ -358,7 +331,6 @@
     "lng": -73.962881,
     "neighborhood": "Clinton Hill",
     "cuisine": "French/Wine Bar",
-    "rating": 4.6,
     "source": "Pendulum Mag, Resy",
     "added": "2026-04-03",
     "note": "Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French apéro tradition"
@@ -371,7 +343,6 @@
     "lng": -73.970998,
     "neighborhood": "Fort Greene",
     "cuisine": "Italian",
-    "rating": 4.7,
     "source": "Multiple",
     "added": "2026-04-03",
     "note": "Italian. Consistently mentioned among Fort Greene best"
@@ -384,7 +355,6 @@
     "lng": -73.9903719,
     "neighborhood": "Park Slope",
     "cuisine": "Indian-American Fusion",
-    "rating": 4.9,
     "source": "NYC Hospitality Alliance",
     "added": "2026-04-03",
     "note": "From Jay Kumar of Lore (Bib Gourmand). Crab risotto, biryani arancini, masala latkes"
@@ -397,7 +367,6 @@
     "lng": -73.96888410000001,
     "neighborhood": "Prospect Heights",
     "cuisine": "Jewish Deli",
-    "rating": 4.5,
     "source": "Grub Street",
     "added": "2026-04-03",
     "note": "Reimagined Jewish deli from Gertrude's team. On-premise bagel baking, appetizing shop meets deli. 602 Vanderbilt"
@@ -410,7 +379,6 @@
     "lng": -73.9914685,
     "neighborhood": "East Village",
     "cuisine": "Caribbean",
-    "rating": 4.6,
     "source": "Lo Times #5",
     "added": "2026-04-03",
     "note": "$145 prix-fixe Caribbean. Jerk sausage with chicken liver, rice, braised duck leg"
@@ -423,7 +391,6 @@
     "lng": -73.98520309999999,
     "neighborhood": "Park Slope",
     "cuisine": "Chinese-French",
-    "rating": 4.4,
     "source": "Local coverage",
     "added": "2026-04-03",
     "note": "Chinese-French from a Michelin-trained chef"
@@ -436,7 +403,6 @@
     "lng": -73.998267,
     "neighborhood": "Chinatown",
     "cuisine": "Chinese/Wine Bar",
-    "rating": 4.7,
     "source": "Lo Times #4",
     "added": "2026-04-03",
     "note": "Annie Shi's wine bar. Shanxi-style mao er duo — lamb/tomato ragu cat's ear pasta with dill"
@@ -449,7 +415,6 @@
     "lng": -73.9651189,
     "neighborhood": "Prospect Heights",
     "cuisine": "Mediterranean/Asian",
-    "rating": 4.7,
     "source": "BK Mag, Resy Hit List Mar 2026",
     "added": "2026-04-03",
     "note": "Mediterranean + Chinese/Filipino. Focaccia, smoked pollock fritters, chicken jook, whole fried black sea bass"
@@ -462,7 +427,6 @@
     "lng": -73.9723664,
     "neighborhood": "Fort Greene",
     "cuisine": "Israeli/Middle Eastern",
-    "rating": 4.6,
     "source": "Multiple, NYT",
     "added": "2026-04-03",
     "note": "Israeli/Middle Eastern"
@@ -475,7 +439,6 @@
     "lng": -73.9703111,
     "neighborhood": "Fort Greene",
     "cuisine": "American-Mediterranean",
-    "rating": 4.4,
     "source": "NYT 2025",
     "added": "2026-04-03",
     "note": "American-Mediterranean. NYT Brooklyn best list 2025"
@@ -488,7 +451,6 @@
     "lng": -73.97397080000002,
     "neighborhood": "Prospect Heights",
     "cuisine": "Persian",
-    "rating": 4.3,
     "source": "NYT",
     "added": "2026-04-03",
     "note": "Persian. NYT Brooklyn best 2025"
@@ -501,7 +463,6 @@
     "lng": -73.97198759999999,
     "neighborhood": "Fort Greene",
     "cuisine": "French-American",
-    "rating": 4.5,
     "source": "NYT 2025",
     "added": "2026-04-03",
     "note": "French-American. NYT Brooklyn best list 2025"
@@ -514,7 +475,6 @@
     "lng": -74.0105136,
     "neighborhood": "Red Hook",
     "cuisine": "Pizza/Supper Club",
-    "rating": 4.9,
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-03",
     "note": "From Bad Cholesterol pizza cult. Wood-fired pies, chicken nuggets w/ gochujang, blooming onion, cocktails. Backyard. Eater Brooklyn heatmap."
@@ -527,7 +487,6 @@
     "lng": -74.0047416,
     "neighborhood": "West Village",
     "cuisine": "French",
-    "rating": 4.5,
     "source": "Lo Times best dishes 2025",
     "added": "2026-04-03",
     "note": "Provençal. Fried pumpkin with fennel, honey, pepper"
@@ -540,7 +499,6 @@
     "lng": -74.014017,
     "neighborhood": "Financial District",
     "cuisine": "French/North African",
-    "rating": 4.5,
     "source": "eater_apr_2026",
     "added": "2026-04-02",
     "note": "Southern France + North African touches. In old Schilling space. Chef drama (Baumgart left). Poached haddock, lamb shoulder, rice pudding."
@@ -553,7 +511,6 @@
     "lng": -73.990277,
     "neighborhood": "Lower East Side",
     "cuisine": "Cocktail Bar",
-    "rating": 5.0,
     "source": "eater_apr_2026",
     "added": "2026-04-02",
     "note": "From Superbueno/Katana Kitten team. Tokyo-inspired 4-cocktail + 4-bite omakase ($55). Menu changes biweekly. Walk-in Bar 7 next door."
@@ -566,7 +523,6 @@
     "lng": -73.9498179,
     "neighborhood": "Greenpoint",
     "cuisine": "Vietnamese-Mexican Fusion",
-    "rating": 4.5,
     "source": "grub_street_apr_2026",
     "added": "2026-04-02",
     "note": "Moved from Bushwick. All-day format. Duck-neck tamales, pho-spiced lamb, $58 tasting. Grub Street April highlight."
@@ -579,7 +535,6 @@
     "lng": -74.0031604,
     "neighborhood": "Soho",
     "cuisine": "Japanese/Soba",
-    "rating": 4.2,
     "source": "eater_apr_2026",
     "added": "2026-04-02",
     "note": "From Hirohisa chef. House-made soba twice daily w/ buckwheat from upstate NY. Sashimi, tamago sides. Eater April spotlight."
@@ -592,7 +547,6 @@
     "lng": -73.9845,
     "neighborhood": "East Village",
     "cuisine": "Korean-Italian",
-    "rating": null,
     "source": "infatuation_spring_2026",
     "added": "2026-04-02",
     "note": "Korean-Italian trattoria. Housemade soju, handmade noodles, bottarga pasta with nori. Now open."
@@ -605,7 +559,6 @@
     "lng": -73.9946416,
     "neighborhood": "Two Bridges",
     "cuisine": "Mexican",
-    "rating": 5,
     "source": "infatuation_spring_2026",
     "added": "2026-04-01",
     "note": "From Corima team. Cantina bar with cocktails, micheladas, queso chihuahua burger. Opening April 2."
@@ -618,7 +571,6 @@
     "lng": -73.985112,
     "neighborhood": "Lower East Side",
     "cuisine": "Mexican",
-    "rating": 5,
     "source": "grub_street_apr_2026",
     "added": "2026-04-01",
     "note": "Daily carnitas in steel cauldron. Guisados, gorditas with heirloom Masienda corn. Grub Street pick."
@@ -631,7 +583,6 @@
     "lng": -73.9831177,
     "neighborhood": "East Village",
     "cuisine": "Vietnamese",
-    "rating": 4.8,
     "source": "grub_street_apr_2026",
     "added": "2026-04-01",
     "note": "Chef Helen Nguyen (Saigon Social). $55 set menu, bánh dumplings, dry-aged duck. Grub Street April pick."
@@ -644,7 +595,6 @@
     "lng": -74.0019756,
     "neighborhood": "West Village",
     "cuisine": "Burgers",
-    "rating": 4.9,
     "source": "eater_mar_2026",
     "added": "2026-04-01",
     "note": "Martha's Vineyard import. Thick patties, fish sandwiches, chopped cheese. Harlem family legacy."
@@ -657,7 +607,6 @@
     "lng": -73.9599613,
     "neighborhood": "Prospect Lefferts Gardens",
     "cuisine": "Wild-to-Table",
-    "rating": null,
     "source": "research_apr_2026",
     "added": "2026-04",
     "note": "Wild-to-table from a Noma fermentation lab alum. Foraged and fermented ingredients."
@@ -670,7 +619,6 @@
     "lng": -73.9969894,
     "neighborhood": "Little Italy",
     "cuisine": "Pizza",
-    "rating": 4.8,
     "source": "eater_mar_2026",
     "added": "2026-04-01",
     "note": "Third location of beloved Williamsburg slice shop. Standing room only. Opened March 19."
@@ -683,7 +631,6 @@
     "lng": -73.9996534,
     "neighborhood": "Carroll Gardens",
     "cuisine": "Coastal Indian Seafood",
-    "rating": null,
     "source": "research_apr_2026",
     "added": "2026-04",
     "note": "Michelin-starred Chintan Pandya (Dhamaka, Semma). Coastal Indian seafood focus."
@@ -696,7 +643,6 @@
     "lng": -73.9760048,
     "neighborhood": "Fort Greene",
     "cuisine": "Seafood/Oyster Bar",
-    "rating": 4.5,
     "source": "jim_request",
     "added": "2026-04-01",
     "note": "Modern oyster bar near BAM. Brooklyn-New Orleans vibe, great fried shrimp, cocktails. Jim's pick."
@@ -709,7 +655,6 @@
     "lng": -74.0031537,
     "neighborhood": "West Village",
     "cuisine": "Korean",
-    "rating": 5,
     "source": "grub_street_apr_2026",
     "added": "2026-04-01",
     "note": "Nami Nori team pop-up. Lines forming before open sign flips. Takeout gimbap ~$12. Runs through May+."
@@ -722,7 +667,6 @@
     "lng": -73.9992164,
     "neighborhood": "Carroll Gardens",
     "cuisine": "American Bar & Grill",
-    "rating": null,
     "source": "research_apr_2026",
     "added": "2026-04",
     "note": "From the Gertrude's team. American bar and grill."
@@ -735,7 +679,6 @@
     "lng": -73.9958718,
     "neighborhood": "Greenwich Village",
     "cuisine": "Steakhouse",
-    "rating": 4.9,
     "source": "initial_research",
     "added": "2026-03",
     "note": null
@@ -748,7 +691,6 @@
     "lng": -73.9829146,
     "neighborhood": "East Village",
     "cuisine": "Japanese",
-    "rating": 5,
     "source": "initial_research",
     "added": "2026-03",
     "note": null
@@ -761,7 +703,6 @@
     "lng": -73.9883101,
     "neighborhood": "East Village",
     "cuisine": "American",
-    "rating": 4.8,
     "source": "initial_research",
     "added": "2026-03",
     "note": null
@@ -774,7 +715,6 @@
     "lng": -74.00024479999999,
     "neighborhood": "Greenwich Village",
     "cuisine": "Vegetarian / falafel",
-    "rating": 5.0,
     "source": "readded",
     "added": "2026-03",
     "note": null
@@ -787,7 +727,6 @@
     "lng": -74.001826,
     "neighborhood": "Carroll Gardens",
     "cuisine": "Italian",
-    "rating": 4.6,
     "source": "Eater NY",
     "added": "2026-04-22",
     "note": "Italian bar and cafe reviving 121-year-old Ferdinando's Focacceria. From Sal Lamboglia (Cafe Spaghetti, Swoony's). Opened April 15, 2026."
@@ -800,7 +739,6 @@
     "lng": -74.0051538,
     "neighborhood": "Financial District",
     "cuisine": "Greek",
-    "rating": 5.0,
     "source": "Eater NY",
     "added": "2026-04-22",
     "note": "Modern Greek restaurant with Mykonos energy in FiDi. Seafood orzo, grilled lamb chops, Mediterranean sea bass. Opened April 1, 2026."
@@ -813,7 +751,6 @@
     "lng": -73.9745645,
     "neighborhood": "Prospect Heights",
     "cuisine": "Southern",
-    "rating": 4.5,
     "source": "SecretNYC",
     "added": "2026-04-22",
     "note": "New Prospect Heights location for 20th anniversary. Fried chicken, homemade pies, Southern sides."
@@ -826,7 +763,6 @@
     "lng": -73.988529,
     "neighborhood": "Lower East Side",
     "cuisine": "Vietnamese Coffee/Cocktails",
-    "rating": 5.0,
     "source": "Eater NY",
     "added": "2026-04-22",
     "note": "Vietnamese coffee shop by day, bar by night. Jackfruit lattes, cà phê muối, pho-tini cocktails. Opened April 10, 2026."
@@ -839,7 +775,6 @@
     "lng": -73.9882464,
     "neighborhood": "East Village",
     "cuisine": "Burgers/Sliders",
-    "rating": 4.9,
     "source": "Eater NY",
     "added": "2026-04-22",
     "note": "Late-night slider joint with onion rings, fries, ripper hot dogs, Pat Lafrieda patties. Opened April 9, 2026."
@@ -852,7 +787,6 @@
     "lng": -74.0139247,
     "neighborhood": "Financial District",
     "cuisine": "American",
-    "rating": 4.3,
     "source": "Eater NY",
     "added": "2026-04-22",
     "note": "22nd-floor rooftop bar at One40 Rooftop with downtown skyline views. Golden Hour outdoor extension opened April 15, 2026."
