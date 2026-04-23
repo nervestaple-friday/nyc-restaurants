@@ -788,7 +788,7 @@
     "neighborhood": "Prospect Lefferts Gardens",
     "cuisine": "Wild-to-Table",
     "source": "research_apr_2026",
-    "added": "2026-04",
+    "added": "2026-04-01",
     "note": "Wild-to-table from a Noma fermentation lab alum. Foraged and fermented ingredients."
   },
   {
@@ -812,7 +812,7 @@
     "neighborhood": "Carroll Gardens",
     "cuisine": "Coastal Indian Seafood",
     "source": "research_apr_2026",
-    "added": "2026-04",
+    "added": "2026-04-01",
     "note": "Michelin-starred Chintan Pandya (Dhamaka, Semma). Coastal Indian seafood focus."
   },
   {
@@ -848,7 +848,7 @@
     "neighborhood": "Carroll Gardens",
     "cuisine": "American Bar & Grill",
     "source": "research_apr_2026",
-    "added": "2026-04",
+    "added": "2026-04-01",
     "note": "From the Gertrude's team. American bar and grill."
   },
   {
@@ -860,7 +860,7 @@
     "neighborhood": "Greenwich Village",
     "cuisine": "Steakhouse",
     "source": "initial_research",
-    "added": "2026-03",
+    "added": "2026-03-01",
     "note": null
   },
   {
@@ -872,7 +872,7 @@
     "neighborhood": "East Village",
     "cuisine": "Japanese",
     "source": "initial_research",
-    "added": "2026-03",
+    "added": "2026-03-01",
     "note": null
   },
   {
@@ -884,7 +884,7 @@
     "neighborhood": "East Village",
     "cuisine": "American",
     "source": "initial_research",
-    "added": "2026-03",
+    "added": "2026-03-01",
     "note": null
   },
   {
@@ -896,7 +896,7 @@
     "neighborhood": "Greenwich Village",
     "cuisine": "Vegetarian / falafel",
     "source": "readded",
-    "added": "2026-03",
+    "added": "2026-03-01",
     "note": null
   },
   {
