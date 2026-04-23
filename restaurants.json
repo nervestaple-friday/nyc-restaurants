@@ -1,5 +1,185 @@
 [
   {
+    "name": "Al Volo",
+    "address": "Pier 57, New York, NY 10011",
+    "place_id": null,
+    "lat": 40.741,
+    "lng": -74.012,
+    "neighborhood": "Meatpacking District",
+    "cuisine": "Italian",
+    "source": "SecretNYC April 2026",
+    "added": "2026-04-23",
+    "note": "Contemporary Italian at Market 57 at Pier 57. Aperitivo culture, panini, pizza al taglio, focacce. Opens April 24, 2026."
+  },
+  {
+    "name": "Skinny Louie",
+    "address": "1361 1st Ave, New York, NY 10021",
+    "place_id": null,
+    "lat": 40.77,
+    "lng": -73.956,
+    "neighborhood": "Upper East Side",
+    "cuisine": "Burgers",
+    "source": "SecretNYC April 2026",
+    "added": "2026-04-23",
+    "note": "Miami-born smash burger concept. Third NYC location. Fresh Black Angus beef burgers. Opens April 24, 2026."
+  },
+  {
+    "name": "Prince St. Pizza",
+    "address": "407 Court St, Brooklyn, NY 11231",
+    "place_id": null,
+    "lat": 40.676,
+    "lng": -73.998,
+    "neighborhood": "Carroll Gardens",
+    "cuisine": "Pizza",
+    "source": "SecretNYC April 2026",
+    "added": "2026-04-23",
+    "note": "Cult-favorite slice shop's first Brooklyn expansion. Opens April 23, 2026. First expansion since 2012 Nolita debut."
+  },
+  {
+    "name": "Motek",
+    "address": "12 Christopher St, New York, NY 10014",
+    "place_id": null,
+    "lat": 40.733,
+    "lng": -74.002,
+    "neighborhood": "Greenwich Village",
+    "cuisine": "Mediterranean",
+    "source": "SecretNYC April 2026",
+    "added": "2026-04-23",
+    "note": "Second NYC location of Miami-born modern Mediterranean restaurant. Housemade laffa, shawarma, schnitzel. April 2026."
+  },
+  {
+    "name": "Pure Green",
+    "address": "2041 Broadway, New York, NY 10023",
+    "place_id": null,
+    "lat": 40.778,
+    "lng": -73.983,
+    "neighborhood": "Upper West Side",
+    "cuisine": "Acai/Smoothies",
+    "source": "HelpNewYork.com April 2026",
+    "added": "2026-04-23",
+    "note": "Acai and smoothie chain. New UWS location. Opened April 17, 2026."
+  },
+  {
+    "name": "Ugly Baby",
+    "address": "364 Grand St, Brooklyn, NY 11211",
+    "place_id": "ChIJkybD-2FZwokR9m9dDjC1GgM",
+    "lat": 40.712,
+    "lng": -73.956,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Thai",
+    "source": "HelpNewYork.com April 2026",
+    "added": "2026-04-23",
+    "note": "Reopened April 2026 in Williamsburg after Carroll Gardens closure. Larger space, boundary-pushing Thai with real heat."
+  },
+  {
+    "name": "Fellini Coffee",
+    "address": "1335 Lexington Ave, New York, NY 10128",
+    "place_id": null,
+    "lat": 40.77,
+    "lng": -73.965,
+    "neighborhood": "Upper East Side",
+    "cuisine": "Coffee",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "Sixth location of lavish latte cafe chain. Tiramisu and banana split flavors. Opened April 17, 2026."
+  },
+  {
+    "name": "Andiamo",
+    "address": "1705 1st Ave, New York, NY 10128",
+    "place_id": null,
+    "lat": 40.772,
+    "lng": -73.955,
+    "neighborhood": "Upper East Side",
+    "cuisine": "Cocktail Bar",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "Sailing-themed wine and martini bar. Nautical theme, 7am opening, martini bar. Opened April 22, 2026."
+  },
+  {
+    "name": "Voco Roofbar",
+    "address": "170 W 48th St, New York, NY 10036",
+    "place_id": null,
+    "lat": 40.76,
+    "lng": -73.985,
+    "neighborhood": "Times Square",
+    "cuisine": "American/Tapas",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "Rooftop bar and restaurant on 33rd floor of Voco Times Square. Tapas-style menu, retractable roof. Opened April 22, 2026."
+  },
+  {
+    "name": "The Consulate",
+    "address": "160 E 38th St, New York, NY 10016",
+    "place_id": null,
+    "lat": 40.749,
+    "lng": -73.975,
+    "neighborhood": "Murray Hill",
+    "cuisine": "French American",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "French American from Consulate team. Raw bar, short rib cavatelli, steaks. Opened April 17, 2026 with At the Office bar."
+  },
+  {
+    "name": "Morgenstern's",
+    "address": "2 Rivington St, New York, NY 10002",
+    "place_id": "ChIJ4yY8l9xZwokRg7w-5lHx5iA",
+    "lat": 40.718,
+    "lng": -73.991,
+    "neighborhood": "Lower East Side",
+    "cuisine": "Ice Cream",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "Reopened April 20, 2026 in original 2014 space. Contemporary ice cream with experimental flavors. Noon to midnight."
+  },
+  {
+    "name": "YEERO Greek Eatery",
+    "address": "209 W 57th St, New York, NY 10019",
+    "place_id": null,
+    "lat": 40.764,
+    "lng": -73.986,
+    "neighborhood": "Midtown",
+    "cuisine": "Greek/Mediterranean",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "Fast-casual Mediterranean. Salads, bowls, pitas, gyros, Greek comfort foods. 10-seat spot. Opened April 18, 2026."
+  },
+  {
+    "name": "WatchHouse",
+    "address": "287 Park Ave S, New York, NY 10010",
+    "place_id": null,
+    "lat": 40.74,
+    "lng": -73.986,
+    "neighborhood": "Flatiron",
+    "cuisine": "Coffee",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "UK coffee shop chain. Third NYC location. Midcentury Madison Avenue aesthetic. Opened mid-April 2026."
+  },
+  {
+    "name": "Myka",
+    "address": "159 7th Ave S, New York, NY 10014",
+    "place_id": null,
+    "lat": 40.735,
+    "lng": -74.002,
+    "neighborhood": "West Village",
+    "cuisine": "Frozen Yogurt",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "Frozen Greek yogurt with toppings. International chain debut. Opened April 18, 2026."
+  },
+  {
+    "name": "Cleo",
+    "address": "621 Hudson St, New York, NY 10014",
+    "place_id": null,
+    "lat": 40.732,
+    "lng": -74.005,
+    "neighborhood": "West Village",
+    "cuisine": "Rotisserie Chicken",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-23",
+    "note": "From Margot and Montague Diner team. Rotisserie chicken marinated 24 hours in Lebanese seven spice. Opened April 17, 2026."
+  },
+  {
     "name": "Fireboat",
     "address": "Pier 6, Brooklyn Bridge Park, Brooklyn, NY 11201",
     "place_id": null,
@@ -81,7 +261,7 @@
     "cuisine": "French/Rotisserie",
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
-    "note": "From Fulgurances Laundromat team. Pink neon-lit rotisserie chicken spot with European wine program. Chefs Thomas Knodell and Émile Desme (Le Chateaubriand, Paris). Will revive culinary incubator program."
+    "note": "From Fulgurances Laundromat team. Pink neon-lit rotisserie chicken spot with European wine program. Chefs Thomas Knodell and \u00c9mile Desme (Le Chateaubriand, Paris). Will revive culinary incubator program."
   },
   {
     "name": "Ms. Alice",
@@ -141,7 +321,7 @@
     "cuisine": "Thai",
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-06",
-    "note": "Quick-service Thai noodle shop. Added to Eater Brooklyn heatmap March 2026. Bushwick only — included for exceptional quality."
+    "note": "Quick-service Thai noodle shop. Added to Eater Brooklyn heatmap March 2026. Bushwick only \u2014 included for exceptional quality."
   },
   {
     "name": "Il Leone",
@@ -168,7 +348,7 @@
     "note": "5th location. Walk-in only. Aguachiles, el gobernador tacos, tostadas with buttery tuna. Infatuation 8.2 rating. Brooklyn hit list."
   },
   {
-    "name": "Tamalería La Madrina",
+    "name": "Tamaler\u00eda La Madrina",
     "address": "735 Nostrand Ave, Brooklyn, NY 11216",
     "place_id": "ChIJpRsaFABbwokRYLKlosNrXW8",
     "lat": 40.6721763,
@@ -177,7 +357,7 @@
     "cuisine": "Mexican/Tamales",
     "source": "infatuation_brooklyn_2026",
     "added": "2026-04-06",
-    "note": "From Taqueria Milear team. Tight menu: antojitos, taquitos, tamales. Oaxaqueño w/ pork in banana leaf is standout. Infatuation Brooklyn hit list."
+    "note": "From Taqueria Milear team. Tight menu: antojitos, taquitos, tamales. Oaxaque\u00f1o w/ pork in banana leaf is standout. Infatuation Brooklyn hit list."
   },
   {
     "name": "Vato",
@@ -189,7 +369,7 @@
     "cuisine": "Mexican/Tortilleria/Bakery",
     "source": "eater_brooklyn_heatmap_mar_2026",
     "added": "2026-04-06",
-    "note": "All-day from Corima chef Fidel Caballero. Tortillas, breakfast burritos, conchas. El Paso/Ciudad Juárez heritage. Eater Brooklyn heatmap."
+    "note": "All-day from Corima chef Fidel Caballero. Tortillas, breakfast burritos, conchas. El Paso/Ciudad Ju\u00e1rez heritage. Eater Brooklyn heatmap."
   },
   {
     "name": "Border Town",
@@ -204,7 +384,7 @@
     "note": "Cult pop-up gone brick-and-mortar. Tortilla master Jorge Aguilar's Northern Mexican. Flour tortillas, tacos de guisados. Eater Brooklyn heatmap."
   },
   {
-    "name": "Diljān Bakery",
+    "name": "Dilj\u0101n Bakery",
     "address": "330 Hicks St, Brooklyn, NY 11201",
     "place_id": "ChIJHRcAaABbwokRcdnFupcwIus",
     "lat": 40.691532,
@@ -273,7 +453,7 @@
     "cuisine": "Mexican",
     "source": "Multiple mentions",
     "added": "2026-04-03",
-    "note": "Polished Mexican — mezcal-focused bar program"
+    "note": "Polished Mexican \u2014 mezcal-focused bar program"
   },
   {
     "name": "Barker Cafeteria",
@@ -321,7 +501,7 @@
     "cuisine": "Mexican",
     "source": "Lo Times #7",
     "added": "2026-04-03",
-    "note": "Comida chilanga. $4 papadillas — masa stuffed with potato, fried, two salsas"
+    "note": "Comida chilanga. $4 papadillas \u2014 masa stuffed with potato, fried, two salsas"
   },
   {
     "name": "Entre Nous",
@@ -333,7 +513,7 @@
     "cuisine": "French/Wine Bar",
     "source": "Pendulum Mag, Resy",
     "added": "2026-04-03",
-    "note": "Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French apéro tradition"
+    "note": "Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French ap\u00e9ro tradition"
   },
   {
     "name": "Evelina",
@@ -405,7 +585,7 @@
     "cuisine": "Chinese/Wine Bar",
     "source": "Lo Times #4",
     "added": "2026-04-03",
-    "note": "Annie Shi's wine bar. Shanxi-style mao er duo — lamb/tomato ragu cat's ear pasta with dill"
+    "note": "Annie Shi's wine bar. Shanxi-style mao er duo \u2014 lamb/tomato ragu cat's ear pasta with dill"
   },
   {
     "name": "Leland Eating and Drinking House",
@@ -489,10 +669,10 @@
     "cuisine": "French",
     "source": "Lo Times best dishes 2025",
     "added": "2026-04-03",
-    "note": "Provençal. Fried pumpkin with fennel, honey, pepper"
+    "note": "Proven\u00e7al. Fried pumpkin with fennel, honey, pepper"
   },
   {
-    "name": "Café Fleuri",
+    "name": "Caf\u00e9 Fleuri",
     "address": "109 Washington St, New York, NY 10006",
     "place_id": "ChIJZXs66hBawokRizEXnDJplPw",
     "lat": 40.7085845,
@@ -576,7 +756,7 @@
     "note": "Daily carnitas in steel cauldron. Guisados, gorditas with heirloom Masienda corn. Grub Street pick."
   },
   {
-    "name": "Cô Lạc",
+    "name": "C\u00f4 L\u1ea1c",
     "address": "234 E 4th St, New York, NY 10009",
     "place_id": "ChIJe0sE52pZwokRVFNve0FRc_Q",
     "lat": 40.7233621,
@@ -585,7 +765,7 @@
     "cuisine": "Vietnamese",
     "source": "grub_street_apr_2026",
     "added": "2026-04-01",
-    "note": "Chef Helen Nguyen (Saigon Social). $55 set menu, bánh dumplings, dry-aged duck. Grub Street April pick."
+    "note": "Chef Helen Nguyen (Saigon Social). $55 set menu, b\u00e1nh dumplings, dry-aged duck. Grub Street April pick."
   },
   {
     "name": "Fat Ronnie's Burger Bar",
@@ -765,7 +945,7 @@
     "cuisine": "Vietnamese Coffee/Cocktails",
     "source": "Eater NY",
     "added": "2026-04-22",
-    "note": "Vietnamese coffee shop by day, bar by night. Jackfruit lattes, cà phê muối, pho-tini cocktails. Opened April 10, 2026."
+    "note": "Vietnamese coffee shop by day, bar by night. Jackfruit lattes, c\u00e0 ph\u00ea mu\u1ed1i, pho-tini cocktails. Opened April 10, 2026."
   },
   {
     "name": "Whits",
