@@ -557,6 +557,7 @@ function formatAdded(d) {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const parts = d.split('-');
   const month = months[parseInt(parts[1], 10) - 1];
+  if (parts[2]) return 'Added ' + month + ' ' + parseInt(parts[2], 10) + ', ' + parts[0];
   return 'Added ' + month + ' ' + parts[0];
 }
 
