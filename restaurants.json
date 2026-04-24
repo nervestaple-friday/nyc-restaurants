@@ -1,5 +1,29 @@
 [
   {
+    "name": "COTE 550",
+    "address": "550 Madison Ave, New York, NY 10022",
+    "place_id": "ChIJU__rGyVZwokRWGCOCB4u-8M",
+    "lat": 40.761601,
+    "lng": -73.973103,
+    "neighborhood": "Midtown",
+    "cuisine": "Korean Steakhouse",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-24",
+    "note": "Second NYC location of Korean steakhouse. More mature version of Cote with upgraded Butcher's Feast. Housed in Philip Johnson-designed skyscraper at 550 Madison. Opened April 18, 2026."
+  },
+  {
+    "name": "Marcel",
+    "address": "945 Madison Ave, New York, NY 10021",
+    "place_id": "ChIJ9bb04b9ZwokRJV5MdRSSNps",
+    "lat": 40.773442,
+    "lng": -73.963827,
+    "neighborhood": "Upper East Side",
+    "cuisine": "French",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-24",
+    "note": "French restaurant in Sotheby's Breuer building. Partnership between Sotheby's and Roman and Williams. Continental menu with French emphasis, duck confit, côte de boeuf. Dining room as art gallery with works by Warhol, Joan Mitchell, Calder. Opened April 16, 2026."
+  },
+  {
     "name": "Al Volo",
     "address": "Pier 57, New York, NY 10011",
     "place_id": null,
