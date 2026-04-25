@@ -520,7 +520,11 @@ const deduped = restaurants.filter(r => {
 });
 
 deduped.sort((a, b) => addedScore(b.added) - addedScore(a.added));
-deduped.forEach(r => { r.hours = HOURS[r.name] ?? null; });
+const normalizeQuotes = s => s.replace(/’/g, "'");
+const HOURS_BY_NAME = Object.fromEntries(
+  Object.entries(HOURS).map(([k, v]) => [normalizeQuotes(k), v])
+);
+deduped.forEach(r => { r.hours = HOURS_BY_NAME[normalizeQuotes(r.name)] ?? null; });
 deduped.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
 
 function getStatus(r) {
