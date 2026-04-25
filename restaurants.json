@@ -345,7 +345,7 @@
     "cuisine": "French/Rotisserie",
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
-    "note": "From Fulgurances Laundromat team. Pink neon-lit rotisserie chicken spot with European wine program. Chefs Thomas Knodell and \u00c9mile Desme (Le Chateaubriand, Paris). Will revive culinary incubator program."
+    "note": "From Fulgurances Laundromat team. Pink neon-lit rotisserie chicken spot with European wine program. Chefs Thomas Knodell and Émile Desme (Le Chateaubriand, Paris). Will revive culinary incubator program."
   },
   {
     "name": "Ms. Alice",
@@ -403,9 +403,9 @@
     "lng": -73.91705689999999,
     "neighborhood": "Bushwick",
     "cuisine": "Thai",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-06",
-    "note": "Quick-service Thai noodle shop. Added to Eater Brooklyn heatmap March 2026. Bushwick only \u2014 included for exceptional quality."
+    "note": "Quick-service Thai noodle shop. Added to Eater Brooklyn heatmap March 2026. Bushwick only — included for exceptional quality."
   },
   {
     "name": "Il Leone",
@@ -415,7 +415,7 @@
     "lng": -73.97742439999999,
     "neighborhood": "Park Slope",
     "cuisine": "Pizza/Neapolitan",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-06",
     "note": "Cult Peaks Island pizzamaker Ben Wexler-Waite's NYC return. Naturally leavened, Neapolitan-style. Maine/Italian ingredients, lobster 'Isola' pie. Eater Brooklyn heatmap."
   },
@@ -427,33 +427,33 @@
     "lng": -73.9790508,
     "neighborhood": "Park Slope",
     "cuisine": "Mexican/Seafood",
-    "source": "infatuation_brooklyn_2026",
+    "source": "Infatuation Brooklyn 2026",
     "added": "2026-04-06",
     "note": "5th location. Walk-in only. Aguachiles, el gobernador tacos, tostadas with buttery tuna. Infatuation 8.2 rating. Brooklyn hit list."
   },
   {
-    "name": "Tamaler\u00eda La Madrina",
+    "name": "Tamalería La Madrina",
     "address": "735 Nostrand Ave, Brooklyn, NY 11216",
     "place_id": "ChIJpRsaFABbwokRYLKlosNrXW8",
     "lat": 40.6721763,
     "lng": -73.9501378,
     "neighborhood": "Crown Heights",
     "cuisine": "Mexican/Tamales",
-    "source": "infatuation_brooklyn_2026",
+    "source": "Infatuation Brooklyn 2026",
     "added": "2026-04-06",
-    "note": "From Taqueria Milear team. Tight menu: antojitos, taquitos, tamales. Oaxaque\u00f1o w/ pork in banana leaf is standout. Infatuation Brooklyn hit list."
+    "note": "From Taqueria Milear team. Tight menu: antojitos, taquitos, tamales. Oaxaqueño w/ pork in banana leaf is standout. Infatuation Brooklyn hit list."
   },
   {
     "name": "Vato",
     "address": "226 7th Ave Floor 1, Brooklyn, NY 11215",
     "place_id": "ChIJkUbei5ZbwokR_vaJUwBknnY",
-    "lat": 40.670134699999995,
+    "lat": 40.6701347,
     "lng": -73.9788938,
     "neighborhood": "Park Slope",
     "cuisine": "Mexican/Tortilleria/Bakery",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-06",
-    "note": "All-day from Corima chef Fidel Caballero. Tortillas, breakfast burritos, conchas. El Paso/Ciudad Ju\u00e1rez heritage. Eater Brooklyn heatmap."
+    "note": "All-day from Corima chef Fidel Caballero. Tortillas, breakfast burritos, conchas. El Paso/Ciudad Juárez heritage. Eater Brooklyn heatmap."
   },
   {
     "name": "Border Town",
@@ -463,19 +463,19 @@
     "lng": -73.9455971,
     "neighborhood": "Greenpoint",
     "cuisine": "Mexican",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-05",
     "note": "Cult pop-up gone brick-and-mortar. Tortilla master Jorge Aguilar's Northern Mexican. Flour tortillas, tacos de guisados. Eater Brooklyn heatmap."
   },
   {
-    "name": "Dilj\u0101n Bakery",
+    "name": "Diljān Bakery",
     "address": "330 Hicks St, Brooklyn, NY 11201",
     "place_id": "ChIJHRcAaABbwokRcdnFupcwIus",
     "lat": 40.691532,
     "lng": -73.997887,
     "neighborhood": "Brooklyn Heights",
     "cuisine": "Afghan Bakery",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-05",
     "note": "Afghan naan, halwa sticky buns, sheer pira pastries. From Little Flower Cafe team + baker Bryan Ford. Eater Brooklyn heatmap."
   },
@@ -487,7 +487,7 @@
     "lng": -73.9522616,
     "neighborhood": "Greenpoint",
     "cuisine": "Malaysian",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-05",
     "note": "From Hainan Chicken House (Sunset Park). Oxtail rendang w/ Haitian-Malaysian rice. Caribbean-Southeast Asian fusion. Eater Brooklyn heatmap."
   },
@@ -499,7 +499,7 @@
     "lng": -73.9854919,
     "neighborhood": "Boerum Hill",
     "cuisine": "Sandwiches/Bakery",
-    "source": "infatuation_apr_2026",
+    "source": "Infatuation April 2026",
     "added": "2026-04-05",
     "note": "Worker-owned coop. Relocated from Cobble Hill. Smoked trout sandwiches, Sunday pizza. Sliding scale pricing. Infatuation just-added."
   },
@@ -511,7 +511,7 @@
     "lng": -73.9916931,
     "neighborhood": "Lower East Side",
     "cuisine": "French-Vietnamese",
-    "source": "cntraveler_mar_2026",
+    "source": "Condé Nast Traveler March 2026",
     "added": "2026-04-04",
     "note": "Follow-up to Ha's Snack Bar. Weekly rotating menu. Crab soup w/ calf's brain, oyster martini, vol-au-vents. CN Traveler pick March 2026."
   },
@@ -523,7 +523,7 @@
     "lng": -73.9990364,
     "neighborhood": "Carroll Gardens",
     "cuisine": "American/Chicken",
-    "source": "grub_street_apr_2026",
+    "source": "Grub Street April 2026",
     "added": "2026-04-04",
     "note": "From Ample Hills founders. Fried chicken, burgers. Court St. Grub Street mention April 2026."
   },
@@ -537,7 +537,7 @@
     "cuisine": "Mexican",
     "source": "Multiple mentions",
     "added": "2026-04-03",
-    "note": "Polished Mexican \u2014 mezcal-focused bar program"
+    "note": "Polished Mexican — mezcal-focused bar program"
   },
   {
     "name": "Barker Cafeteria",
@@ -547,7 +547,7 @@
     "lng": -73.9502306,
     "neighborhood": "Bed-Stuy",
     "cuisine": "American/Sandwiches",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-03",
     "note": "Daytime spot. Focaccia sandwiches, roast beef w/ horseradish, chicken noodle soup, apple fritters. The 'Dad Plate.' Eater Brooklyn heatmap."
   },
@@ -571,7 +571,7 @@
     "lng": -73.9958083,
     "neighborhood": "Brooklyn Heights",
     "cuisine": "New American",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-03",
     "note": "Relocated to Brooklyn Heights. New American. Added to Eater Brooklyn heatmap March 2026."
   },
@@ -585,7 +585,7 @@
     "cuisine": "Mexican",
     "source": "Lo Times #7",
     "added": "2026-04-03",
-    "note": "Comida chilanga. $4 papadillas \u2014 masa stuffed with potato, fried, two salsas"
+    "note": "Comida chilanga. $4 papadillas — masa stuffed with potato, fried, two salsas"
   },
   {
     "name": "Entre Nous",
@@ -597,7 +597,7 @@
     "cuisine": "French/Wine Bar",
     "source": "Pendulum Mag, Resy",
     "added": "2026-04-03",
-    "note": "Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French ap\u00e9ro tradition"
+    "note": "Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French apéro tradition"
   },
   {
     "name": "Evelina",
@@ -669,7 +669,7 @@
     "cuisine": "Chinese/Wine Bar",
     "source": "Lo Times #4",
     "added": "2026-04-03",
-    "note": "Annie Shi's wine bar. Shanxi-style mao er duo \u2014 lamb/tomato ragu cat's ear pasta with dill"
+    "note": "Annie Shi's wine bar. Shanxi-style mao er duo — lamb/tomato ragu cat's ear pasta with dill"
   },
   {
     "name": "Leland Eating and Drinking House",
@@ -739,7 +739,7 @@
     "lng": -74.0105136,
     "neighborhood": "Red Hook",
     "cuisine": "Pizza/Supper Club",
-    "source": "eater_brooklyn_heatmap_mar_2026",
+    "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-03",
     "note": "From Bad Cholesterol pizza cult. Wood-fired pies, chicken nuggets w/ gochujang, blooming onion, cocktails. Backyard. Eater Brooklyn heatmap."
   },
@@ -753,17 +753,17 @@
     "cuisine": "French",
     "source": "Lo Times best dishes 2025",
     "added": "2026-04-03",
-    "note": "Proven\u00e7al. Fried pumpkin with fennel, honey, pepper"
+    "note": "Provençal. Fried pumpkin with fennel, honey, pepper"
   },
   {
-    "name": "Caf\u00e9 Fleuri",
+    "name": "Café Fleuri",
     "address": "109 Washington St, New York, NY 10006",
     "place_id": "ChIJZXs66hBawokRizEXnDJplPw",
     "lat": 40.7085845,
     "lng": -74.014017,
     "neighborhood": "Financial District",
     "cuisine": "French/North African",
-    "source": "eater_apr_2026",
+    "source": "Eater NY April 2026",
     "added": "2026-04-02",
     "note": "Southern France + North African touches. In old Schilling space. Chef drama (Baumgart left). Poached haddock, lamb shoulder, rice pudding."
   },
@@ -775,7 +775,7 @@
     "lng": -73.990277,
     "neighborhood": "Lower East Side",
     "cuisine": "Cocktail Bar",
-    "source": "eater_apr_2026",
+    "source": "Eater NY April 2026",
     "added": "2026-04-02",
     "note": "From Superbueno/Katana Kitten team. Tokyo-inspired 4-cocktail + 4-bite omakase ($55). Menu changes biweekly. Walk-in Bar 7 next door."
   },
@@ -787,7 +787,7 @@
     "lng": -73.9498179,
     "neighborhood": "Greenpoint",
     "cuisine": "Vietnamese-Mexican Fusion",
-    "source": "grub_street_apr_2026",
+    "source": "Grub Street April 2026",
     "added": "2026-04-02",
     "note": "Moved from Bushwick. All-day format. Duck-neck tamales, pho-spiced lamb, $58 tasting. Grub Street April highlight."
   },
@@ -799,7 +799,7 @@
     "lng": -74.0031604,
     "neighborhood": "Soho",
     "cuisine": "Japanese/Soba",
-    "source": "eater_apr_2026",
+    "source": "Eater NY April 2026",
     "added": "2026-04-02",
     "note": "From Hirohisa chef. House-made soba twice daily w/ buckwheat from upstate NY. Sashimi, tamago sides. Eater April spotlight."
   },
@@ -811,7 +811,7 @@
     "lng": -73.9838771,
     "neighborhood": "East Village",
     "cuisine": "Korean-Italian",
-    "source": "infatuation_spring_2026",
+    "source": "Infatuation Spring 2026",
     "added": "2026-04-02",
     "note": "Korean-Italian trattoria. Housemade soju, handmade noodles, bottarga pasta with nori. Now open."
   },
@@ -823,7 +823,7 @@
     "lng": -73.9946416,
     "neighborhood": "Two Bridges",
     "cuisine": "Mexican",
-    "source": "infatuation_spring_2026",
+    "source": "Infatuation Spring 2026",
     "added": "2026-04-01",
     "note": "From Corima team. Cantina bar with cocktails, micheladas, queso chihuahua burger. Opening April 2."
   },
@@ -835,21 +835,21 @@
     "lng": -73.985112,
     "neighborhood": "Lower East Side",
     "cuisine": "Mexican",
-    "source": "grub_street_apr_2026",
+    "source": "Grub Street April 2026",
     "added": "2026-04-01",
     "note": "Daily carnitas in steel cauldron. Guisados, gorditas with heirloom Masienda corn. Grub Street pick."
   },
   {
-    "name": "C\u00f4 L\u1ea1c",
+    "name": "Cô Lạc",
     "address": "234 E 4th St, New York, NY 10009",
     "place_id": "ChIJe0sE52pZwokRVFNve0FRc_Q",
     "lat": 40.7233621,
     "lng": -73.9831177,
     "neighborhood": "East Village",
     "cuisine": "Vietnamese",
-    "source": "grub_street_apr_2026",
+    "source": "Grub Street April 2026",
     "added": "2026-04-01",
-    "note": "Chef Helen Nguyen (Saigon Social). $55 set menu, b\u00e1nh dumplings, dry-aged duck. Grub Street April pick."
+    "note": "Chef Helen Nguyen (Saigon Social). $55 set menu, bánh dumplings, dry-aged duck. Grub Street April pick."
   },
   {
     "name": "Fat Ronnie's Burger Bar",
@@ -859,7 +859,7 @@
     "lng": -74.0019756,
     "neighborhood": "West Village",
     "cuisine": "Burgers",
-    "source": "eater_mar_2026",
+    "source": "Eater NY March 2026",
     "added": "2026-04-01",
     "note": "Martha's Vineyard import. Thick patties, fish sandwiches, chopped cheese. Harlem family legacy."
   },
@@ -871,7 +871,7 @@
     "lng": -73.9599613,
     "neighborhood": "Prospect Lefferts Gardens",
     "cuisine": "Wild-to-Table",
-    "source": "research_apr_2026",
+    "source": "Research April 2026",
     "added": "2026-04-01",
     "note": "Wild-to-table from a Noma fermentation lab alum. Foraged and fermented ingredients."
   },
@@ -883,7 +883,7 @@
     "lng": -73.9969894,
     "neighborhood": "Little Italy",
     "cuisine": "Pizza",
-    "source": "eater_mar_2026",
+    "source": "Eater NY March 2026",
     "added": "2026-04-01",
     "note": "Third location of beloved Williamsburg slice shop. Standing room only. Opened March 19."
   },
@@ -895,7 +895,7 @@
     "lng": -73.9996534,
     "neighborhood": "Carroll Gardens",
     "cuisine": "Coastal Indian Seafood",
-    "source": "research_apr_2026",
+    "source": "Research April 2026",
     "added": "2026-04-01",
     "note": "Michelin-starred Chintan Pandya (Dhamaka, Semma). Coastal Indian seafood focus."
   },
@@ -907,7 +907,7 @@
     "lng": -73.9760048,
     "neighborhood": "Fort Greene",
     "cuisine": "Seafood/Oyster Bar",
-    "source": "jim_request",
+    "source": "Jim's request",
     "added": "2026-04-01",
     "note": "Modern oyster bar near BAM. Brooklyn-New Orleans vibe, great fried shrimp, cocktails. Jim's pick."
   },
@@ -919,7 +919,7 @@
     "lng": -74.0031537,
     "neighborhood": "West Village",
     "cuisine": "Korean",
-    "source": "grub_street_apr_2026",
+    "source": "Grub Street April 2026",
     "added": "2026-04-01",
     "note": "Nami Nori team pop-up. Lines forming before open sign flips. Takeout gimbap ~$12. Runs through May+."
   },
@@ -931,7 +931,7 @@
     "lng": -73.9992164,
     "neighborhood": "Carroll Gardens",
     "cuisine": "American Bar & Grill",
-    "source": "research_apr_2026",
+    "source": "Research April 2026",
     "added": "2026-04-01",
     "note": "From the Gertrude's team. American bar and grill."
   },
@@ -943,7 +943,7 @@
     "lng": -73.9958718,
     "neighborhood": "Greenwich Village",
     "cuisine": "Steakhouse",
-    "source": "initial_research",
+    "source": "Initial research",
     "added": "2026-03-01",
     "note": "NYC expansion of iconic 1958 Las Vegas steakhouse. Tuxedoed servers, wet-aged USDA Prime steaks, Art Deco setting in landmark One Fifth Avenue building. Opened January 2026."
   },
@@ -955,7 +955,7 @@
     "lng": -73.9829146,
     "neighborhood": "East Village",
     "cuisine": "Japanese",
-    "source": "initial_research",
+    "source": "Initial research",
     "added": "2026-03-01",
     "note": "Casual offshoot of two-Michelin-star Odo. Chef Hiroki Odo's 'kaiseki izakaya' concept — refined kaiseki technique in relaxed izakaya setting. À la carte, 24 seats, fully gluten-free. Opened February 2026."
   },
@@ -967,7 +967,7 @@
     "lng": -73.9883101,
     "neighborhood": "East Village",
     "cuisine": "American",
-    "source": "initial_research",
+    "source": "Initial research",
     "added": "2026-03-01",
     "note": null
   },
@@ -979,7 +979,7 @@
     "lng": -74.00024479999999,
     "neighborhood": "Greenwich Village",
     "cuisine": "Vegetarian / falafel",
-    "source": "readded",
+    "source": "Re-added",
     "added": "2026-03-01",
     "note": null
   },
@@ -1029,7 +1029,7 @@
     "cuisine": "Vietnamese Coffee/Cocktails",
     "source": "Eater NY",
     "added": "2026-04-22",
-    "note": "Vietnamese coffee shop by day, bar by night. Jackfruit lattes, c\u00e0 ph\u00ea mu\u1ed1i, pho-tini cocktails. Opened April 10, 2026."
+    "note": "Vietnamese coffee shop by day, bar by night. Jackfruit lattes, cà phê muối, pho-tini cocktails. Opened April 10, 2026."
   },
   {
     "name": "Whits",

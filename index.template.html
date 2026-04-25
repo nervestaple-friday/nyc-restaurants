@@ -568,10 +568,6 @@ function gmapsUrl(r) {
   return r.place_id ? base + `&query_place_id=${r.place_id}` : base;
 }
 
-function formatSource(s) {
-  return s.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-}
-
 function formatAdded(d) {
   if (!d) return '';
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -626,7 +622,7 @@ mappable.forEach(r => {
     <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
     <div class="popup-address">${escapeHtml(r.address)}</div>
     ${hoursHtml}
-    <div class="popup-meta">${statusHtml}<span>${escapeHtml(formatSource(r.source))}</span>${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
+    <div class="popup-meta">${statusHtml}<span>${escapeHtml(r.source)}</span>${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
     ${noteHtml}
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
@@ -787,7 +783,7 @@ function renderList(filtered) {
       ${r.hours ? `<div class="card-hours">${escapeHtml(r.hours)}</div>` : ''}
       ${r.note ? `<div class="card-note">${escapeHtml(r.note)}</div>` : ''}
       <div class="card-bottom">
-        <span class="card-source">${escapeHtml(formatSource(r.source))}${r.added ? ' \u00b7 ' + formatAdded(r.added) : ''}</span>
+        <span class="card-source">${escapeHtml(r.source)}${r.added ? ' \u00b7 ' + formatAdded(r.added) : ''}</span>
         ${hasCoords ? `<a class="card-gmaps" href="${gmapsUrl(r)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google Maps</a>` : ''}
       </div>
     </div>`;
