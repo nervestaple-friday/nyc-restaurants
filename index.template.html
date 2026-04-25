@@ -515,8 +515,9 @@ function cuisineCategory(cuisine) {
   if (c.includes('french')) return 'French';
   if (c.includes('vietnamese')) return 'Vietnamese';
   if (c.includes('indian')) return 'Indian';
-  if (c.includes('american') || c === 'steakhouse' || c === 'burgers' || c.includes('southern')) return 'American';
-  if (c.includes('mediterranean') || c.includes('israeli') || c.includes('persian')) return 'Mediterranean';
+  if (c.includes('coffee') || c.includes('ice cream') || c.includes('frozen yogurt') || c.includes('acai') || c.includes('smoothie') || c.includes('gelato') || c.includes('dessert')) return 'Coffee & Sweets';
+  if (c.includes('american') || c === 'steakhouse' || c.includes('burgers') || c.includes('southern') || c.includes('sandwich')) return 'American';
+  if (c.includes('mediterranean') || c.includes('israeli') || c.includes('persian') || c.includes('greek') || c.includes('falafel')) return 'Mediterranean';
   if (c.includes('seafood') || c.includes('oyster')) return 'Seafood';
   if (c.includes('japanese') || c === 'nikkei') return 'Japanese';
   if (c.includes('caribbean')) return 'Caribbean';
