@@ -1,5 +1,65 @@
 [
   {
+    "name": "Thick & Thin Pizza",
+    "address": "1302 Myrtle Ave, Brooklyn, NY 11221",
+    "place_id": "ChIJh-BXaABdwokRXwwhlqpiMtc",
+    "lat": 40.698046,
+    "lng": -73.924447,
+    "neighborhood": "Bushwick",
+    "cuisine": "Pizza",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-25",
+    "note": "All-halal Italian restaurant with New York- and Detroit-style pies on sourdough. Also serves pizza sandwiches, pastas, lasagna, meatballs, and tiramisu. Opened April 2026."
+  },
+  {
+    "name": "Moonburger",
+    "address": "601 W 26th St, New York, NY 10001",
+    "place_id": "ChIJ7-kb8m5ZwokRO-ry10XJzdI",
+    "lat": 40.751577,
+    "lng": -74.006581,
+    "neighborhood": "Chelsea",
+    "cuisine": "Burgers",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-25",
+    "note": "Hudson Valley burger chain opened inside Olly Olly Market on April 9, 2026. Third NYC location. Adopted meat from small farms in NY."
+  },
+  {
+    "name": "GangJong Thunpa Phunshi Restaurant",
+    "address": "81-20 Broadway, Elmhurst, NY 11373",
+    "place_id": "ChIJKSi_VQBfwokRVxC8sc7sDTI",
+    "lat": 40.742999,
+    "lng": -73.883437,
+    "neighborhood": "Elmhurst",
+    "cuisine": "Tibetan",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-25",
+    "note": "Tibetan street foods including momo dumplings, cold laphing, mapo tofu, hand-pulled noodle soups, butter tea. Opened April 8, 2026."
+  },
+  {
+    "name": "Sosa's Sandwich Shop",
+    "address": "24-26 47th St, Astoria, NY 11103",
+    "place_id": "ChIJxbP-wP9fwokRyinar3Hlmn4",
+    "lat": 40.767234,
+    "lng": -73.904798,
+    "neighborhood": "Astoria",
+    "cuisine": "Sandwiches",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-25",
+    "note": "Cuban sandwiches, arepas, monthly specials inspired by customer stories. Opened April 2026."
+  },
+  {
+    "name": "Greenpoint Comedy Club",
+    "address": "66 Greenpoint Ave, Brooklyn, NY 11222",
+    "place_id": "ChIJK6eJyERZwokRVLbeM4_T7XY",
+    "lat": 40.729534,
+    "lng": -73.958326,
+    "neighborhood": "Greenpoint",
+    "cuisine": "Bar",
+    "source": "Eater NY April 2026",
+    "added": "2026-04-25",
+    "note": "Entertainment venue with ambitious beverage program. Local beers, biodynamic wines, vermouth, sake. Comedy, live music, movie screenings, burlesque. Opened April 10, 2026."
+  },
+  {
     "name": "COTE 550",
     "address": "550 Madison Ave, New York, NY 10022",
     "place_id": "ChIJU__rGyVZwokRWGCOCB4u-8M",
@@ -885,7 +945,7 @@
     "cuisine": "Steakhouse",
     "source": "initial_research",
     "added": "2026-03-01",
-    "note": null
+    "note": "NYC expansion of iconic 1958 Las Vegas steakhouse. Tuxedoed servers, wet-aged USDA Prime steaks, Art Deco setting in landmark One Fifth Avenue building. Opened January 2026."
   },
   {
     "name": "Odo East Village",
@@ -897,7 +957,7 @@
     "cuisine": "Japanese",
     "source": "initial_research",
     "added": "2026-03-01",
-    "note": null
+    "note": "Casual offshoot of two-Michelin-star Odo. Chef Hiroki Odo's 'kaiseki izakaya' concept — refined kaiseki technique in relaxed izakaya setting. À la carte, 24 seats, fully gluten-free. Opened February 2026."
   },
   {
     "name": "Stars",
