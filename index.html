@@ -513,10 +513,14 @@ const HOURS = {
 
 function cuisineCategory(cuisine) {
   const c = (cuisine || '').toLowerCase();
+  // Specific Asian cuisines come first so compound names like
+  // "Korean Steakhouse", "Korean-Italian", "Vietnamese-Mexican Fusion",
+  // and "French-Vietnamese" don't get swallowed by broader categories below.
+  if (c.includes('vietnamese')) return 'Vietnamese';
+  if (c.includes('korean')) return 'Korean';
   if (c.includes('mexican')) return 'Mexican';
   if (c.includes('chinese')) return 'Chinese';
   if (c.includes('french')) return 'French';
-  if (c.includes('vietnamese')) return 'Vietnamese';
   if (c.includes('indian')) return 'Indian';
   if (c.includes('coffee') || c.includes('ice cream') || c.includes('frozen yogurt') || c.includes('acai') || c.includes('smoothie') || c.includes('gelato') || c.includes('dessert')) return 'Coffee & Sweets';
   if (c.includes('american') || c === 'steakhouse' || c.includes('burgers') || c.includes('southern') || c.includes('sandwich')) return 'American';
@@ -525,7 +529,6 @@ function cuisineCategory(cuisine) {
   if (c.includes('japanese') || c === 'nikkei') return 'Japanese';
   if (c.includes('caribbean')) return 'Caribbean';
   if (c.includes('italian')) return 'Italian';
-  if (c.includes('korean')) return 'Korean';
   if (c.includes('thai')) return 'Thai';
   if (c.includes('cafe') || c.includes('caf\u00e9') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
   if (c.includes('pizza')) return 'Pizza';
