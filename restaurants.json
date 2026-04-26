@@ -607,7 +607,7 @@
     "lng": -73.970998,
     "neighborhood": "Fort Greene",
     "cuisine": "Italian",
-    "source": "Multiple",
+    "source": "Multiple mentions",
     "added": "2026-04-03",
     "note": "Italian. Consistently mentioned among Fort Greene best"
   },
@@ -655,7 +655,7 @@
     "lng": -73.98520309999999,
     "neighborhood": "Park Slope",
     "cuisine": "Chinese-French",
-    "source": "Local coverage",
+    "source": "",
     "added": "2026-04-03",
     "note": "Chinese-French from a Michelin-trained chef"
   },
@@ -871,7 +871,7 @@
     "lng": -73.9599613,
     "neighborhood": "Prospect Lefferts Gardens",
     "cuisine": "Wild-to-Table",
-    "source": "Research April 2026",
+    "source": "",
     "added": "2026-04-01",
     "note": "Wild-to-table from a Noma fermentation lab alum. Foraged and fermented ingredients."
   },
@@ -895,7 +895,7 @@
     "lng": -73.9996534,
     "neighborhood": "Carroll Gardens",
     "cuisine": "Coastal Indian Seafood",
-    "source": "Research April 2026",
+    "source": "",
     "added": "2026-04-01",
     "note": "Michelin-starred Chintan Pandya (Dhamaka, Semma). Coastal Indian seafood focus."
   },
@@ -907,7 +907,7 @@
     "lng": -73.9760048,
     "neighborhood": "Fort Greene",
     "cuisine": "Seafood/Oyster Bar",
-    "source": "Jim's request",
+    "source": "",
     "added": "2026-04-01",
     "note": "Modern oyster bar near BAM. Brooklyn-New Orleans vibe, great fried shrimp, cocktails. Jim's pick."
   },
@@ -931,7 +931,7 @@
     "lng": -73.9992164,
     "neighborhood": "Carroll Gardens",
     "cuisine": "American Bar & Grill",
-    "source": "Research April 2026",
+    "source": "",
     "added": "2026-04-01",
     "note": "From the Gertrude's team. American bar and grill."
   },
@@ -943,7 +943,7 @@
     "lng": -73.9958718,
     "neighborhood": "Greenwich Village",
     "cuisine": "Steakhouse",
-    "source": "Initial research",
+    "source": "",
     "added": "2026-03-01",
     "note": "NYC expansion of iconic 1958 Las Vegas steakhouse. Tuxedoed servers, wet-aged USDA Prime steaks, Art Deco setting in landmark One Fifth Avenue building. Opened January 2026."
   },
@@ -955,7 +955,7 @@
     "lng": -73.9829146,
     "neighborhood": "East Village",
     "cuisine": "Japanese",
-    "source": "Initial research",
+    "source": "",
     "added": "2026-03-01",
     "note": "Casual offshoot of two-Michelin-star Odo. Chef Hiroki Odo's 'kaiseki izakaya' concept — refined kaiseki technique in relaxed izakaya setting. À la carte, 24 seats, fully gluten-free. Opened February 2026."
   },
@@ -967,7 +967,7 @@
     "lng": -73.9883101,
     "neighborhood": "East Village",
     "cuisine": "American",
-    "source": "Initial research",
+    "source": "",
     "added": "2026-03-01",
     "note": null
   },
@@ -979,7 +979,7 @@
     "lng": -74.00024479999999,
     "neighborhood": "Greenwich Village",
     "cuisine": "Vegetarian / falafel",
-    "source": "Re-added",
+    "source": "",
     "added": "2026-03-01",
     "note": null
   },
