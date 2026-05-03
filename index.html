@@ -529,7 +529,11 @@ function cuisineCategory(cuisine) {
   if (c.includes('italian')) return 'Italian';
   if (c.includes('thai')) return 'Thai';
   if (c.includes('tibetan') || c.includes('malaysian') || c.includes('hong kong')) return 'Asian';
-  if (c.includes('cafe') || c.includes('caf\u00e9') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
+  // Dining-mode buckets \u2014 surface tasting menus and wild-to-table as their own
+  // filters before falling through to bar/cafe defaults.
+  if (c.includes('tasting')) return 'Tasting Menu';
+  if (c.includes('wild')) return 'Wild-to-Table';
+  if (c.includes('speakeasy') || c.includes('cafe') || c.includes('caf\u00e9') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
   if (c.includes('bakery')) return 'Bakery';
   if (c.includes('pizza')) return 'Pizza';
   return 'Other';
