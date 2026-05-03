@@ -1330,5 +1330,101 @@
     "source": "Resy April 2026",
     "added": "2026-04-26",
     "note": "From the Domodomo and Konban team. Specializes in katsu and noodle dishes. Opened April 2026."
+  },
+  {
+    "name": "Drums & Flats",
+    "address": "56 5th Ave, Brooklyn, NY 11217",
+    "place_id": "",
+    "lat": 40.6815,
+    "lng": -73.9762,
+    "neighborhood": "Park Slope",
+    "cuisine": "American",
+    "source": "What Now NY / Park Slope Pulse May 2026",
+    "added": "2026-05-03",
+    "note": "Wing-focused bar from the Moot Bar / Uncle Barry's team. Six wing flavors (buffalo, lemon herb, pok-pok), fried cheese curds, burgers, sandwiches. Opened May 2, 2026 in former Alchemy space."
+  },
+  {
+    "name": "Bar Bruno",
+    "address": "520 Henry St, Brooklyn, NY 11231",
+    "place_id": "",
+    "lat": 40.6791,
+    "lng": -74.0001,
+    "neighborhood": "Carroll Gardens",
+    "cuisine": "American",
+    "source": "Eater NY / Andrea Strong April 2026",
+    "added": "2026-05-03",
+    "note": "Reboot under the Greenpoint Fish & Lobster team (Peter Juusola, chef Orion Russell, Vinny Milburn). Half chicken under mole, broiled sea bass, signature tacos. Reopened spring 2026."
+  },
+  {
+    "name": "Richie's",
+    "address": "1433 Bedford Ave, Brooklyn, NY 11216",
+    "place_id": "",
+    "lat": 40.6724,
+    "lng": -73.9544,
+    "neighborhood": "Crown Heights",
+    "cuisine": "Bar",
+    "source": "Eater NY April 2026",
+    "added": "2026-05-03",
+    "note": "Neighborhood bar in former Catfish space. $14 cocktails, $12 wine glasses, $5 Miller High Lifes, weekday 3-6pm happy hour, popcorn, big TVs. Opened spring 2026."
+  },
+  {
+    "name": "Candor Candy",
+    "address": "664 Fulton St, Brooklyn, NY 11217",
+    "place_id": "",
+    "lat": 40.6856,
+    "lng": -73.9766,
+    "neighborhood": "Fort Greene",
+    "cuisine": "Coffee & Sweets",
+    "source": "Eater NY / Gothamist April 2026",
+    "added": "2026-05-03",
+    "note": "First gummy candy and pick-and-mix sweets shop in this part of Brooklyn. Female-founded by Cat Cirino with a high-design space and donations to NYC food banks. Opened April 2026."
+  },
+  {
+    "name": "Nacha Focaccia",
+    "address": "800 Franklin Ave, Brooklyn, NY 11225",
+    "place_id": "",
+    "lat": 40.6694,
+    "lng": -73.9572,
+    "neighborhood": "Crown Heights",
+    "cuisine": "Bakery",
+    "source": "Eater NY April 2026",
+    "added": "2026-05-03",
+    "note": "Vegan cafe and bakery specializing in focaccia with creative flavors (PB&J among them), focaccia sandwiches, and specialty drinks. Opened spring 2026."
+  },
+  {
+    "name": "Forever Brewing",
+    "address": "574 President St, Brooklyn, NY 11215",
+    "place_id": "",
+    "lat": 40.6745,
+    "lng": -73.9869,
+    "neighborhood": "Gowanus",
+    "cuisine": "Bar",
+    "source": "Brooklyn Paper / Park Slope Pulse April 2026",
+    "added": "2026-05-03",
+    "note": "Forever Homebrewing founders Matt Land and Rob Jenkins took over the former Strong Rope taproom. Homebrew supplies up front, small-batch beers, rare styles, NA options, planned coffee program. Soft-opened April 11, full menu rolling out in May."
+  },
+  {
+    "name": "Andrew Steak Society",
+    "address": "51 Avenue B, New York, NY 10009",
+    "place_id": "",
+    "lat": 40.7234,
+    "lng": -73.9809,
+    "neighborhood": "East Village",
+    "cuisine": "Steakhouse",
+    "source": "Eater NY / Patch April 2026",
+    "added": "2026-05-03",
+    "note": "Steakhouse from the Aquarelle team, red velvet seating, wood-fired grill, 28-day dry-aged beef. Chef Niklas Lucich. Opened April 2026."
+  },
+  {
+    "name": "Dulce",
+    "address": "127 Ludlow St, New York, NY 10002",
+    "place_id": "",
+    "lat": 40.7197,
+    "lng": -73.9889,
+    "neighborhood": "Lower East Side",
+    "cuisine": "Latin American",
+    "source": "Eater NY / Infatuation April 2026",
+    "added": "2026-05-03",
+    "note": "Dominican sit-down sibling to El Sazón R.D. Braised goat tacos, whole red snapper, Dominican classics. Opened spring 2026."
   }
 ]
