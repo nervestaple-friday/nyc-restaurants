@@ -1426,5 +1426,77 @@
     "source": "Eater NY / Infatuation April 2026",
     "added": "2026-05-03",
     "note": "Dominican sit-down sibling to El Sazón R.D. Braised goat tacos, whole red snapper, Dominican classics. Opened spring 2026."
+  },
+  {
+    "name": "Chama Mama",
+    "address": "113 Franklin St, Brooklyn, NY 11222",
+    "place_id": null,
+    "lat": 40.7271,
+    "lng": -73.9579,
+    "neighborhood": "Greenpoint",
+    "cuisine": "Georgian",
+    "source": "Brooklyn Bridge Parents April 2026",
+    "added": "2026-05-05",
+    "note": "Authentic Georgian cuisine — khachapuri, pkhali (walnut-veggie spreads), Georgian dumplings, hearty stews. Lunch/dinner Mon–Fri, weekend brunch. Opened April 2026."
+  },
+  {
+    "name": "Grabstein's Bagels",
+    "address": "142 Smith St, Brooklyn, NY 11201",
+    "place_id": null,
+    "lat": 40.6859,
+    "lng": -73.9909,
+    "neighborhood": "Carroll Gardens",
+    "cuisine": "Bagels",
+    "source": "Brooklyn Bridge Parents April 2026",
+    "added": "2026-05-05",
+    "note": "\"Old school bagels with a new school vibe.\" Hand-rolled bagels, house-made spreads, creative breakfast sandwiches. Brooklyn outpost of the growing NYC mini-chain. Opened April 2026."
+  },
+  {
+    "name": "Pho Rainbow",
+    "address": "145 Smith St, Brooklyn, NY 11201",
+    "place_id": null,
+    "lat": 40.6856,
+    "lng": -73.9907,
+    "neighborhood": "Boerum Hill",
+    "cuisine": "Vietnamese",
+    "source": "Brooklyn Bridge Parents April 2026",
+    "added": "2026-05-05",
+    "note": "Vietnamese soft-opened on the Bergen/Dean stretch of Smith St. Fresh pho, banh mi, bubble tea, rice plates, noodle soups in a casual setting. Opened April 2026."
+  },
+  {
+    "name": "Kasbah Bakery",
+    "address": "257 Columbia St, Brooklyn, NY 11231",
+    "place_id": null,
+    "lat": 40.6815,
+    "lng": -74.0008,
+    "neighborhood": "Cobble Hill",
+    "cuisine": "Bakery",
+    "source": "Brooklyn Bridge Parents April 2026",
+    "added": "2026-05-05",
+    "note": "Moroccan bakery on the Columbia Waterfront — fresh pastries crafted with traditional techniques and authentic ingredients, plus sandwiches in a small café space. Opened April 2026."
+  },
+  {
+    "name": "100 Feast & Lounge",
+    "address": "100 East Broadway, New York, NY 10002",
+    "place_id": null,
+    "lat": 40.7137,
+    "lng": -73.9928,
+    "neighborhood": "Chinatown",
+    "cuisine": "Cantonese",
+    "source": "Welcome to Chinatown Spring 2026",
+    "added": "2026-05-05",
+    "note": "Chinatown's newest Cantonese & dim sum restaurant on the 2nd & 3rd floors at 100 East Broadway. Opened Winter/Spring 2026."
+  },
+  {
+    "name": "Bao Noodle House",
+    "address": "110 Bowery, New York, NY 10013",
+    "place_id": null,
+    "lat": 40.7163,
+    "lng": -73.9956,
+    "neighborhood": "Chinatown",
+    "cuisine": "Chinese",
+    "source": "Welcome to Chinatown Spring 2026",
+    "added": "2026-05-05",
+    "note": "Specializes in bao buns and noodles. New Chinatown opening on the Bowery. Opened Winter/Spring 2026."
   }
 ]
