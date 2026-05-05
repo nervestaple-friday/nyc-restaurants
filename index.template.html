@@ -59,7 +59,6 @@
     z-index: 2;
   }
 
-  .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.85) contrast(1.1); }
   .leaflet-control-attribution { background: var(--surface) !important; color: var(--text-dim) !important; font-size: 10px !important; }
   .leaflet-control-attribution a { color: var(--text-dim) !important; }
   .leaflet-control-zoom a {
@@ -604,8 +603,9 @@ const mappable = deduped.filter(r => r.lat != null && r.lng != null);
 const bounds = L.latLngBounds(mappable.map(r => [r.lat, r.lng]));
 const map = L.map('map', { zoomControl: true }).fitBounds(bounds, { padding: [30, 30] });
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors',
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+  subdomains: 'abcd',
   maxZoom: 19
 }).addTo(map);
 
