@@ -1498,5 +1498,65 @@
     "source": "Welcome to Chinatown Spring 2026",
     "added": "2026-05-05",
     "note": "Specializes in bao buns and noodles. New Chinatown opening on the Bowery. Opened Winter/Spring 2026."
+  },
+  {
+    "name": "Me and Paul's",
+    "address": "60 Greenpoint Ave, Brooklyn, NY 11222",
+    "place_id": null,
+    "lat": 40.7295,
+    "lng": -73.958,
+    "neighborhood": "Greenpoint",
+    "cuisine": "Pizza / Bar",
+    "source": "Greenpointers (Apr 30, 2026)",
+    "added": "2026-05-06",
+    "note": "Reopening of the original Paulie Gee's space at 60 Greenpoint Ave on April 30, 2026 — same wood-fired pizza recipes, but reformatted as a tavern with a longer bar, booths, pool table, darts and a jukebox. Order at the bar."
+  },
+  {
+    "name": "Dinah Brooklyn",
+    "address": "200 Clinton St, Brooklyn, NY 11201",
+    "place_id": null,
+    "lat": 40.6892,
+    "lng": -73.9966,
+    "neighborhood": "Cobble Hill",
+    "cuisine": "American / Diner",
+    "source": "Brooklyn Bridge Parents (Apr 2026)",
+    "added": "2026-05-06",
+    "note": "Modern reimagining of a 1930s Brooklyn diner at 200 Clinton St. Hand-rolled bagels, 'After School Specials' and rotating guest-chef pop-ups. Community-leaning hospitality."
+  },
+  {
+    "name": "Egg & Soy",
+    "address": "296 Bedford Ave, Brooklyn, NY 11211",
+    "place_id": null,
+    "lat": 40.7146,
+    "lng": -73.9614,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Taiwanese",
+    "source": "Greenpointers (Apr 21, 2026)",
+    "added": "2026-05-06",
+    "note": "Small Taiwanese breakfast/all-day spot in the former Partea XP space. Fàntuán, dànbǐng, luóbo gāo, egg & cucumber sandwiches, soy milk and pastries. Currently in soft opening."
+  },
+  {
+    "name": "KOMENORI",
+    "address": "397 5th Ave, Brooklyn, NY 11215",
+    "place_id": null,
+    "lat": 40.672,
+    "lng": -73.9826,
+    "neighborhood": "Park Slope",
+    "cuisine": "Japanese",
+    "source": "Park Slope Pulse / What Now NY (Apr 2026)",
+    "added": "2026-05-06",
+    "note": "Modern Japanese restaurant from owner Ken Lee and chef Sean Kang in the 1,400 sf former Flatiron Steakhouse space on 5th Ave. Opened mid-to-late April 2026."
+  },
+  {
+    "name": "Nori Shinn",
+    "address": "210 1st Ave, New York, NY 10009",
+    "place_id": null,
+    "lat": 40.7287,
+    "lng": -73.9839,
+    "neighborhood": "East Village",
+    "cuisine": "Japanese",
+    "source": "The Infatuation — New NYC Openings (Apr 2026)",
+    "added": "2026-05-06",
+    "note": "New Japanese opening on 1st Ave in the East Village, listed among April 2026 NYC openings on The Infatuation's running new-openings guide."
   }
 ]
