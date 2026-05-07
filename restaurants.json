@@ -1558,5 +1558,65 @@
     "source": "The Infatuation — New NYC Openings (Apr 2026)",
     "added": "2026-05-06",
     "note": "New Japanese opening on 1st Ave in the East Village, listed among April 2026 NYC openings on The Infatuation's running new-openings guide."
+  },
+  {
+    "name": "Kings Co Imperial",
+    "address": "357 3rd St, Brooklyn, NY 11215",
+    "place_id": null,
+    "lat": 40.671,
+    "lng": -73.9854,
+    "neighborhood": "Park Slope",
+    "cuisine": "Chinese",
+    "source": "Park Slope Pulse / Threads — Park Slope Living (May 2026)",
+    "added": "2026-05-07",
+    "note": "Williamsburg Chinese-American favorite expanded to Park Slope, taking over the former Stone Park Cafe events space at 357 3rd St near 5th Ave. Soy sauce on tap, wok-fired classics, long dumplings, mock eel, Kung Pao chicken, prawn fries."
+  },
+  {
+    "name": "Much Obliged",
+    "address": "42 Avenue B, New York, NY 10009",
+    "place_id": null,
+    "lat": 40.7227,
+    "lng": -73.9818,
+    "neighborhood": "East Village",
+    "cuisine": "Bar Food",
+    "source": "Resy / The Infatuation (May 2026)",
+    "added": "2026-05-07",
+    "note": "Alphabet City bar from the team behind Greenpoint's Gator. Fried fish sandwich, Corsican wine, banana-infused espresso martini, Cynar paloma."
+  },
+  {
+    "name": "Lazy Bulldog",
+    "address": "206 E 6th St, New York, NY 10003",
+    "place_id": null,
+    "lat": 40.7268,
+    "lng": -73.987,
+    "neighborhood": "East Village",
+    "cuisine": "Coffee & Sweets",
+    "source": "EV Grieve / The Infatuation (Spring 2026)",
+    "added": "2026-05-07",
+    "note": "Turkish-style coffee shop graduated from a 6th Street stoop cart to a brick-and-mortar. Coffee brewed traditionally over heated sand; flavors include lavender, cardamom, ginger, and chili, plus spiced chai and small baked items."
+  },
+  {
+    "name": "Lucky Cafe",
+    "address": "64 Avenue A, New York, NY 10009",
+    "place_id": null,
+    "lat": 40.7237,
+    "lng": -73.9846,
+    "neighborhood": "East Village",
+    "cuisine": "Coffee & Sweets",
+    "source": "EV Grieve — Openings: Lucky Cafe on Avenue A (Apr 2026)",
+    "added": "2026-05-07",
+    "note": "Coffee and matcha shop on Avenue A from East Village locals James Phillips and barista Max Vitkus. Pastries from Brooklyn's Colson Patisserie. Open daily 8am–6pm."
+  },
+  {
+    "name": "Silk Noodle Bar",
+    "address": "13 Mott St, New York, NY 10013",
+    "place_id": null,
+    "lat": 40.714,
+    "lng": -73.9982,
+    "neighborhood": "Chinatown",
+    "cuisine": "Chinese",
+    "source": "The Infatuation / Welcome to Chinatown (Spring 2026)",
+    "added": "2026-05-07",
+    "note": "Specialist for luosifen — Liuzhou river-snail rice noodle soup from Guangxi — bold, sour, spicy, with fermented bamboo shoots. Bowls $14–$20. Often packed; expect a wait."
   }
 ]
