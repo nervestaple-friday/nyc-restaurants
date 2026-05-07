@@ -603,7 +603,55 @@ let prevVisibleKey = '';
 let isInitialRender = true;
 
 const mappable = deduped.filter(r => r.lat != null && r.lng != null);
-const bounds = L.latLngBounds(mappable.map(r => [r.lat, r.lng]));
+
+// Fan out markers that share a location so overlapping pins stay individually
+// clickable. Real coordinates (r.lat / r.lng) are kept untouched for popups
+// and Google Maps links; only displayLat / displayLng are nudged.
+(function spreadOverlappingMarkers() {
+  const COLLISION_RADIUS_M = 25;   // group markers within this radius
+  const FAN_RADIUS_M = 12;         // distance from cluster center for each pin
+  const R = 6371000;
+  function metersBetween(a, b) {
+    const lat1 = a.lat * Math.PI / 180;
+    const lat2 = b.lat * Math.PI / 180;
+    const dLat = (b.lat - a.lat) * Math.PI / 180;
+    const dLng = (b.lng - a.lng) * Math.PI / 180;
+    const x = Math.sin(dLat / 2) ** 2 +
+              Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(x));
+  }
+  const assigned = new Set();
+  const groups = [];
+  for (let i = 0; i < mappable.length; i++) {
+    if (assigned.has(i)) continue;
+    const group = [i];
+    assigned.add(i);
+    for (let j = i + 1; j < mappable.length; j++) {
+      if (assigned.has(j)) continue;
+      if (metersBetween(mappable[i], mappable[j]) <= COLLISION_RADIUS_M) {
+        group.push(j);
+        assigned.add(j);
+      }
+    }
+    if (group.length > 1) groups.push(group);
+  }
+  groups.forEach(group => {
+    const centerLat = group.reduce((s, i) => s + mappable[i].lat, 0) / group.length;
+    const centerLng = group.reduce((s, i) => s + mappable[i].lng, 0) / group.length;
+    const mPerDegLat = 111320;
+    const mPerDegLng = 111320 * Math.cos(centerLat * Math.PI / 180);
+    group.forEach((idx, k) => {
+      const angle = (2 * Math.PI * k) / group.length - Math.PI / 2;
+      mappable[idx].displayLat = centerLat + (FAN_RADIUS_M * Math.sin(angle)) / mPerDegLat;
+      mappable[idx].displayLng = centerLng + (FAN_RADIUS_M * Math.cos(angle)) / mPerDegLng;
+    });
+  });
+  mappable.forEach(r => {
+    if (r.displayLat == null) { r.displayLat = r.lat; r.displayLng = r.lng; }
+  });
+})();
+
+const bounds = L.latLngBounds(mappable.map(r => [r.displayLat, r.displayLng]));
 const map = L.map('map', { zoomControl: true }).fitBounds(bounds, { padding: [30, 30] });
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -637,7 +685,7 @@ mappable.forEach(r => {
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
 
-  const marker = L.marker([r.lat, r.lng], { icon: pinIcon })
+  const marker = L.marker([r.displayLat, r.displayLng], { icon: pinIcon })
     .bindPopup(popup, { maxWidth: 280 })
     .addTo(map);
   markers[r.name + r.address] = marker;
@@ -759,9 +807,10 @@ function renderList(filtered) {
   const visibleKey = visibleCoords.map(r => r.name).join('|');
   if (visibleKey !== prevVisibleKey && !isInitialRender) {
     if (visibleCoords.length === 1) {
-      map.flyTo([visibleCoords[0].lat, visibleCoords[0].lng], 16, { duration: 0.6 });
+      const r0 = visibleCoords[0];
+      map.flyTo([r0.displayLat ?? r0.lat, r0.displayLng ?? r0.lng], 16, { duration: 0.6 });
     } else if (visibleCoords.length > 1) {
-      map.flyToBounds(L.latLngBounds(visibleCoords.map(r => [r.lat, r.lng])), { padding: [30, 30], maxZoom: 16, duration: 0.6 });
+      map.flyToBounds(L.latLngBounds(visibleCoords.map(r => [r.displayLat ?? r.lat, r.displayLng ?? r.lng])), { padding: [30, 30], maxZoom: 16, duration: 0.6 });
     }
   }
   prevVisibleKey = visibleKey;
