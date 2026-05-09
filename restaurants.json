@@ -138,7 +138,7 @@
     "lat": 40.7776562,
     "lng": -73.9827415,
     "neighborhood": "Upper West Side",
-    "cuisine": "Acai/Smoothies",
+    "cuisine": "Acai, Smoothies",
     "source": "HelpNewYork.com April 2026",
     "added": "2026-04-23",
     "note": "Acai and smoothie chain. New UWS location. Opened April 17, 2026."
@@ -186,7 +186,7 @@
     "lat": 40.7595257,
     "lng": -73.9838434,
     "neighborhood": "Times Square",
-    "cuisine": "American/Tapas",
+    "cuisine": "American, Tapas",
     "source": "Eater NY April 2026",
     "added": "2026-04-23",
     "note": "Rooftop bar and restaurant on 33rd floor of Voco Times Square. Tapas-style menu, retractable roof. Opened April 22, 2026."
@@ -198,7 +198,7 @@
     "lat": 40.7481154,
     "lng": -73.9767867,
     "neighborhood": "Murray Hill",
-    "cuisine": "French American",
+    "cuisine": "French, American",
     "source": "Eater NY April 2026",
     "added": "2026-04-23",
     "note": "French American from Consulate team. Raw bar, short rib cavatelli, steaks. Opened April 17, 2026 with At the Office bar."
@@ -222,7 +222,7 @@
     "lat": 40.7659178,
     "lng": -73.9804941,
     "neighborhood": "Midtown",
-    "cuisine": "Greek/Mediterranean",
+    "cuisine": "Greek, Mediterranean",
     "source": "Eater NY April 2026",
     "added": "2026-04-23",
     "note": "Fast-casual Mediterranean. Salads, bowls, pitas, gyros, Greek comfort foods. 10-seat spot. Opened April 18, 2026."
@@ -294,7 +294,7 @@
     "lat": 40.727487,
     "lng": -74.0034768,
     "neighborhood": "Soho",
-    "cuisine": "British Seafood",
+    "cuisine": "British, Seafood",
     "source": "Eater NY 2026 Preview",
     "added": "2026-04-14",
     "note": "From King restaurant team. Pub focused on British seafood named after Suffolk fisherman Dean Fryer. Opened March 2026."
@@ -306,7 +306,7 @@
     "lat": 40.7599437,
     "lng": -73.9821247,
     "neighborhood": "Midtown",
-    "cuisine": "Japanese Izakaya/Sushi",
+    "cuisine": "Japanese, Izakaya, Sushi",
     "source": "Eater NY 2026 Preview",
     "added": "2026-04-14",
     "note": "From Philadelphia chef Michael Schulson. Sushi restaurant and robatayaki spot. Opened February 2026."
@@ -342,7 +342,7 @@
     "lat": 40.729726,
     "lng": -73.957259,
     "neighborhood": "Greenpoint",
-    "cuisine": "French/Rotisserie",
+    "cuisine": "French, Rotisserie",
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
     "note": "From Fulgurances Laundromat team. Pink neon-lit rotisserie chicken spot with European wine program. Chefs Thomas Knodell and Émile Desme (Le Chateaubriand, Paris). Will revive culinary incubator program."
@@ -414,7 +414,7 @@
     "lat": 40.672294799999996,
     "lng": -73.97742439999999,
     "neighborhood": "Park Slope",
-    "cuisine": "Pizza/Neapolitan",
+    "cuisine": "Neapolitan Pizza",
     "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-06",
     "note": "Cult Peaks Island pizzamaker Ben Wexler-Waite's NYC return. Naturally leavened, Neapolitan-style. Maine/Italian ingredients, lobster 'Isola' pie. Eater Brooklyn heatmap."
@@ -426,7 +426,7 @@
     "lat": 40.6703903,
     "lng": -73.9790508,
     "neighborhood": "Park Slope",
-    "cuisine": "Mexican/Seafood",
+    "cuisine": "Mexican, Seafood",
     "source": "Infatuation Brooklyn 2026",
     "added": "2026-04-06",
     "note": "5th location. Walk-in only. Aguachiles, el gobernador tacos, tostadas with buttery tuna. Infatuation 8.2 rating. Brooklyn hit list."
@@ -438,7 +438,7 @@
     "lat": 40.6721763,
     "lng": -73.9501378,
     "neighborhood": "Crown Heights",
-    "cuisine": "Mexican/Tamales",
+    "cuisine": "Mexican, Tamales",
     "source": "Infatuation Brooklyn 2026",
     "added": "2026-04-06",
     "note": "From Taqueria Milear team. Tight menu: antojitos, taquitos, tamales. Oaxaqueño w/ pork in banana leaf is standout. Infatuation Brooklyn hit list."
@@ -450,7 +450,7 @@
     "lat": 40.6701347,
     "lng": -73.9788938,
     "neighborhood": "Park Slope",
-    "cuisine": "Mexican/Tortilleria/Bakery",
+    "cuisine": "Mexican, Tortilleria, Bakery",
     "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-06",
     "note": "All-day from Corima chef Fidel Caballero. Tortillas, breakfast burritos, conchas. El Paso/Ciudad Juárez heritage. Eater Brooklyn heatmap."
@@ -498,7 +498,7 @@
     "lat": 40.6871947,
     "lng": -73.9854919,
     "neighborhood": "Boerum Hill",
-    "cuisine": "Sandwiches/Bakery",
+    "cuisine": "Sandwiches, Bakery",
     "source": "Infatuation April 2026",
     "added": "2026-04-05",
     "note": "Worker-owned coop. Relocated from Cobble Hill. Smoked trout sandwiches, Sunday pizza. Sliding scale pricing. Infatuation just-added."
@@ -510,7 +510,7 @@
     "lat": 40.7191186,
     "lng": -73.9916931,
     "neighborhood": "Lower East Side",
-    "cuisine": "French-Vietnamese",
+    "cuisine": "French, Vietnamese",
     "source": "Condé Nast Traveler March 2026",
     "added": "2026-04-04",
     "note": "Follow-up to Ha's Snack Bar. Weekly rotating menu. Crab soup w/ calf's brain, oyster martini, vol-au-vents. CN Traveler pick March 2026."
@@ -522,7 +522,7 @@
     "lat": 40.6763611,
     "lng": -73.9990364,
     "neighborhood": "Carroll Gardens",
-    "cuisine": "American/Chicken",
+    "cuisine": "American, Chicken",
     "source": "Grub Street April 2026",
     "added": "2026-04-04",
     "note": "From Ample Hills founders. Fried chicken, burgers. Court St. Grub Street mention April 2026."
@@ -546,7 +546,7 @@
     "lat": 40.6842715,
     "lng": -73.9502306,
     "neighborhood": "Bed-Stuy",
-    "cuisine": "American/Sandwiches",
+    "cuisine": "American, Sandwiches",
     "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-03",
     "note": "Daytime spot. Focaccia sandwiches, roast beef w/ horseradish, chicken noodle soup, apple fritters. The 'Dad Plate.' Eater Brooklyn heatmap."
@@ -558,7 +558,7 @@
     "lat": 40.672908299999996,
     "lng": -73.9626279,
     "neighborhood": "Prospect Heights",
-    "cuisine": "New American-French",
+    "cuisine": "New American, French",
     "source": "NYT",
     "added": "2026-04-03",
     "note": "New American-French. NYT Brooklyn best 2025"
@@ -594,7 +594,7 @@
     "lat": 40.688019,
     "lng": -73.962881,
     "neighborhood": "Clinton Hill",
-    "cuisine": "French/Wine Bar",
+    "cuisine": "French, Wine Bar",
     "source": "Pendulum Mag, Resy",
     "added": "2026-04-03",
     "note": "Natural wine bar from Fradei Bistro team. Oeuf mayo, leeks vinaigrette, tartiflette croquettes. French apéro tradition"
@@ -618,7 +618,7 @@
     "lat": 40.6605649,
     "lng": -73.9903719,
     "neighborhood": "Park Slope",
-    "cuisine": "Indian-American Fusion",
+    "cuisine": "Indian, American",
     "source": "NYC Hospitality Alliance",
     "added": "2026-04-03",
     "note": "From Jay Kumar of Lore (Bib Gourmand). Crab risotto, biryani arancini, masala latkes"
@@ -654,7 +654,7 @@
     "lat": 40.67082250000001,
     "lng": -73.98520309999999,
     "neighborhood": "Park Slope",
-    "cuisine": "Chinese-French",
+    "cuisine": "Chinese, French",
     "source": "Michelin Guide / Infatuation 2025",
     "added": "2026-04-03",
     "note": "Chinese-French from a Michelin-trained chef"
@@ -666,7 +666,7 @@
     "lat": 40.714594999999996,
     "lng": -73.998267,
     "neighborhood": "Chinatown",
-    "cuisine": "Chinese/Wine Bar",
+    "cuisine": "Chinese, Wine Bar",
     "source": "Lo Times #4",
     "added": "2026-04-03",
     "note": "Annie Shi's wine bar. Shanxi-style mao er duo — lamb/tomato ragu cat's ear pasta with dill"
@@ -678,7 +678,7 @@
     "lat": 40.679822,
     "lng": -73.9651189,
     "neighborhood": "Prospect Heights",
-    "cuisine": "Mediterranean/Asian",
+    "cuisine": "Mediterranean, Asian",
     "source": "BK Mag, Resy Hit List Mar 2026",
     "added": "2026-04-03",
     "note": "Mediterranean + Chinese/Filipino. Focaccia, smoked pollock fritters, chicken jook, whole fried black sea bass"
@@ -690,7 +690,7 @@
     "lat": 40.689425,
     "lng": -73.9723664,
     "neighborhood": "Fort Greene",
-    "cuisine": "Israeli/Middle Eastern",
+    "cuisine": "Israeli, Middle Eastern",
     "source": "Multiple, NYT",
     "added": "2026-04-03",
     "note": "Israeli/Middle Eastern"
@@ -702,7 +702,7 @@
     "lat": 40.6893831,
     "lng": -73.9703111,
     "neighborhood": "Fort Greene",
-    "cuisine": "American-Mediterranean",
+    "cuisine": "American, Mediterranean",
     "source": "NYT 2025",
     "added": "2026-04-03",
     "note": "American-Mediterranean. NYT Brooklyn best list 2025"
@@ -726,7 +726,7 @@
     "lat": 40.6930295,
     "lng": -73.97198759999999,
     "neighborhood": "Fort Greene",
-    "cuisine": "French-American",
+    "cuisine": "French, American",
     "source": "NYT 2025",
     "added": "2026-04-03",
     "note": "French-American. NYT Brooklyn best list 2025"
@@ -738,7 +738,7 @@
     "lat": 40.679175,
     "lng": -74.0105136,
     "neighborhood": "Red Hook",
-    "cuisine": "Pizza/Supper Club",
+    "cuisine": "Pizza",
     "source": "Eater NY Brooklyn Heatmap March 2026",
     "added": "2026-04-03",
     "note": "From Bad Cholesterol pizza cult. Wood-fired pies, chicken nuggets w/ gochujang, blooming onion, cocktails. Backyard. Eater Brooklyn heatmap."
@@ -762,7 +762,7 @@
     "lat": 40.7085845,
     "lng": -74.014017,
     "neighborhood": "Financial District",
-    "cuisine": "French/North African",
+    "cuisine": "French, North African",
     "source": "Eater NY April 2026",
     "added": "2026-04-02",
     "note": "Southern France + North African touches. In old Schilling space. Chef drama (Baumgart left). Poached haddock, lamb shoulder, rice pudding."
@@ -786,7 +786,7 @@
     "lat": 40.725859,
     "lng": -73.9498179,
     "neighborhood": "Greenpoint",
-    "cuisine": "Vietnamese-Mexican Fusion",
+    "cuisine": "Vietnamese, Mexican",
     "source": "Grub Street April 2026",
     "added": "2026-04-02",
     "note": "Moved from Bushwick. All-day format. Duck-neck tamales, pho-spiced lamb, $58 tasting. Grub Street April highlight."
@@ -798,7 +798,7 @@
     "lat": 40.7245894,
     "lng": -74.0031604,
     "neighborhood": "Soho",
-    "cuisine": "Japanese/Soba",
+    "cuisine": "Japanese, Soba",
     "source": "Eater NY April 2026",
     "added": "2026-04-02",
     "note": "From Hirohisa chef. House-made soba twice daily w/ buckwheat from upstate NY. Sashimi, tamago sides. Eater April spotlight."
@@ -810,7 +810,7 @@
     "lat": 40.7290784,
     "lng": -73.9838771,
     "neighborhood": "East Village",
-    "cuisine": "Korean-Italian",
+    "cuisine": "Korean, Italian",
     "source": "Infatuation Spring 2026",
     "added": "2026-04-02",
     "note": "Korean-Italian trattoria. Housemade soju, handmade noodles, bottarga pasta with nori. Now open."
@@ -894,7 +894,7 @@
     "lat": 40.6750723,
     "lng": -73.9996534,
     "neighborhood": "Carroll Gardens",
-    "cuisine": "Coastal Indian Seafood",
+    "cuisine": "Indian, Seafood",
     "source": "Infatuation / What Now NY",
     "added": "2026-04-01",
     "note": "Michelin-starred Chintan Pandya (Dhamaka, Semma). Coastal Indian seafood focus."
@@ -906,7 +906,7 @@
     "lat": 40.6873624,
     "lng": -73.9760048,
     "neighborhood": "Fort Greene",
-    "cuisine": "Seafood/Oyster Bar",
+    "cuisine": "Seafood, Oyster Bar",
     "source": "Infatuation / BK Mag",
     "added": "2026-04-01",
     "note": "Modern oyster bar near BAM. Brooklyn-New Orleans vibe, great fried shrimp, cocktails. Jim's pick."
@@ -930,7 +930,7 @@
     "lat": 40.676012,
     "lng": -73.9992164,
     "neighborhood": "Carroll Gardens",
-    "cuisine": "American Bar & Grill",
+    "cuisine": "American",
     "source": "Infatuation / What Now NY",
     "added": "2026-04-01",
     "note": "From the Gertrude's team. American bar and grill."
@@ -978,7 +978,7 @@
     "lat": 40.7299577,
     "lng": -74.00024479999999,
     "neighborhood": "Greenwich Village",
-    "cuisine": "Vegetarian / falafel",
+    "cuisine": "Vegetarian, Falafel",
     "source": "Infatuation",
     "added": "2026-03-01",
     "note": "Tiny all-vegetarian (mostly vegan) Middle Eastern counter. Pita and falafel baked fresh daily in a gas oven; pitas and bowls with tahini, hummus, and baba ghanoush. About three tables, casual."
@@ -1026,7 +1026,7 @@
     "lat": 40.7210626,
     "lng": -73.988529,
     "neighborhood": "Lower East Side",
-    "cuisine": "Vietnamese Coffee/Cocktails",
+    "cuisine": "Vietnamese, Coffee, Cocktails",
     "source": "Eater NY",
     "added": "2026-04-22",
     "note": "Vietnamese coffee shop by day, bar by night. Jackfruit lattes, cà phê muối, pho-tini cocktails. Opened April 10, 2026."
@@ -1038,7 +1038,7 @@
     "lat": 40.7287148,
     "lng": -73.9882464,
     "neighborhood": "East Village",
-    "cuisine": "Burgers/Sliders",
+    "cuisine": "Burgers",
     "source": "Eater NY",
     "added": "2026-04-22",
     "note": "Late-night slider joint with onion rings, fries, ripper hot dogs, Pat Lafrieda patties. Opened April 9, 2026."
@@ -1098,7 +1098,7 @@
     "lat": 40.6746803,
     "lng": -73.9750653,
     "neighborhood": "Park Slope",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "Brooklyn Bridge Parents March 2026",
     "added": "2026-04-26",
     "note": "1990s-themed snack shop and milk tea cafe. Opened March 2026."
@@ -1110,7 +1110,7 @@
     "lat": 40.6779809,
     "lng": -73.9727117,
     "neighborhood": "Park Slope",
-    "cuisine": "Japanese/Vegan Sushi",
+    "cuisine": "Japanese, Vegan Sushi",
     "source": "Brooklyn Bridge Parents March 2026",
     "added": "2026-04-26",
     "note": "All-vegan sushi from Toronto-based concept; first Brooklyn location. Opened March 2026."
@@ -1122,7 +1122,7 @@
     "lat": 40.6795518,
     "lng": -73.9679245,
     "neighborhood": "Prospect Heights",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "Brooklyn Bridge Parents March 2026",
     "added": "2026-04-26",
     "note": "LA-based cafe expanding to Brooklyn. Streamlined espresso program and bright toasts. Opened March 2026."
@@ -1134,7 +1134,7 @@
     "lat": 40.6819389,
     "lng": -73.9196495,
     "neighborhood": "Bed-Stuy",
-    "cuisine": "Italian/Wine Bar",
+    "cuisine": "Italian, Wine Bar",
     "source": "Brooklyn Bridge Parents March 2026",
     "added": "2026-04-26",
     "note": "Venetian wine bar pouring 15 wines by the glass at $14 each. Cocktails and small bites: crostini with porchetta, broccolini salsa verde. Opened March 2026."
@@ -1182,7 +1182,7 @@
     "lat": 40.6824474,
     "lng": -73.9200645,
     "neighborhood": "Bed-Stuy",
-    "cuisine": "French/Rotisserie",
+    "cuisine": "French, Rotisserie",
     "source": "Brooklyn Paper March 2026",
     "added": "2026-04-26",
     "note": "French rotisserie and comfort classics from Henry's Wine and Spirits / Sunrise/Sunset team. Steak frites, fish, seasonal vegetables, French wine program."
@@ -1194,7 +1194,7 @@
     "lat": 40.6791528,
     "lng": -73.9494743,
     "neighborhood": "Bed-Stuy",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "Eater NY April 2026",
     "added": "2026-04-26",
     "note": "Coffee shop specializing in Yemeni and Peruvian coffee. Also pastries, sandwiches, brunch."
@@ -1242,7 +1242,7 @@
     "lat": 40.7337136,
     "lng": -74.0034085,
     "neighborhood": "West Village",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "Infatuation April 2026",
     "added": "2026-04-26",
     "note": "Bakery specializing in brownie-cookie hybrids in flavors like cheesecake, blondie, and Oreo. Also lattes and gelato. Opened April 2026."
@@ -1254,7 +1254,7 @@
     "lat": 40.7178421,
     "lng": -74.011061,
     "neighborhood": "Tribeca",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "Infatuation April 2026",
     "added": "2026-04-26",
     "note": "Australian coffee roaster's Tribeca cafe with checkered floors, cane-backed chairs, hi-fi system. Opened April 2026."
@@ -1278,7 +1278,7 @@
     "lat": 40.7158191,
     "lng": -73.9641488,
     "neighborhood": "Williamsburg",
-    "cuisine": "Italian/Pizza",
+    "cuisine": "Italian, Pizza",
     "source": "Infatuation April 2026",
     "added": "2026-04-26",
     "note": "Italian restaurant featuring 'irregular' pizza (between oval and rectangle). Italian-trained chef; planning monthly cooking classes."
@@ -1314,7 +1314,7 @@
     "lat": 40.6983693,
     "lng": -73.9369657,
     "neighborhood": "Bushwick",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "Eater NY April 2026",
     "added": "2026-04-26",
     "note": "Japanese-inspired cafe with coffee, matcha, hojicha, and homemade onigiri (mentaiko, yuzu kosho chicken)."
@@ -1374,7 +1374,7 @@
     "lat": 40.6856,
     "lng": -73.9766,
     "neighborhood": "Fort Greene",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "Eater NY / Gothamist April 2026",
     "added": "2026-05-03",
     "note": "First gummy candy and pick-and-mix sweets shop in this part of Brooklyn. Female-founded by Cat Cirino with a high-design space and donations to NYC food banks. Opened April 2026."
@@ -1506,7 +1506,7 @@
     "lat": 40.7295,
     "lng": -73.958,
     "neighborhood": "Greenpoint",
-    "cuisine": "Pizza / Bar",
+    "cuisine": "Pizza",
     "source": "Greenpointers (Apr 30, 2026)",
     "added": "2026-05-06",
     "note": "Reopening of the original Paulie Gee's space at 60 Greenpoint Ave on April 30, 2026 — same wood-fired pizza recipes, but reformatted as a tavern with a longer bar, booths, pool table, darts and a jukebox. Order at the bar."
@@ -1518,7 +1518,7 @@
     "lat": 40.6892,
     "lng": -73.9966,
     "neighborhood": "Cobble Hill",
-    "cuisine": "American / Diner",
+    "cuisine": "American, Diner",
     "source": "Brooklyn Bridge Parents (Apr 2026)",
     "added": "2026-05-06",
     "note": "Modern reimagining of a 1930s Brooklyn diner at 200 Clinton St. Hand-rolled bagels, 'After School Specials' and rotating guest-chef pop-ups. Community-leaning hospitality."
@@ -1590,7 +1590,7 @@
     "lat": 40.7268,
     "lng": -73.987,
     "neighborhood": "East Village",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "EV Grieve / The Infatuation (Spring 2026)",
     "added": "2026-05-07",
     "note": "Turkish-style coffee shop graduated from a 6th Street stoop cart to a brick-and-mortar. Coffee brewed traditionally over heated sand; flavors include lavender, cardamom, ginger, and chili, plus spiced chai and small baked items."
@@ -1602,7 +1602,7 @@
     "lat": 40.7237,
     "lng": -73.9846,
     "neighborhood": "East Village",
-    "cuisine": "Coffee & Sweets",
+    "cuisine": "Coffee, Sweets",
     "source": "EV Grieve — Openings: Lucky Cafe on Avenue A (Apr 2026)",
     "added": "2026-05-07",
     "note": "Coffee and matcha shop on Avenue A from East Village locals James Phillips and barista Max Vitkus. Pastries from Brooklyn's Colson Patisserie. Open daily 8am–6pm."
