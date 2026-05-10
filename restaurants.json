@@ -1618,5 +1618,41 @@
     "source": "The Infatuation / Welcome to Chinatown (Spring 2026)",
     "added": "2026-05-07",
     "note": "Specialist for luosifen — Liuzhou river-snail rice noodle soup from Guangxi — bold, sour, spicy, with fermented bamboo shoots. Bowls $14–$20. Often packed; expect a wait."
+  },
+  {
+    "name": "Wallace",
+    "address": "663 Vanderbilt Ave, Brooklyn, NY 11238",
+    "place_id": null,
+    "lat": 40.677,
+    "lng": -73.9688,
+    "neighborhood": "Prospect Heights",
+    "cuisine": "Wine Bar",
+    "source": "The Infatuation — Wallace review (May 2026)",
+    "added": "2026-05-10",
+    "note": "Neighborhood wine bar on Vanderbilt Ave with backyard seating, an extensive by-the-glass program, and a small food menu featuring gildas, oysters, and martinis. Just walking distance from Prospect Park."
+  },
+  {
+    "name": "Tavern Next Door",
+    "address": "327 Van Brunt St, Brooklyn, NY 11231",
+    "place_id": null,
+    "lat": 40.6779,
+    "lng": -74.012,
+    "neighborhood": "Red Hook",
+    "cuisine": "Bar, American",
+    "source": "The Infatuation — Tavern Next Door review (May 2026)",
+    "added": "2026-05-10",
+    "note": "Walk-in cocktail bar from the Red Hook Tavern team, located right next door. Small food menu including a version of the famous dry-aged tavern burger. Reservation-friendly overflow option for the perpetually booked flagship."
+  },
+  {
+    "name": "Kinda Nice",
+    "address": "168 Borinquen Pl, Brooklyn, NY 11211",
+    "place_id": null,
+    "lat": 40.7106,
+    "lng": -73.9533,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Cocktail Bar",
+    "source": "Greenpointers / The Infatuation (May 2026)",
+    "added": "2026-05-10",
+    "note": "Cocktail bar that opened May 7, 2026 in the former Black Flamingo space. Owners Patty Dennison and Ally Marrone (ex-bartenders) lean into nostalgic Americana — Guava Negroni, Greek Salad Martini, banana Old Fashioned, deviled eggs, grilled cheese. Open daily 5pm–midnight."
   }
 ]
