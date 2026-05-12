@@ -120,6 +120,17 @@
     margin-bottom: 12px;
     line-height: 1.4;
     font-style: italic;
+    max-height: 96px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-right: 4px;
+  }
+  .popup-inner .popup-note::-webkit-scrollbar {
+    width: 4px;
+  }
+  .popup-inner .popup-note::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
   }
   .gmaps-btn {
     display: block;
