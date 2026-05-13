@@ -619,8 +619,13 @@ const mappable = deduped.filter(r => r.lat != null && r.lng != null);
 // clickable. Real coordinates (r.lat / r.lng) are kept untouched for popups
 // and Google Maps links; only displayLat / displayLng are nudged.
 (function spreadOverlappingMarkers() {
-  const COLLISION_RADIUS_M = 25;   // group markers within this radius
-  const FAN_RADIUS_M = 12;         // distance from cluster center for each pin
+  const COLLISION_RADIUS_M = 40;   // group markers within this radius — wide enough
+                                   // to catch same-building neighbors that Google
+                                   // geocodes 30+ m apart (e.g. Mariscos El Submarino
+                                   // upstairs from Vato at 226 7th Ave).
+  const FAN_RADIUS_M = 18;         // distance from cluster center for each pin —
+                                   // gives ~36 m of separation, larger than the
+                                   // 28-px pin icon at typical city zoom.
   const R = 6371000;
   function metersBetween(a, b) {
     const lat1 = a.lat * Math.PI / 180;
