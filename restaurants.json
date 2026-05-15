@@ -1013,11 +1013,11 @@
     "place_id": "ChIJR_D7BABbwokRWwdiPbnmxq8",
     "lat": 40.6796383,
     "lng": -73.9745645,
-    "neighborhood": "Prospect Heights",
-    "cuisine": "Southern",
-    "source": "SecretNYC",
-    "added": "2026-04-22",
-    "note": "New Prospect Heights location for 20th anniversary. Fried chicken, homemade pies, Southern sides."
+    "neighborhood": "Park Slope",
+    "cuisine": "Southern, Fried Chicken",
+    "source": "Brooklyn Eagle / Hellgate / FSR — Pies 'n' Thighs opens 2nd location (Apr 2026)",
+    "added": "2026-05-15",
+    "note": "Park Slope outpost of the 20-year-old Williamsburg fried-chicken institution from Sarah Sanneh. Opened April 1, 2026 at the corner of Flatbush and 6th Ave in the former Pecking House space. Counter-service with fried chicken, biscuit sandwiches, pies, new chicken tenders, plus shareable sides. Family-friendly."
   },
   {
     "name": "After Eden | Cocktail & Coffee Bar",
@@ -1678,17 +1678,5 @@
     "source": "Greenpointers / The Infatuation — Zoli opens at Amant (May 2026)",
     "added": "2026-05-15",
     "note": "Seafood-forward American restaurant from chef Ned Baldwin (Houseman) that opened in early May 2026 inside the Amant arts foundation. 35-seat dining room and 18-seat bar separated by Pierre Huyghe's 'Satellite' aquarium triptych. Menu flips the usual ratio — fish leads, other proteins secondary."
-  },
-  {
-    "name": "Pies 'n' Thighs Park Slope",
-    "address": "244 Flatbush Ave, Brooklyn, NY 11217",
-    "place_id": null,
-    "lat": 40.6803,
-    "lng": -73.9759,
-    "neighborhood": "Park Slope",
-    "cuisine": "Southern, Fried Chicken",
-    "source": "Brooklyn Eagle / Hellgate / FSR — Pies 'n' Thighs opens 2nd location (Apr 2026)",
-    "added": "2026-05-15",
-    "note": "Park Slope outpost of the 20-year-old Williamsburg fried-chicken institution from Sarah Sanneh. Opened April 1, 2026 at the corner of Flatbush and 6th Ave in the former Pecking House space. Counter-service with fried chicken, biscuit sandwiches, pies, new chicken tenders, plus shareable sides. Family-friendly."
   }
 ]
