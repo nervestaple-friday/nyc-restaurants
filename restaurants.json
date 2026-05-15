@@ -1654,5 +1654,41 @@
     "source": "Greenpointers / The Infatuation (May 2026)",
     "added": "2026-05-10",
     "note": "Cocktail bar that opened May 7, 2026 in the former Black Flamingo space. Owners Patty Dennison and Ally Marrone (ex-bartenders) lean into nostalgic Americana — Guava Negroni, Greek Salad Martini, banana Old Fashioned, deviled eggs, grilled cheese. Open daily 5pm–midnight."
+  },
+  {
+    "name": "Café Bar J.F.",
+    "address": "50 Withers St, Brooklyn, NY 11211",
+    "place_id": null,
+    "lat": 40.718,
+    "lng": -73.9498,
+    "neighborhood": "Williamsburg",
+    "cuisine": "South American",
+    "source": "Greenpointers / Resy — Café Bar J.F. opens (May 13, 2026)",
+    "added": "2026-05-15",
+    "note": "South American tavern that opened May 13, 2026 in the former Llama Inn space. From Llama Group's Juan Correa with Chef Francisco Castillo (ex-Llama San). Nostalgia-driven menu drawing on Peru, Chile, and Argentina; South American cocktails from Sarah Morrissey; wine program by Pierre Buffet. Dinner Wed–Sun."
+  },
+  {
+    "name": "Zoli",
+    "address": "312 Maujer St, Brooklyn, NY 11206",
+    "place_id": null,
+    "lat": 40.71,
+    "lng": -73.9396,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Seafood, American",
+    "source": "Greenpointers / The Infatuation — Zoli opens at Amant (May 2026)",
+    "added": "2026-05-15",
+    "note": "Seafood-forward American restaurant from chef Ned Baldwin (Houseman) that opened in early May 2026 inside the Amant arts foundation. 35-seat dining room and 18-seat bar separated by Pierre Huyghe's 'Satellite' aquarium triptych. Menu flips the usual ratio — fish leads, other proteins secondary."
+  },
+  {
+    "name": "Pies 'n' Thighs Park Slope",
+    "address": "244 Flatbush Ave, Brooklyn, NY 11217",
+    "place_id": null,
+    "lat": 40.6803,
+    "lng": -73.9759,
+    "neighborhood": "Park Slope",
+    "cuisine": "Southern, Fried Chicken",
+    "source": "Brooklyn Eagle / Hellgate / FSR — Pies 'n' Thighs opens 2nd location (Apr 2026)",
+    "added": "2026-05-15",
+    "note": "Park Slope outpost of the 20-year-old Williamsburg fried-chicken institution from Sarah Sanneh. Opened April 1, 2026 at the corner of Flatbush and 6th Ave in the former Pecking House space. Counter-service with fried chicken, biscuit sandwiches, pies, new chicken tenders, plus shareable sides. Family-friendly."
   }
 ]
