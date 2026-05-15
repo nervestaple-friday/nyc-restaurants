@@ -664,8 +664,27 @@ const mappable = deduped.filter(r => r.lat != null && r.lng != null);
   });
 })();
 
-const bounds = L.latLngBounds(mappable.map(r => [r.displayLat, r.displayLng]));
-const map = L.map('map', { zoomControl: true }).fitBounds(bounds, { padding: [30, 30] });
+// Compute initial bounds from the inner percentile range of marker coordinates
+// so a handful of outliers (e.g. Astoria, Elmhurst, Upper East Side) don't pull
+// the default view away from where 90% of the data actually lives
+// (Brooklyn + Lower / East Manhattan). Every marker still renders — users can
+// pan to outliers — but the opening framing is tight on the dense core.
+function percentileBounds(points, pct) {
+  if (points.length === 0) return null;
+  const lats = points.map(p => p[0]).sort((a, b) => a - b);
+  const lngs = points.map(p => p[1]).sort((a, b) => a - b);
+  const lo = Math.floor(lats.length * pct);
+  const hi = Math.ceil(lats.length * (1 - pct)) - 1;
+  return L.latLngBounds(
+    [lats[lo], lngs[lo]],
+    [lats[Math.max(hi, lo)], lngs[Math.max(hi, lo)]]
+  );
+}
+const allPoints = mappable.map(r => [r.displayLat, r.displayLng]);
+const coreBounds = mappable.length >= 20
+  ? percentileBounds(allPoints, 0.05)
+  : L.latLngBounds(allPoints);
+const map = L.map('map', { zoomControl: true }).fitBounds(coreBounds, { padding: [30, 30] });
 
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
