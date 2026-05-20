@@ -1678,5 +1678,53 @@
     "source": "Greenpointers / The Infatuation — Zoli opens at Amant (May 2026)",
     "added": "2026-05-15",
     "note": "Seafood-forward American restaurant from chef Ned Baldwin (Houseman) that opened in early May 2026 inside the Amant arts foundation. 35-seat dining room and 18-seat bar separated by Pierre Huyghe's 'Satellite' aquarium triptych. Menu flips the usual ratio — fish leads, other proteins secondary."
+  },
+  {
+    "name": "Lonnies",
+    "address": "112 Bond St, Brooklyn, NY 11217",
+    "place_id": null,
+    "lat": 40.6857,
+    "lng": -73.9866,
+    "neighborhood": "Boerum Hill",
+    "cuisine": "American",
+    "source": "Cobble Hill Collective / Resy / Infatuation — Lonnies opens (May 20, 2026)",
+    "added": "2026-05-20",
+    "note": "Diner-inspired neighborhood spot from Sean Rembold and Caron Callahan (Ingas Bar) that opens May 20, 2026 at 112 Bond at Pacific. Lo-fi, approachable menu: daily prime rib, chicken under a brick, burger with locally butchered beef. Cozy classic-diner aesthetic. Named for Lonnie Lanham — Kentucky Vietnam vet turned hairdresser from Rembold's childhood."
+  },
+  {
+    "name": "Bar Susanne",
+    "address": "6 River St, Brooklyn, NY 11249",
+    "place_id": null,
+    "lat": 40.7142,
+    "lng": -73.9676,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Seafood, Cocktails",
+    "source": "Greenpointers / BK Mag / Infatuation — Bar Susanne opens at Domino Park (May 15, 2026)",
+    "added": "2026-05-20",
+    "note": "Seafood-and-raw-bar cocktail spot that opened May 15, 2026 next to Cafe Susanne on the Williamsburg waterfront. Chef Jackie Carnesi (ex-Kellogg's Diner, Nura) leading the kitchen with North Fork ingredients — shrimp cocktail, scallop crudo, crab salad, grilled squid, fluke Milanese, roasted chicken. Coastal-inspired cocktail program from Milos Zica. Designed by JBA-nominee Matthew Maddy. Open 5–11pm daily."
+  },
+  {
+    "name": "Six Coasts by Smorgasburg",
+    "address": "Soissons Landing, Governors Island, NY 10004",
+    "place_id": null,
+    "lat": 40.6905,
+    "lng": -74.0163,
+    "neighborhood": "Governors Island",
+    "cuisine": "Pan-American Seafood",
+    "source": "Average Socialite / I Love NY / Time Out — Six Coasts grand opening (May 9, 2026)",
+    "added": "2026-05-20",
+    "note": "Smorgasburg's first full-scale restaurant — 32,000-sqft waterfront venue that opened May 9, 2026 on Soissons Landing in the former Island Oyster space. Pan-American seafood from Chef Scotley Innis (Jamaican-American) spanning Nova Scotia, Gulf Coast, Baja, Bahia. Tropical cocktails, sunset DJ series, visiting-chef residencies, harbor views."
+  },
+  {
+    "name": "Gusi",
+    "address": "432 6th Ave, New York, NY 10011",
+    "place_id": null,
+    "lat": 40.7346,
+    "lng": -73.999,
+    "neighborhood": "Greenwich Village",
+    "cuisine": "Eastern European",
+    "source": "Infatuation / Resy / What Now NY — Gusi opens (May 8, 2026)",
+    "added": "2026-05-20",
+    "note": "Modern Eastern European two-story restaurant that opened May 8, 2026 across from Jefferson Market Library. From husband-wife team Boris Artemyev and Elena Melnikova. Puff-pastry pierogi; pelmeni with beef/pork, veal, elk, buffalo, goose, or tahini-finished Mediterranean version; five weekly-rotating borscht. Elegant ground-floor bar plus intimate upstairs dining room."
   }
 ]
