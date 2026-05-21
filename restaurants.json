@@ -12,18 +12,6 @@
     "note": "Oyster bar under the arches of the Brooklyn Bridge. East Coast oysters, towers to share, lobster rolls, clam chowder, squid ink pasta, New York strip, Junior's cheesecake. Soft opening through May 1, 2026; now fully open."
   },
   {
-    "name": "Peek Inn",
-    "address": "38 Driggs Ave, Brooklyn, NY 11222",
-    "place_id": null,
-    "lat": 40.7234051,
-    "lng": -73.9519677,
-    "neighborhood": "Greenpoint",
-    "cuisine": "Bar",
-    "source": "Infatuation May 2026",
-    "added": "2026-05-21",
-    "note": "Neighborhood bar featuring Hudson Valley meats and smile-shaped hot dogs. Casual cozy vibe. Opened May 2026."
-  },
-  {
     "name": "Malavita",
     "address": "614 Manhattan Ave, Brooklyn, NY 11222",
     "place_id": null,
@@ -459,13 +447,13 @@
     "name": "Peek Inn",
     "address": "38 Driggs Ave, Brooklyn, NY 11222",
     "place_id": "ChIJO6OPZHBZwokRfsDSpYpkRRI",
-    "lat": 40.723604,
-    "lng": -73.940506,
-    "neighborhood": "Williamsburg",
+    "lat": 40.7234051,
+    "lng": -73.9519677,
+    "neighborhood": "Greenpoint",
     "cuisine": "Bar",
     "source": "Eater NY April 2026",
     "added": "2026-04-11",
-    "note": "From Cozy Royale and The Meat Hook team. Guinness pours and loaded hot dogs. No-frills hangout with $10 happy hour deals (4-7pm) and $5 beer-and-shot combos."
+    "note": "From Cozy Royale and The Meat Hook team. Guinness pours, loaded hot dogs (incl. smile-shaped), Hudson Valley meats. No-frills hangout with $10 happy hour deals (4-7pm) and $5 beer-and-shot combos."
   },
   {
     "name": "Yesterday's",
