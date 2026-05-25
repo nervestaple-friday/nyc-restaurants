@@ -416,6 +416,12 @@
   .status-upcoming { background: rgba(240, 160, 48, 0.15); color: #f0a030; }
   .status-temporary { background: rgba(230, 140, 20, 0.15); color: #e68c14; }
   .status-closed { background: rgba(180, 60, 60, 0.15); color: #b43c3c; }
+  .status-new {
+    background: rgba(240, 160, 48, 0.18);
+    color: var(--accent);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
 
   @media (min-width: 768px) {
     #map { height: 60vh; }
@@ -579,6 +585,17 @@ function getStatus(r) {
   return null;
 }
 
+// Highlight entries added within the last RECENT_WINDOW_MS so visitors can
+// spot fresh scout-cycle additions at a glance regardless of which sort or
+// filter they have active. Orthogonal to getStatus(): a place can be both
+// Pop-Up and NEW, etc.
+const RECENT_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+const NOW_MS = Date.now();
+function isRecentlyAdded(r) {
+  const t = addedScore(r.added);
+  return t > 0 && (NOW_MS - t) <= RECENT_WINDOW_MS;
+}
+
 function escapeHtml(str) {
   if (str == null) return '';
   return String(str)
@@ -716,13 +733,14 @@ mappable.forEach(r => {
   const hoursHtml = r.hours ? `<div class="popup-hours">${escapeHtml(r.hours)}</div>` : '';
   const pst = getStatus(r);
   const statusHtml = pst ? `<span class="status-badge status-${pst.cls}">${pst.label}</span>` : '';
+  const newHtml = isRecentlyAdded(r) ? '<span class="status-badge status-new">New</span>' : '';
 
   const popup = `<div class="popup-inner">
     <div class="popup-name">${escapeHtml(r.name)}</div>
     <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
     <div class="popup-address">${escapeHtml(r.address)}</div>
     ${hoursHtml}
-    <div class="popup-meta">${statusHtml}${r.source ? `<span>${escapeHtml(r.source)}</span>` : ''}${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
+    <div class="popup-meta">${newHtml}${statusHtml}${r.source ? `<span>${escapeHtml(r.source)}</span>` : ''}${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
     ${noteHtml}
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
@@ -869,6 +887,7 @@ function renderList(filtered) {
   listEl.innerHTML = filtered.map(r => {
     const st = getStatus(r);
     const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
+    const newHtml = isRecentlyAdded(r) ? '<span class="status-badge status-new">New</span>' : '';
     const hasCoords = r.lat != null && r.lng != null;
     return `
     <div class="restaurant-card${hasCoords ? '' : ' card-unmappable'}" data-key="${escapeHtml(r.name)}${escapeHtml(r.address || '')}">
@@ -876,6 +895,7 @@ function renderList(filtered) {
         <div class="card-name">${escapeHtml(r.name)}</div>
       </div>
       <div class="card-details">
+        ${newHtml}
         ${stHtml}
         <span class="card-neighborhood">${escapeHtml(r.neighborhood)}</span>
         <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
