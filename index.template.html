@@ -553,24 +553,28 @@ function cuisineCategory(cuisine) {
   if (c.includes('vietnamese')) return 'Vietnamese';
   if (c.includes('korean')) return 'Korean';
   if (c.includes('mexican')) return 'Mexican';
-  if (c.includes('chinese')) return 'Chinese';
+  if (c.includes('chinese') || c.includes('cantonese') || c.includes('dim sum') || c.includes('shanghainese') || c.includes('dongbei')) return 'Chinese';
   if (c.includes('french') || c.includes('bistro')) return 'French';
   if (c.includes('indian')) return 'Indian';
   if (c.includes('coffee') || c.includes('ice cream') || c.includes('frozen yogurt') || c.includes('acai') || c.includes('smoothie') || c.includes('gelato') || c.includes('dessert')) return 'Coffee & Sweets';
-  if (c.includes('american') || c === 'steakhouse' || c.includes('burgers') || c.includes('southern') || c.includes('sandwich')) return 'American';
+  // American — includes diner-adjacent and rotisserie spots that don't fit a
+  // tighter regional bucket. "Jewish deli" lands here because the menu vocab
+  // (pastrami, matzo ball, knish) is closer to NY-American comfort than any
+  // standalone category would justify at this dataset size.
+  if (c.includes('american') || c === 'steakhouse' || c.includes('burgers') || c.includes('southern') || c.includes('sandwich') || c.includes('deli') || c.includes('rotisserie')) return 'American';
   if (c.includes('mediterranean') || c.includes('israeli') || c.includes('persian') || c.includes('greek') || c.includes('falafel')) return 'Mediterranean';
   if (c.includes('seafood') || c.includes('oyster')) return 'Seafood';
-  if (c.includes('japanese') || c === 'nikkei') return 'Japanese';
+  if (c.includes('japanese') || c === 'nikkei' || c.includes('omakase') || c.includes('sushi') || c.includes('izakaya')) return 'Japanese';
   if (c.includes('caribbean')) return 'Caribbean';
   if (c.includes('italian')) return 'Italian';
   if (c.includes('thai')) return 'Thai';
-  if (c.includes('tibetan') || c.includes('malaysian') || c.includes('hong kong')) return 'Asian';
+  if (c.includes('tibetan') || c.includes('malaysian') || c.includes('hong kong') || c.includes('taiwanese') || c.includes('filipino') || c.includes('singaporean')) return 'Asian';
   // Dining-mode buckets \u2014 surface tasting menus and wild-to-table as their own
   // filters before falling through to bar/cafe defaults.
   if (c.includes('tasting')) return 'Tasting Menu';
   if (c.includes('wild')) return 'Wild-to-Table';
   if (c.includes('speakeasy') || c.includes('cafe') || c.includes('caf\u00e9') || c.includes('bar') || c.includes('wine')) return 'Cafe & Bar';
-  if (c.includes('bakery')) return 'Bakery';
+  if (c.includes('bakery') || c.includes('bagel')) return 'Bakery';
   if (c.includes('pizza')) return 'Pizza';
   return 'Other';
 }
