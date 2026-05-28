@@ -1,5 +1,53 @@
 [
   {
+    "name": "Kome Nori",
+    "address": "397 5th Ave, Brooklyn, NY 11215",
+    "place_id": null,
+    "lat": 40.6699,
+    "lng": -73.9853,
+    "neighborhood": "Park Slope",
+    "cuisine": "Japanese / Sushi",
+    "source": "Infatuation / What Now NY / Park Slope Pulse May 2026",
+    "added": "2026-05-28",
+    "note": "Modern Japanese sushi/hand-roll spot from chef Sean Kang (ex-head chef DOMODOMO, Michelin Bib Gourmand 2017–23) and operator Ken Lee. Opened late April 2026 in the former Flatiron Steakhouse space. Three courses (hand roll / sushi+hand roll / signature); $79 set menu — wagyu carpaccio, miso black cod, eight pieces of sushi, dessert. À la carte yellowtail ceviche, garlic bacon fried rice."
+  },
+  {
+    "name": "Ichie",
+    "address": "1075 Bergen St, Brooklyn, NY 11216",
+    "place_id": null,
+    "lat": 40.677,
+    "lng": -73.9512,
+    "neighborhood": "Crown Heights",
+    "cuisine": "Japanese / Omakase",
+    "source": "Infatuation May 2026",
+    "added": "2026-05-28",
+    "note": "Crown Heights sushi/omakase spot that took over the longstanding Uotora space in spring 2026. Carries on the Japanese-style hospitality of the prior occupant with a tighter omakase-leaning menu."
+  },
+  {
+    "name": "Sadie's",
+    "address": "19 Fulton St, New York, NY 10038",
+    "place_id": null,
+    "lat": 40.7067,
+    "lng": -74.0033,
+    "neighborhood": "South Street Seaport",
+    "cuisine": "American",
+    "source": "Infatuation / The Seaport / Yelp April–May 2026",
+    "added": "2026-05-28",
+    "note": "Indoor-outdoor day-to-night Seaport destination from Seaport Entertainment Group, opened April 21, 2026 at 19 Fulton St. Two-level dining room with elevated New American comfort food; Sadie's Garden Bar billed as the city's largest outdoor bar. Live music and DJ sets on the patio."
+  },
+  {
+    "name": "Undercurrent",
+    "address": "357 Grand St, Brooklyn, NY 11211",
+    "place_id": null,
+    "lat": 40.7126,
+    "lng": -73.9586,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Bar / Vintage Rum",
+    "source": "Infatuation / Le Whit May 2026",
+    "added": "2026-05-28",
+    "note": "20-seat tasting-room bar that opened in May 2026 beneath sister bar Echo Lake. Owners Chloe Frechette and Paul McGee pour rare and vintage rums plus hard-to-find spirits, including selections from their personal collection. Coral-reef-inspired design by Le Whit."
+  },
+  {
     "name": "Drāvida",
     "address": "211 1st Ave, New York, NY 10003",
     "place_id": null,
@@ -50,9 +98,9 @@
   {
     "name": "Little Falcon",
     "address": "360 Myrtle Ave, Brooklyn, NY 11205",
-    "place_id": null,
-    "lat": 40.6929,
-    "lng": -73.9714,
+    "place_id": "ChIJT0Pe_qJbwokR6Ql0YY5qF8I",
+    "lat": 40.6930295,
+    "lng": -73.97198759999999,
     "neighborhood": "Fort Greene",
     "cuisine": "French",
     "source": "Infatuation / Andrea Strong / BKMag May 2026",
@@ -63,7 +111,7 @@
     "name": "Casabuela Café",
     "address": "232 Metropolitan Ave, Brooklyn, NY 11211",
     "place_id": null,
-    "lat": 40.7140,
+    "lat": 40.714,
     "lng": -73.9612,
     "neighborhood": "Williamsburg",
     "cuisine": "Puerto Rican / Café",
@@ -76,7 +124,7 @@
     "address": "1210 Halsey St, Brooklyn, NY 11237",
     "place_id": null,
     "lat": 40.6852,
-    "lng": -73.9230,
+    "lng": -73.923,
     "neighborhood": "Bushwick",
     "cuisine": "Ice Cream",
     "source": "Brownstoner / Brooklyn Paper / Grime Square May 2026",
@@ -874,18 +922,6 @@
     "source": "NYT",
     "added": "2026-04-03",
     "note": "Persian. NYT Brooklyn best 2025"
-  },
-  {
-    "name": "Third Falcon",
-    "address": "360 Myrtle Ave, Brooklyn, NY 11205",
-    "place_id": "ChIJT0Pe_qJbwokR6Ql0YY5qF8I",
-    "lat": 40.6930295,
-    "lng": -73.97198759999999,
-    "neighborhood": "Fort Greene",
-    "cuisine": "French, American",
-    "source": "NYT 2025",
-    "added": "2026-04-03",
-    "note": "French-American. NYT Brooklyn best list 2025"
   },
   {
     "name": "Third Time's the Charm",
