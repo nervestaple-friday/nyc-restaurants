@@ -428,7 +428,11 @@
     border-radius: 10px;
     vertical-align: middle;
   }
-  .status-upcoming { background: rgba(240, 160, 48, 0.15); color: #f0a030; }
+  /* Sky-blue for upcoming so it's visually distinct from .status-new (which
+     uses the same orange accent) and .status-temporary (deeper orange). Pop-Up
+     stays orange because it implies "open but limited", which is closer in
+     character to "newly added" than to "not yet open". */
+  .status-upcoming { background: rgba(56, 189, 248, 0.18); color: #38bdf8; }
   .status-temporary { background: rgba(230, 140, 20, 0.15); color: #e68c14; }
   .status-closed { background: rgba(180, 60, 60, 0.15); color: #b43c3c; }
   .status-new {
@@ -510,7 +514,13 @@ function addedScore(d) {
   return 0;
 }
 
-const UPCOMING = new Set([]);
+// Entries that are visible on the map but haven't fully opened yet —
+// soft-opening, friends-and-family, pre-opening previews. Visitors see a
+// "Coming Soon" badge so they don't show up expecting a regular service.
+// Past-tense "Opened on …" notes do NOT belong here.
+const UPCOMING = new Set([
+  "Egg & Soy",
+]);
 
 const TEMPORARY = new Set([
   "TBD Gimbap",
