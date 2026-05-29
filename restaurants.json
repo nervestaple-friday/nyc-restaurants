@@ -1918,5 +1918,65 @@
     "source": "Infatuation / Resy / What Now NY — Gusi opens (May 8, 2026)",
     "added": "2026-05-20",
     "note": "Modern Eastern European two-story restaurant that opened May 8, 2026 across from Jefferson Market Library. From husband-wife team Boris Artemyev and Elena Melnikova. Puff-pastry pierogi; pelmeni with beef/pork, veal, elk, buffalo, goose, or tahini-finished Mediterranean version; five weekly-rotating borscht. Elegant ground-floor bar plus intimate upstairs dining room."
+  },
+  {
+    "name": "Lalaon",
+    "address": "22 N 6th St, Brooklyn, NY 11249",
+    "place_id": null,
+    "lat": 40.7211,
+    "lng": -73.965,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Korean BBQ",
+    "source": "Infatuation / Time Out / The Most Anticipated Restaurants Opening in Brooklyn May 2026",
+    "added": "2026-05-29",
+    "note": "Two-story Korean BBQ on the Williamsburg waterfront from Ju Young Oh and Min Sung Kang of studiOH Hospitality (Atti, Kuun, Ms. OHHO). Largest Korean BBQ in Brooklyn — house-aged meats, traditional Korean dishes, makgeolli and soju program, large outdoor patio with East River views toward Smorgasburg."
+  },
+  {
+    "name": "Birdee Botequim",
+    "address": "316 Kent Ave, Brooklyn, NY 11249",
+    "place_id": null,
+    "lat": 40.7176,
+    "lng": -73.9651,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Brazilian / Wine Bar",
+    "source": "Greenpointers / The Infatuation May 2026",
+    "added": "2026-05-29",
+    "note": "Evening counterpart to chef Renata Ameni's daytime Brazilian bakery Birdee, opened May 23. Shareable São Paulo-inspired small bites, cocktails like the Pessegro (Aperol, Japanese plum) and Tropicale (sherry, pineapple, green tea), wine program from Kent Hospitality's Kristen Goceljak. Open Thu–Sat 5–9pm. Ameni was a 2026 James Beard semifinalist for Outstanding Pastry Chef."
+  },
+  {
+    "name": "Last Crumb",
+    "address": "144 N 8th St, Brooklyn, NY 11249",
+    "place_id": null,
+    "lat": 40.7202,
+    "lng": -73.959,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Bakery / Cookies",
+    "source": "Time Out / BusinessWire May 2026",
+    "added": "2026-05-29",
+    "note": "First brick-and-mortar from viral LA-born DTC cookie brand Last Crumb (founded 2020 by Derek Jaeger), opened May 28 between Bedford and Berry. Single cookies $8.50, 3-count box $24, 6-count $45. Coffee from Parlor plus the brand's own Shaken Milk. Daily 11am–10pm; first 100 visitors Thu–Sat get a free cookie."
+  },
+  {
+    "name": "Soft Hours",
+    "address": "119 Hester St, New York, NY 10002",
+    "place_id": null,
+    "lat": 40.7164,
+    "lng": -73.9909,
+    "neighborhood": "Lower East Side",
+    "cuisine": "Tea House / Cafe",
+    "source": "The Infatuation May 2026",
+    "added": "2026-05-29",
+    "note": "Song Dynasty-inspired tea house from artist Juno Shen — a deliberately quiet sanctuary built around seasonal tea service, small confections, incense, floral arrangements, and rotating art. Philosophy rooted in the Song-era ritual of pausing with tea, flowers, and art as part of daily life."
+  },
+  {
+    "name": "Love Thy Neighbor",
+    "address": "55 Christopher St, New York, NY 10014",
+    "place_id": null,
+    "lat": 40.7333,
+    "lng": -74.0019,
+    "neighborhood": "West Village",
+    "cuisine": "Japanese / Cocktail Bar",
+    "source": "Time Out / The Infatuation / Spirits Business May 2026",
+    "added": "2026-05-29",
+    "note": "All-day Japanese-inspired bar from Shigefumi Kabashima (ROKC, NR) and chef Elias Popa (Oti) in the basement that was legendary jazz club 55 Bar until 2022. Food from Takanori Akiyama (ex-Tsukimi) — Japanese tapas, sandos, share plates. Signature cocktails: Tokyo Banana (banana-infused whisky, vermouth, milk-brew coffee, shio koji) and a wasabi-infused G&T. A queer-celebratory space — a brick from the Stonewall Inn and a Marsha P. Johnson quote set into the floor."
   }
 ]
