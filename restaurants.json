@@ -1978,5 +1978,53 @@
     "source": "Time Out / The Infatuation / Spirits Business May 2026",
     "added": "2026-05-29",
     "note": "All-day Japanese-inspired bar from Shigefumi Kabashima (ROKC, NR) and chef Elias Popa (Oti) in the basement that was legendary jazz club 55 Bar until 2022. Food from Takanori Akiyama (ex-Tsukimi) — Japanese tapas, sandos, share plates. Signature cocktails: Tokyo Banana (banana-infused whisky, vermouth, milk-brew coffee, shio koji) and a wasabi-infused G&T. A queer-celebratory space — a brick from the Stonewall Inn and a Marsha P. Johnson quote set into the floor."
+  },
+  {
+    "name": "Allegretto al Forno",
+    "address": "132 Broadway, Brooklyn, NY 11211",
+    "place_id": null,
+    "lat": 40.7099,
+    "lng": -73.9657,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Italian / Wood-Fired Pizza",
+    "source": "Eat Up NY / Infatuation / Greenpointers May 2026",
+    "added": "2026-05-30",
+    "note": "Casual wood-fired pizza & Southern Italian small-plates spinoff of Michelin-starred Francie next door, opened May 2026. From chef Chris Cipollone and GM John Winterman. Signature duck-sausage pizza with apricot and pistachio pesto; sfizi-driven menu built around the wood oven."
+  },
+  {
+    "name": "Prince Street Pizza",
+    "address": "271 Smith St, Brooklyn, NY 11231",
+    "place_id": null,
+    "lat": 40.6819,
+    "lng": -73.9933,
+    "neighborhood": "Carroll Gardens",
+    "cuisine": "Pizza",
+    "source": "Brooklyn Bridge Parents April 2026",
+    "added": "2026-05-30",
+    "note": "Brooklyn debut of the Nolita pepperoni-square institution, opened on Smith St in spring 2026. Cult-favorite spicy square slices and easy grab-and-go counter service in Carroll Gardens."
+  },
+  {
+    "name": "Pizza Studio Tamaki",
+    "address": "123 St Marks Pl, New York, NY 10009",
+    "place_id": null,
+    "lat": 40.7281,
+    "lng": -73.9844,
+    "neighborhood": "East Village",
+    "cuisine": "Pizza / Tokyo-Neapolitan",
+    "source": "Eat Up NY / Infatuation / Hoodline May 2026",
+    "added": "2026-05-30",
+    "note": "First US outpost of Tokyo pizzaiolo Tsubasa Tamaki's celebrated PST, opened May 5, 2026 in the former Moody Tongue space. Tokyo-Neapolitan style with a proprietary Japanese flour blend, deep-char crust, and 30-hour fermented dough. Bismarck with egg ($36), Bianca with white truffle oil."
+  },
+  {
+    "name": "Le Sixth",
+    "address": "359 6th Ave, New York, NY 10014",
+    "place_id": null,
+    "lat": 40.7317,
+    "lng": -74.0017,
+    "neighborhood": "West Village",
+    "cuisine": "French / Bistro",
+    "source": "Infatuation May 2026",
+    "added": "2026-05-30",
+    "note": "Day-to-night West Village French bistro from a French chef with Hong Kong fine-dining pedigree, opened May 2026. Sole Grenobloise and steak frites at dinner; French omelets, benedicts, and chicken paillard on the weekend brunch menu."
   }
 ]
