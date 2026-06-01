@@ -820,8 +820,8 @@ function createCuisineBtn(label, value) {
   cuisineFilterBar.appendChild(btn);
 }
 
-createCuisineBtn('All', 'all');
-cuisineCategories.forEach(cat => createCuisineBtn(cat, cat));
+createCuisineBtn('All (' + deduped.length + ')', 'all');
+cuisineCategories.forEach(cat => createCuisineBtn(cat + ' (' + catCounts[cat] + ')', cat));
 
 let searchDebounce;
 searchInput.addEventListener('input', () => {
