@@ -1,5 +1,77 @@
 [
   {
+    "name": "Socceria",
+    "address": "46 Norman Ave, Brooklyn, NY 11222",
+    "place_id": null,
+    "lat": 40.7242,
+    "lng": -73.9531,
+    "neighborhood": "Greenpoint",
+    "cuisine": "Mexican / Sports Bar",
+    "source": "Greenpointers / BK Mag / Hoodline / Caper May 30 2026",
+    "added": "2026-06-02",
+    "note": "Brooklyn's first soccer-focused sports cantina from the Taqueria Ramirez team — James Beard finalist chef Giovanni Cervantes and partner Tania Apolinar with Josh Borock and John Hilmes. Opened May 30, 2026 at the former Nura space (Norman Ave & Guernsey Pl). Tacos and Mexican cantina specialties, big screens for matches; opening day sold out, returns weekend of June 6–7 then daily for World Cup kickoff June 11."
+  },
+  {
+    "name": "Grimm Tavern",
+    "address": "659 Vanderbilt Ave, Brooklyn, NY 11238",
+    "place_id": null,
+    "lat": 40.6790,
+    "lng": -73.9697,
+    "neighborhood": "Prospect Heights",
+    "cuisine": "American / Brewery",
+    "source": "Crain's / Park Slope Pulse / Infatuation / Brewyork June 2026",
+    "added": "2026-06-02",
+    "note": "First satellite from 8-year-old Brooklyn brewery Grimm Artisanal Ales, opening June 2026 in the former Olmsted space at 659 Vanderbilt Ave. Tavern menu of classic American comfort — burger, roast chicken — with Grimm beers on tap. Adjacent 1,000 sq ft cafe sells coffee, breakfast sandwiches, biscuits, muffalettas, and canned beer to-go."
+  },
+  {
+    "name": "Dinah",
+    "address": "200 Clinton St, Brooklyn, NY 11201",
+    "place_id": null,
+    "lat": 40.6892,
+    "lng": -73.9959,
+    "neighborhood": "Cobble Hill",
+    "cuisine": "American / Diner",
+    "source": "Brooklyn Bridge Parents / Dinah IG / BK Mag May 2026",
+    "added": "2026-06-02",
+    "note": "Modern reimagining of a 1930s Brooklyn diner in the former Atlantic Bagels space at Clinton & Baltic. Hand-rolled bagels and a rotating guest-chef pop-up program. Successfully soft-opened in late May 2026; regular service announcement imminent. Counter and booths, all-day."
+  },
+  {
+    "name": "Nowon Bushwick",
+    "address": "436 Jefferson St, Brooklyn, NY 11237",
+    "place_id": null,
+    "lat": 40.7036,
+    "lng": -73.9233,
+    "neighborhood": "Bushwick",
+    "cuisine": "Korean / American",
+    "source": "BK Mag / Slice / Time Out May 2026",
+    "added": "2026-06-02",
+    "note": "Jae Lee's second Nowon, opened the week of May 25, 2026 right by the Jefferson L stop. Korean-American pocha (포차) with wood-fired pizzas, the Legendary Cheeseburger that built Nowon East Village's reputation, bold comfort food, and craft cocktails. Larger and louder than the original."
+  },
+  {
+    "name": "Gosh",
+    "address": "32 Mulberry St, New York, NY 10013",
+    "place_id": null,
+    "lat": 40.7150,
+    "lng": -73.9981,
+    "neighborhood": "Chinatown",
+    "cuisine": "Bar / Cocktails",
+    "source": "Infatuation / Caper Media May 2026",
+    "added": "2026-06-02",
+    "note": "Maximalist Florence-import cocktail bar that opened May 2026 in the former Juku / Yello Bar space on Mulberry. Three levels — ground-floor lounge, clubby basement, upstairs with a confessional next to the bathroom. Gnome stools, servers in Adidas track jackets, carajillos, a bat-phone-style guest list. Absurdist excess over quiet luxury."
+  },
+  {
+    "name": "Little Pine",
+    "address": "136 E Broadway, New York, NY 10002",
+    "place_id": null,
+    "lat": 40.7142,
+    "lng": -73.9920,
+    "neighborhood": "Two Bridges",
+    "cuisine": "Chinese / Dongbei",
+    "source": "Infatuation / Yelp May 2026",
+    "added": "2026-06-02",
+    "note": "Big-format new Chinatown/Two Bridges spot specializing in Dongbei (northeastern Chinese) comfort food — cumin lamb, guo bao rou, dumplings, cold dishes. Twin entrances on Division Street and 136 East Broadway. Opened late spring 2026."
+  },
+  {
     "name": "Kome Nori",
     "address": "397 5th Ave, Brooklyn, NY 11215",
     "place_id": null,
