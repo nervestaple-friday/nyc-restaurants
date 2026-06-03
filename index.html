@@ -841,13 +841,37 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 19
 }).addTo(map);
 
-const pinIcon = L.divIcon({
-  className: '',
-  html: '<div style="width:28px;height:28px;background:#f0a030;border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:14px;">&#127860;</div>',
-  iconSize: [28, 28],
-  iconAnchor: [14, 14],
-  popupAnchor: [0, -16]
-});
+// Status → pin color mapping. Mirrors the badge palette in CSS so the map
+// reads the same way as the cards: closed entries fade out, coming-soon
+// pins match the sky-blue badge, pop-ups match the deeper orange badge,
+// everything else uses the standard accent. Keeping these inline (instead
+// of pulling from CSS vars) so the divIcon HTML can be built without a
+// getComputedStyle round-trip on every marker.
+const PIN_COLORS = {
+  default: { bg: '#f0a030', emoji: '&#127860;', opacity: 1 },     // fork & knife
+  upcoming: { bg: '#38bdf8', emoji: '&#9203;', opacity: 1 },      // hourglass
+  temporary: { bg: '#e68c14', emoji: '&#127860;', opacity: 1 },
+  closed: { bg: '#666', emoji: '&#10005;', opacity: 0.7 }         // X
+};
+
+function buildPinIcon(statusCls) {
+  const c = PIN_COLORS[statusCls] || PIN_COLORS.default;
+  return L.divIcon({
+    className: '',
+    html: `<div style="width:28px;height:28px;background:${c.bg};border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:${c.opacity};">${c.emoji}</div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14],
+    popupAnchor: [0, -16]
+  });
+}
+
+// Cache icons by status — there are only ~4 distinct variants but ~180
+// markers, so building once per status keeps DOM construction cheap.
+const PIN_ICON_CACHE = {};
+function pinIconFor(statusCls) {
+  if (!PIN_ICON_CACHE[statusCls]) PIN_ICON_CACHE[statusCls] = buildPinIcon(statusCls);
+  return PIN_ICON_CACHE[statusCls];
+}
 
 const markers = {};
 mappable.forEach(r => {
@@ -867,7 +891,8 @@ mappable.forEach(r => {
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
 
-  const marker = L.marker([r.displayLat, r.displayLng], { icon: pinIcon })
+  const icon = pinIconFor(pst ? pst.cls : 'default');
+  const marker = L.marker([r.displayLat, r.displayLng], { icon })
     .bindPopup(popup, { maxWidth: 280 })
     .addTo(map);
   markers[r.name + r.address] = marker;
