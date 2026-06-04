@@ -1776,18 +1776,6 @@
     "note": "Reopened the original Paulie Gee's space at 60 Greenpoint Ave on April 30, 2026 — same wood-fired pizza recipes, but reformatted as a tavern with a longer bar, booths, pool table, darts and a jukebox. Order at the bar."
   },
   {
-    "name": "Dinah Brooklyn",
-    "address": "200 Clinton St, Brooklyn, NY 11201",
-    "place_id": null,
-    "lat": 40.6892,
-    "lng": -73.9966,
-    "neighborhood": "Cobble Hill",
-    "cuisine": "American, Diner",
-    "source": "Brooklyn Bridge Parents (Apr 2026)",
-    "added": "2026-05-06",
-    "note": "Modern reimagining of a 1930s Brooklyn diner at 200 Clinton St. Hand-rolled bagels, 'After School Specials' and rotating guest-chef pop-ups. Community-leaning hospitality."
-  },
-  {
     "name": "Egg & Soy",
     "address": "296 Bedford Ave, Brooklyn, NY 11211",
     "place_id": null,
@@ -1911,8 +1899,8 @@
     "name": "Café Bar J.F.",
     "address": "50 Withers St, Brooklyn, NY 11211",
     "place_id": null,
-    "lat": 40.718,
-    "lng": -73.9498,
+    "lat": 40.7172,
+    "lng": -73.9436,
     "neighborhood": "Williamsburg",
     "cuisine": "South American",
     "source": "Greenpointers / Resy — Café Bar J.F. opens (May 13, 2026)",
@@ -2098,18 +2086,6 @@
     "source": "WWD / Resy / Culinary Agents / WhatNow June 2026",
     "added": "2026-06-03",
     "note": "Debut concept from Ahris Kim of NA:EUN Hospitality — the team behind Atoboy, Atomix and Naro. A personality-driven 50-seat bistro serving American-by-way-of-Korea fare with shareable plates drawing on Asian and European ingredients, techniques and immigrant nostalgia. Backed by Ellia and Junghyun 'JP' Park; opened early June 2026 in the South Village with a full bar."
-  },
-  {
-    "name": "Cafe Bar J.F.",
-    "address": "50 Withers St, Brooklyn, NY 11211",
-    "place_id": null,
-    "lat": 40.7172,
-    "lng": -73.9436,
-    "neighborhood": "Williamsburg",
-    "cuisine": "South American / Tavern",
-    "source": "Resy / Greenpointers / Infatuation May 2026",
-    "added": "2026-06-03",
-    "note": "South American 'third space' tavern from the Llama Group (Llama Inn, Llamita) taking over the former Llama Inn home on Withers St. Opened May 13, 2026 — devoted to the bar culture of Lima, Buenos Aires and Bogotá with pisco-forward cocktails, anticuchos, ceviches and bar snacks; designed for long, low-key hangs."
   },
   {
     "name": "Edoya Sushi",
