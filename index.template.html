@@ -667,8 +667,21 @@ function escapeHtml(str) {
 }
 
 function gmapsUrl(r) {
-  if (r.lat == null || r.lng == null) return '#';
-  const base = `https://www.google.com/maps/search/?api=1&query=${r.lat},${r.lng}`;
+  // Prefer a name+address text query — Google Maps resolves that to the actual
+  // listing. Falling back to bare lat/lng (as we used to) drops you on a generic
+  // pin with no business name when place_id is missing.
+  const parts = [];
+  if (r.name) parts.push(r.name);
+  if (r.address) parts.push(r.address);
+  let query;
+  if (parts.length) {
+    query = encodeURIComponent(parts.join(', '));
+  } else if (r.lat != null && r.lng != null) {
+    query = `${r.lat},${r.lng}`;
+  } else {
+    return '#';
+  }
+  const base = `https://www.google.com/maps/search/?api=1&query=${query}`;
   return r.place_id ? base + `&query_place_id=${r.place_id}` : base;
 }
 
