@@ -213,7 +213,9 @@
     "cuisine": "Seafood",
     "source": "Eater NY / Infatuation May 2026",
     "added": "2026-05-21",
-    "note": "Oyster bar under the arches of the Brooklyn Bridge. East Coast oysters, towers to share, lobster rolls, clam chowder, squid ink pasta, New York strip, Junior's cheesecake. Soft-opened through May 1, 2026; now fully open."
+    "note": "Oyster bar under the arches of the Brooklyn Bridge. East Coast oysters, towers to share, lobster rolls, clam chowder, squid ink pasta, New York strip, Junior's cheesecake. Soft-opened through May 1, 2026; now fully open.",
+    "blacklisted": true,
+    "blacklist_reason": "Visited — not good"
   },
   {
     "name": "Malavita",
@@ -813,7 +815,9 @@
     "cuisine": "Mexican",
     "source": "Multiple mentions",
     "added": "2026-04-03",
-    "note": "Polished Mexican — mezcal-focused bar program"
+    "note": "Polished Mexican — mezcal-focused bar program",
+    "blacklisted": true,
+    "blacklist_reason": "Visited — not good"
   },
   {
     "name": "Barker Cafeteria",
@@ -2110,5 +2114,41 @@
     "source": "Brownstoner / BKB site / Brooklyn Paper June 2026",
     "added": "2026-06-03",
     "note": "Family-friendly Belgian brasserie on the corner of Stuyvesant and Macon, taking over the former Mama Fox space. Moules frites, steak frites, waffles, bitterballen and beef bourguignon plus ~10 mostly Belgian beer lines, French wines and multiple TVs for soccer matches. Soft-opened in late May 2026 with a full debut targeted for June 20."
+  },
+  {
+    "name": "Variety Coffee Roasters",
+    "address": "190 Franklin St, Brooklyn, NY 11222",
+    "place_id": null,
+    "lat": 40.7314,
+    "lng": -73.958,
+    "neighborhood": "Greenpoint",
+    "cuisine": "Coffee / Bakery",
+    "source": "Greenpointers May 22 2026 / WhatNow / Coffee Klatsch June 2026",
+    "added": "2026-06-06",
+    "note": "Brooklyn-based Variety Coffee Roasters opened its 10th cafe — and largest, most design-forward to date — on June 1, 2026 at The Astral building in Greenpoint, taking over a former laundromat between Java and India Streets. Drip and espresso from their Bushwick roastery alongside pastries from Colson Patisserie, Ole & Steen, and The Good Batch."
+  },
+  {
+    "name": "Phil's Place",
+    "address": "524 Graham Ave, Brooklyn, NY 11222",
+    "place_id": null,
+    "lat": 40.7196,
+    "lng": -73.9434,
+    "neighborhood": "Greenpoint",
+    "cuisine": "Bar / Sandwiches",
+    "source": "Greenpointers Apr 7 2026 / Infatuation 2026",
+    "added": "2026-06-06",
+    "note": "Reincarnation of beloved Graham Ave dive Jimbo Slims after a ownership change and revamp. Mainstay Jimbo's bartender Phil Shepherd partnered with Pomp and Circumstance chef James Ahearn for a renovated room and a new bar-snacks menu (chicken meatball Caesar heros) — drinks stayed in the friendly $9 shot-and-beer, $12-15 cocktails range."
+  },
+  {
+    "name": "Athena Keke's",
+    "address": "222 Greene Ave, Brooklyn, NY 11238",
+    "place_id": null,
+    "lat": 40.6878,
+    "lng": -73.9621,
+    "neighborhood": "Clinton Hill",
+    "cuisine": "Sports Bar / American",
+    "source": "GO Magazine / BKReader / Timeout / Yelp 2026",
+    "added": "2026-06-06",
+    "note": "Brooklyn's first dedicated queer women's sports bar from couple Claudia Capriles and Alexandra Murray, who graduated from years of pop-ups into a brick-and-mortar at 222 Greene Ave in Clinton Hill. Lots of screens for women's sports, a full kitchen drawing on Murray's Baltimore roots and Capriles's Bolivian upbringing, and a library corner of queer-history and women's-sports books."
   }
 ]
