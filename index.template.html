@@ -538,7 +538,16 @@
 <div class="restaurant-list" id="list"></div>
 
 <script>
-const restaurants = /* %%RESTAURANTS%% */[];
+const rawRestaurants = /* %%RESTAURANTS%% */[];
+
+// Blacklist: entries with `"blacklisted": true` in restaurants.json are spots
+// Jim has visited and doesn't want resurfaced — neither in the map/list/counts
+// here, nor as candidates for future scout cycles. We strip them at the very
+// top of the pipeline so every downstream stage (dedup, sort, neighborhood
+// counts, cuisine filters, NEW-recent badge, markers) operates on the clean
+// set. The entries stay in restaurants.json as tombstones so a future scout
+// pass looking up the name finds the blacklisted flag and skips re-adding.
+const restaurants = rawRestaurants.filter(r => !r.blacklisted);
 
 function addedScore(d) {
   if (!d) return 0;
@@ -927,6 +936,14 @@ function createFilterBtn(label, value) {
 }
 
 createFilterBtn('All (' + deduped.length + ')', 'all');
+// "Recently added" is a special non-area filter — placed next to "All" so it
+// reads as a peer view-mode rather than a neighborhood. Hidden when there are
+// no entries inside the recency window (e.g. a fresh checkout with no recent
+// scout activity) so we don't render a chip that always shows "(0)".
+const recentCount = deduped.filter(isRecentlyAdded).length;
+if (recentCount > 0) {
+  createFilterBtn('🆕 New (' + recentCount + ')', '__recent__');
+}
 neighborhoods.forEach(n => createFilterBtn(n + ' (' + neighborhoodCounts[n] + ')', n));
 
 const catCounts = {};
@@ -1003,11 +1020,16 @@ function sortList(list) {
 }
 
 function renderList(filtered) {
+  // Headline reads the current view in plain English. "__recent__" is the
+  // special view-mode for entries added inside RECENT_WINDOW_MS — render it
+  // as "Recently Added" so it compounds cleanly with cuisine (e.g.
+  // "Italian in Recently Added").
+  const areaLabel = activeFilter === '__recent__' ? 'Recently Added' : activeFilter;
   let label = 'All Restaurants';
   if (activeFilter !== 'all' && activeCuisineFilter !== 'all') {
-    label = activeCuisineFilter + ' in ' + activeFilter;
+    label = activeCuisineFilter + ' in ' + areaLabel;
   } else if (activeFilter !== 'all') {
-    label = activeFilter;
+    label = areaLabel;
   } else if (activeCuisineFilter !== 'all') {
     label = activeCuisineFilter;
   }
@@ -1111,7 +1133,14 @@ function updateClearButton() {
 
 function applyFilters() {
   const query = searchInput.value.trim().toLowerCase();
-  let filtered = activeFilter === 'all' ? deduped : deduped.filter(r => r.neighborhood === activeFilter);
+  let filtered;
+  if (activeFilter === 'all') {
+    filtered = deduped;
+  } else if (activeFilter === '__recent__') {
+    filtered = deduped.filter(isRecentlyAdded);
+  } else {
+    filtered = deduped.filter(r => r.neighborhood === activeFilter);
+  }
   if (activeCuisineFilter !== 'all') {
     filtered = filtered.filter(r => r.cuisineCat === activeCuisineFilter);
   }

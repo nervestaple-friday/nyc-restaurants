@@ -23,6 +23,25 @@ A static, single-page map and list of NYC restaurants to scout.
 
 The data array is inlined at the marker `/* %%RESTAURANTS%% */[]` in the template. The generated `index.html` carries a `<!-- GENERATED -->` banner at the top as a reminder.
 
+## Blacklist (do not re-add)
+
+Restaurants Jim has visited and didn't like get a `"blacklisted": true` flag
+(optionally with `"blacklist_reason": "..."`) on their entry in
+`restaurants.json`. The template filters these out at the top of the script so
+they never appear on the map, in the list, or in any counts — but the entry
+*stays in restaurants.json* as a tombstone.
+
+**Future scout cycles must honor this.** When processing a new publication:
+
+1. Look up each candidate by name (and address if the name is ambiguous) in
+   `restaurants.json`.
+2. If a match exists with `blacklisted: true`, **silently skip it** — do not
+   propose it as a new add, do not surface it in the recommendation list, do
+   not even mention it. The flag means "Jim has already decided."
+3. If Jim asks to blacklist a place that's currently live in the list, add
+   `"blacklisted": true` and `"blacklist_reason"` to its existing entry rather
+   than deleting the entry. Run `./build.py`.
+
 ## Sources
 
 Restaurants are added by hand from curated publications. When adding entries, check these regularly and set the `source` field accordingly:
