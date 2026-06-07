@@ -1,5 +1,41 @@
 [
   {
+    "name": "Wild Horses",
+    "address": "327 Bowery, New York, NY 10003",
+    "place_id": null,
+    "lat": 40.7256,
+    "lng": -73.9929,
+    "neighborhood": "Bowery",
+    "cuisine": "Bar / American",
+    "source": "Eater NY / Infatuation / Cititour / Jambands June 2026",
+    "added": "2026-06-07",
+    "note": "\"Cosmic country and Western saloon\" from the Niagara and Lucinda's team. Opened June 2, 2026 at 327 Bowery (street level above Bowery Palace). Mid-century decor, dark wood paneling, velvet paintings, Nudie Suits, Gram Parsons as patron saint. Live events including piano karaoke and two-step nights; Elizabeth Cook and Aaron Lee Tasjan played opening night. Open 7 days from 3pm."
+  },
+  {
+    "name": "Porta Coffee",
+    "address": "596 Washington Ave, Brooklyn, NY 11238",
+    "place_id": null,
+    "lat": 40.6796,
+    "lng": -73.9646,
+    "neighborhood": "Prospect Heights",
+    "cuisine": "Coffee",
+    "source": "Infatuation NYC New Openings June 2026",
+    "added": "2026-06-07",
+    "note": "Second coffee shop from the Dark Necessity team (679 Classon Ave) — sister cafe on Washington Ave between Bergen & Dean, right at the Prospect Heights / Crown Heights border. Espresso program plus pastries."
+  },
+  {
+    "name": "Cookies N' Cream",
+    "address": "685 5th Ave, Brooklyn, NY 11215",
+    "place_id": null,
+    "lat": 40.6610,
+    "lng": -73.9863,
+    "neighborhood": "Park Slope",
+    "cuisine": "Bakery / Dessert",
+    "source": "Park Slope Pulse / Cookies N Cream / Grubhub May 2026",
+    "added": "2026-06-07",
+    "note": "Brooklyn outpost of the soft-baked-cookie shop chain. Opened May 23, 2026 at 685 5th Ave between 20th & 21st St in South Slope, with 23+ cookie varieties; first 75 customers on opening day got complimentary cookies."
+  },
+  {
     "name": "Socceria",
     "address": "46 Norman Ave, Brooklyn, NY 11222",
     "place_id": null,
