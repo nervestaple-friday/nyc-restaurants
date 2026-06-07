@@ -240,6 +240,31 @@
     -webkit-overflow-scrolling: touch;
   }
   .filter-bar::-webkit-scrollbar { display: none; }
+
+  /* Scroll-fade hint for horizontal bars. The Area, Cuisine, and Sort bars all
+     hide their scrollbar (above) — on narrow viewports there's invariably more
+     chips past the visible right edge and no visual cue they can be scrolled.
+     A CSS mask gradient fades the off-screen edge so trailing content reads as
+     "more, that way." JS toggles data-scroll-state on each bar based on
+     scrollLeft, so we only fade an edge that actually has content behind it
+     (no left-fade when scrolled to start, no right-fade when scrolled to end,
+     no fade at all when content fits with no overflow). Scoped via attribute
+     selectors so the default state needs no rules. */
+  .filter-bar[data-scroll-state="start"],
+  .sort-bar[data-scroll-state="start"] {
+    -webkit-mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 28px), transparent 100%);
+            mask-image: linear-gradient(to right, #000 0, #000 calc(100% - 28px), transparent 100%);
+  }
+  .filter-bar[data-scroll-state="end"],
+  .sort-bar[data-scroll-state="end"] {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 100%);
+  }
+  .filter-bar[data-scroll-state="middle"],
+  .sort-bar[data-scroll-state="middle"] {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  }
   .filter-btn {
     flex-shrink: 0;
     padding: 6px 14px;
@@ -969,6 +994,42 @@ function createCuisineBtn(label, value) {
 
 createCuisineBtn('All (' + deduped.length + ')', 'all');
 cuisineCategories.forEach(cat => createCuisineBtn(cat + ' (' + catCounts[cat] + ')', cat));
+
+// Scroll-fade hint wiring. Recomputes a scroll-state class on each of the
+// three horizontal scrollable bars so the CSS mask only fades the edges that
+// actually have content behind them. Re-runs on scroll, resize, and once
+// after initial population — the buttons above are inserted synchronously,
+// but we still defer the first computation by a frame so layout has settled
+// (fonts, dynamic widths). ResizeObserver covers later width/content changes.
+(function wireScrollFadeHints() {
+  const SCROLL_BARS = ['#filters', '#cuisine-filters', '#sort-bar']
+    .map(sel => document.querySelector(sel))
+    .filter(Boolean);
+
+  function updateScrollFade(el) {
+    const overflows = el.scrollWidth > el.clientWidth + 1;
+    if (!overflows) { el.removeAttribute('data-scroll-state'); return; }
+    const atStart = el.scrollLeft <= 1;
+    const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1;
+    el.dataset.scrollState = atStart && atEnd ? '' : atStart ? 'start' : atEnd ? 'end' : 'middle';
+  }
+
+  SCROLL_BARS.forEach(el => {
+    el.addEventListener('scroll', () => updateScrollFade(el), { passive: true });
+  });
+
+  if (typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(entries => entries.forEach(e => updateScrollFade(e.target)));
+    SCROLL_BARS.forEach(el => ro.observe(el));
+  }
+  window.addEventListener('resize', () => SCROLL_BARS.forEach(updateScrollFade), { passive: true });
+
+  // Defer the first measurement to next frame so the chip layout is settled
+  // (font-loaded, computed widths). Without this, scrollWidth can come back
+  // slightly small on first paint and we'd mis-classify a barely-overflowing
+  // bar as fitting cleanly.
+  requestAnimationFrame(() => SCROLL_BARS.forEach(updateScrollFade));
+})();
 
 let searchDebounce;
 searchInput.addEventListener('input', () => {
