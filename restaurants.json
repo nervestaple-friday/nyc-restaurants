@@ -27,7 +27,7 @@
     "name": "Cookies N' Cream",
     "address": "685 5th Ave, Brooklyn, NY 11215",
     "place_id": null,
-    "lat": 40.6610,
+    "lat": 40.661,
     "lng": -73.9863,
     "neighborhood": "Park Slope",
     "cuisine": "Bakery / Dessert",
@@ -2186,5 +2186,77 @@
     "source": "GO Magazine / BKReader / Timeout / Yelp 2026",
     "added": "2026-06-06",
     "note": "Brooklyn's first dedicated queer women's sports bar from couple Claudia Capriles and Alexandra Murray, who graduated from years of pop-ups into a brick-and-mortar at 222 Greene Ave in Clinton Hill. Lots of screens for women's sports, a full kitchen drawing on Murray's Baltimore roots and Capriles's Bolivian upbringing, and a library corner of queer-history and women's-sports books."
+  },
+  {
+    "name": "Komenori",
+    "address": "397 5th Ave, Brooklyn, NY 11215",
+    "place_id": null,
+    "lat": 40.6695,
+    "lng": -73.9839,
+    "neighborhood": "Park Slope",
+    "cuisine": "Japanese / Sushi",
+    "source": "The Infatuation / Park Slope Pulse / WhatNow May 2026",
+    "added": "2026-06-08",
+    "note": "Modern 1,400 sq ft Japanese spot from chef Sean Kang (ex-head chef of DOMODOMO, Michelin Bib Gourmand 2017-23) and restaurateur Ken Lee. Soft-opened May 19, 2026 on 5th Ave between 6th and 7th Streets. $79 set menu (three amuse, wagyu carpaccio, miso black cod, maki, 8pc sushi, dessert) plus a la carte hand rolls, yellowtail ceviche, garlic bacon fried rice. Dinner Tue-Sun."
+  },
+  {
+    "name": "Olmo",
+    "address": "103 Saratoga Ave, Brooklyn, NY 11233",
+    "place_id": null,
+    "lat": 40.6831,
+    "lng": -73.9171,
+    "neighborhood": "Bed-Stuy",
+    "cuisine": "Mexican / Cantina",
+    "source": "Brooklyn Eagle / Brownstoner / The Infatuation / Hoodline 2026",
+    "added": "2026-06-08",
+    "note": "Mexico City-style 'cantina Neoyorquina' from Cosme and Pujol alums, with chef Jael Lopez. 850 sq ft corner spot at Saratoga & Decatur featuring a starry-night mural by Alannah Farrell with jacaranda and elm trees. Cheesy queso fundido, chicharron preparado, agave cocktails, beer-based micheladas. Wed-Sun 5-11pm, plates $10-25, drinks ~$15."
+  },
+  {
+    "name": "Selune",
+    "address": "478 Halsey St, Brooklyn, NY 11233",
+    "place_id": null,
+    "lat": 40.6837,
+    "lng": -73.9361,
+    "neighborhood": "Bed-Stuy",
+    "cuisine": "Oyster Bar / Natural Wine",
+    "source": "Brooklyn Paper / Time Out / Cititour / Patch June 2026",
+    "added": "2026-06-08",
+    "note": "Oyster and natural wine bar from Marc Lioussanne (ex-Eden Rock St. Barths, owner of Bistro Général & Mabel in Paris) and partner Bilen Gaga. Opened in a 100-year-old landmark building at Halsey & Lewis with exposed brick, a hand-stained walnut bar salvaged from prior tenants, sage chairs and traditional Ethiopian art. 120+ natural wines (heavy France), oysters, light seafood, charcuterie. Mon-Sat 5pm-midnight (1am Fri-Sat)."
+  },
+  {
+    "name": "Tsuki",
+    "address": "193 Seventh Ave, New York, NY 10011",
+    "place_id": null,
+    "lat": 40.744,
+    "lng": -73.9986,
+    "neighborhood": "Chelsea",
+    "cuisine": "Japanese / Tasting Menu",
+    "source": "Eater NY / The Infatuation June 2026",
+    "added": "2026-06-08",
+    "note": "Neo-Japanese tasting room that opened June 3, 2026 on 7th Ave between 21st and 22nd Streets. Six-course menu structured around the phases of the moon — quietly themed, seasonally driven and a step away from straight omakase."
+  },
+  {
+    "name": "Conall's Public House",
+    "address": "51 First Ave, New York, NY 10003",
+    "place_id": null,
+    "lat": 40.7251,
+    "lng": -73.9883,
+    "neighborhood": "East Village",
+    "cuisine": "Irish Pub / Sports Bar",
+    "source": "Eater NY / europesays.com June 2026",
+    "added": "2026-06-08",
+    "note": "Irish cocktail sports pub that opened May 14, 2026 on First Ave between 3rd and 4th Streets. Curry chips, bangers and mash, and a full Guinness program in a room built for watching sports — leaning into the East Village's growing Irish-pub revival."
+  },
+  {
+    "name": "Paulie Gee's Slice Shop (East Village)",
+    "address": "100 First Ave, New York, NY 10009",
+    "place_id": null,
+    "lat": 40.7274,
+    "lng": -73.987,
+    "neighborhood": "East Village",
+    "cuisine": "Pizza / Slice Shop",
+    "source": "Eater NY / europesays.com May 2026",
+    "added": "2026-06-08",
+    "note": "Second slice shop from Paulie Gee's, run by longtime employee Justin Vermillion. Opened May 28, 2026 at First Ave & 6th St. Square Detroit-leaning slices, the signature Hellboy with hot honey, and the same vegan-pepperoni offerings that made the Greenpoint original a destination."
   }
 ]
