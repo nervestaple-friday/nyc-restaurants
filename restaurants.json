@@ -115,9 +115,9 @@
     "lng": -73.9853,
     "neighborhood": "Park Slope",
     "cuisine": "Japanese / Sushi",
-    "source": "Infatuation / What Now NY / Park Slope Pulse May 2026",
+    "source": "Infatuation / What Now NY / Park Slope Pulse May–June 2026",
     "added": "2026-05-28",
-    "note": "Modern Japanese sushi/hand-roll spot from chef Sean Kang (ex-head chef DOMODOMO, Michelin Bib Gourmand 2017–23) and operator Ken Lee. Opened late April 2026 in the former Flatiron Steakhouse space. Three courses (hand roll / sushi+hand roll / signature); $79 set menu — wagyu carpaccio, miso black cod, eight pieces of sushi, dessert. À la carte yellowtail ceviche, garlic bacon fried rice."
+    "note": "Modern 1,400 sq ft Japanese sushi/hand-roll spot from chef Sean Kang (ex-head chef DOMODOMO, Michelin Bib Gourmand 2017–23) and operator Ken Lee. Soft-opened May 19, 2026 in the former Flatiron Steakhouse space on 5th Ave between 6th and 7th Streets. Three courses (hand roll / sushi+hand roll / signature); $79 set menu — wagyu carpaccio, miso black cod, eight pieces of sushi, dessert. À la carte yellowtail ceviche, garlic bacon fried rice. Dinner Tue–Sun."
   },
   {
     "name": "Ichie",
@@ -2186,18 +2186,6 @@
     "source": "GO Magazine / BKReader / Timeout / Yelp 2026",
     "added": "2026-06-06",
     "note": "Brooklyn's first dedicated queer women's sports bar from couple Claudia Capriles and Alexandra Murray, who graduated from years of pop-ups into a brick-and-mortar at 222 Greene Ave in Clinton Hill. Lots of screens for women's sports, a full kitchen drawing on Murray's Baltimore roots and Capriles's Bolivian upbringing, and a library corner of queer-history and women's-sports books."
-  },
-  {
-    "name": "Komenori",
-    "address": "397 5th Ave, Brooklyn, NY 11215",
-    "place_id": null,
-    "lat": 40.6695,
-    "lng": -73.9839,
-    "neighborhood": "Park Slope",
-    "cuisine": "Japanese / Sushi",
-    "source": "The Infatuation / Park Slope Pulse / WhatNow May 2026",
-    "added": "2026-06-08",
-    "note": "Modern 1,400 sq ft Japanese spot from chef Sean Kang (ex-head chef of DOMODOMO, Michelin Bib Gourmand 2017-23) and restaurateur Ken Lee. Soft-opened May 19, 2026 on 5th Ave between 6th and 7th Streets. $79 set menu (three amuse, wagyu carpaccio, miso black cod, maki, 8pc sushi, dessert) plus a la carte hand rolls, yellowtail ceviche, garlic bacon fried rice. Dinner Tue-Sun."
   },
   {
     "name": "Olmo",
