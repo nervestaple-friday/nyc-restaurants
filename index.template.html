@@ -500,6 +500,42 @@
     text-transform: uppercase;
   }
 
+  /* Mobile card-tap affordance. Tapping a card used to scrollTo(top) which
+     yanked the tapped card off-screen and broke the user's place in the
+     list. On narrow viewports we now keep the scroll position and surface
+     this pill so the user has an explicit, opt-in path to bring the map
+     into view. Positioned just below the sticky header, right-aligned so
+     it doesn't cover the card text. */
+  .map-link-pill {
+    position: fixed;
+    top: 64px;
+    right: 12px;
+    z-index: 1100;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: inherit;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.18s, transform 0.18s;
+    pointer-events: none;
+    max-width: calc(100vw - 24px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .map-link-pill.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
   @media (min-width: 768px) {
     #map { height: 60vh; }
     .restaurant-list {
@@ -737,6 +773,38 @@ const searchInput = document.getElementById('search');
 const clearBar = document.getElementById('clear-bar');
 const clearBtn = document.getElementById('clear-btn');
 const searchClear = document.getElementById('search-clear');
+
+// Floating pill that appears after a mobile card-tap. The card activate()
+// handler stops scrolling to the map on narrow viewports because that
+// pulled the tapped card off-screen; the pill replaces the lost feedback
+// with an explicit "↑ <Name> on map" affordance. Click → smooth scroll to
+// the top. Auto-dismisses after 5s, or as soon as the user scrolls near
+// the top (the map is back in view, the pill is redundant).
+const mapLinkPill = document.createElement('button');
+mapLinkPill.type = 'button';
+mapLinkPill.className = 'map-link-pill';
+mapLinkPill.setAttribute('aria-label', 'Scroll to map');
+document.body.appendChild(mapLinkPill);
+let mapLinkPillTimer = null;
+function hideMapLinkPill() {
+  mapLinkPill.classList.remove('visible');
+  if (mapLinkPillTimer) { clearTimeout(mapLinkPillTimer); mapLinkPillTimer = null; }
+}
+function showMapLinkPill(label) {
+  mapLinkPill.textContent = '↑ ' + label + ' on map';
+  mapLinkPill.classList.add('visible');
+  if (mapLinkPillTimer) clearTimeout(mapLinkPillTimer);
+  mapLinkPillTimer = setTimeout(hideMapLinkPill, 5000);
+}
+mapLinkPill.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  hideMapLinkPill();
+});
+window.addEventListener('scroll', () => {
+  if (mapLinkPill.classList.contains('visible') && window.scrollY < 120) {
+    hideMapLinkPill();
+  }
+}, { passive: true });
 
 let activeFilter = 'all';
 let activeCuisineFilter = 'all';
@@ -1164,14 +1232,26 @@ function renderList(filtered) {
     const activate = () => {
       const key = card.dataset.key;
       const marker = markers[key];
-      if (marker) {
-        map.flyTo(marker.getLatLng(), 16, { duration: 0.8 });
-        marker.openPopup();
-        // Card activation is the one moment the map intentionally zooms past
-        // the natural fitted view, so surface the Reset control here. Every
-        // other render path (filter change, search) hides it again.
-        resetControl.setHidden(false);
+      if (!marker) return;
+      map.flyTo(marker.getLatLng(), 16, { duration: 0.8 });
+      marker.openPopup();
+      // Card activation is the one moment the map intentionally zooms past
+      // the natural fitted view, so surface the Reset control here. Every
+      // other render path (filter change, search) hides it again.
+      resetControl.setHidden(false);
+      // On wide layouts the grid shows many cards per row and the map sits
+      // at the top of the page — auto-scrolling to top is mildly disruptive
+      // but tolerable, and lets the user immediately see the popup. On
+      // narrow viewports the user only had a single card in view, so
+      // jumping to the map yanks the tapped card off-screen and breaks
+      // their place in the list. Keep the scroll position and surface a
+      // floating "↑ on map" pill (showMapLinkPill) so the user can opt
+      // into seeing the pin.
+      if (window.innerWidth >= 768) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        const r = deduped.find(x => (x.name + (x.address || '')) === key);
+        showMapLinkPill(r ? r.name : 'Pin');
       }
     };
     card.addEventListener('click', activate);
