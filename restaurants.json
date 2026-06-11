@@ -1,5 +1,41 @@
 [
   {
+    "name": "Hidden Rivers",
+    "address": "291 Nevins St, Brooklyn, NY 11217",
+    "place_id": null,
+    "lat": 40.6798,
+    "lng": -73.9837,
+    "neighborhood": "Gowanus",
+    "cuisine": "Bar / Craft Beer",
+    "source": "Park Slope Pulse / Andrea Strong Substack / Instagram June 2026",
+    "added": "2026-06-11",
+    "note": "Craft-beer, wine, and cocktail bar with 12 rotating taps from Smith & Vine owners Patrick Watson and Michele Pravda with partner Dhruv Mohindra. Opened Tuesday June 9, 2026 at 291 Nevins St (between Sackett & Union) in Gowanus. Named for the buried streams that once ran through the neighborhood."
+  },
+  {
+    "name": "Sushi Counter",
+    "address": "452 Dean St, Brooklyn, NY 11217",
+    "place_id": null,
+    "lat": 40.6822,
+    "lng": -73.9744,
+    "neighborhood": "Prospect Heights",
+    "cuisine": "Japanese / Sushi",
+    "source": "Park Slope Pulse / NYC for Free / Instagram June 2026",
+    "added": "2026-06-11",
+    "note": "Australian-style budget sushi-handroll chain's Brooklyn debut on the Prospect Heights / Park Slope border at the corner of Flatbush & Dean. Opened Saturday June 6, 2026 — first 50 customers got a free lunch, complimentary miso soup all day. Hand rolls $5 each or 3 for $12."
+  },
+  {
+    "name": "Apapachó",
+    "address": "191 5th Ave, Brooklyn, NY 11217",
+    "place_id": null,
+    "lat": 40.6770,
+    "lng": -73.9818,
+    "neighborhood": "Park Slope",
+    "cuisine": "Mexican",
+    "source": "Park Slope Walk / Park Slope Pulse / Infatuation June 2026",
+    "added": "2026-06-11",
+    "note": "Mexican restaurant from two former Alma Negra owners — Jimmy Placido and Acencion Mendez (also ex-Fonda) — slated to open mid-June 2026 at 191 5th Ave between Berkeley Pl and Union St in Park Slope. Housemade tortillas, focus on Mexican comfort fare."
+  },
+  {
     "name": "Wild Horses",
     "address": "327 Bowery, New York, NY 10003",
     "place_id": null,
@@ -1225,7 +1261,8 @@
     "cuisine": "Korean",
     "source": "Grub Street April 2026",
     "added": "2026-04-01",
-    "note": "Nami Nori team pop-up. Lines forming before open sign flips. Takeout gimbap ~$12. Runs through May+."
+    "note": "Nami Nori team pop-up. Lines forming before open sign flips. Takeout gimbap ~$12. Runs through May+.",
+    "status": "temporary"
   },
   {
     "name": "Trudie's Tavern",
@@ -1825,7 +1862,8 @@
     "cuisine": "Taiwanese",
     "source": "Greenpointers (Apr 21, 2026)",
     "added": "2026-05-06",
-    "note": "Small Taiwanese breakfast/all-day spot in the former Partea XP space. Fàntuán, dànbǐng, luóbo gāo, egg & cucumber sandwiches, soy milk and pastries. Currently in soft opening."
+    "note": "Small Taiwanese breakfast/all-day spot in the former Partea XP space. Fàntuán, dànbǐng, luóbo gāo, egg & cucumber sandwiches, soy milk and pastries. Currently in soft opening.",
+    "status": "upcoming"
   },
   {
     "name": "Nori Shinn",

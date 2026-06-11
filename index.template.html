@@ -617,19 +617,17 @@ function addedScore(d) {
   return 0;
 }
 
-// Entries that are visible on the map but haven't fully opened yet —
-// soft-opening, friends-and-family, pre-opening previews. Visitors see a
-// "Coming Soon" badge so they don't show up expecting a regular service.
-// Past-tense "Opened on …" notes do NOT belong here.
-const UPCOMING = new Set([
-  "Egg & Soy",
-]);
-
-const TEMPORARY = new Set([
-  "TBD Gimbap",
-]);
-
-const CLOSED = new Set([]);
+// Status now lives on each entry in restaurants.json as a `status` field:
+//   "upcoming"   — visible on the map but not fully open yet (soft-opening,
+//                  friends-and-family, pre-opening previews). Shows a sky-blue
+//                  "Coming Soon" badge so visitors don't show up expecting
+//                  regular service. Past-tense "Opened on …" notes do NOT
+//                  belong here — those are open, not upcoming.
+//   "temporary"  — pop-ups, residencies, limited runs. Orange "Pop-Up" badge.
+//   "closed"     — permanently closed. Greyed-out pin, red "Closed" badge.
+//                  Entries stay in the data so the map still tells the
+//                  neighborhood's story.
+// A missing/null status means "open & operating" (the default).
 
 const HOURS = {
   "Golden Steer at One Fifth": "Tue-Sat 17:00-23:00",
@@ -708,11 +706,16 @@ const HOURS_BY_NAME = Object.fromEntries(
 deduped.forEach(r => { r.hours = HOURS_BY_NAME[normalizeQuotes(r.name)] ?? null; });
 deduped.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
 
+const STATUS_LABELS = {
+  closed: 'Closed',
+  upcoming: 'Coming Soon',
+  temporary: 'Pop-Up',
+};
 function getStatus(r) {
-  if (CLOSED.has(r.name)) return {label: 'Closed', cls: 'closed'};
-  if (UPCOMING.has(r.name)) return {label: 'Coming Soon', cls: 'upcoming'};
-  if (TEMPORARY.has(r.name)) return {label: 'Pop-Up', cls: 'temporary'};
-  return null;
+  const s = r.status;
+  if (!s) return null;
+  const label = STATUS_LABELS[s];
+  return label ? { label, cls: s } : null;
 }
 
 // Highlight entries added within the last RECENT_WINDOW_MS so visitors can
