@@ -1049,6 +1049,11 @@ const catCounts = {};
 deduped.forEach(r => { catCounts[r.cuisineCat] = (catCounts[r.cuisineCat] || 0) + 1; });
 const cuisineCategories = Object.keys(catCounts).sort((a, b) => catCounts[b] - catCounts[a]);
 
+// Map of cuisine chip elements keyed by their filter value ('all', 'Italian',
+// …). Used by updateCuisineChips() to rewrite labels and hide zero-count
+// chips when the active Area filter narrows the underlying scope.
+const cuisineChips = {};
+
 function createCuisineBtn(label, value) {
   const btn = document.createElement('button');
   btn.className = 'filter-btn' + (value === 'all' ? ' active' : '');
@@ -1061,10 +1066,55 @@ function createCuisineBtn(label, value) {
     applyFilters();
   });
   cuisineFilterBar.appendChild(btn);
+  cuisineChips[value] = btn;
 }
 
 createCuisineBtn('All (' + deduped.length + ')', 'all');
 cuisineCategories.forEach(cat => createCuisineBtn(cat + ' (' + catCounts[cat] + ')', cat));
+
+// Population the cuisine bar's counts should reflect — i.e. everything the
+// active Area filter would currently allow through, without the cuisine
+// filter applied. Picking a cuisine narrows further from this scope.
+function areaScopedRestaurants() {
+  if (activeFilter === 'all') return deduped;
+  if (activeFilter === '__recent__') return deduped.filter(isRecentlyAdded);
+  return deduped.filter(r => r.neighborhood === activeFilter);
+}
+
+// Recompute every cuisine chip's count label and hidden state against the
+// area-scoped population, so a user filtering Area=Park Slope no longer sees
+// chips like "American (39)" that refer to all of NYC — they see "American
+// (4)", and any cuisine with no entries in Park Slope is hidden entirely.
+// If the currently-active cuisine chip would be hidden (e.g. they filtered
+// Italian first, then picked an area with no Italian), reset to "All" so the
+// user isn't stuck on an invisible-but-selected filter. Dispatch a scroll
+// event on the bar at the end so the scroll-fade hint recomputes against the
+// new visible-chip set.
+function updateCuisineChips() {
+  const scope = areaScopedRestaurants();
+  const localCounts = {};
+  scope.forEach(r => { localCounts[r.cuisineCat] = (localCounts[r.cuisineCat] || 0) + 1; });
+
+  Object.entries(cuisineChips).forEach(([value, btn]) => {
+    if (value === 'all') {
+      btn.textContent = 'All (' + scope.length + ')';
+      btn.hidden = false;
+      return;
+    }
+    const count = localCounts[value] || 0;
+    btn.textContent = value + ' (' + count + ')';
+    btn.hidden = count === 0;
+  });
+
+  if (activeCuisineFilter !== 'all' && cuisineChips[activeCuisineFilter]?.hidden) {
+    activeCuisineFilter = 'all';
+    Object.entries(cuisineChips).forEach(([value, btn]) => {
+      btn.classList.toggle('active', value === 'all');
+    });
+  }
+
+  cuisineFilterBar.dispatchEvent(new Event('scroll'));
+}
 
 // Scroll-fade hint wiring. Recomputes a scroll-state class on each of the
 // three horizontal scrollable bars so the CSS mask only fades the edges that
@@ -1279,6 +1329,12 @@ function updateClearButton() {
 }
 
 function applyFilters() {
+  // Recompute cuisine chip counts and hidden states under the current Area
+  // filter first — updateCuisineChips() may reset activeCuisineFilter back to
+  // 'all' if the previously-active cuisine no longer has any entries in scope.
+  // That has to happen before we read activeCuisineFilter below.
+  updateCuisineChips();
+
   const query = searchInput.value.trim().toLowerCase();
   let filtered;
   if (activeFilter === 'all') {
