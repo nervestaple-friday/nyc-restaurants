@@ -1355,8 +1355,103 @@ function applyFilters() {
   }
   renderList(sortList(filtered));
   updateClearButton();
+  writeHashState();
 }
 
+// URL hash <-> filter state sync. Mirrors {area, cuisine, q, sort} into
+// window.location.hash so a filtered view is shareable and bookmarkable. The
+// hash is the source of truth on initial load — a deep link like
+// "…#area=Park%20Slope&cuisine=Italian&q=pasta" opens directly into that view.
+// Defaults are omitted from the URL so an unfiltered view stays a clean "/".
+// We use history.replaceState (rather than direct hash assignment) so chip
+// clicks don't fill the back-stack with one entry per tweak, and so we don't
+// trigger our own hashchange listener on every applyFilters() pass. Browser
+// back/forward still navigates between *distinct* shared/loaded states via
+// the hashchange handler below.
+function readHashState() {
+  const h = window.location.hash.replace(/^#/, '');
+  if (!h) return null;
+  const params = new URLSearchParams(h);
+  return {
+    area: params.get('area'),
+    cuisine: params.get('cuisine'),
+    q: params.get('q'),
+    sort: params.get('sort'),
+  };
+}
+
+function writeHashState() {
+  const params = new URLSearchParams();
+  if (activeFilter !== 'all') params.set('area', activeFilter);
+  if (activeCuisineFilter !== 'all') params.set('cuisine', activeCuisineFilter);
+  const q = searchInput.value.trim();
+  if (q) params.set('q', q);
+  if (activeSort !== 'date') params.set('sort', activeSort);
+  const next = params.toString();
+  const target = next ? '#' + next : '';
+  // Only write when the target actually differs from what's already in the
+  // bar — avoids spurious history entries and stops feedback loops where a
+  // hashchange-driven applyFilters() re-emits the same hash.
+  if ((window.location.hash || '') === target) return;
+  const url = window.location.pathname + window.location.search + target;
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState(null, '', url || window.location.pathname);
+  } else {
+    // Legacy fallback. Direct hash assignment fires hashchange, but our
+    // handler is idempotent (re-applying the same state produces the same
+    // hash, which short-circuits above) so the loop terminates after one pass.
+    window.location.hash = next;
+  }
+}
+
+// Apply a parsed hash state to the in-memory filter/search/sort variables
+// AND to the matching DOM affordances (active chip, search input value).
+// Silently ignores values that don't correspond to a real chip — e.g. a
+// deleted neighborhood, an old cuisine bucket, or area=__recent__ when the
+// recency window is empty (no New chip rendered). Leaves the relevant
+// variable at its default in that case so the user lands on the all-data
+// view rather than a stuck-on-invisible filter.
+function applyHashState(state) {
+  if (!state) return;
+  if (state.area) {
+    const btns = Array.from(filterBar.querySelectorAll('.filter-btn'));
+    const btn = btns.find(b => b.dataset.filter === state.area);
+    if (btn) {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = state.area;
+    }
+  }
+  if (state.cuisine) {
+    const btns = Array.from(cuisineFilterBar.querySelectorAll('.filter-btn'));
+    const btn = btns.find(b => b.dataset.filter === state.cuisine);
+    if (btn) {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCuisineFilter = state.cuisine;
+    }
+  }
+  if (state.q) {
+    searchInput.value = state.q;
+    searchClear.classList.toggle('visible', state.q.length > 0);
+  }
+  if (state.sort) {
+    const sortBtns = Array.from(document.querySelectorAll('.sort-btn'));
+    const sortBtn = sortBtns.find(b => b.dataset.sort === state.sort);
+    if (sortBtn) {
+      sortBtns.forEach(b => b.classList.remove('active'));
+      sortBtn.classList.add('active');
+      activeSort = state.sort;
+    }
+  }
+}
+
+window.addEventListener('hashchange', () => {
+  applyHashState(readHashState());
+  applyFilters();
+});
+
+applyHashState(readHashState());
 applyFilters();
 </script>
 </body>
