@@ -27,7 +27,7 @@
     "name": "Apapachó",
     "address": "191 5th Ave, Brooklyn, NY 11217",
     "place_id": null,
-    "lat": 40.6770,
+    "lat": 40.677,
     "lng": -73.9818,
     "neighborhood": "Park Slope",
     "cuisine": "Mexican",
@@ -457,18 +457,6 @@
     "source": "SecretNYC April 2026",
     "added": "2026-04-23",
     "note": "Miami-born smash burger concept. Third NYC location. Fresh Black Angus beef burgers. Opened April 24, 2026."
-  },
-  {
-    "name": "Prince St. Pizza",
-    "address": "407 Court St, Brooklyn, NY 11231",
-    "place_id": null,
-    "lat": 40.6792456,
-    "lng": -73.9972095,
-    "neighborhood": "Carroll Gardens",
-    "cuisine": "Pizza",
-    "source": "SecretNYC April 2026",
-    "added": "2026-04-23",
-    "note": "Cult-favorite slice shop's first Brooklyn expansion. Opened April 23, 2026. First expansion since 2012 Nolita debut."
   },
   {
     "name": "Motek",
@@ -2284,5 +2272,65 @@
     "source": "Eater NY / europesays.com May 2026",
     "added": "2026-06-08",
     "note": "Second slice shop from Paulie Gee's, run by longtime employee Justin Vermillion. Opened May 28, 2026 at First Ave & 6th St. Square Detroit-leaning slices, the signature Hellboy with hot honey, and the same vegan-pepperoni offerings that made the Greenpoint original a destination."
+  },
+  {
+    "name": "Tacos Domingo",
+    "address": "131 First Avenue, New York, NY 10003",
+    "place_id": "tacos-domingo-nyc-2026",
+    "lat": 40.7271,
+    "lng": -73.9845,
+    "neighborhood": "East Village",
+    "cuisine": "Mexican / Tacos",
+    "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
+    "added": "2026-06-17",
+    "note": "Mexico City taqueria import from Tacos Domingo, known for carne asada. Opened June 7 at St. Marks Place (former Brooklyn Dumpling Shop). Menu: carne asada tacos, tacos piratas with melted cheese."
+  },
+  {
+    "name": "Forno D'Oro",
+    "address": "196 Eighth Avenue, New York, NY 10011",
+    "place_id": "forno-doro-nyc-2026",
+    "lat": 40.7462,
+    "lng": -74.0003,
+    "neighborhood": "Chelsea",
+    "cuisine": "Italian / Pizza",
+    "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
+    "added": "2026-06-17",
+    "note": "Roman-style pizza from chef Salvatore Olivella. Opened June 1. Toppings: nduja, soppressata, hot honey, burrata, arugula, bresaola. At West 20th Street."
+  },
+  {
+    "name": "Ngon Vietnamese Kitchen",
+    "address": "85 Second Avenue, New York, NY 10003",
+    "place_id": "ngon-vietnamese-kitchen-nyc-2026",
+    "lat": 40.7254,
+    "lng": -73.9879,
+    "neighborhood": "East Village",
+    "cuisine": "Vietnamese",
+    "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
+    "added": "2026-06-17",
+    "note": "First NYC outpost of acclaimed Dallas restaurant (Michelin Bib Gourmand). Northern Vietnamese cuisine. Opened June 1 at East Fifth Street."
+  },
+  {
+    "name": "Alma Mexicana Restaurante",
+    "address": "242 East Third Street, New York, NY 10009",
+    "place_id": "alma-mexicana-nyc-2026",
+    "lat": 40.7214,
+    "lng": -73.9842,
+    "neighborhood": "East Village",
+    "cuisine": "Mexican",
+    "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
+    "added": "2026-06-17",
+    "note": "Affordable taqueria by owner Luis Cano. Opened June 1 in former Rossy's Bakery space. Tacos 2 for $4.99, quesadillas, burritos, pollo guisado, empanadas. Between Avenues B and C."
+  },
+  {
+    "name": "Wolf Pub Bar",
+    "address": "447 Rogers Avenue, Brooklyn, NY 11225",
+    "place_id": "wolf-pub-bar-brooklyn-2026",
+    "lat": 40.6588,
+    "lng": -73.9509,
+    "neighborhood": "Prospect Lefferts Gardens",
+    "cuisine": "Bar / Cocktails",
+    "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
+    "added": "2026-06-17",
+    "note": "Neon-lit cocktail bar with 1990s aesthetic. Opened June 5. Cassette tapes, group shot-skis, bright blue drinks in fish-shaped glassware. Near Bedford Avenue."
   }
 ]
