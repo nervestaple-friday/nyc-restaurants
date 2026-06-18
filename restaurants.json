@@ -33,8 +33,8 @@
     "cuisine": "Mexican",
     "source": "Park Slope Walk / Park Slope Pulse / Infatuation June 2026",
     "added": "2026-06-11",
-    "note": "Mexican restaurant from two former Alma Negra owners — Jimmy Placido and Acencion Mendez (also ex-Fonda) — slated to open mid-June 2026 at 191 5th Ave between Berkeley Pl and Union St in Park Slope. Housemade tortillas, focus on Mexican comfort fare.",
-    "status": "upcoming"
+    "note": "Mexican restaurant from two former Alma Negra owners — Jimmy Placido and Acencion Mendez (also ex-Fonda) — slated to open mid-June 2026 at 191 5th Ave between Berkeley Pl and Union St in Park Slope. Housemade tortillas, focus on Mexican comfort fare. Confirmed open by mid-June 2026.",
+    "status": "opened"
   },
   {
     "name": "Wild Horses",
@@ -2332,5 +2332,53 @@
     "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
     "added": "2026-06-17",
     "note": "Neon-lit cocktail bar with 1990s aesthetic. Opened June 5. Cassette tapes, group shot-skis, bright blue drinks in fish-shaped glassware. Near Bedford Avenue."
+  },
+  {
+    "name": "Cafe Bar J.F.",
+    "address": "50 Withers Street, Brooklyn, NY 11211",
+    "place_id": "cafe-bar-jf-williamsburg-2026",
+    "lat": 40.7188,
+    "lng": -73.9453,
+    "neighborhood": "Williamsburg",
+    "cuisine": "South American / Tavern",
+    "source": "https://ny.eater.com/restaurant-openings/411355/cafe-bar-j-f-williamsburg-opening-llama-inn-erik-ramirez-juan-correa",
+    "added": "2026-06-18",
+    "note": "South American-leaning tavern from Llama Inn restaurateur Juan Correa and chef Francisco Castillo (initials = J+F). Opened May 13, 2026 in the former Llama Inn space at Withers & Meeker. Menu spans Peru, Chile, Argentina: grilled swordfish with yellow-eyed beans, lobster arroz meloso, pisco sour from Correa family recipe. Wines from Valle de Uco, Pisco Valley, Valle de Itata. Design by Madrid studio Plantea Estudio."
+  },
+  {
+    "name": "Balera",
+    "address": "442 Graham Avenue, Brooklyn, NY 11211",
+    "place_id": "balera-williamsburg-2026",
+    "lat": 40.7152,
+    "lng": -73.9437,
+    "neighborhood": "Williamsburg",
+    "cuisine": "Italian / Pizza",
+    "source": "https://ny.eater.com/maps/best-new-restaurants-brooklyn-heatmap / Eater NY April 2026",
+    "added": "2026-06-18",
+    "note": "Two-floor Williamsburg pizzeria with a disco ball and menu rooted in Piedmont and Emilia-Romagna. Opened April 2026. Thin-crust Roman-style pizza, pastas, and a seafood salad with octopus, shrimp, and potatoes. Live music or DJs on Friday and Saturday evenings. Named after Italian dance halls (balera)."
+  },
+  {
+    "name": "Eleanor's Jour Et Nuit",
+    "address": "398 Ninth Avenue, New York, NY 10001",
+    "place_id": "eleanors-jour-et-nuit-nyc-2026",
+    "lat": 40.7513,
+    "lng": -73.9997,
+    "neighborhood": "Chelsea",
+    "cuisine": "French-inspired / Bar / Cafe",
+    "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
+    "added": "2026-06-18",
+    "note": "Hot new spot from Greek hospitality group Avra; name means \"day and night.\" Sibling of piano bar Le Bar Penelope. Opened June 9, 2026 at W 33rd Street. Daytime cafe setup morphs into cocktails, dinner, and DJs at night. Avra is known for energetic, buzzy venues."
+  },
+  {
+    "name": "Cocotazo",
+    "address": "349 E 109th Street, New York, NY 10029",
+    "place_id": "cocotazo-east-harlem-2026",
+    "lat": 40.794,
+    "lng": -73.94,
+    "neighborhood": "East Harlem",
+    "cuisine": "Puerto Rican",
+    "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
+    "added": "2026-06-18",
+    "note": "Chef Frances Roman’s Puerto Rican pop-up (formerly at Queens Night Market and La Marqueta) found its permanent home in El Barrio in June 2026. Slow-roasted pernil, house-made condensed milk ice cream, bread pudding, fried cod fish fritters, guava barbecue ribs, other family recipes. At First Avenue near E 109th Street."
   }
 ]
