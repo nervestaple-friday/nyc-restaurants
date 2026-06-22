@@ -494,6 +494,7 @@
   .status-upcoming { background: rgba(56, 189, 248, 0.18); color: #38bdf8; }
   .status-temporary { background: rgba(230, 140, 20, 0.15); color: #e68c14; }
   .status-closed { background: rgba(180, 60, 60, 0.15); color: #b43c3c; }
+  .status-coming-soon { background: rgba(168, 85, 247, 0.18); color: #a855f7; }
   .status-new {
     background: rgba(240, 160, 48, 0.18);
     color: var(--accent);
@@ -734,6 +735,14 @@ const NOW_MS = Date.now();
 function isRecentlyAdded(r) {
   const t = addedScore(r.added);
   return t > 0 && (NOW_MS - t) <= RECENT_WINDOW_MS;
+}
+
+// Restaurants without a rating field are pre-opening / newly-opened spots
+// where visitor feedback is not yet available. Show a "Coming Soon" badge
+// so diners know these are unvetted newcomers worth exploring — not
+// established crowd-pleasers.
+function hasNoRating(r) {
+  return r.rating == null || r.rating === '';
 }
 
 function escapeHtml(str) {
@@ -1002,13 +1011,14 @@ mappable.forEach(r => {
   const pst = getStatus(r);
   const statusHtml = pst ? `<span class="status-badge status-${pst.cls}">${pst.label}</span>` : '';
   const newHtml = isRecentlyAdded(r) ? '<span class="status-badge status-new">New</span>' : '';
+  const noRatingHtml = hasNoRating(r) ? '<span class="status-badge status-coming-soon">Coming Soon</span>' : '';
 
   const popup = `<div class="popup-inner">
     <div class="popup-name">${escapeHtml(r.name)}</div>
     <div class="popup-cuisine">${escapeHtml(r.cuisine)} &middot; ${escapeHtml(r.neighborhood)}</div>
     <div class="popup-address">${escapeHtml(r.address)}</div>
     ${hoursHtml}
-    <div class="popup-meta">${newHtml}${statusHtml}${r.source ? `<span>${escapeHtml(r.source)}</span>` : ''}${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
+    <div class="popup-meta">${newHtml}${noRatingHtml}${statusHtml}${r.source ? `<span>${escapeHtml(r.source)}</span>` : ''}${r.added ? `<span>${formatAdded(r.added)}</span>` : ''}</div>
     ${noteHtml}
     <a class="gmaps-btn" href="${gmapsUrl(r)}" target="_blank" rel="noopener">Open in Google Maps</a>
   </div>`;
@@ -1260,6 +1270,7 @@ function renderList(filtered) {
     const st = getStatus(r);
     const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
     const newHtml = isRecentlyAdded(r) ? '<span class="status-badge status-new">New</span>' : '';
+    const noRatingHtml = hasNoRating(r) ? '<span class="status-badge status-coming-soon">Coming Soon</span>' : '';
     const hasCoords = r.lat != null && r.lng != null;
     // Mappable cards behave like buttons (Enter / Space → fly to pin).
     // Unmappable cards are static — render as plain divs with no tab stop so
@@ -1274,6 +1285,7 @@ function renderList(filtered) {
       </div>
       <div class="card-details">
         ${newHtml}
+        ${noRatingHtml}
         ${stHtml}
         <span class="card-neighborhood">${escapeHtml(r.neighborhood)}</span>
         <span class="card-cuisine">${escapeHtml(r.cuisine)}</span>
