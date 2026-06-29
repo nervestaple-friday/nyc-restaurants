@@ -2380,5 +2380,83 @@
     "source": "https://ny.eater.com/news/411872/nyc-new-restaurant-openings-june-2026",
     "added": "2026-06-18",
     "note": "Chef Frances Roman’s Puerto Rican pop-up (formerly at Queens Night Market and La Marqueta) found its permanent home in El Barrio in June 2026. Slow-roasted pernil, house-made condensed milk ice cream, bread pudding, fried cod fish fritters, guava barbecue ribs, other family recipes. At First Avenue near E 109th Street."
+  },
+  {
+    "name": "Capitaine",
+    "address": "684 Greenwich St, New York, NY 10014",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "West Village",
+    "cuisine": "Seafood",
+    "source": "Eater NY / Infatuation / Andrea Strong / What Now NY June 2026",
+    "added": "2026-06-29",
+    "note": "European-inspired seafood tavern from Cody Pruitt and Jacob Cohen (Libertine, Chateau Royale), chef Mike Gutterman, in the former Libertine space at Greenwich & Christopher. Opened June 19, 2026. Raw bar (East Coast oysters, razor clams, shrimp cocktail, Jonah crab claws), lobster roll, steak frites, Wagyu burger, and a throwback caviar sandwich on Japanese milk bread with sauce gribiche. Freezer-cold martinis; sapele wood paneling. Evenings + weekend brunch to start.",
+    "status": "opened"
+  },
+  {
+    "name": "Titán",
+    "address": "5 Front St, Brooklyn, NY 11201",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "DUMBO",
+    "cuisine": "Mexican",
+    "source": "Andrea Strong Substack / Infatuation June 2026",
+    "added": "2026-06-29",
+    "note": "Fine Mexican from Alan Delgado (Los Burritos Juarez) and Ivy Mix (Leyenda, Whoopsie Daisy). Opened June 17, 2026 in DUMBO. Carne asada tacos, cod in masa tempura, aguachiles; bar leans into regional Mexican spirits like charanda and Oaxacan aguardientes with seasonal ingredients. Wed-Sun 5-10pm.",
+    "status": "opened"
+  },
+  {
+    "name": "Unnecessary",
+    "address": "66 Delancey St, New York, NY 10002",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "Lower East Side",
+    "cuisine": "Ice Cream / Dessert",
+    "source": "Infatuation / Eater NY June 2026",
+    "added": "2026-06-29",
+    "note": "Cocktail-inspired soft-serve shop from the Double Chicken Please team, which reimagines cocktails and beverages as ice cream, including alcoholic flavors. Opened June 2026 on the Lower East Side.",
+    "status": "opened"
+  },
+  {
+    "name": "Eldridge Street Store",
+    "address": "111 Eldridge St, New York, NY 10002",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "Lower East Side",
+    "cuisine": "Chinese",
+    "source": "Infatuation June 2026",
+    "added": "2026-06-29",
+    "note": "Late-night Chinese spot on the Lower East Side serving classics like peanut butter noodles and fried chicken wings. Open until 4am Thursday-Saturday. Opened June 2026.",
+    "status": "opened"
+  },
+  {
+    "name": "Noury",
+    "address": "137 Sullivan St, New York, NY 10012",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "Soho",
+    "cuisine": "Japanese / Izakaya",
+    "source": "Resy / Infatuation June 2026",
+    "added": "2026-06-29",
+    "note": "Modern izakaya from the Kiko team (the Hudson Square restaurant that earned two NYT stars and an Esquire Best New Restaurants nod in 2025). 39-seat room at 137 Sullivan St. Multicultural team fusing local ingredients with premium Japanese ones. Opened June 2026.",
+    "status": "opened"
+  },
+  {
+    "name": "Lala Hot Chicken",
+    "address": "249 9th Ave, New York, NY 10001",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "Chelsea",
+    "cuisine": "Korean / Fried Chicken",
+    "source": "Hellgate / Infatuation June 2026",
+    "added": "2026-06-29",
+    "note": "Nashville-Korean fried chicken from chef Jun Park (Chick Chick, Jun Men). Combos around $22 (tenders, sandwiches, sliders); hot chicken sando $16. Five heat levels from zero to Carolina reaper - lighter and more balanced than classic Korean fried chicken. Opened June 2026 in Chelsea.",
+    "status": "opened"
   }
 ]
