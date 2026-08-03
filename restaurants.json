@@ -13,32 +13,6 @@
     "status": "opened"
   },
   {
-    "name": "Dokidoki",
-    "address": "160 Havemeyer St, Brooklyn, NY 11211",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Williamsburg",
-    "cuisine": "Bar / Cocktails",
-    "source": "Greenpointers / Time Out / The Infatuation July 2026",
-    "added": "2026-07-26",
-    "note": "High-energy Japanese-and-Latin standing cocktail bar (Suite S5) inspired by Japan's tachinomi, opened early July 2026. First collaboration between veteran bartenders A-K Hada and Christian 'Suzu' Suzuki-Orellana (PDT, Existing Conditions; Suzu was a Drink Masters semifinalist). Low-proof, high-vibe cocktails with a Latin soundtrack. Walk-in only, daily 4pm–midnight.",
-    "status": "opened"
-  },
-  {
-    "name": "Badshah Social",
-    "address": "212 Flatbush Ave, Brooklyn, NY 11217",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Park Slope",
-    "cuisine": "Indian",
-    "source": "The Infatuation / Park Slope Walk / Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Modern regional-Indian street-food spot from chef Abhishek Sharma, opened July 7, 2026 at 212 Flatbush Ave at Dean St. Sharma spent six months traveling India studying regional cuisines; signatures include Paneer & Fig Tikki, Coconut Fried Chicken, Mangalorean Branzino, and Lamb Shank Nihari. Weekdays 5–10pm, weekends 5–11pm.",
-    "status": "opened"
-  },
-  {
     "name": "Marbré",
     "address": "186 5th Ave, Brooklyn, NY 11217",
     "place_id": null,
@@ -49,123 +23,6 @@
     "source": "The Infatuation July 2026",
     "added": "2026-07-26",
     "note": "Specialized madeleine bakery/café that opened July 2026 on 5th Ave in Park Slope. Delicate flavors like honey orange blossom and rose cardamom.",
-    "status": "opened"
-  },
-  {
-    "name": "Lileo",
-    "address": "86 5th Ave, Brooklyn, NY 11217",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Park Slope",
-    "cuisine": "Georgian",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Georgian restaurant serving scratch-made Caucasian classics — walnut-stuffed eggplant rolls, cheese-and-spinach pies, khachapuri, and khinkali soup dumplings. Opened July 2026 at 86 5th Ave; open daily.",
-    "status": "opened"
-  },
-  {
-    "name": "Khob Khun Cafe & Bistro",
-    "address": "226 Atlantic Ave, Brooklyn, NY 11201",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Cobble Hill",
-    "cuisine": "Thai",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Thai café and bistro on Atlantic Ave blending classic Thai street food with a specialty daytime beverage program. Opened July 2026.",
-    "status": "opened"
-  },
-  {
-    "name": "Part Two Cafe and Bakery",
-    "address": "406 Marcus Garvey Blvd, Brooklyn, NY 11216",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Bed-Stuy",
-    "cuisine": "Bakery / Café",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Neighborhood bakery-café at 406 Marcus Garvey Blvd (between Halsey and Macon) serving coffee, fresh bread, pastries, and sandwiches. Opened July 2026; open 7 days 7:30am–5pm.",
-    "status": "opened"
-  },
-  {
-    "name": "Saison Bakery",
-    "address": "434 Hancock St, Brooklyn, NY 11216",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Bed-Stuy",
-    "cuisine": "Bakery",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Artisanal bakery at 434 Hancock St in Bed-Stuy. Opened July 2026; open Thursday–Sunday 8:30am until sold out.",
-    "status": "opened"
-  },
-  {
-    "name": "Harbour Kafe",
-    "address": "172 Borinquen Pl, Brooklyn, NY 11211",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Williamsburg",
-    "cuisine": "Hong Kong Café",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Hong Kong-style café serving craft coffee, HK milk tea, and iced fruit blends. Opened July 2026 at 172 Borinquen Place in Williamsburg.",
-    "status": "opened"
-  },
-  {
-    "name": "The Red Hook Focacceria",
-    "address": "421 Van Brunt St, Brooklyn, NY 11231",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Red Hook",
-    "cuisine": "Bakery / Focacceria",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Focacceria and bakery on Van Brunt St making fresh handmade breads. Opened July 2026; weekends (Sat–Sun) from 9am.",
-    "status": "opened"
-  },
-  {
-    "name": "Red Hook Barrel Yard",
-    "address": "185 Van Dyke St, Brooklyn, NY 11231",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Red Hook",
-    "cuisine": "Coastal New American / Winery",
-    "source": "Time Out / Brooklyn Eagle / The Infatuation 2026",
-    "added": "2026-07-26",
-    "note": "40,000 sq ft waterfront booze emporium that launched May 9, 2026 at 185 Van Dyke St, uniting Red Hook Winery, Red Hook Cidery, and a soon-to-open Red Hook Distillery (with the Valentino Craft Cocktail Bar). Multiple patios with Manhattan and Statue of Liberty views; NY-farmer-sourced wine, cider, and spirits. Coastal New American menu via a 'Lundy's on the Waterfront' partnership. Open daily 12–10pm.",
-    "status": "opened"
-  },
-  {
-    "name": "Yellow Pear Coffee",
-    "address": "384 7th Ave, Brooklyn, NY 11215",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Park Slope",
-    "cuisine": "Coffee / Asian Bakery",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "Asian bakery and café on 7th Ave in Park Slope. Opened July 2026.",
-    "status": "opened"
-  },
-  {
-    "name": "Pizza 4P's",
-    "address": "50 Norman Ave, Brooklyn, NY 11222",
-    "place_id": null,
-    "lat": null,
-    "lng": null,
-    "neighborhood": "Greenpoint",
-    "cuisine": "Japanese-Italian Pizza",
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-26",
-    "note": "US flagship of the cult Vietnam-born Japanese-Italian pizza brand, opened July 2026 in the 50 Norman complex in Greenpoint. Known for house-made burrata and umami-forward wood-fired pies.",
     "status": "opened"
   },
   {
@@ -2752,9 +2609,9 @@
     "lng": -73.9756825,
     "neighborhood": "Park Slope",
     "cuisine": "Indian",
-    "source": "The Infatuation / Park Slope Walk July 2026",
+    "source": "The Infatuation / Park Slope Walk July 2026 / Park Slope Walk / Brooklyn Bridge Parents July 2026",
     "added": "2026-07-12",
-    "note": "Modern Indian restaurant-and-lounge hybrid from restaurateur Sharma, who previously ran the Badshah restaurants in Manhattan and runs Swagat on the UWS. Playful, hip Brooklyn debut on Flatbush Ave — crispy spinach chaat, Amritsari fish with housemade tartar sauce, lamb shank nihari; small plates and cocktails late into the night. Newly added to The Infatuation's July 2026 openings.",
+    "note": "Modern regional-Indian street-food spot from chef Abhishek Sharma, opened July 7, 2026 at 212 Flatbush Ave at Dean St. Sharma spent six months traveling India studying regional cuisines; signatures include Paneer & Fig Tikki, Coconut Fried Chicken, Mangalorean Branzino, and Lamb Shank Nihari. Weekdays 5–10pm, weekends 5–11pm.",
     "status": "opened"
   },
   {
@@ -2764,8 +2621,8 @@
     "lat": 40.7248634,
     "lng": -73.9532003,
     "neighborhood": "Greenpoint",
-    "cuisine": "Pizza",
-    "source": "The Infatuation / Greenpointers July 2026",
+    "cuisine": "Japanese-Italian Pizza",
+    "source": "The Infatuation / Greenpointers July 2026 / Brooklyn Bridge Parents July 2026",
     "added": "2026-07-12",
     "note": "US debut of the Vietnamese-founded, Japanese-owned Pizza 4P's chain (40+ locations across Vietnam, Cambodia, India, Indonesia and Japan). Opened July 2026 in the Greenpoint retail complex at 50 Norman Ave alongside Dashi Okume and Cafe O'Te. House-made cheeses and locally sourced ingredients, with creative pies like smoked duck and Meyer lemon burrata.",
     "status": "opened"
@@ -2830,9 +2687,9 @@
     "lng": -73.9577638,
     "neighborhood": "Williamsburg",
     "cuisine": "Bar / Cocktails",
-    "source": "The Infatuation July 2026",
+    "source": "The Infatuation July 2026 / Greenpointers / Time Out",
     "added": "2026-07-12",
-    "note": "Latin-Japanese cocktail bar collaboration in Williamsburg. Low-ABV options and creative drinks like a cafecito with shochu. Newly added to The Infatuation's July 2026 openings.",
+    "note": "High-energy Japanese-and-Latin standing cocktail bar (Suite S5) inspired by Japan's tachinomi, opened early July 2026. First collaboration between veteran bartenders A-K Hada and Christian 'Suzu' Suzuki-Orellana (PDT, Existing Conditions; Suzu was a Drink Masters semifinalist). Low-proof, high-vibe cocktails with a Latin soundtrack. Walk-in only, daily 4pm–midnight.",
     "status": "opened"
   },
   {
@@ -2858,7 +2715,7 @@
     "cuisine": "Georgian",
     "source": "The Infatuation / Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
-    "note": "Georgian cafe and wine bar on 5th Ave serving Caucasian classics — cheese-filled khachapuri, khinkali soup dumplings, Georgian wine, and pastries. Open daily. Among the July 2026 just-added Brooklyn openings.",
+    "note": "Georgian restaurant serving scratch-made Caucasian classics — walnut-stuffed eggplant rolls, cheese-and-spinach pies, khachapuri, and khinkali soup dumplings. Opened July 2026 at 86 5th Ave; open daily.",
     "status": "opened"
   },
   {
@@ -2871,7 +2728,7 @@
     "cuisine": "Thai",
     "source": "Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
-    "note": "Thai cafe and bistro on Atlantic Ave blending street-food favorites with a specialty daytime drinks program. Now open.",
+    "note": "Thai café and bistro on Atlantic Ave blending classic Thai street food with a specialty daytime beverage program. Opened July 2026.",
     "status": "opened"
   },
   {
@@ -2884,20 +2741,20 @@
     "cuisine": "Bakery",
     "source": "Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
-    "note": "Artisanal bakery on Hancock St, open Thursday–Sunday 8:30am until sold out. One of a pair of new Bed-Stuy bakeries this summer.",
+    "note": "Artisanal bakery at 434 Hancock St in Bed-Stuy. Opened July 2026; open Thursday–Sunday 8:30am until sold out.",
     "status": "opened"
   },
   {
     "name": "Part Two Cafe and Bakery",
-    "address": "406 Marcus Garvey Blvd, Brooklyn, NY 11221",
+    "address": "406 Marcus Garvey Blvd, Brooklyn, NY 11216",
     "place_id": null,
     "lat": 40.6829411,
     "lng": -73.9382832,
     "neighborhood": "Bed-Stuy",
-    "cuisine": "Bakery / Cafe",
+    "cuisine": "Bakery / Café",
     "source": "Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
-    "note": "All-day cafe and bakery on Marcus Garvey Blvd, open 7 days 7:30am–5pm. Now open.",
+    "note": "Neighborhood bakery-café at 406 Marcus Garvey Blvd (between Halsey and Macon) serving coffee, fresh bread, pastries, and sandwiches. Opened July 2026; open 7 days 7:30am–5pm.",
     "status": "opened"
   },
   {
@@ -2907,10 +2764,10 @@
     "lat": 40.7106586,
     "lng": -73.9533123,
     "neighborhood": "Williamsburg",
-    "cuisine": "Hong Kong Cafe",
-    "source": "Brooklyn Bridge Parents / SecretNYC July 2026",
+    "cuisine": "Hong Kong Café",
+    "source": "Brooklyn Bridge Parents / SecretNYC July 2026 / Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
-    "note": "Family-run Hong Kong-style cafe on Borinquen Place — craft coffee, HK-style milk tea, sponge cake, and iced fruit blends. Soft-opening underway July 2026.",
+    "note": "Hong Kong-style café serving craft coffee, HK milk tea, and iced fruit blends. Opened July 2026 at 172 Borinquen Place in Williamsburg.",
     "status": "opened"
   },
   {
@@ -2962,7 +2819,7 @@
     "cuisine": "Coffee / Asian Bakery",
     "source": "Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
-    "note": "Asian bakery and coffee shop on 7th Ave in Park Slope. Now open.",
+    "note": "Asian bakery and café on 7th Ave in Park Slope. Opened July 2026.",
     "status": "opened"
   },
   {
@@ -2972,23 +2829,23 @@
     "lat": 40.675052,
     "lng": -74.015452,
     "neighborhood": "Red Hook",
-    "cuisine": "Bakery",
+    "cuisine": "Bakery / Focacceria",
     "source": "Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
-    "note": "Focaccia-focused bakery on Van Brunt St, open weekends Saturday–Sunday 9am until sold out. Now open.",
+    "note": "Focacceria and bakery on Van Brunt St making fresh handmade breads. Opened July 2026; weekends (Sat–Sun) from 9am.",
     "status": "opened"
   },
   {
     "name": "Red Hook Barrel Yard",
-    "address": "Red Hook, Brooklyn, NY 11231",
+    "address": "185 Van Dyke St, Brooklyn, NY 11231",
     "place_id": null,
-    "lat": 40.6751032,
-    "lng": -74.0095841,
+    "lat": 40.6775944,
+    "lng": -74.0182684,
     "neighborhood": "Red Hook",
-    "cuisine": "Coastal New American",
-    "source": "Brooklyn Bridge Parents July 2026",
+    "cuisine": "Coastal New American / Winery",
+    "source": "Brooklyn Bridge Parents July 2026 / Time Out / Brooklyn Eagle / The Infatuation 2026",
     "added": "2026-07-19",
-    "note": "40,000 sq ft Red Hook waterfront venue housing a winery, cidery, and distillery, with a raw bar and coastal New American seafood menu. Open daily 12–10pm. Exact street address to confirm.",
+    "note": "40,000 sq ft waterfront booze emporium that launched May 9, 2026 at 185 Van Dyke St, uniting Red Hook Winery, Red Hook Cidery, and a soon-to-open Red Hook Distillery (with the Valentino Craft Cocktail Bar). Multiple patios with Manhattan and Statue of Liberty views; NY-farmer-sourced wine, cider, and spirits. Coastal New American menu via a 'Lundy's on the Waterfront' partnership. Open daily 12–10pm.",
     "status": "opened"
   },
   {
