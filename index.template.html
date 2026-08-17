@@ -671,32 +671,13 @@ function addedScore(d) {
 //                  neighborhood's story.
 // A missing/null status means "open & operating" (the default).
 
-const HOURS = {
-  "Golden Steer at One Fifth": "Tue-Sat 17:00-23:00",
-  "Stars": "Tue-Sun 17:00-23:00",
-  "Odo East Village": "Wed-Sun 17:00-22:00",
-  "C\u00f4 L\u1ea1c": "Tue-Sat 17:00-22:00",
-  "TBD Gimbap": "Wed-Sun 11:00-15:00",
-  "Beto\u2019s Carnitas & Guisados": "Tue-Sun 11:00-20:00",
-  "Bar Chucho": "Tue-Sun 16:00-0:00",
-  "Strange Delight": "Tue-Sun 16:00-23:00",
-  "FOLK": "Tue-Sun 17:00-22:30",
-  "Alma Negra": "Mon-Sun 12:00-22:00",
-  "La Fleur Rouge": "Tue-Sat 17:00-22:00",
-  "Sailor": "Tue-Sun 17:00-23:00",
-  "Little Falcon": "Tue-Sat 17:30-22:30",
-  "Evelina": "Tue-Sun 17:00-22:30",
-  "Miss Ada": "Tue-Sun 17:30-22:30",
-  "GERTIE": "Mon-Sun 8:00-16:00",
-  "Leland Eating and Drinking House": "Tue-Sun 17:00-23:00",
-  "Sofreh": "Tue-Sun 17:00-22:00",
-  "Cafe Mado": "Wed-Sun 10:00-22:00",
-  "Zimmi\u2019s": "Tue-Sat 17:30-23:00",
-  "Lei": "Tue-Sun 17:00-0:00",
-  "Kabawa": "Wed-Sun 17:00-22:00",
-  "DOLORES": "Tue-Sun 11:00-22:00",
-  "Entre Nous": "Tue-Sun 16:00-23:00"
-};
+// Opening hours live on each entry in restaurants.json as an `hours` string
+// ("Tue-Sat 17:00-22:00", "Mon-Sun until 4:00", \u2026), rendered verbatim on cards
+// and in popups. They used to sit in a HOURS object keyed by restaurant name
+// right here, which meant a rename or a blacklisting silently orphaned the
+// hours (the entry for the since-blacklisted Alma Negra had been dead for
+// weeks and nothing surfaced it). A missing/null `hours` renders nothing \u2014
+// most entries don't have hours yet.
 
 function cuisineCategory(cuisine) {
   const c = (cuisine || '').toLowerCase();
@@ -745,11 +726,6 @@ const deduped = restaurants.filter(r => {
 });
 
 deduped.sort((a, b) => addedScore(b.added) - addedScore(a.added));
-const normalizeQuotes = s => s.replace(/’/g, "'");
-const HOURS_BY_NAME = Object.fromEntries(
-  Object.entries(HOURS).map(([k, v]) => [normalizeQuotes(k), v])
-);
-deduped.forEach(r => { r.hours = HOURS_BY_NAME[normalizeQuotes(r.name)] ?? null; });
 deduped.forEach(r => { r.cuisineCat = cuisineCategory(r.cuisine); });
 
 const STATUS_LABELS = {
