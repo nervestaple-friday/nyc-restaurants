@@ -5,6 +5,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NYC Restaurant Map</title>
+<!-- Favicon: the app's orange accent plate with a fork and knife, inlined as an
+     SVG data URI so index.html stays a single self-contained file (no extra
+     asset to deploy alongside it on GitHub Pages). Geometry is tuned to stay
+     legible at 16px: two thick tines rather than three, and a knife that
+     tapers from tip to blade to handle so it does not read as a second fork. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23f0a030'/%3E%3Cg%20stroke='%23121212'%20stroke-linecap='round'%20fill='none'%3E%3Cpath%20d='M8.85%204.5v9.5'%20stroke-width='3'/%3E%3Cpath%20d='M14.05%204.5v9.5'%20stroke-width='3'/%3E%3Cpath%20d='M11.45%2012.5v15'%20stroke-width='3.4'/%3E%3Cpath%20d='M22.55%204.2v4.3'%20stroke-width='2.4'/%3E%3Cpath%20d='M22.55%207v10'%20stroke-width='4.2'/%3E%3Cpath%20d='M22.55%2016v11.9'%20stroke-width='2.6'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <style>
