@@ -35,6 +35,46 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Visually-hidden text that stays in the accessibility tree — used for the
+     search field's label and any control whose only visible affordance is an
+     icon or a colour. Clip-based rather than display:none, which would drop
+     it from screen readers entirely. */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Skip link: the map sits between the header and the list, and Leaflet puts
+     every visible marker in the tab order, so a keyboard user would otherwise
+     tab through ~290 pins before reaching the first card. Hidden until it
+     takes focus, then it drops into the top-left corner above the header. */
+  .skip-link {
+    position: absolute;
+    left: 8px;
+    top: -60px;
+    z-index: 2000;
+    background: var(--accent);
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 0 0 8px 8px;
+    text-decoration: none;
+    transition: top 0.15s;
+  }
+  .skip-link:focus {
+    top: 0;
+    outline: 2px solid var(--text);
+    outline-offset: 2px;
+  }
+
   header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
@@ -106,6 +146,12 @@
   }
   .leaflet-control-reset[hidden] { display: none; }
   .leaflet-control-reset .reset-icon { font-size: 14px; line-height: 1; }
+
+  .leaflet-marker-icon:focus-visible {
+    outline: 3px solid var(--text);
+    outline-offset: 3px;
+    border-radius: 50%;
+  }
 
   .leaflet-popup-content-wrapper {
     background: var(--surface) !important;
@@ -206,6 +252,8 @@
   }
   .search-input::placeholder { color: var(--text-dim); }
   .search-input:focus { border-color: var(--accent); }
+  .search-input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .search-clear:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .search-clear {
     position: absolute;
     right: 8px;
@@ -283,6 +331,12 @@
     font-family: inherit;
   }
   .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn:focus-visible,
+  .sort-btn:focus-visible,
+  .clear-filters-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
   .filter-btn.active {
     background: var(--accent);
     color: #000;
@@ -529,8 +583,9 @@
     cursor: pointer;
     opacity: 0;
     transform: translateY(-8px);
-    transition: opacity 0.18s, transform 0.18s;
+    transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
     pointer-events: none;
+    visibility: hidden;
     max-width: calc(100vw - 24px);
     overflow: hidden;
     text-overflow: ellipsis;
@@ -540,6 +595,7 @@
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
   }
 
   /* Back-to-top button. The list runs to ~200 cards, so once a user has
@@ -570,8 +626,9 @@
     justify-content: center;
     opacity: 0;
     transform: translateY(8px);
-    transition: opacity 0.18s, transform 0.18s, background 0.15s;
+    transition: opacity 0.18s, transform 0.18s, background 0.15s, visibility 0.18s;
     pointer-events: none;
+    visibility: hidden;
   }
   .back-to-top:hover { background: var(--accent-hover); }
   .back-to-top:focus-visible {
@@ -582,6 +639,7 @@
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
   }
 
   @media (min-width: 768px) {
@@ -614,37 +672,67 @@
       padding-bottom: 8px;
     }
   }
+
+  /* Respect the OS "reduce motion" setting: strip the chip/card transitions
+     and stop the page from animating. The JS half of this lives in
+     PREFERS_REDUCED_MOTION, which swaps smooth scrolls for instant jumps and
+     map flyTo() for setView(). */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#list-header">Skip to restaurant list</a>
 
 <header>
   <h1>NYC Restaurants</h1>
   <div class="subtitle" id="count"></div>
 </header>
 
-<div id="map"></div>
+<main id="main">
 
-<div class="search-bar">
+<!-- The map is a region rather than a bare div so screen-reader users get a
+     landmark they can jump over. Its markers duplicate the card list below,
+     which is the accessible equivalent — hence the description. -->
+<div id="map" role="region" aria-label="Map of NYC restaurants" aria-describedby="map-desc"></div>
+<p id="map-desc" class="sr-only">Interactive map. Every pin also appears as a card in the restaurant list below.</p>
+
+<div class="search-bar" role="search">
   <div class="search-wrap">
-    <span class="search-icon">&#128269;</span>
+    <span class="search-icon" aria-hidden="true">&#128269;</span>
+    <label class="sr-only" for="search">Search restaurants by name, cuisine, neighborhood, address, or note</label>
     <input class="search-input" id="search" type="text" placeholder="Search by name, cuisine, neighborhood, address, or note...">
     <button class="search-clear" id="search-clear" type="button" aria-label="Clear search">&times;</button>
   </div>
 </div>
-<div class="filter-bar" id="filters"><span class="filter-label">Area</span></div>
-<div class="filter-bar" id="cuisine-filters"><span class="filter-label">Cuisine</span></div>
+<!-- Each bar is a labelled group so a screen reader announces "Area, group"
+     before reading the chips; the chips themselves carry aria-pressed, kept in
+     sync with the .active class by syncPressedState(). -->
+<div class="filter-bar" id="filters" role="group" aria-labelledby="area-label"><span class="filter-label" id="area-label">Area</span></div>
+<div class="filter-bar" id="cuisine-filters" role="group" aria-labelledby="cuisine-label"><span class="filter-label" id="cuisine-label">Cuisine</span></div>
 <div class="clear-filters-bar" id="clear-bar"><button class="clear-filters-btn" id="clear-btn">Clear filters</button></div>
 
-<div class="sort-bar" id="sort-bar">
-  <span class="filter-label">Sort</span>
-  <button class="sort-btn active" data-sort="date">Recently Added</button>
-  <button class="sort-btn" data-sort="alpha">A&ndash;Z</button>
-  <button class="sort-btn" data-sort="neighborhood">Neighborhood</button>
+<div class="sort-bar" id="sort-bar" role="group" aria-labelledby="sort-label">
+  <span class="filter-label" id="sort-label">Sort</span>
+  <button class="sort-btn active" type="button" data-sort="date">Recently Added</button>
+  <button class="sort-btn" type="button" data-sort="alpha">A&ndash;Z</button>
+  <button class="sort-btn" type="button" data-sort="neighborhood">Neighborhood</button>
 </div>
 
-<div class="list-header" id="list-header">All Restaurants</div>
-<div class="restaurant-list" id="list"></div>
+<!-- aria-live: renderList() rewrites this heading with the active view and the
+     result count ("Italian in Park Slope (4)"), so filtering announces its
+     outcome to a screen reader without stealing focus. -->
+<h2 class="list-header" id="list-header" tabindex="-1" aria-live="polite">All Restaurants</h2>
+<div class="restaurant-list" id="list" role="group" aria-labelledby="list-header"></div>
+
+</main>
 
 <script>
 const rawRestaurants = /* %%RESTAURANTS%% */[];
@@ -763,6 +851,32 @@ function isRecentlyAdded(r) {
   return t > 0 && (NOW_MS - t) <= RECENT_WINDOW_MS;
 }
 
+// Motion preference. Read once at load — a mid-session OS toggle is rare
+// enough that re-querying on every animation isn't worth the listener. Drives
+// three things: page scrolls (smooth vs instant), map camera moves (flyTo vs
+// setView), and — via the matching CSS media query — every transition.
+const PREFERS_REDUCED_MOTION = window.matchMedia
+  ? window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  : false;
+const SCROLL_BEHAVIOR = PREFERS_REDUCED_MOTION ? 'auto' : 'smooth';
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: SCROLL_BEHAVIOR });
+}
+
+// Map camera helpers. Under reduced motion the animated flight is replaced by
+// an instant jump to the same destination, so nothing about where the map ends
+// up changes — only how it gets there.
+function mapFlyTo(latlng, zoom, opts) {
+  if (PREFERS_REDUCED_MOTION) { map.setView(latlng, zoom, { animate: false }); return; }
+  map.flyTo(latlng, zoom, opts);
+}
+
+function mapFlyToBounds(bounds, opts) {
+  if (PREFERS_REDUCED_MOTION) { map.fitBounds(bounds, Object.assign({}, opts, { animate: false })); return; }
+  map.flyToBounds(bounds, opts);
+}
+
 function escapeHtml(str) {
   if (str == null) return '';
   return String(str)
@@ -834,7 +948,7 @@ function showMapLinkPill(label) {
   mapLinkPillTimer = setTimeout(hideMapLinkPill, 5000);
 }
 mapLinkPill.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollToTop();
   hideMapLinkPill();
 });
 window.addEventListener('scroll', () => {
@@ -855,7 +969,7 @@ backToTop.setAttribute('aria-label', 'Back to top');
 backToTop.innerHTML = '&#8593;';
 document.body.appendChild(backToTop);
 backToTop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  scrollToTop();
 });
 window.addEventListener('scroll', () => {
   backToTop.classList.toggle('visible', window.scrollY > BACK_TO_TOP_THRESHOLD);
@@ -986,7 +1100,7 @@ function fitMapToFiltered() {
     resetControl.setHidden(true);
     return;
   }
-  map.flyToBounds(currentFilteredBounds, { padding: [30, 30], maxZoom: 16, duration: 0.6 });
+  mapFlyToBounds(currentFilteredBounds, { padding: [30, 30], maxZoom: 16, duration: 0.6 });
   resetControl.setHidden(true);
 }
 
@@ -1025,7 +1139,7 @@ function buildPinIcon(statusCls) {
   const c = PIN_COLORS[statusCls] || PIN_COLORS.default;
   return L.divIcon({
     className: '',
-    html: `<div style="width:28px;height:28px;background:${c.bg};border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:${c.opacity};">${c.emoji}</div>`,
+    html: `<div aria-hidden="true" style="width:28px;height:28px;background:${c.bg};border:2px solid #fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:14px;opacity:${c.opacity};">${c.emoji}</div>`,
     iconSize: [28, 28],
     iconAnchor: [14, 14],
     popupAnchor: [0, -16]
@@ -1059,9 +1173,22 @@ mappable.forEach(r => {
   </div>`;
 
   const icon = pinIconFor(pst ? pst.cls : 'default');
-  const marker = L.marker([r.displayLat, r.displayLng], { icon })
+  const marker = L.marker([r.displayLat, r.displayLng], { icon, title: r.name })
     .bindPopup(popup, { maxWidth: 280 })
     .addTo(map);
+  // Leaflet puts markers in the tab order but a divIcon carries no accessible
+  // name — a screen reader would announce ~290 anonymous buttons. Label the
+  // element on every 'add', not once at creation: Leaflet rebuilds the icon
+  // element each time a marker is re-added, which happens on every filter pass.
+  const markerLabel = `${r.name}, ${r.cuisine} in ${r.neighborhood}${pst ? ' — ' + pst.label : ''}`;
+  const labelMarkerEl = () => {
+    const el = marker.getElement();
+    if (!el) return;
+    el.setAttribute('role', 'button');
+    el.setAttribute('aria-label', markerLabel);
+  };
+  marker.on('add', labelMarkerEl);
+  labelMarkerEl();
   markers[r.name + r.address] = marker;
 });
 
@@ -1071,6 +1198,7 @@ deduped.forEach(r => { neighborhoodCounts[r.neighborhood] = (neighborhoodCounts[
 
 function createFilterBtn(label, value) {
   const btn = document.createElement('button');
+  btn.type = 'button';
   btn.className = 'filter-btn' + (value === 'all' ? ' active' : '');
   btn.textContent = label;
   btn.dataset.filter = value;
@@ -1105,6 +1233,7 @@ const cuisineChips = {};
 
 function createCuisineBtn(label, value) {
   const btn = document.createElement('button');
+  btn.type = 'button';
   btn.className = 'filter-btn' + (value === 'all' ? ' active' : '');
   btn.textContent = label;
   btn.dataset.filter = value;
@@ -1284,9 +1413,9 @@ function renderList(filtered) {
   if (visibleKey !== prevVisibleKey && !isInitialRender) {
     if (visibleCoords.length === 1) {
       const r0 = visibleCoords[0];
-      map.flyTo([r0.displayLat ?? r0.lat, r0.displayLng ?? r0.lng], 16, { duration: 0.6 });
+      mapFlyTo([r0.displayLat ?? r0.lat, r0.displayLng ?? r0.lng], 16, { duration: 0.6 });
     } else if (visibleCoords.length > 1) {
-      map.flyToBounds(currentFilteredBounds, { padding: [30, 30], maxZoom: 16, duration: 0.6 });
+      mapFlyToBounds(currentFilteredBounds, { padding: [30, 30], maxZoom: 16, duration: 0.6 });
     }
   }
   prevVisibleKey = visibleKey;
@@ -1294,7 +1423,7 @@ function renderList(filtered) {
   updateResetButtonVisibility();
 
   if (filtered.length === 0) {
-    listEl.innerHTML = `<div class="empty-state">
+    listEl.innerHTML = `<div class="empty-state" role="status">
       <div class="empty-state-title">No restaurants found</div>
       <div>Try adjusting your search or filters</div>
     </div>`;
@@ -1338,7 +1467,7 @@ function renderList(filtered) {
       const key = card.dataset.key;
       const marker = markers[key];
       if (!marker) return;
-      map.flyTo(marker.getLatLng(), 16, { duration: 0.8 });
+      mapFlyTo(marker.getLatLng(), 16, { duration: 0.8 });
       marker.openPopup();
       // Card activation is the one moment the map intentionally zooms past
       // the natural fitted view, so surface the Reset control here. Every
@@ -1353,7 +1482,7 @@ function renderList(filtered) {
       // floating "↑ on map" pill (showMapLinkPill) so the user can opt
       // into seeing the pin.
       if (window.innerWidth >= 768) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        scrollToTop();
       } else {
         const r = deduped.find(x => (x.name + (x.address || '')) === key);
         showMapLinkPill(r ? r.name : 'Pin');
@@ -1369,6 +1498,15 @@ function renderList(filtered) {
         activate();
       }
     });
+  });
+}
+
+// Mirror the visual .active state onto aria-pressed for every chip. Derived
+// rather than set at each call site — the active class is toggled from five
+// different places and they all funnel through applyFilters().
+function syncPressedState() {
+  document.querySelectorAll('.filter-btn, .sort-btn').forEach(btn => {
+    btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
   });
 }
 
@@ -1406,6 +1544,7 @@ function applyFilters() {
     );
   }
   renderList(sortList(filtered));
+  syncPressedState();
   updateClearButton();
   writeHashState();
 }
