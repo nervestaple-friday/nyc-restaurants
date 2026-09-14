@@ -2747,9 +2747,9 @@
     "neighborhood": "Williamsburg",
     "cuisine": "Bar / Cocktails",
     "hours": "Mon-Sun 16:00-0:00",
-    "source": "The Infatuation July 2026 / Greenpointers / Time Out",
+    "source": "The Infatuation July 2026 / Greenpointers / Time Out / Brooklyn Bridge Parents",
     "added": "2026-07-12",
-    "note": "High-energy Japanese-and-Latin standing cocktail bar (Suite S5) inspired by Japan's tachinomi, opened early July 2026. First collaboration between veteran bartenders A-K Hada and Christian 'Suzu' Suzuki-Orellana (PDT, Existing Conditions; Suzu was a Drink Masters semifinalist). Low-proof, high-vibe cocktails with a Latin soundtrack. Walk-in only, daily 4pm–midnight.",
+    "note": "High-energy Japanese-and-Latin standing cocktail bar (Suite S5) inspired by Japan's tachinomi, opened early July 2026. First collaboration between veteran bartenders A-K Hada and Christian 'Suzu' Suzuki-Orellana (PDT, Existing Conditions; Suzu was a Drink Masters semifinalist). Low-proof, high-vibe cocktails with a Latin soundtrack. Walk-in only, daily 4pm–midnight, with a vinyl sound system that also earns it a listening-bar billing.",
     "status": "opened"
   },
   {
@@ -2834,20 +2834,6 @@
     "source": "Brooklyn Bridge Parents / SecretNYC July 2026 / Brooklyn Bridge Parents July 2026",
     "added": "2026-07-19",
     "note": "Hong Kong-style café serving craft coffee, HK milk tea, and iced fruit blends. Opened July 2026 at 172 Borinquen Place in Williamsburg.",
-    "status": "opened"
-  },
-  {
-    "name": "Doki Doki",
-    "address": "160 Havemeyer St, Brooklyn, NY 11211",
-    "place_id": null,
-    "lat": 40.7114643,
-    "lng": -73.9577638,
-    "neighborhood": "Williamsburg",
-    "cuisine": "Japanese / Listening Bar",
-    "hours": null,
-    "source": "Brooklyn Bridge Parents July 2026",
-    "added": "2026-07-19",
-    "note": "High-energy listening bar on Havemeyer St blending Japanese and Latin cultures, with low-proof cocktails and a vinyl sound system. Now open.",
     "status": "opened"
   },
   {
