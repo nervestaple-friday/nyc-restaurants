@@ -779,6 +779,8 @@ function cuisineCategory(cuisine) {
   // "Korean Steakhouse", "Korean-Italian", "Vietnamese-Mexican Fusion",
   // and "French-Vietnamese" don't get swallowed by broader categories below.
   if (c.includes('vietnamese')) return 'Vietnamese';
+  // Above the American rule so a "Mongolian BBQ" isn't read as barbecue.
+  if (c.includes('mongolian')) return 'Asian';
   if (c.includes('korean')) return 'Korean';
   if (c.includes('mexican')) return 'Mexican';
   if (c.includes('chinese') || c.includes('cantonese') || c.includes('dim sum') || c.includes('shanghainese') || c.includes('dongbei')) return 'Chinese';
@@ -789,18 +791,18 @@ function cuisineCategory(cuisine) {
   // tighter regional bucket. "Jewish deli" lands here because the menu vocab
   // (pastrami, matzo ball, knish) is closer to NY-American comfort than any
   // standalone category would justify at this dataset size.
-  if (c.includes('american') || c === 'steakhouse' || c.includes('burgers') || c.includes('southern') || c.includes('sandwich') || c.includes('deli') || c.includes('rotisserie')) return 'American';
+  if (c.includes('american') || c === 'steakhouse' || c.includes('burgers') || c.includes('southern') || c.includes('sandwich') || c.includes('deli') || c.includes('rotisserie') || c.includes('bbq') || c.includes('barbecue') || c.includes('fried chicken')) return 'American';
   if (c.includes('mediterranean') || c.includes('israeli') || c.includes('persian') || c.includes('greek') || c.includes('falafel')) return 'Mediterranean';
   if (c.includes('seafood') || c.includes('oyster')) return 'Seafood';
-  if (c.includes('japanese') || c === 'nikkei' || c.includes('omakase') || c.includes('sushi') || c.includes('izakaya')) return 'Japanese';
+  if (c.includes('japanese') || c === 'nikkei' || c.includes('omakase') || c.includes('sushi') || c.includes('izakaya') || c.includes('ramen')) return 'Japanese';
   if (c.includes('caribbean') || c.includes('puerto rican') || c.includes('cuban') || c.includes('haitian')) return 'Caribbean';
   if (c.includes('italian')) return 'Italian';
   if (c.includes('thai')) return 'Thai';
   // Latin American (non-Mexican) — Brazilian, Colombian, Peruvian, etc.
-  if (c.includes('brazilian') || c.includes('latin') || c.includes('colombian') || c.includes('peruvian') || c.includes('argentinian') || c.includes('venezuelan')) return 'Latin American';
+  if (c.includes('brazilian') || c.includes('latin') || c.includes('colombian') || c.includes('peruvian') || c.includes('argentin') || c.includes('venezuelan')) return 'Latin American';
   // Eastern European & Caucasus — Georgian, Ukrainian, Polish, Russian, etc.
   if (c.includes('georgian') || c.includes('eastern european') || c.includes('polish') || c.includes('ukrainian') || c.includes('russian')) return 'Eastern European';
-  if (c.includes('tibetan') || c.includes('malaysian') || c.includes('hong kong') || c.includes('taiwanese') || c.includes('filipino') || c.includes('singaporean')) return 'Asian';
+  if (c.includes('tibetan') || c.includes('malaysian') || c.includes('hong kong') || c.includes('taiwanese') || c.includes('filipino') || c.includes('singaporean') || c.includes('cambodian')) return 'Asian';
   // Dining-mode buckets — surface tasting menus and wild-to-table as their own
   // filters before falling through to bar/cafe defaults.
   if (c.includes('tasting')) return 'Tasting Menu';
