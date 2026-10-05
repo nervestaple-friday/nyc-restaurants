@@ -841,6 +841,18 @@ function getStatus(r) {
   const label = STATUS_LABELS[s];
   return label ? { label, cls: s } : null;
 }
+// Tooltip spelling out what each status badge means, so "Coming Soon"
+// (not open yet), "Pop-Up" (open, but temporary) and "Closed" (gone for
+// good) can't be mistaken for one another.
+const STATUS_HINTS = {
+  closed: 'Permanently closed',
+  upcoming: 'Not open yet — check before visiting',
+  temporary: 'Pop-up or limited run — may end soon',
+};
+function statusBadgeHtml(st) {
+  if (!st) return '';
+  return `<span class="status-badge status-${st.cls}" title="${STATUS_HINTS[st.cls]}">${st.label}</span>`;
+}
 
 // Highlight entries added within the last RECENT_WINDOW_MS so visitors can
 // spot fresh scout-cycle additions at a glance regardless of which sort or
@@ -1161,7 +1173,7 @@ mappable.forEach(r => {
   const noteHtml = r.note ? `<div class="popup-note">${escapeHtml(r.note)}</div>` : '';
   const hoursHtml = r.hours ? `<div class="popup-hours">${escapeHtml(r.hours)}</div>` : '';
   const pst = getStatus(r);
-  const statusHtml = pst ? `<span class="status-badge status-${pst.cls}">${pst.label}</span>` : '';
+  const statusHtml = statusBadgeHtml(pst);
   const newHtml = isRecentlyAdded(r) ? '<span class="status-badge status-new">New</span>' : '';
 
   const popup = `<div class="popup-inner">
@@ -1434,7 +1446,7 @@ function renderList(filtered) {
 
   listEl.innerHTML = filtered.map(r => {
     const st = getStatus(r);
-    const stHtml = st ? `<span class="status-badge status-${st.cls}">${st.label}</span>` : '';
+    const stHtml = statusBadgeHtml(st);
     const newHtml = isRecentlyAdded(r) ? '<span class="status-badge status-new">New</span>' : '';
     const hasCoords = r.lat != null && r.lng != null;
     // Mappable cards behave like buttons (Enter / Space → fly to pin).
