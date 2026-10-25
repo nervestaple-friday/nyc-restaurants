@@ -2154,19 +2154,6 @@
     "note": "Neon-lit cocktail bar with 1990s aesthetic. Opened June 5. Cassette tapes, group shot-skis, bright blue drinks in fish-shaped glassware. Near Bedford Avenue."
   },
   {
-    "name": "Cafe Bar J.F.",
-    "address": "50 Withers Street, Brooklyn, NY 11211",
-    "place_id": "cafe-bar-jf-williamsburg-2026",
-    "lat": 40.7166231,
-    "lng": -73.950493,
-    "neighborhood": "Williamsburg",
-    "cuisine": "South American / Tavern",
-    "hours": null,
-    "source": "https://ny.eater.com/restaurant-openings/411355/cafe-bar-j-f-williamsburg-opening-llama-inn-erik-ramirez-juan-correa",
-    "added": "2026-06-18",
-    "note": "South American-leaning tavern from Llama Inn restaurateur Juan Correa and chef Francisco Castillo (initials = J+F). Opened May 13, 2026 in the former Llama Inn space at Withers & Meeker. Menu spans Peru, Chile, Argentina: grilled swordfish with yellow-eyed beans, lobster arroz meloso, pisco sour from Correa family recipe. Wines from Valle de Uco, Pisco Valley, Valle de Itata. Design by Madrid studio Plantea Estudio."
-  },
-  {
     "name": "Balera",
     "address": "442 Graham Avenue, Brooklyn, NY 11211",
     "place_id": "balera-williamsburg-2026",
@@ -3130,20 +3117,6 @@
     "status": "opened"
   },
   {
-    "name": "Edo Ya Sushi",
-    "address": "151 Rivington St, New York, NY 10002",
-    "place_id": null,
-    "lat": 40.7191416,
-    "lng": -73.9857356,
-    "neighborhood": "Lower East Side",
-    "cuisine": "Japanese",
-    "hours": null,
-    "source": "The Infatuation August 2026",
-    "added": "2026-08-23",
-    "note": "Father-and-son sushi bar opened August 2026. A la carte plus four omakase tiers from $75 to $175.",
-    "status": "opened"
-  },
-  {
     "name": "Casa Mulberry",
     "address": "113 Mulberry St, New York, NY 10013",
     "place_id": null,
@@ -3183,20 +3156,6 @@
     "source": "The Infatuation August 2026",
     "added": "2026-08-30",
     "note": "Greek neighborhood spot opened August 2026. Classics and a dip program at $8 for one or $21 for three.",
-    "status": "opened"
-  },
-  {
-    "name": "Apapacho",
-    "address": "191 5th Ave, Brooklyn, NY 11217",
-    "place_id": null,
-    "lat": 40.6767593,
-    "lng": -73.9799614,
-    "neighborhood": "Park Slope",
-    "cuisine": "Mexican",
-    "hours": null,
-    "source": "Brooklyn Patch August 2026",
-    "added": "2026-08-30",
-    "note": "Opened August 2026 from Jimmy Placido, Ascension Mendez and Jazmin Suarez. Mexico City, Oaxaca and Puebla influences - pan-seared scallops, short ribs in mole rojo, tequila and mezcal cocktails.",
     "status": "opened"
   },
   {
@@ -4066,5 +4025,89 @@
     "added": "2026-10-18",
     "note": "Slated to open fall 2026. Bar with Mexican raw dishes from the Atla/Cosme team (Enrique Olvera).",
     "status": "coming_soon"
+  },
+  {
+    "name": "Buddy & Son",
+    "address": "215 Chrystie St, New York, NY 10002",
+    "place_id": null,
+    "lat": 40.7230653,
+    "lng": -73.9920127,
+    "neighborhood": "Lower East Side",
+    "cuisine": "French / American",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-10-25",
+    "note": "Opened October 2026 in the Public Hotel. Brasserie, cafe and bar with seafood towers, beef tartare and half chicken over red wine jus.",
+    "status": "opened"
+  },
+  {
+    "name": "Cafe Gitane (Chinatown)",
+    "address": "162 E Broadway, New York, NY 10002",
+    "place_id": null,
+    "lat": 40.7141557,
+    "lng": -73.9903953,
+    "neighborhood": "Chinatown",
+    "cuisine": "French / Moroccan",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-10-25",
+    "note": "Opened October 2026. The Nolita cafe that abruptly closed on Mott St in Dec 2025, reborn on East Broadway with its tagines and avocado toast.",
+    "status": "opened"
+  },
+  {
+    "name": "Wilkie",
+    "address": "820 Franklin Ave, Brooklyn, NY 11225",
+    "place_id": null,
+    "lat": 40.6699277,
+    "lng": -73.9583973,
+    "neighborhood": "Crown Heights",
+    "cuisine": "Bar",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-10-25",
+    "note": "Opened October 2026. Cheap-drinks cocktail bar: $13 cocktails, $7 snaquiris, $7 beer-and-shot combos. BYO food for now; spam musubi and schnitzel sandwiches planned.",
+    "status": "opened"
+  },
+  {
+    "name": "Burrito Bear",
+    "address": "380 Broome St, New York, NY 10013",
+    "place_id": null,
+    "lat": 40.7205653,
+    "lng": -73.9964154,
+    "neighborhood": "Nolita",
+    "cuisine": "Mexican / Burritos",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-10-25",
+    "note": "Opened October 2026. Denver-style breakfast burritos smothered in green chile.",
+    "status": "opened"
+  },
+  {
+    "name": "Mum's",
+    "address": "241 Mulberry St, New York, NY 10012",
+    "place_id": null,
+    "lat": 40.7228841,
+    "lng": -73.9961423,
+    "neighborhood": "Nolita",
+    "cuisine": "Dessert",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-10-25",
+    "note": "Opened October 2026. Dessert shop serving crumble cups with fruit compote and ice cream.",
+    "status": "opened"
+  },
+  {
+    "name": "Kotobuki",
+    "address": "8 Stuyvesant St, New York, NY 10003",
+    "place_id": null,
+    "lat": 40.7297937,
+    "lng": -73.9892358,
+    "neighborhood": "East Village",
+    "cuisine": "Japanese",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-10-25",
+    "note": "Opened October 2026. Casual second-floor Japanese spot with a full bar and a huge menu of sushi, udon and teriyaki.",
+    "status": "opened"
   }
 ]
