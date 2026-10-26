@@ -66,7 +66,7 @@
     "hours": null,
     "source": "Brooklyn Eagle / BKMag / Red Hook WaterStories 2026",
     "added": "2026-08-09",
-    "note": "Cambodian restaurant from Bun Cheam (exec chef, Red Hook Tavern) and Cait Callahan, funded by Billy Durney of Hometown Bar-B-Que. Khmer breakfast plus street-food-inspired dinner of grilled meats and noodles. Slated for summer 2026 — ran a Park Slope residency in January 2026.",
+    "note": "Cambodian restaurant from Bun Cheam (exec chef, Red Hook Tavern) and Cait Callahan, funded by Billy Durney of Hometown Bar-B-Que. Khmer breakfast plus street-food-inspired dinner of grilled meats and noodles. Ran a Park Slope residency through January 2026; brick-and-mortar now slated for November 2026.",
     "status": "coming_soon"
   },
   {
@@ -457,8 +457,8 @@
     "hours": null,
     "source": "The Infatuation / Grime Square 2026",
     "added": "2026-07-05",
-    "note": "Late-night cocktail bar from the Frog Wine Bar team, one block from Frog in Bed-Stuy — martinis and snacks like popcorn and clam dip, open until 2am weekends. A May 2026 DOB work-stoppage order over electrical/plumbing permits delayed the planned June open; treat opening date as unconfirmed.",
-    "status": "coming_soon"
+    "note": "Late-night cocktail bar from the Frog Wine Bar team, one block from Frog in Bed-Stuy — martinis and snacks like popcorn and clam dip, open until 2am weekends. Opened summer 2026 after a May DOB work-stoppage pushed back the planned June open; reviewed by The Infatuation August 13, 2026.",
+    "status": "opened"
   },
   {
     "name": "Hidden Rivers",
@@ -2396,11 +2396,11 @@
     "lng": -73.9875035,
     "neighborhood": "East Village",
     "cuisine": "Burgers",
-    "hours": null,
-    "source": "SecretNYC July 2026",
+    "hours": "Sun-Thu 11:00-3:00, Fri-Sat 11:00-5:00",
+    "source": "SecretNYC July 2026 / EV Grieve July 27 2026",
     "added": "2026-07-12",
-    "note": "Fourth NYC location of the Miami-born smash-burger concept, slated to open July 24, 2026 in the East Village. Fresh Black Angus smash burgers; first 100 guests at 6pm on opening day get a complimentary burger.",
-    "status": "coming_soon"
+    "note": "Fourth NYC location of the Miami-born smash-burger concept. Opened Friday, July 24, 2026 on Second Ave between St. Mark's Place and 9th St. Fresh Black Angus smash burgers, fries and shakes; open until 3am weeknights, 5am weekends.",
+    "status": "opened"
   },
   {
     "name": "Lileo",
