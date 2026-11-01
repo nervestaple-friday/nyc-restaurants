@@ -4109,5 +4109,61 @@
     "added": "2026-10-25",
     "note": "Opened October 2026. Casual second-floor Japanese spot with a full bar and a huge menu of sushi, udon and teriyaki.",
     "status": "opened"
+  },
+  {
+    "name": "June Baby",
+    "address": "197 2nd Ave, New York, NY 10003",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "East Village",
+    "cuisine": "Filipino / Bar",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-11-01",
+    "note": "Opened October 2026. Filipino-American cocktail bar from Darwin Pornel and Ben Rojo (ex-Black Emperor). $15 ube colada, calamansi highball, lumpia, and an In-N-Out-style burger with banana ketchup. Aiming for 4am closes nightly.",
+    "status": "opened"
+  },
+  {
+    "name": "Il Quartiere",
+    "address": "371 Court St, Brooklyn, NY 11231",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "Carroll Gardens",
+    "cuisine": "Italian / Pasta",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-11-01",
+    "note": "Opened October 2026. Fresh pasta shop serving handmade pasta with sauces like bolognese, ricotta and lemon, or pistachio pesto.",
+    "status": "opened"
+  },
+  {
+    "name": "Brooklyn Surf & Soul",
+    "address": "602 Nostrand Ave, Brooklyn, NY 11216",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "Crown Heights",
+    "cuisine": "Southern / Seafood",
+    "hours": null,
+    "source": "Edible Brooklyn Oct 2026",
+    "added": "2026-11-01",
+    "note": "Opened October 3, 2026. Casual takeout counter for soulful seafood: shrimp po'boys, shrimp and grits, seafood and vegetable boils.",
+    "status": "opened"
+  },
+  {
+    "name": "Cafe Fig",
+    "address": "365 Broome St, New York, NY 10013",
+    "place_id": null,
+    "lat": null,
+    "lng": null,
+    "neighborhood": "Little Italy",
+    "cuisine": "Cafe / Bakery",
+    "hours": null,
+    "source": "The Infatuation new openings Oct 2026",
+    "added": "2026-11-01",
+    "note": "Opened October 2026. Cafe with specialty lattes (baklavatte, banana churro latte), matcha, and pastries like the spana croissant (spanakopita in croissant form).",
+    "status": "opened"
   }
 ]
